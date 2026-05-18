@@ -9,24 +9,30 @@ export default function PrincipalWelcomeSection() {
   return (
     <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl overflow-hidden rounded-md border border-brand-line bg-brand-cream shadow-premium lg:grid-cols-[0.9fr_1.1fr]">
-        <MotionReveal className="relative min-h-[360px]">
-          <Image
-            src={principal.image}
-            alt={`${principal.name}, ${principal.role}`}
-            fill
-            className="object-cover object-top"
-            sizes="(min-width: 1024px) 45vw, 100vw"
-          />
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand-ink/85 to-transparent p-6 text-white">
-            <p className="text-sm font-bold uppercase text-brand-gold">
-              Principal&apos;s Welcome
-            </p>
-            <h2 className="mt-2 font-serif text-3xl font-semibold">
-              {principal.name}
-            </h2>
-            <p className="mt-1 text-sm font-semibold text-white/85">
-              {principal.role}
-            </p>
+        <MotionReveal className="bg-white">
+          <div className="flex h-full flex-col">
+            <div className="relative flex min-h-[420px] flex-1 items-end justify-center overflow-hidden bg-gradient-to-b from-[#f7f4ee] via-white to-brand-cream p-4 sm:min-h-[460px] sm:p-6 lg:min-h-[680px]">
+              <div className="absolute inset-0 brand-sheen opacity-70" />
+              <Image
+                src={principal.image}
+                alt={`${principal.name}, ${principal.role}`}
+                width={696}
+                height={969}
+                className="relative z-10 h-auto max-h-[390px] w-auto max-w-full object-contain drop-shadow-2xl sm:max-h-[420px] lg:max-h-[640px]"
+                sizes="(min-width: 1024px) 38vw, 100vw"
+              />
+            </div>
+            <div className="border-t border-brand-line bg-brand-ink p-6 text-white">
+              <p className="text-sm font-bold uppercase text-brand-gold">
+                Principal&apos;s Welcome
+              </p>
+              <h2 className="mt-2 font-serif text-3xl font-semibold">
+                {principal.name}
+              </h2>
+              <p className="mt-1 text-sm font-semibold text-white/85">
+                {principal.role}
+              </p>
+            </div>
           </div>
         </MotionReveal>
 
