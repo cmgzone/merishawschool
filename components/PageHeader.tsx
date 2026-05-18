@@ -20,12 +20,12 @@ export default function PageHeader({
         src={image}
         alt=""
         fill
-        className="object-cover opacity-[0.22]"
+        className="object-cover opacity-[0.34] brightness-110 contrast-105"
         preload
         loading="eager"
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-brand-burgundy via-brand-burgundy/90 to-brand-gold/30" />
+      <div className="absolute inset-0 bg-gradient-to-r from-brand-ink/72 via-brand-burgundy/45 to-brand-gold/16" />
       <MotionReveal className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         {eyebrow ? (
           <p className="text-sm font-bold uppercase text-brand-gold">{eyebrow}</p>

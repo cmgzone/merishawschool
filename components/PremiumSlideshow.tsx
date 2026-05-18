@@ -62,7 +62,7 @@ export default function PremiumSlideshow({
   return (
     <div
       className={cn(
-        "group relative isolate overflow-hidden rounded-md bg-brand-burgundy shadow-premium",
+        "group relative isolate overflow-hidden rounded-md bg-brand-cream shadow-premium",
         compact ? "min-h-[440px]" : "min-h-[680px]",
         className,
       )}
@@ -80,7 +80,7 @@ export default function PremiumSlideshow({
             src={slide.image}
             alt={slide.alt}
             fill
-            className="object-cover"
+            className="object-cover brightness-110 contrast-105 saturate-105"
             sizes="100vw"
             preload={imagePriority && active === 0}
             loading={imagePriority && active === 0 ? "eager" : "lazy"}
@@ -89,8 +89,8 @@ export default function PremiumSlideshow({
         </motion.div>
       </AnimatePresence>
 
-      <div className="absolute inset-0 bg-gradient-to-r from-brand-burgundy/60 via-brand-burgundy/10 to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-t from-brand-burgundy/35 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-brand-ink/45 via-brand-ink/10 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/28 via-transparent to-transparent" />
 
       <div
         className={cn(

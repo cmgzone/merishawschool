@@ -26,7 +26,7 @@ export default function HeroSection() {
             {stats.map((item) => (
               <div
                 key={item.label}
-                className="rounded-md border border-brand-gold/50 bg-brand-burgundy/55 p-4 text-white shadow-lg shadow-brand-ink/20 backdrop-blur-md"
+                className="rounded-md border border-white/45 bg-brand-ink/38 p-4 text-white shadow-lg shadow-brand-ink/20 backdrop-blur-md"
               >
                 <p className="font-serif text-2xl font-semibold">{item.value}</p>
                 <p className="mt-1 text-xs font-bold uppercase text-white/90">
