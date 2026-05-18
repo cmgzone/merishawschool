@@ -1,0 +1,52 @@
+# Merishaw Schools TODO
+
+## Done
+
+- [x] Audit old website structure and useful content.
+- [x] Extract brand colors from official logo.
+- [x] Identify missing content and client questions.
+- [x] Create project planning documents.
+
+## High Priority
+
+- [x] Scaffold Next.js + TypeScript + Tailwind CSS + Framer Motion.
+- [x] Mirror useful logo, images, and fee PDF assets.
+- [x] Configure Tailwind brand colors and global styles.
+- [x] Build global layout, navbar, and footer.
+- [x] Build homepage.
+- [x] Build internal pages.
+- [x] Add metadata for every page.
+- [x] Run lint, typecheck, and production build.
+
+## Medium Priority
+
+- [ ] Add polished Framer Motion transitions.
+- [x] Verify mobile and desktop smoke layouts.
+- [x] Validate core navigation and local fee download link.
+- [x] Upgrade homepage hero with cinematic animated slideshow.
+- [x] Add reusable premium slideshow component.
+- [x] Upgrade homepage/gallery visual showcase with animated slides.
+- [x] Upgrade typography with a premium editorial heading font.
+- [x] Add animated values ribbon and editorial brand statement.
+- [x] Polish hero overlay, logo sizing, sponsor CTA language, and feature-card contrast.
+- [x] Capture client-review screenshots for hero, admissions, and support sections.
+- [x] Add old-site-style grouped dropdown navigation in a modern format.
+- [x] Add content-needed routes for old navigation pages without verified copy.
+- [x] Add Merishaw welcome video to Home, About, and Gallery.
+- [ ] Validate every external social, Drive, YouTube, and map link with client-approved production content.
+- [x] Add deployment notes for Contabo VPS + Coolify.
+
+## Client Approval Needed
+
+- [ ] Founder/chairman name for Director's Note.
+- [ ] Admissions process steps and current intake details.
+- [ ] Support a Child sponsorship wording and donation/payment details.
+- [ ] Current scholarship policy.
+- [ ] Current school calendar, uniforms, careers, and staff stories.
+- [ ] Approval to keep or replace Google Drive download links.
+
+## Pending
+
+- [ ] Production deployment configuration.
+- [ ] Final client content review.
+- [ ] Final performance and accessibility pass.

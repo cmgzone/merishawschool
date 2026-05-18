@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #111827;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  text-rendering: geometricPrecision;
+}
+
+::selection {
+  background: #d0c090;
+  color: #102020;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+.premium-heading {
+  font-feature-settings:
+    "liga" 1,
+    "kern" 1;
+}
+
+.brand-script-line {
+  position: relative;
+  display: inline-block;
+}
+
+.brand-script-line::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.16em;
+  left: 0;
+  height: 0.12em;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #d0c090, rgba(208, 192, 144, 0.12));
+  content: "";
+}
+
+.gold-outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(208, 192, 144, 0.68);
+}
+
+.brand-sheen {
+  background:
+    linear-gradient(135deg, rgba(208, 192, 144, 0.18), transparent 34%),
+    linear-gradient(315deg, rgba(128, 32, 48, 0.12), transparent 38%);
+}
+
+.premium-hero-copy {
+  text-shadow: 0 2px 22px rgba(16, 32, 32, 0.48);
+}
+
+.values-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+}
+
+.values-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: values-marquee 36s linear infinite;
+}
+
+.contact-pulse {
+  position: relative;
+}
+
+.contact-pulse::before {
+  position: absolute;
+  inset: -4px;
+  z-index: -1;
+  border-radius: 0.55rem;
+  background: rgba(128, 32, 48, 0.28);
+  content: "";
+  animation: contact-pulse 2.4s ease-in-out infinite;
+}
+
+.values-marquee:hover .values-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes values-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes contact-pulse {
+  0%,
+  100% {
+    opacity: 0.38;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  border-radius: 0.375rem;
+  background: #102020;
+  color: white;
+  padding: 0.75rem 1rem;
+  transition: top 160ms ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .values-marquee-track {
+    animation: none;
+  }
+
+  .contact-pulse::before {
+    animation: none;
+  }
+}
