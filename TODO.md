@@ -35,6 +35,7 @@
 - [x] Add Merishaw welcome video to Home, About, and Gallery.
 - [x] Add homepage Who We Are, Why Choose Merishaw, Principal's Welcome, Admissions Process, and FAQ sections.
 - [x] Upgrade Admissions page with a clearer reusable process section.
+- [x] Add old-site pillar images to the homepage and Academics pillar cards.
 - [ ] Validate every external social, Drive, YouTube, and map link with client-approved production content.
 - [x] Add deployment notes for Contabo VPS + Coolify.
 

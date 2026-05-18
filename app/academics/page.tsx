@@ -4,6 +4,7 @@ import ButtonLink from "@/components/ButtonLink";
 import CTASection from "@/components/CTASection";
 import MotionReveal from "@/components/MotionReveal";
 import PageHeader from "@/components/PageHeader";
+import PillarCard from "@/components/PillarCard";
 import SectionTitle from "@/components/SectionTitle";
 import { academicPrograms, cbeCompetencies, cbePathways, pillars } from "@/data/academics";
 
@@ -101,19 +102,11 @@ export default function AcademicsPage() {
             eyebrow="Pillars"
             title="Six pillars for holistic formation."
             description="Each pillar supports the school's aim of transforming boys into men of purpose and integrity."
+            tone="dark"
           />
           <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {pillars.map((pillar, index) => (
-              <MotionReveal key={pillar.title} delay={index * 0.04}>
-                <article className="h-full rounded-md border border-white/20 bg-white/[0.08] p-6">
-                  <h3 className="font-serif text-2xl font-semibold text-white">
-                    {pillar.title}
-                  </h3>
-                  <p className="mt-3 text-sm font-medium leading-7 text-white/90">
-                    {pillar.description}
-                  </p>
-                </article>
-              </MotionReveal>
+              <PillarCard key={pillar.title} {...pillar} index={index} />
             ))}
           </div>
         </div>

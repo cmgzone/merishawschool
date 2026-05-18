@@ -38,31 +38,43 @@ export const cbeCompetencies = [
 export const pillars = [
   {
     title: "STEM Program",
+    image: "/images/pillar-stem.jpg",
+    imageAlt: "Merishaw students taking part in a STEM learning activity",
     description:
       "A future-facing pillar that prepares boys for innovation, real-world problem solving, creativity, and adaptability in a changing global economy.",
   },
   {
     title: "Sports and Talents",
+    image: "/images/pillar-sports.jpg",
+    imageAlt: "Merishaw students participating in sports day",
     description:
       "A nurturing environment where students explore, develop, and excel in sporting and talent areas while building discipline and resilience.",
   },
   {
     title: "Spiritual Well-being",
+    image: "/images/pillar-spiritual.jpg",
+    imageAlt: "Merishaw school community during a thanksgiving gathering",
     description:
       "A Christian foundation that supports the holistic transformation of the boy child into a man of integrity and purpose.",
   },
   {
     title: "Performing Arts",
+    image: "/images/pillar-performing-arts.jpeg",
+    imageAlt: "Merishaw students in a performing arts activity",
     description:
       "Drama, theatre, music, and performance opportunities that strengthen confidence, expression, collaboration, and creativity.",
   },
   {
     title: "Digital Literacy",
+    image: "/images/pillar-digital-literacy.jpg",
+    imageAlt: "Digital learning and literacy at Merishaw School",
     description:
       "Intentional exposure to technology and digital skills so learners can participate confidently in a modern information age.",
   },
   {
     title: "Social and Collaboration",
+    image: "/images/pillar-social-collaboration.jpeg",
+    imageAlt: "Merishaw students participating in a social collaboration initiative",
     description:
       "Community service, outreach, environmental care, donation drives, and wellness campaigns that build compassion and citizenship.",
   },
@@ -87,4 +99,3 @@ export const values = [
   { letter: "A", label: "Accountability" },
   { letter: "W", label: "Winning mentality" },
 ];
-

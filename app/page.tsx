@@ -18,6 +18,7 @@ import FAQSection from "@/components/FAQSection";
 import HeroSection from "@/components/HeroSection";
 import LeadershipCard from "@/components/LeadershipCard";
 import MotionReveal from "@/components/MotionReveal";
+import PillarCard from "@/components/PillarCard";
 import PremiumSlideshow from "@/components/PremiumSlideshow";
 import PrincipalWelcomeSection from "@/components/PrincipalWelcomeSection";
 import SectionTitle from "@/components/SectionTitle";
@@ -153,22 +154,11 @@ export default function Home() {
             eyebrow="Six pillars"
             title="The pillars behind Merishaw's formation model."
             description="These pillars are adapted from the old website and organized for clearer storytelling across the new experience."
+            tone="dark"
           />
           <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {pillars.map((pillar, index) => (
-              <MotionReveal key={pillar.title} delay={index * 0.04}>
-                <article className="h-full rounded-md border border-brand-gold/25 bg-white/[0.08] p-6">
-                  <p className="text-sm font-bold text-brand-gold">
-                    {String(index + 1).padStart(2, "0")}
-                  </p>
-                  <h3 className="mt-4 font-serif text-2xl font-semibold">
-                    {pillar.title}
-                  </h3>
-                  <p className="mt-3 text-sm font-medium leading-7 text-white/90">
-                    {pillar.description}
-                  </p>
-                </article>
-              </MotionReveal>
+              <PillarCard key={pillar.title} {...pillar} index={index} />
             ))}
           </div>
         </div>
