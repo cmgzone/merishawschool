@@ -1,15 +1,25 @@
 import Image from "next/image";
-import { GraduationCap, HeartHandshake, Shield } from "lucide-react";
+import {
+  Award,
+  BookOpenCheck,
+  Building2,
+  HeartHandshake,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
 import AcademicCard from "@/components/AcademicCard";
+import AdmissionsProcessSection from "@/components/AdmissionsProcessSection";
 import ButtonLink from "@/components/ButtonLink";
 import ContactSection from "@/components/ContactSection";
 import CTASection from "@/components/CTASection";
 import DownloadCard from "@/components/DownloadCard";
 import EditorialStatement from "@/components/EditorialStatement";
+import FAQSection from "@/components/FAQSection";
 import HeroSection from "@/components/HeroSection";
 import LeadershipCard from "@/components/LeadershipCard";
 import MotionReveal from "@/components/MotionReveal";
 import PremiumSlideshow from "@/components/PremiumSlideshow";
+import PrincipalWelcomeSection from "@/components/PrincipalWelcomeSection";
 import SectionTitle from "@/components/SectionTitle";
 import SupportChildSection from "@/components/SupportChildSection";
 import ValuesMarquee from "@/components/ValuesMarquee";
@@ -17,27 +27,16 @@ import WelcomeVideoSection from "@/components/WelcomeVideoSection";
 import { academicPrograms, pillars } from "@/data/academics";
 import { downloads } from "@/data/downloads";
 import { galleryImages, showcaseSlides } from "@/data/gallery";
+import { whoWeAreHighlights, whyChooseMerishaw } from "@/data/home";
 import { leaders } from "@/data/leadership";
 
-const whyChoose = [
-  {
-    title: "Purpose-led boys' formation",
-    description:
-      "Merishaw focuses on mentoring boys into men of integrity through academics, leadership, discipline, and character.",
-    icon: Shield,
-  },
-  {
-    title: "World-class learning environment",
-    description:
-      "The campus brings together resource spaces, laboratories, boarding, arts, sports, and student-life facilities.",
-    icon: GraduationCap,
-  },
-  {
-    title: "Strong Christian foundation",
-    description:
-      "The school emphasizes spiritual grounding, compassion, accountability, and values-led leadership.",
-    icon: HeartHandshake,
-  },
+const whyChooseIcons = [
+  ShieldCheck,
+  BookOpenCheck,
+  Building2,
+  HeartHandshake,
+  Award,
+  Sparkles,
 ];
 
 export default function Home() {
@@ -63,10 +62,10 @@ export default function Home() {
           </MotionReveal>
           <MotionReveal delay={0.08}>
             <p className="text-sm font-bold uppercase text-brand-burgundy">
-              About Merishaw
+              Who We Are
             </p>
             <h2 className="mt-3 font-serif text-3xl font-semibold text-brand-ink sm:text-4xl">
-              A serene residential school built for the whole boy.
+              A serious residential school for boys, built around purpose.
             </h2>
             <p className="mt-5 text-base leading-8 text-brand-muted">
               Merishaw extends a warm welcome to prospective students and
@@ -75,6 +74,21 @@ export default function Home() {
               with programs developed to bring up wholesome young men who can
               serve society with leadership and integrity.
             </p>
+            <div className="mt-7 grid gap-3 sm:grid-cols-3">
+              {whoWeAreHighlights.map((highlight) => (
+                <div
+                  key={highlight.value}
+                  className="rounded-md border border-brand-line bg-brand-cream p-4"
+                >
+                  <p className="font-serif text-2xl font-semibold text-brand-ink">
+                    {highlight.value}
+                  </p>
+                  <p className="mt-2 text-xs font-semibold uppercase leading-5 text-brand-muted">
+                    {highlight.label}
+                  </p>
+                </div>
+              ))}
+            </div>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/about">Learn About Merishaw</ButtonLink>
               <ButtonLink href="/academics" variant="secondary">
@@ -88,27 +102,30 @@ export default function Home() {
       <section className="bg-brand-cream px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionTitle
-            eyebrow="Why choose us"
-            title="Premium school life with purpose at the centre."
-            description="The new website organizes Merishaw's verified strengths into clear, parent-friendly reasons to enquire, visit, and apply."
+            eyebrow="Why Choose Merishaw"
+            title="A premium school experience with formation at the centre."
+            description="This section turns the strongest old-site messages into clear, parent-friendly reasons to enquire, visit, and apply."
             align="center"
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {whyChoose.map((item, index) => (
-              <MotionReveal key={item.title} delay={index * 0.05}>
-                <article className="h-full rounded-md border border-brand-line bg-white p-6 shadow-card">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-md bg-brand-burgundy text-brand-gold">
-                    <item.icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="mt-5 font-serif text-2xl font-semibold text-brand-ink">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-brand-muted">
-                    {item.description}
-                  </p>
-                </article>
-              </MotionReveal>
-            ))}
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {whyChooseMerishaw.map((item, index) => {
+              const Icon = whyChooseIcons[index] ?? ShieldCheck;
+              return (
+                <MotionReveal key={item.title} delay={index * 0.05}>
+                  <article className="group h-full rounded-md border border-brand-line bg-white p-6 shadow-card transition duration-300 hover:-translate-y-1 hover:border-brand-gold hover:shadow-premium">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-md bg-brand-burgundy text-brand-gold transition group-hover:bg-brand-ink">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="mt-5 font-serif text-2xl font-semibold text-brand-ink">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-brand-muted">
+                      {item.description}
+                    </p>
+                  </article>
+                </MotionReveal>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -127,6 +144,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <AdmissionsProcessSection />
 
       <section className="bg-brand-burgundy px-4 py-16 text-white sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
@@ -164,6 +183,8 @@ export default function Home() {
         secondaryHref="/downloads"
         secondaryLabel="Fees & Downloads"
       />
+
+      <PrincipalWelcomeSection />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
@@ -260,6 +281,8 @@ export default function Home() {
           </ButtonLink>
         </MotionReveal>
       </section>
+
+      <FAQSection />
 
       <ContactSection />
     </>

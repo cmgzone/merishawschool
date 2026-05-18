@@ -33,6 +33,8 @@
 - [x] Add old-site-style grouped dropdown navigation in a modern format.
 - [x] Add content-needed routes for old navigation pages without verified copy.
 - [x] Add Merishaw welcome video to Home, About, and Gallery.
+- [x] Add homepage Who We Are, Why Choose Merishaw, Principal's Welcome, Admissions Process, and FAQ sections.
+- [x] Upgrade Admissions page with a clearer reusable process section.
 - [ ] Validate every external social, Drive, YouTube, and map link with client-approved production content.
 - [x] Add deployment notes for Contabo VPS + Coolify.
 
@@ -44,6 +46,7 @@
 - [ ] Current scholarship policy.
 - [ ] Current school calendar, uniforms, careers, and staff stories.
 - [ ] Approval to keep or replace Google Drive download links.
+- [ ] Decide whether the final version needs a dashboard/CMS for content editing, news updates, gallery uploads, and downloads management.
 
 ## Pending
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ClipboardList, FileText, PhoneCall } from "lucide-react";
+import AdmissionsProcessSection from "@/components/AdmissionsProcessSection";
 import ButtonLink from "@/components/ButtonLink";
 import CTASection from "@/components/CTASection";
 import MotionReveal from "@/components/MotionReveal";
@@ -20,27 +20,6 @@ const applicationFields = [
   "Curriculum preference: 8.4.4 or CBE",
   "8.4.4 options: Form 3 or Form 4",
   "CBE options: Grade 8, Grade 9, or Grade 10",
-];
-
-const placeholderSteps = [
-  {
-    title: "Submit enquiry",
-    description:
-      "Use the contact page or admissions CTA to begin the conversation with the school.",
-    icon: PhoneCall,
-  },
-  {
-    title: "Share student details",
-    description:
-      "Provide parent details, student details, curriculum preference, and grade or form.",
-    icon: ClipboardList,
-  },
-  {
-    title: "Confirm requirements",
-    description:
-      "Admission process steps, documents, interview requirements, and deadlines need client confirmation.",
-    icon: FileText,
-  },
 ];
 
 export default function AdmissionsPage() {
@@ -80,38 +59,7 @@ export default function AdmissionsPage() {
         </div>
       </section>
 
-      <section className="bg-brand-cream px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <SectionTitle
-            eyebrow="Process"
-            title="Admissions process placeholder pending client approval."
-            description="These steps are intentionally conservative because the old application-process page was empty."
-            align="center"
-          />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {placeholderSteps.map((step, index) => (
-              <MotionReveal key={step.title} delay={index * 0.05}>
-                <article className="h-full rounded-md border border-brand-line bg-white p-6 shadow-card">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-md bg-brand-burgundy text-brand-gold">
-                    <step.icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="mt-5 font-serif text-2xl font-semibold text-brand-ink">
-                    {step.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-brand-muted">
-                    {step.description}
-                  </p>
-                </article>
-              </MotionReveal>
-            ))}
-          </div>
-          <MotionReveal className="mt-8 rounded-md border border-brand-gold/70 bg-white p-5 text-sm leading-7 text-brand-muted">
-            Client approval needed: current intake dates, interview steps,
-            required documents, scholarship rules, and official application
-            submission workflow.
-          </MotionReveal>
-        </div>
-      </section>
+      <AdmissionsProcessSection showActions={false} />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <MotionReveal className="mx-auto flex max-w-7xl flex-col justify-between gap-6 rounded-md border border-brand-gold/40 bg-brand-burgundy p-8 text-white md:flex-row md:items-center">
