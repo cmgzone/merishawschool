@@ -56,7 +56,7 @@ export default function Navbar() {
       </div>
       <nav
         aria-label="Primary navigation"
-        className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8"
       >
         <Link
           href="/"
@@ -73,6 +73,15 @@ export default function Navbar() {
             priority
           />
         </Link>
+
+        <div className="hidden min-w-0 flex-1 px-2 min-[520px]:block xl:hidden">
+          <p className="truncate text-xs font-bold uppercase tracking-[0.14em] text-brand-burgundy">
+            Home of the Boy Child
+          </p>
+          <p className="mt-1 truncate text-sm font-semibold text-brand-ink">
+            Residential boys&apos; high school
+          </p>
+        </div>
 
         <div className="hidden items-center gap-0.5 xl:flex">
           {navigationGroups.map((item) =>
@@ -152,15 +161,34 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <button
-          type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-brand-line text-brand-ink transition hover:bg-brand-cream focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 xl:hidden"
-          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
-          aria-expanded={open}
-          onClick={() => setOpen((value) => !value)}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="ml-auto flex items-center gap-2 xl:hidden">
+          <Link
+            href="/contact"
+            className="inline-flex h-11 min-w-11 items-center justify-center gap-2 rounded-md bg-brand-burgundy px-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-ink focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 min-[520px]:px-4"
+            onClick={() => setOpen(false)}
+            aria-label="Contact Merishaw School"
+          >
+            <Mail aria-hidden="true" className="h-4 w-4" />
+            <span className="hidden min-[520px]:inline">Enquire</span>
+          </Link>
+          <Link
+            href={supportNavItem.href}
+            className="hidden h-11 items-center justify-center gap-2 rounded-md bg-brand-gold px-4 text-sm font-bold text-brand-ink shadow-sm transition hover:bg-brand-burgundy hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 md:inline-flex"
+            onClick={() => setOpen(false)}
+          >
+            <HeartHandshake aria-hidden="true" className="h-4 w-4" />
+            Sponsor
+          </Link>
+          <button
+            type="button"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-brand-line text-brand-ink transition hover:bg-brand-cream focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2"
+            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((value) => !value)}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
