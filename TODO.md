@@ -38,6 +38,7 @@
 - [x] Add old-site pillar images to the homepage and Academics pillar cards.
 - [x] Apply client reference inspiration while preserving Merishaw brand identity.
 - [x] Brighten hero and page-header image overlays to reduce the pink cast.
+- [x] Adapt Cedarwood-style full-width hero, simple centered statement, and floating social rail with Merishaw branding.
 - [ ] Validate every external social, Drive, YouTube, and map link with client-approved production content.
 - [x] Add deployment notes for Contabo VPS + Coolify.
 

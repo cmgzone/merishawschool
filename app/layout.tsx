@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
+import FloatingSocialRail from "@/components/FloatingSocialRail";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { seoDefaults, siteConfig } from "@/data/site";
@@ -58,6 +59,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <Navbar />
+        <FloatingSocialRail />
         <main id="main-content">{children}</main>
         <Footer />
       </body>

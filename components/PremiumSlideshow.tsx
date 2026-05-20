@@ -22,6 +22,8 @@ type PremiumSlideshowProps = {
   compact?: boolean;
   children?: ReactNode;
   headingLevel?: 1 | 2;
+  contentAlign?: "left" | "center";
+  showArrows?: boolean;
 };
 
 export default function PremiumSlideshow({
@@ -31,6 +33,8 @@ export default function PremiumSlideshow({
   compact = false,
   children,
   headingLevel = 2,
+  contentAlign = "left",
+  showArrows = true,
 }: PremiumSlideshowProps) {
   const [active, setActive] = useState(0);
   const reduceMotion = useReducedMotion();
@@ -89,13 +93,23 @@ export default function PremiumSlideshow({
         </motion.div>
       </AnimatePresence>
 
-      <div className="absolute inset-0 bg-gradient-to-r from-brand-ink/45 via-brand-ink/10 to-transparent" />
+      <div
+        className={cn(
+          "absolute inset-0",
+          contentAlign === "center"
+            ? "bg-brand-ink/34"
+            : "bg-gradient-to-r from-brand-ink/45 via-brand-ink/10 to-transparent",
+        )}
+      />
       <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/28 via-transparent to-transparent" />
 
       <div
         className={cn(
-          "relative z-10 flex h-full flex-col justify-end px-5 py-7 sm:px-8 lg:px-10",
+          "relative z-10 flex h-full flex-col px-5 py-7 sm:px-8 lg:px-10",
           compact ? "min-h-[440px]" : "min-h-[680px]",
+          contentAlign === "center"
+            ? "items-center justify-center text-center"
+            : "justify-end",
         )}
       >
         <AnimatePresence mode="wait">
@@ -108,6 +122,7 @@ export default function PremiumSlideshow({
             className={cn(
               "premium-hero-copy",
               compact ? "max-w-2xl" : "max-w-4xl",
+              contentAlign === "center" && "mx-auto",
             )}
           >
             {slide.eyebrow ? (
@@ -142,6 +157,7 @@ export default function PremiumSlideshow({
               className={cn(
                 "mt-5 font-semibold leading-8 text-white drop-shadow",
                 compact ? "text-base" : "max-w-2xl text-lg",
+                contentAlign === "center" && "mx-auto",
               )}
             >
               {slide.description}
@@ -149,29 +165,45 @@ export default function PremiumSlideshow({
           </motion.div>
         </AnimatePresence>
 
-        {children ? <div className="mt-8">{children}</div> : null}
-
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-5">
-          <div className="hidden gap-2 sm:flex" aria-label="Slideshow controls">
-            <button
-              type="button"
-              onClick={controls.previous}
-              className="flex h-11 w-11 items-center justify-center rounded-md border border-brand-gold/40 bg-white/20 text-white backdrop-blur transition hover:bg-brand-gold hover:text-brand-ink focus:outline-none focus:ring-2 focus:ring-brand-gold"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <button
-              type="button"
-              onClick={controls.next}
-              className="flex h-11 w-11 items-center justify-center rounded-md border border-brand-gold/40 bg-white/20 text-white backdrop-blur transition hover:bg-brand-gold hover:text-brand-ink focus:outline-none focus:ring-2 focus:ring-brand-gold"
-              aria-label="Next slide"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
+        {children ? (
+          <div className={cn("mt-8", contentAlign === "center" && "w-full")}>
+            {children}
           </div>
+        ) : null}
 
-          <div className="flex min-w-52 flex-1 items-center justify-end gap-2">
+        <div
+          className={cn(
+            "mt-8 flex flex-wrap items-center gap-5",
+            contentAlign === "center" ? "justify-center" : "justify-between",
+          )}
+        >
+          {showArrows ? (
+            <div className="hidden gap-2 sm:flex" aria-label="Slideshow controls">
+              <button
+                type="button"
+                onClick={controls.previous}
+                className="flex h-11 w-11 items-center justify-center rounded-md border border-brand-gold/40 bg-white/20 text-white backdrop-blur transition hover:bg-brand-gold hover:text-brand-ink focus:outline-none focus:ring-2 focus:ring-brand-gold"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                type="button"
+                onClick={controls.next}
+                className="flex h-11 w-11 items-center justify-center rounded-md border border-brand-gold/40 bg-white/20 text-white backdrop-blur transition hover:bg-brand-gold hover:text-brand-ink focus:outline-none focus:ring-2 focus:ring-brand-gold"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          ) : null}
+
+          <div
+            className={cn(
+              "flex min-w-52 flex-1 items-center gap-2",
+              contentAlign === "center" ? "justify-center" : "justify-end",
+            )}
+          >
             {slides.map((item, index) => (
               <button
                 key={item.image}
