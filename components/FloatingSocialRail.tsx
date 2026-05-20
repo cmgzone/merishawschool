@@ -1,33 +1,39 @@
 import Link from "next/link";
 import { MessageCircle } from "lucide-react";
+import BrandSocialIcon, { type SocialBrand } from "@/components/BrandSocialIcon";
 import { siteConfig } from "@/data/site";
 
 const socialLinks = [
   {
     label: "Facebook",
-    shortLabel: "f",
+    brand: "facebook",
     href: siteConfig.socials.facebook,
     className: "bg-[#1877F2]",
   },
   {
     label: "YouTube",
-    shortLabel: "YT",
+    brand: "youtube",
     href: siteConfig.socials.youtube,
     className: "bg-[#FF0000]",
   },
   {
     label: "Instagram",
-    shortLabel: "IG",
+    brand: "instagram",
     href: siteConfig.socials.instagram,
     className: "bg-gradient-to-br from-[#833AB4] via-[#E1306C] to-[#FCAF45]",
   },
   {
     label: "X",
-    shortLabel: "X",
+    brand: "x",
     href: siteConfig.socials.x,
     className: "bg-brand-ink",
   },
-];
+] satisfies Array<{
+  label: string;
+  brand: SocialBrand;
+  href: string;
+  className: string;
+}>;
 
 export default function FloatingSocialRail() {
   return (
@@ -44,7 +50,7 @@ export default function FloatingSocialRail() {
           aria-label={`Visit Merishaw School on ${item.label}`}
           className={`${item.className} flex h-11 w-11 items-center justify-center rounded-md text-sm font-black text-white shadow-lg shadow-brand-ink/20 transition hover:-translate-x-1 focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2`}
         >
-          {item.shortLabel}
+          <BrandSocialIcon brand={item.brand} />
         </a>
       ))}
       <Link

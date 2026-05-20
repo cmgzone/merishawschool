@@ -39,6 +39,7 @@
 - [x] Apply client reference inspiration while preserving Merishaw brand identity.
 - [x] Brighten hero and page-header image overlays to reduce the pink cast.
 - [x] Adapt Cedarwood-style full-width hero, simple centered statement, and floating social rail with Merishaw branding.
+- [x] Replace social initials with real Facebook, YouTube, Instagram, and X icons.
 - [ ] Validate every external social, Drive, YouTube, and map link with client-approved production content.
 - [x] Add deployment notes for Contabo VPS + Coolify.
 

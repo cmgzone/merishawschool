@@ -1,8 +1,36 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
+import BrandSocialIcon, { type SocialBrand } from "@/components/BrandSocialIcon";
 import { navigation, supportNavItem } from "@/data/navigation";
 import { siteConfig } from "@/data/site";
+
+const footerSocialLinks = [
+  {
+    label: "Facebook",
+    brand: "facebook",
+    href: siteConfig.socials.facebook,
+  },
+  {
+    label: "Instagram",
+    brand: "instagram",
+    href: siteConfig.socials.instagram,
+  },
+  {
+    label: "YouTube",
+    brand: "youtube",
+    href: siteConfig.socials.youtube,
+  },
+  {
+    label: "X",
+    brand: "x",
+    href: siteConfig.socials.x,
+  },
+] satisfies Array<{
+  label: string;
+  brand: SocialBrand;
+  href: string;
+}>;
 
 export default function Footer() {
   return (
@@ -75,27 +103,18 @@ export default function Footer() {
             </li>
           </ul>
           <div className="mt-6 flex gap-3">
-            <a
-              href={siteConfig.socials.facebook}
-              aria-label="Merishaw School on Facebook"
-              className="rounded-md border border-white/20 p-2 text-white/80 transition hover:border-brand-gold hover:text-brand-gold"
-            >
-              <ExternalLink className="h-4 w-4" />
-            </a>
-            <a
-              href={siteConfig.socials.instagram}
-              aria-label="Merishaw School on Instagram"
-              className="rounded-md border border-white/20 p-2 text-white/80 transition hover:border-brand-gold hover:text-brand-gold"
-            >
-              <ExternalLink className="h-4 w-4" />
-            </a>
-            <a
-              href={siteConfig.socials.youtube}
-              aria-label="Merishaw School on YouTube"
-              className="rounded-md border border-white/20 p-2 text-white/80 transition hover:border-brand-gold hover:text-brand-gold"
-            >
-              <ExternalLink className="h-4 w-4" />
-            </a>
+            {footerSocialLinks.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Merishaw School on ${item.label}`}
+                className="rounded-md border border-white/20 p-2 text-white/80 transition hover:border-brand-gold hover:text-brand-gold"
+              >
+                <BrandSocialIcon brand={item.brand} className="h-4 w-4" />
+              </a>
+            ))}
           </div>
         </div>
       </div>
