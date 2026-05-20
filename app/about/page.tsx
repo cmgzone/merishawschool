@@ -77,7 +77,7 @@ export default function AboutPage() {
           <SectionTitle
             eyebrow="Mission, vision, values"
             title="Purpose-driven global leaders empowered for success."
-            description="This section uses verified copy from the old Mission, Vision and Values page."
+            description="The mission, vision, and values give families a clear view of the school's foundation."
             align="center"
           />
           <div className="mt-10 grid gap-5 lg:grid-cols-2">
@@ -127,7 +127,7 @@ export default function AboutPage() {
           <SectionTitle
             eyebrow="Facilities"
             title="A campus designed for learning, boarding, creativity, and sport."
-            description="The old facilities page lists a broad set of academic, residential, creative, dining, and sporting spaces."
+            description="Academic, residential, creative, dining, and sporting spaces support a complete school experience."
           />
           <div className="grid gap-3 sm:grid-cols-2">
             {facilities.map((facility, index) => (
@@ -162,9 +162,9 @@ export default function AboutPage() {
               Built as a home away from home.
             </h2>
             <p className="mt-5 text-base font-medium leading-8 text-white/90">
-              The old website describes a beautiful campus with outstanding
-              facilities and a microclimate that provides the serene environment
-              needed to fully enjoy school life.
+              Merishaw&apos;s campus is designed to feel calm, ordered, and
+              inspiring, with the facilities and environment learners need to
+              fully enjoy school life.
             </p>
             <div className="mt-7">
               <ButtonLink href="/gallery" variant="support">
@@ -178,7 +178,7 @@ export default function AboutPage() {
       <CTASection
         eyebrow="Leadership"
         title="Read the messages from Merishaw's leadership."
-        description="The leadership page organizes the principal's note, director/founder note, and student council content from the old website."
+        description="The leadership page introduces the people and student voices shaping Merishaw's culture."
         primaryHref="/leadership"
         primaryLabel="View Leadership"
         secondaryHref="/contact"

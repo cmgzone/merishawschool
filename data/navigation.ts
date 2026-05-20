@@ -16,26 +16,18 @@ export const navigationGroups = [
     href: "/about",
     children: [
       { label: "About Merishaw", href: "/about" },
-      { label: "A Word from Our Director", href: "/leadership" },
       { label: "Principal's Welcome Note", href: "/leadership" },
-      { label: "Curriculum", href: "/academics" },
-      { label: "Our Pillars", href: "/academics" },
       { label: "Facilities", href: "/about" },
       { label: "Mission, Vision and Values", href: "/about" },
-      { label: "Educational Philosophy", href: "/educational-philosophy" },
-      { label: "Governance", href: "/leadership" },
     ],
   },
-  { label: "Academics", href: "/academics" },
   {
-    label: "School Life",
-    href: "/gallery",
+    label: "Academics",
+    href: "/academics",
     children: [
-      { label: "School Calendar", href: "/school-calendar" },
-      { label: "School News", href: "/news" },
-      { label: "School Uniforms", href: "/school-uniforms" },
-      { label: "Extra-curricular Activities", href: "/extra-curricular-activities" },
-      { label: "Blog", href: "/news" },
+      { label: "Curriculum", href: "/academics" },
+      { label: "CBE Pathways", href: "/academics" },
+      { label: "Six Pillars", href: "/academics" },
     ],
   },
   {
@@ -43,12 +35,12 @@ export const navigationGroups = [
     href: "/admissions",
     children: [
       { label: "Application Process", href: "/admissions" },
-      { label: "Application Form", href: "/admissions" },
       { label: "Fees Structure", href: "/downloads" },
-      { label: "Scholarships", href: "/scholarships" },
       { label: "Downloads", href: "/downloads" },
+      { label: "Contact Admissions", href: "/contact" },
     ],
   },
+  { label: "Leadership", href: "/leadership" },
   {
     label: "Gallery",
     href: "/gallery",
@@ -57,15 +49,7 @@ export const navigationGroups = [
       { label: "Videos", href: "/gallery" },
     ],
   },
-  {
-    label: "Working at Merishaw",
-    href: "/career-opportunities",
-    children: [
-      { label: "Staff Stories", href: "/staff-stories" },
-      { label: "Christian Life", href: "/christian-life" },
-      { label: "Career Opportunities", href: "/career-opportunities" },
-    ],
-  },
+  { label: "News", href: "/news" },
 ];
 
 export const supportNavItem = {

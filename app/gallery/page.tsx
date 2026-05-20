@@ -13,7 +13,7 @@ import { siteConfig } from "@/data/site";
 export const metadata: Metadata = {
   title: "Gallery",
   description:
-    "View Merishaw School campus, boarding, sports, facilities, and student life images migrated from the old website.",
+    "View Merishaw School campus, boarding, sports, facilities, and student life images.",
 };
 
 export default function GalleryPage() {
@@ -22,7 +22,7 @@ export default function GalleryPage() {
       <PageHeader
         eyebrow="Gallery"
         title="Campus, facilities, and student life at Merishaw."
-        description="The gallery uses mirrored assets from the old Merishaw website, organized into a cleaner responsive presentation."
+        description="Explore a cleaner visual tour of the learning spaces, boarding environment, sports grounds, and student-life moments."
         image="/images/gallery-aerial-campus.jpg"
       />
 
@@ -46,7 +46,7 @@ export default function GalleryPage() {
           <SectionTitle
             eyebrow="Pictures"
             title="A visual tour of the school environment."
-            description="Campus buildings, resource spaces, sports grounds, boarding facilities, and student-life images from the old gallery and pictures pages."
+            description="Campus buildings, resource spaces, sports grounds, boarding facilities, and student-life moments."
           />
           <div className="mt-10">
             <GalleryGrid images={galleryImages} />
@@ -75,8 +75,8 @@ export default function GalleryPage() {
               Follow Merishaw School on YouTube.
             </h2>
             <p className="mt-4 text-base leading-8 text-brand-muted">
-              The old website links to the school&apos;s YouTube channel and an
-              embedded featured video. Both are retained for the rebuild.
+              Watch the welcome video and follow the official YouTube channel
+              for more of the Merishaw story.
             </p>
             <div className="mt-7">
               <ButtonLink href={siteConfig.socials.youtube}>

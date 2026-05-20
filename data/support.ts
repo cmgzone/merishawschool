@@ -10,5 +10,5 @@ export const supportContent = {
   description:
     "Support a Boy's Education is prepared as a sponsorship pathway for families, alumni, partners, and friends of Merishaw who want to help a deserving learner access a safe, values-led, future-facing education.",
   note:
-    "This section uses verified CSR themes from the old website. Sponsorship packages, donation account details, and final wording require client approval before launch.",
+    "Sponsorship is handled through direct conversation with the school. Payment integration is not included on the website at this stage.",
 };

@@ -77,24 +77,24 @@ export const experiencePathways = [
 
 export const whyChooseMerishaw = [
   {
-    title: "Purpose-led boys' formation",
+    title: "Purposeful boys' formation",
     description:
-      "Merishaw is positioned as the Home of the Boy Child, with a strong emphasis on character, leadership, discipline, and integrity.",
+      "A focused environment where character, leadership, discipline, and integrity are intentionally developed.",
   },
   {
     title: "Clear academic pathways",
     description:
-      "The school offers 8.4.4 and Competency-Based Curriculum pathways for Junior and Senior Secondary learners.",
+      "8.4.4 and Competency-Based Curriculum options help families choose a suitable route for Junior and Senior Secondary.",
   },
   {
     title: "Premium residential environment",
     description:
-      "Campus life brings academics, boarding, mentorship, sport, arts, worship, and student leadership into one structured setting.",
+      "Boarding, mentorship, sport, arts, worship, and leadership come together in one structured campus setting.",
   },
   {
     title: "Values that parents can trust",
     description:
-      "The old website consistently highlights accountability, Christian formation, collaboration, and purposeful leadership.",
+      "A Christian foundation and strong accountability give families confidence in the school culture.",
   },
   {
     title: "Facilities for whole-boy growth",
@@ -104,7 +104,7 @@ export const whyChooseMerishaw = [
   {
     title: "A story worth joining",
     description:
-      "The rebuilt website gives families a clearer path to discover the school, book a conversation, and begin admissions.",
+      "Families can discover the school, book a conversation, and begin admissions through a clear parent journey.",
   },
 ];
 
@@ -114,28 +114,28 @@ export const admissionsProcess = [
     title: "Enquire",
     description:
       "Families begin by contacting the school through phone, email, the enquiry form, or the admissions call-to-action.",
-    note: "Verified from the contact and old enquiry flow.",
+    note: "Start with a direct conversation.",
   },
   {
     step: "02",
     title: "Share student details",
     description:
-      "The old form captured parent details, student details, curriculum preference, and the target grade or form.",
-    note: "Fields retained from the old website.",
+      "Admissions will request parent details, student details, curriculum preference, and the intended grade or form.",
+    note: "Prepare key student information.",
   },
   {
     step: "03",
     title: "Review requirements",
     description:
       "The school confirms documents, interview or assessment expectations, intake availability, and next steps.",
-    note: "Needs client confirmation.",
+    note: "Requirements are confirmed by admissions.",
   },
   {
     step: "04",
     title: "Visit or confirm placement",
     description:
       "Families can complete the conversation with admissions, review fees, and receive guidance on joining Merishaw.",
-    note: "Needs client confirmation.",
+    note: "Plan the next step with the school.",
   },
 ];
 
@@ -143,7 +143,7 @@ export const faqs = [
   {
     question: "Is Merishaw School a boys' school?",
     answer:
-      "Yes. The old website positions Merishaw as the Home of the Boy Child and focuses on forming boys into men of purpose and integrity.",
+      "Yes. Merishaw is a residential boys' high school focused on academic strength, discipline, character, and leadership.",
   },
   {
     question: "Which curriculum does the school offer?",
@@ -158,7 +158,7 @@ export const faqs = [
   {
     question: "How do parents start the admissions process?",
     answer:
-      "Parents can begin through the admissions page or contact the school directly by phone, email, or enquiry form. Detailed admission steps still need final client confirmation.",
+      "Parents can begin through the admissions page or contact the school directly by phone, email, or enquiry form.",
   },
   {
     question: "Where can families find the fee structure?",
@@ -168,6 +168,6 @@ export const faqs = [
   {
     question: "Can someone sponsor or support a student?",
     answer:
-      "The new website includes a Sponsor a Child section prepared from CSR-related content. Payment integration is not included yet, and sponsorship details need client approval.",
+      "Yes. The Sponsor a Child section introduces a direct-contact pathway for families, alumni, partners, and friends who want to support a student's education.",
   },
 ];

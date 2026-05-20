@@ -7,12 +7,11 @@ export const leaders = [
       "The principal's welcome note positions Merishaw as a place where boys are mentored into confident, purposeful young men through strong academics, discipline, and holistic formation.",
   },
   {
-    name: "Founder / Chairman",
-    role: "Name pending client confirmation",
+    name: "Director's Message",
+    role: "School Leadership",
     image: "/images/merishaw-bg.jpeg",
-    needsClientApproval: true,
     description:
-      "The old website includes a director's note, but the audited copy does not expose a confirmed founder/chairman name. This profile is intentionally marked for client approval.",
+      "The director's note reflects the school's commitment to mentorship, values, academic growth, and a focused environment for the boy child.",
   },
 ];
 
@@ -28,4 +27,3 @@ export const studentCouncil = [
       "The school is homely and provides the ideal environment for students to thrive, from an exhilarating academic environment to competitions and international exposure.",
   },
 ];
-

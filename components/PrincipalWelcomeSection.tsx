@@ -51,9 +51,8 @@ export default function PrincipalWelcomeSection() {
               formation.
             </p>
             <p className="mt-4 text-sm leading-7 text-brand-muted">
-              This section brings that leadership voice closer to the homepage,
-              so parents meet the school&apos;s direction before moving into
-              Admissions, Academics, or Support a Child.
+              Parents meet the school&apos;s direction early, before moving into
+              Admissions, Academics, or sponsorship conversations.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/leadership">Read Leadership Notes</ButtonLink>

@@ -10,7 +10,7 @@ import { csrInitiatives, supportContent } from "@/data/support";
 export const metadata: Metadata = {
   title: "Support a Boy's Education",
   description:
-    "Support a Boy's Education sponsorship page structure for Merishaw School, prepared from CSR themes without payment integration.",
+    "Support a Boy's Education sponsorship pathway for Merishaw School, without payment integration.",
 };
 
 const sponsorshipAreas = [
@@ -37,7 +37,7 @@ export default function SupportAChildPage() {
               Sponsorship pathway
             </p>
             <h2 className="mt-3 font-serif text-3xl font-semibold text-brand-ink sm:text-4xl">
-              A clear structure now, payment integration later if requested.
+              A clear sponsorship conversation, handled directly by the school.
             </h2>
             <p className="mt-5 text-base leading-8 text-brand-muted">
               {supportContent.description}
@@ -69,8 +69,8 @@ export default function SupportAChildPage() {
         <div className="mx-auto max-w-7xl">
           <SectionTitle
             eyebrow="CSR foundation"
-            title="Existing social responsibility themes from the old website."
-            description="The dedicated sponsorship page is new, so this section grounds it in audited CSR material."
+            title="Social responsibility in action."
+            description="The sponsorship pathway connects with Merishaw's wider culture of service, outreach, wellness, and community responsibility."
             align="center"
           />
           <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">

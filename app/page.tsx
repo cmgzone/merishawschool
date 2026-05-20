@@ -1,82 +1,67 @@
 import Image from "next/image";
 import {
   Award,
+  BedDouble,
   BookOpenCheck,
   Building2,
   HeartHandshake,
+  Mail,
+  Phone,
   ShieldCheck,
-  Sparkles,
+  UsersRound,
 } from "lucide-react";
 import AcademicCard from "@/components/AcademicCard";
-import AdmissionsProcessSection from "@/components/AdmissionsProcessSection";
 import ButtonLink from "@/components/ButtonLink";
-import ContactSection from "@/components/ContactSection";
 import CTASection from "@/components/CTASection";
-import DownloadCard from "@/components/DownloadCard";
-import EditorialStatement from "@/components/EditorialStatement";
-import ExperiencePathwaysSection from "@/components/ExperiencePathwaysSection";
-import FAQSection from "@/components/FAQSection";
 import HeroSection from "@/components/HeroSection";
-import LeadershipCard from "@/components/LeadershipCard";
 import MotionReveal from "@/components/MotionReveal";
 import PillarCard from "@/components/PillarCard";
 import PremiumSlideshow from "@/components/PremiumSlideshow";
 import PrincipalWelcomeSection from "@/components/PrincipalWelcomeSection";
 import SectionTitle from "@/components/SectionTitle";
-import SignatureExperienceSection from "@/components/SignatureExperienceSection";
 import SupportChildSection from "@/components/SupportChildSection";
-import ValuesMarquee from "@/components/ValuesMarquee";
-import WelcomeVideoSection from "@/components/WelcomeVideoSection";
-import { academicPrograms, pillars } from "@/data/academics";
-import { downloads } from "@/data/downloads";
+import { academicPrograms, facilities, pillars } from "@/data/academics";
 import { galleryImages, showcaseSlides } from "@/data/gallery";
 import { whoWeAreHighlights, whyChooseMerishaw } from "@/data/home";
-import { leaders } from "@/data/leadership";
+import { siteConfig } from "@/data/site";
 
-const whyChooseIcons = [
-  ShieldCheck,
-  BookOpenCheck,
-  Building2,
-  HeartHandshake,
-  Award,
-  Sparkles,
+const whyChooseIcons = [ShieldCheck, BookOpenCheck, Building2, Award];
+
+const boardingHighlights = [
+  {
+    title: "Structured boarding",
+    description: "A calm residential rhythm helps boys grow in discipline, care, and independence.",
+    icon: BedDouble,
+  },
+  {
+    title: "Mentorship culture",
+    description: "Teachers and leaders guide learners beyond academics into character and confidence.",
+    icon: UsersRound,
+  },
+  {
+    title: "Whole-school life",
+    description: "Sport, faith, arts, service, and leadership sit beside classroom excellence.",
+    icon: HeartHandshake,
+  },
 ];
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <ValuesMarquee />
-      <EditorialStatement />
-      <SignatureExperienceSection />
-      <WelcomeVideoSection tone="light" />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
           <MotionReveal>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-md shadow-premium">
-              <Image
-                src="/images/resource-centre.jpeg"
-                alt="Merishaw School resource centre"
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 45vw, 100vw"
-              />
-            </div>
-          </MotionReveal>
-          <MotionReveal delay={0.08}>
             <p className="text-sm font-bold uppercase text-brand-burgundy">
-              Who We Are
+              Why Merishaw
             </p>
-            <h2 className="mt-3 font-serif text-3xl font-semibold text-brand-ink sm:text-4xl">
-              A serious residential school for boys, built around purpose.
+            <h2 className="mt-3 max-w-2xl font-serif text-3xl font-semibold leading-tight text-brand-ink sm:text-5xl">
+              A focused boys&apos; school with a clear promise.
             </h2>
-            <p className="mt-5 text-base leading-8 text-brand-muted">
-              Merishaw extends a warm welcome to prospective students and
-              parents. The school offers the National Curriculum under 8.4.4
-              and the Competency-Based Curriculum at Junior and Senior Secondary,
-              with programs developed to bring up wholesome young men who can
-              serve society with leadership and integrity.
+            <p className="mt-5 max-w-2xl text-base leading-8 text-brand-muted">
+              Merishaw blends residential care, strong academics, faith, mentorship,
+              and leadership so boys can grow with purpose and confidence.
             </p>
             <div className="mt-7 grid gap-3 sm:grid-cols-3">
               {whoWeAreHighlights.map((highlight) => (
@@ -95,29 +80,20 @@ export default function Home() {
             </div>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/about">Learn About Merishaw</ButtonLink>
-              <ButtonLink href="/academics" variant="secondary">
-                Explore Academics
+              <ButtonLink href="/admissions" variant="secondary">
+                Start Admissions
               </ButtonLink>
             </div>
           </MotionReveal>
-        </div>
-      </section>
 
-      <section className="bg-brand-cream px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <SectionTitle
-            eyebrow="Why Choose Merishaw"
-            title="A premium school experience with formation at the centre."
-            description="This section turns the strongest old-site messages into clear, parent-friendly reasons to enquire, visit, and apply."
-            align="center"
-          />
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {whyChooseMerishaw.map((item, index) => {
+          <div className="grid gap-4 sm:grid-cols-2">
+            {whyChooseMerishaw.slice(0, 4).map((item, index) => {
               const Icon = whyChooseIcons[index] ?? ShieldCheck;
+
               return (
                 <MotionReveal key={item.title} delay={index * 0.05}>
-                  <article className="group h-full rounded-md border border-brand-line bg-white p-6 shadow-card transition duration-300 hover:-translate-y-1 hover:border-brand-gold hover:shadow-premium">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-md bg-brand-burgundy text-brand-gold transition group-hover:bg-brand-ink">
+                  <article className="group h-full rounded-md border border-brand-line bg-brand-cream p-6 transition duration-300 hover:-translate-y-1 hover:border-brand-gold hover:bg-white hover:shadow-premium">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-md bg-brand-burgundy text-brand-gold transition group-hover:bg-brand-ink">
                       <Icon className="h-5 w-5" />
                     </div>
                     <h3 className="mt-5 font-serif text-2xl font-semibold text-brand-ink">
@@ -134,14 +110,13 @@ export default function Home() {
         </div>
       </section>
 
-      <ExperiencePathwaysSection />
-
-      <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
+      <section className="bg-brand-cream px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionTitle
-            eyebrow="Academics"
+            eyebrow="Academic pathways"
             title="Curriculum options shaped for excellence and future readiness."
-            description="Merishaw combines national curriculum pathways with mentorship, practical skills, global competitiveness, and holistic growth."
+            description="Parents can quickly understand the learning routes available before moving into the full Academics page."
+            align="center"
           />
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {academicPrograms.map((program, index) => (
@@ -151,15 +126,72 @@ export default function Home() {
         </div>
       </section>
 
-      <AdmissionsProcessSection />
+      <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
+          <MotionReveal>
+            <div className="relative aspect-[16/11] overflow-hidden rounded-md shadow-premium">
+              <Image
+                src="/images/gallery-dormitory.jpeg"
+                alt="Merishaw School boarding facilities"
+                fill
+                className="object-cover brightness-105"
+                sizes="(min-width: 1024px) 55vw, 100vw"
+              />
+            </div>
+          </MotionReveal>
+          <MotionReveal delay={0.08}>
+            <p className="text-sm font-bold uppercase text-brand-burgundy">
+              Boarding and student life
+            </p>
+            <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight text-brand-ink sm:text-5xl">
+              A home-away-from-home with structure, warmth, and ambition.
+            </h2>
+            <p className="mt-5 text-base leading-8 text-brand-muted">
+              The residential experience gives students a stable environment for
+              study, friendship, worship, sport, talent development, and daily
+              mentorship.
+            </p>
+            <div className="mt-7 grid gap-4">
+              {boardingHighlights.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <div
+                    key={item.title}
+                    className="flex gap-4 rounded-md border border-brand-line bg-brand-cream p-4"
+                  >
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-brand-burgundy text-brand-gold">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-serif text-xl font-semibold text-brand-ink">
+                        {item.title}
+                      </h3>
+                      <p className="mt-1 text-sm leading-7 text-brand-muted">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="mt-7">
+              <ButtonLink href="/about" variant="secondary">
+                Explore School Life
+              </ButtonLink>
+            </div>
+          </MotionReveal>
+        </div>
+      </section>
 
       <section className="bg-brand-burgundy px-4 py-16 text-white sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionTitle
             eyebrow="Six pillars"
-            title="The pillars behind Merishaw's formation model."
-            description="These pillars are adapted from the old website and organized for clearer storytelling across the new experience."
+            title="A wider formation model for academics, talent, service, and character."
+            description="The pillars give parents a simple view of how Merishaw develops the whole student."
             tone="dark"
+            align="center"
           />
           <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {pillars.map((pillar, index) => (
@@ -169,45 +201,66 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <MotionReveal>
+            <p className="text-sm font-bold uppercase text-brand-burgundy">
+              Facilities preview
+            </p>
+            <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight text-brand-ink sm:text-5xl">
+              Spaces built for learning, boarding, creativity, and sport.
+            </h2>
+            <div className="mt-7 grid gap-3">
+              {facilities.slice(0, 4).map((facility) => (
+                <div
+                  key={facility}
+                  className="rounded-md border border-brand-line bg-brand-cream p-4 text-sm font-semibold leading-7 text-brand-ink"
+                >
+                  {facility}
+                </div>
+              ))}
+            </div>
+            <div className="mt-7">
+              <ButtonLink href="/about" variant="secondary">
+                View Facilities
+              </ButtonLink>
+            </div>
+          </MotionReveal>
+          <MotionReveal delay={0.08}>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-md shadow-premium">
+              <Image
+                src="/images/gallery-resource-centre.jpeg"
+                alt="Merishaw School resource centre"
+                fill
+                className="object-cover brightness-105"
+                sizes="(min-width: 1024px) 55vw, 100vw"
+              />
+            </div>
+          </MotionReveal>
+        </div>
+      </section>
+
+      <PrincipalWelcomeSection />
+
       <CTASection
         eyebrow="Admissions"
-        title="Begin the admissions conversation with Merishaw School."
-        description="The old site exposed application fields for parent details, student details, curriculum preference, and grade or form. The new admissions page keeps that structure and marks process details that require client confirmation."
+        title="Ready to discuss the right pathway for your son?"
+        description="Start with a simple enquiry. The admissions team can guide you on curriculum options, grade placement, fees, and the next school visit."
         primaryHref="/admissions"
-        primaryLabel="View Admissions"
+        primaryLabel="Start Admissions"
         secondaryHref="/downloads"
         secondaryLabel="Fees & Downloads"
       />
 
-      <PrincipalWelcomeSection />
+      <SupportChildSection />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <SectionTitle
-              eyebrow="Leadership"
-              title="A school culture guided by mentorship and accountability."
-              description="Leadership content uses verified old-site material and clearly marks details that still need client confirmation."
-            />
-            <ButtonLink href="/leadership" variant="secondary">
-              Meet Leadership
-            </ButtonLink>
-          </div>
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {leaders.map((leader, index) => (
-              <LeadershipCard key={leader.name} {...leader} index={index} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-brand-cream px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <SectionTitle
-              eyebrow="Gallery"
-              title="A look inside the Merishaw campus experience."
-              description="Campus and student-life images have been mirrored from the old website for the new gallery."
+              eyebrow="Gallery preview"
+              title="A closer look at campus life."
+              description="See the classrooms, boarding spaces, grounds, and student-life moments that shape the Merishaw experience."
             />
             <ButtonLink href="/gallery" variant="secondary">
               View Gallery
@@ -218,8 +271,8 @@ export default function Home() {
             <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
               {galleryImages.slice(0, 3).map((image, index) => (
                 <MotionReveal key={image.src} delay={index * 0.05}>
-                  <div className="relative overflow-hidden rounded-md border border-brand-line bg-white p-3 shadow-card">
-                    <div className="relative aspect-[16/9] overflow-hidden rounded-md bg-brand-cream">
+                  <div className="relative overflow-hidden rounded-md border border-brand-line bg-brand-cream p-3 shadow-card">
+                    <div className="relative aspect-[16/9] overflow-hidden rounded-md bg-white">
                       <Image
                         src={image.src}
                         alt={image.alt}
@@ -239,47 +292,51 @@ export default function Home() {
         </div>
       </section>
 
-      <SupportChildSection />
-
-      <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <SectionTitle
-              eyebrow="Downloads"
-              title="Key school documents in one clear place."
-              description="The current fee structure is mirrored locally; legacy Google Drive links remain marked for approval."
-            />
-            <ButtonLink href="/downloads" variant="secondary">
-              All Downloads
-            </ButtonLink>
-          </div>
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {downloads.map((download, index) => (
-              <DownloadCard key={download.title} {...download} index={index} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-brand-burgundy px-4 py-12 text-white sm:px-6 lg:px-8">
-        <MotionReveal className="mx-auto flex max-w-7xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
+      <section className="bg-brand-cream px-4 py-16 sm:px-6 lg:px-8">
+        <MotionReveal className="mx-auto grid max-w-7xl gap-8 overflow-hidden rounded-md border border-brand-gold/50 bg-white p-7 shadow-premium lg:grid-cols-[1fr_0.9fr] lg:items-center lg:p-10">
           <div>
-            <p className="text-sm font-bold uppercase text-brand-gold">
-              Latest updates
+            <p className="text-sm font-bold uppercase text-brand-burgundy">
+              Contact CTA
             </p>
-            <h2 className="mt-2 font-serif text-3xl font-semibold">
-              STEM, sports, and school stories.
+            <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight text-brand-ink sm:text-5xl">
+              Book a visit or speak with Merishaw School.
             </h2>
+            <p className="mt-4 max-w-2xl text-base leading-8 text-brand-muted">
+              For admissions, school visits, sponsorship conversations, or
+              general enquiries, the school team is ready to help.
+            </p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/contact">Contact Us</ButtonLink>
+              <ButtonLink
+                href={`tel:${siteConfig.contact.phonePrimary.replace(/\s/g, "")}`}
+                variant="secondary"
+              >
+                Call Now
+              </ButtonLink>
+            </div>
           </div>
-          <ButtonLink href="/news" variant="support">
-            Read Updates
-          </ButtonLink>
+          <div className="grid gap-3">
+            <a
+              href={`tel:${siteConfig.contact.phonePrimary.replace(/\s/g, "")}`}
+              className="flex items-center gap-4 rounded-md border border-brand-line bg-brand-cream p-4 transition hover:border-brand-gold"
+            >
+              <Phone className="h-5 w-5 shrink-0 text-brand-burgundy" />
+              <span className="text-sm font-semibold text-brand-ink">
+                {siteConfig.contact.phonePrimary} / {siteConfig.contact.phoneSecondary}
+              </span>
+            </a>
+            <a
+              href={`mailto:${siteConfig.contact.email}`}
+              className="flex items-center gap-4 rounded-md border border-brand-line bg-brand-cream p-4 transition hover:border-brand-gold"
+            >
+              <Mail className="h-5 w-5 shrink-0 text-brand-burgundy" />
+              <span className="break-all text-sm font-semibold text-brand-ink">
+                {siteConfig.contact.email}
+              </span>
+            </a>
+          </div>
         </MotionReveal>
       </section>
-
-      <FAQSection />
-
-      <ContactSection />
     </>
   );
 }

@@ -20,18 +20,18 @@ export default function AdmissionsProcessSection({
             <SectionTitle
               eyebrow="Admissions Process"
               title="A calm, clear path from enquiry to joining."
-              description="The process is presented conservatively using verified enquiry fields from the old website, with the remaining admission details marked for client confirmation."
+              description="Parents get a simple journey: enquire, share student details, review requirements, then plan the next step with the school."
             />
             {showIntroCard ? (
               <MotionReveal delay={0.08}>
                 <div className="mt-8 rounded-md border border-brand-gold/60 bg-white p-6 shadow-card">
                   <p className="text-sm font-bold uppercase text-brand-burgundy">
-                    Client approval needed
+                    What to prepare
                   </p>
                   <p className="mt-3 text-sm leading-7 text-brand-muted">
-                    Intake dates, assessment requirements, document checklist,
-                    interview steps, scholarship rules, and the final submission
-                    workflow should be confirmed before launch.
+                    Have parent contact details, student information, preferred
+                    curriculum, intended grade or form, and any recent academic
+                    records ready for the admissions conversation.
                   </p>
                 </div>
               </MotionReveal>

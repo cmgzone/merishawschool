@@ -119,8 +119,8 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10 px-4 py-5 text-center text-xs text-white/70">
-        Copyright (c) {new Date().getFullYear()} Merishaw School. Rebuild prepared
-        for production handoff.
+        Copyright (c) {new Date().getFullYear()} Merishaw School. All rights
+        reserved.
       </div>
     </footer>
   );

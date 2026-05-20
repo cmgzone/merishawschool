@@ -29,7 +29,7 @@ export default function AcademicsPage() {
           <SectionTitle
             eyebrow="Programs"
             title="A balanced academic foundation."
-            description="The old curriculum page emphasizes rigorous academics, practical skills, global competitiveness, tailored learning paths, and seamless transitions to tertiary education."
+            description="The academic model emphasizes rigorous learning, practical skills, global competitiveness, tailored pathways, and preparation for tertiary education."
           />
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {academicPrograms.map((program, index) => (
@@ -49,8 +49,8 @@ export default function AcademicsPage() {
               Senior school pathways with room for strengths and aspirations.
             </h2>
             <p className="mt-5 text-base leading-8 text-brand-muted">
-              The old website identifies three CBE pathways available for
-              learners as they progress into Senior Secondary.
+              Learners can progress into Senior Secondary through pathways that
+              recognize strengths, interests, and future aspirations.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/admissions">Admissions Enquiry</ButtonLink>
@@ -81,7 +81,7 @@ export default function AcademicsPage() {
           <SectionTitle
             eyebrow="Core competencies"
             title="Competencies that support lifelong learning."
-            description="These competencies come from the CBE content audited from the old website."
+            description="These competencies support critical thinking, collaboration, creativity, and confident lifelong learning."
             align="center"
           />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

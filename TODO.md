@@ -44,6 +44,8 @@
 - [x] Improve tablet/mobile navbar so it feels intentional instead of empty.
 - [x] Improve hero photo framing so images fit naturally at tablet and desktop widths.
 - [x] Fade mobile social icon bar away as users approach the footer.
+- [x] Simplify homepage into a cleaner parent journey with shorter preview sections.
+- [x] Reduce heavy dropdown navigation and remove draft/internal wording from public pages.
 - [ ] Validate every external social, Drive, YouTube, and map link with client-approved production content.
 - [x] Add deployment notes for Contabo VPS + Coolify.
 

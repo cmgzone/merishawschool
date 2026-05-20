@@ -9,7 +9,7 @@ import { leaders, studentCouncil } from "@/data/leadership";
 export const metadata: Metadata = {
   title: "Leadership",
   description:
-    "Meet Merishaw School leadership and student council content adapted from the old website.",
+    "Meet Merishaw School leadership and student council voices.",
 };
 
 export default function LeadershipPage() {
@@ -18,7 +18,7 @@ export default function LeadershipPage() {
       <PageHeader
         eyebrow="Leadership"
         title="Leadership rooted in mentorship, growth, and accountability."
-        description="This page organizes the principal's note, director note, and student council content found on the old website."
+        description="Meet the leadership voice shaping the culture, mentorship, and student formation at Merishaw."
         image="/images/principal-david-kariuki.png"
       />
 
@@ -27,7 +27,7 @@ export default function LeadershipPage() {
           <SectionTitle
             eyebrow="School leadership"
             title="Guiding the Merishaw community."
-            description="One leadership profile is verified by name; the director/founder naming requires client confirmation before launch."
+            description="The school culture is guided by mentorship, academic purpose, and strong accountability."
             align="center"
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2">
@@ -42,8 +42,8 @@ export default function LeadershipPage() {
         <div className="mx-auto max-w-7xl">
           <SectionTitle
             eyebrow="Governance"
-            title="Student council voices from the old website."
-            description="The old governance page included short reflections from the School Captain and Deputy School Captain."
+            title="Student council voices."
+            description="Student leadership gives learners responsibility, confidence, and a voice within the school community."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-2">
             {studentCouncil.map((member, index) => (

@@ -6,7 +6,6 @@ type LeadershipCardProps = {
   role: string;
   image: string;
   description: string;
-  needsClientApproval?: boolean;
   index?: number;
 };
 
@@ -15,7 +14,6 @@ export default function LeadershipCard({
   role,
   image,
   description,
-  needsClientApproval,
   index = 0,
 }: LeadershipCardProps) {
   return (
@@ -31,11 +29,6 @@ export default function LeadershipCard({
           />
         </div>
         <div className="p-6">
-          {needsClientApproval ? (
-            <p className="mb-3 inline-flex rounded-md bg-brand-cream px-3 py-1 text-xs font-bold uppercase text-brand-burgundy">
-              Client approval needed
-            </p>
-          ) : null}
           <h3 className="font-serif text-2xl font-semibold text-brand-ink">
             {name}
           </h3>
@@ -48,4 +41,3 @@ export default function LeadershipCard({
     </MotionReveal>
   );
 }
-

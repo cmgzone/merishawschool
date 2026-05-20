@@ -7,7 +7,7 @@ import { downloads } from "@/data/downloads";
 export const metadata: Metadata = {
   title: "Fees Structure and Downloads",
   description:
-    "Download Merishaw School fee structure, brochure, circulars, and legacy documents from one organized page.",
+    "Download Merishaw School fee structure, brochure, circulars, and school documents from one organized page.",
 };
 
 export default function DownloadsPage() {
@@ -16,7 +16,7 @@ export default function DownloadsPage() {
       <PageHeader
         eyebrow="Downloads"
         title="Fees structure and school downloads."
-        description="Current and legacy documents from the old downloads pages, organized for parents and guardians."
+        description="Key parent documents organized in one clear place."
         image="/images/merishaw-bg.jpeg"
       />
 
@@ -25,7 +25,7 @@ export default function DownloadsPage() {
           <SectionTitle
             eyebrow="Documents"
             title="Important school files."
-            description="The current fee structure is hosted locally. Google Drive links are retained from the old website and marked where client approval is needed."
+            description="Download fee information, brochure material, and available school circulars."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {downloads.map((download, index) => (
@@ -37,12 +37,10 @@ export default function DownloadsPage() {
 
       <section className="bg-brand-cream px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl rounded-md border border-brand-gold/70 bg-white p-6 text-sm leading-7 text-brand-muted">
-          Client approval needed: confirm whether legacy Google Drive documents
-          should remain public, be replaced with new PDFs, or be removed before
-          production launch.
+          For the latest fee guidance or a document that is not listed here,
+          contact the school directly.
         </div>
       </section>
     </>
   );
 }
-

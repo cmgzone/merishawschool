@@ -10,7 +10,7 @@ export default function FAQSection() {
         <SectionTitle
           eyebrow="FAQ"
           title="Questions parents ask first."
-          description="These answers use verified school positioning and mark anything that still needs final client approval."
+          description="Quick answers to help families understand admissions, academics, location, fees, and sponsorship."
           align="center"
         />
 

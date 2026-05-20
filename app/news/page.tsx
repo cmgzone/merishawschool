@@ -9,7 +9,7 @@ import { newsItems } from "@/data/news";
 export const metadata: Metadata = {
   title: "News and Updates",
   description:
-    "Read Merishaw School news and updates migrated from the old website archive.",
+    "Read Merishaw School news and updates from the school community.",
 };
 
 export default function NewsPage() {
@@ -18,7 +18,7 @@ export default function NewsPage() {
       <PageHeader
         eyebrow="News"
         title="Merishaw School news and updates."
-        description="Verified old-site stories are retained here while the client prepares a newer news archive."
+        description="Highlights from academics, sport, student life, and school community moments."
         image="/images/news-stem.jpg"
       />
 
@@ -27,7 +27,7 @@ export default function NewsPage() {
           <SectionTitle
             eyebrow="Updates"
             title="Stories from the school community."
-            description="The old website provided two visible school-news stories: STEM achievement and Lacrosse exposure."
+            description="A focused archive for key school stories and announcements."
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             {newsItems.map((item, index) => (
@@ -69,19 +69,18 @@ export default function NewsPage() {
         <MotionReveal className="mx-auto flex max-w-7xl flex-col justify-between gap-6 rounded-md border border-brand-line bg-white p-6 md:flex-row md:items-center">
           <div>
             <h2 className="font-serif text-2xl font-semibold text-brand-ink">
-              Future news archive placeholder
+              More updates coming soon
             </h2>
             <p className="mt-2 text-sm leading-7 text-brand-muted">
-              Client can provide recent stories, dates, categories, and images
-              for a richer news archive.
+              Recent stories, event updates, and school announcements will be
+              added here as they become available.
             </p>
           </div>
           <ButtonLink href="/contact" variant="secondary">
-            Submit News Content
+            Contact the School
           </ButtonLink>
         </MotionReveal>
       </section>
     </>
   );
 }
-

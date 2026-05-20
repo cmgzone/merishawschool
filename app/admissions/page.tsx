@@ -9,7 +9,7 @@ import SectionTitle from "@/components/SectionTitle";
 export const metadata: Metadata = {
   title: "Admissions",
   description:
-    "Start an admissions enquiry for Merishaw School and review application fields, fee downloads, and client-confirmation notes.",
+    "Start an admissions enquiry for Merishaw School and review application fields, fee downloads, and next steps.",
 };
 
 const applicationFields = [
@@ -28,7 +28,7 @@ export default function AdmissionsPage() {
       <PageHeader
         eyebrow="Admissions"
         title="Begin your son's Merishaw journey."
-        description="The admissions page keeps verified old-form fields and clearly marks missing process details for client confirmation."
+        description="A clear starting point for parents exploring curriculum options, grade placement, fees, and school visits."
         image="/images/gallery-parade-grounds.png"
       />
 
@@ -36,13 +36,13 @@ export default function AdmissionsPage() {
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr]">
           <SectionTitle
             eyebrow="Application enquiry"
-            title="Admissions content verified from the old website."
-            description="The old application form captured parent details, student details, curriculum, and grade or form preference. The application-process page itself did not include detailed process copy."
+            title="Start with the information admissions needs most."
+            description="Parents can prepare contact details, student details, curriculum preference, and the intended grade or form before speaking with the school."
           />
           <MotionReveal>
             <div className="rounded-md border border-brand-line bg-brand-cream p-6">
               <h2 className="font-serif text-2xl font-semibold text-brand-ink">
-                Application fields to retain
+                Information requested during enquiry
               </h2>
               <ul className="mt-5 grid gap-3 sm:grid-cols-2">
                 {applicationFields.map((field) => (
