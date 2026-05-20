@@ -13,6 +13,68 @@ export const whoWeAreHighlights = [
   },
 ];
 
+export const signatureFacts = [
+  {
+    value: "All boys",
+    label: "Focused boy-child formation",
+  },
+  {
+    value: "Residential",
+    label: "Structured boarding culture",
+  },
+  {
+    value: "Grade 7-12",
+    label: "Junior and Senior Secondary",
+  },
+  {
+    value: "Six pillars",
+    label: "Academics, character, talent, and service",
+  },
+];
+
+export const experiencePathways = [
+  {
+    title: "Academic Pathways",
+    eyebrow: "Learning",
+    description:
+      "Explore 8.4.4, CBE, Senior School pathways, and the competencies behind Merishaw's future-ready academic model.",
+    image: "/images/pillar-stem.jpg",
+    imageAlt: "Merishaw students in a STEM learning activity",
+    href: "/academics",
+    cta: "View Academics",
+  },
+  {
+    title: "Residential Life",
+    eyebrow: "Boarding",
+    description:
+      "See how boarding, mentorship, student routines, sport, faith, and facilities support a disciplined boys' school experience.",
+    image: "/images/gallery-dormitory.jpeg",
+    imageAlt: "Merishaw School dormitory and residential facilities",
+    href: "/about",
+    cta: "Explore School Life",
+  },
+  {
+    title: "Leadership and Character",
+    eyebrow: "Formation",
+    description:
+      "Meet the leadership voice and the values-led culture behind the promise to form young men of integrity and purpose.",
+    image: "/images/gallery-parade-grounds.png",
+    imageAlt: "Merishaw students gathered on the parade grounds",
+    href: "/leadership",
+    cta: "Meet Leadership",
+  },
+  {
+    title: "Sponsor a Child",
+    eyebrow: "CSR",
+    description:
+      "Learn how the Support a Child structure can help open a Merishaw education to boys who need sponsorship support.",
+    image: "/images/pillar-social-collaboration.jpeg",
+    imageAlt: "Merishaw students in a social collaboration activity",
+    href: "/support-a-child",
+    cta: "Support a Boy",
+  },
+];
+
 export const whyChooseMerishaw = [
   {
     title: "Purpose-led boys' formation",

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, HeartHandshake, Mail, Menu, X } from "lucide-react";
+import { ChevronDown, HeartHandshake, Mail, MapPin, Menu, Phone, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { navigationGroups, supportNavItem } from "@/data/navigation";
@@ -23,6 +23,37 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-brand-line/80 bg-white/95 backdrop-blur-xl">
+      <div className="hidden border-b border-brand-line bg-brand-ink text-white lg:block">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-2 text-xs font-semibold sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <a
+              href={`tel:${siteConfig.contact.phonePrimary.replace(/\s/g, "")}`}
+              className="inline-flex items-center gap-2 text-white/88 transition hover:text-brand-gold"
+            >
+              <Phone aria-hidden="true" className="h-3.5 w-3.5" />
+              {siteConfig.contact.phonePrimary}
+            </a>
+            <a
+              href={`mailto:${siteConfig.contact.email}`}
+              className="inline-flex items-center gap-2 text-white/88 transition hover:text-brand-gold"
+            >
+              <Mail aria-hidden="true" className="h-3.5 w-3.5" />
+              {siteConfig.contact.email}
+            </a>
+            <span className="inline-flex items-center gap-2 text-white/78">
+              <MapPin aria-hidden="true" className="h-3.5 w-3.5" />
+              {siteConfig.contact.address}
+            </span>
+          </div>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 text-brand-gold transition hover:text-white"
+          >
+            Book a visit or enquire
+            <ChevronDown aria-hidden="true" className="h-3.5 w-3.5 -rotate-90" />
+          </Link>
+        </div>
+      </div>
       <nav
         aria-label="Primary navigation"
         className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8"

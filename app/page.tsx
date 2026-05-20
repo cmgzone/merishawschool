@@ -14,6 +14,7 @@ import ContactSection from "@/components/ContactSection";
 import CTASection from "@/components/CTASection";
 import DownloadCard from "@/components/DownloadCard";
 import EditorialStatement from "@/components/EditorialStatement";
+import ExperiencePathwaysSection from "@/components/ExperiencePathwaysSection";
 import FAQSection from "@/components/FAQSection";
 import HeroSection from "@/components/HeroSection";
 import LeadershipCard from "@/components/LeadershipCard";
@@ -22,6 +23,7 @@ import PillarCard from "@/components/PillarCard";
 import PremiumSlideshow from "@/components/PremiumSlideshow";
 import PrincipalWelcomeSection from "@/components/PrincipalWelcomeSection";
 import SectionTitle from "@/components/SectionTitle";
+import SignatureExperienceSection from "@/components/SignatureExperienceSection";
 import SupportChildSection from "@/components/SupportChildSection";
 import ValuesMarquee from "@/components/ValuesMarquee";
 import WelcomeVideoSection from "@/components/WelcomeVideoSection";
@@ -46,6 +48,7 @@ export default function Home() {
       <HeroSection />
       <ValuesMarquee />
       <EditorialStatement />
+      <SignatureExperienceSection />
       <WelcomeVideoSection tone="light" />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
@@ -130,6 +133,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <ExperiencePathwaysSection />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
