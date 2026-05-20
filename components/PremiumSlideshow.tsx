@@ -13,11 +13,13 @@ export type PremiumSlide = {
   description: string;
   image: string;
   alt: string;
+  imagePosition?: string;
 };
 
 type PremiumSlideshowProps = {
   slides: PremiumSlide[];
   className?: string;
+  heightClassName?: string;
   imagePriority?: boolean;
   compact?: boolean;
   children?: ReactNode;
@@ -29,6 +31,7 @@ type PremiumSlideshowProps = {
 export default function PremiumSlideshow({
   slides,
   className,
+  heightClassName,
   imagePriority = false,
   compact = false,
   children,
@@ -41,6 +44,8 @@ export default function PremiumSlideshow({
   const slide = slides[active];
 
   const intervalMs = compact ? 4200 : 5600;
+  const slideHeightClassName =
+    heightClassName ?? (compact ? "min-h-[440px]" : "min-h-[680px]");
 
   useEffect(() => {
     if (reduceMotion || slides.length < 2) {
@@ -67,11 +72,11 @@ export default function PremiumSlideshow({
     <div
       className={cn(
         "group relative isolate overflow-hidden rounded-md bg-brand-cream shadow-premium",
-        compact ? "min-h-[440px]" : "min-h-[680px]",
+        slideHeightClassName,
         className,
       )}
     >
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={slide.image}
           className="absolute inset-0"
@@ -85,6 +90,7 @@ export default function PremiumSlideshow({
             alt={slide.alt}
             fill
             className="object-cover brightness-110 contrast-105 saturate-105"
+            style={{ objectPosition: slide.imagePosition ?? "center" }}
             sizes="100vw"
             preload={imagePriority && active === 0}
             loading={imagePriority && active === 0 ? "eager" : "lazy"}
@@ -106,13 +112,13 @@ export default function PremiumSlideshow({
       <div
         className={cn(
           "relative z-10 flex h-full flex-col px-5 py-7 sm:px-8 lg:px-10",
-          compact ? "min-h-[440px]" : "min-h-[680px]",
+          slideHeightClassName,
           contentAlign === "center"
             ? "items-center justify-center text-center"
             : "justify-end",
         )}
       >
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={`${slide.title}-${active}`}
             initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 24 }}
@@ -136,7 +142,7 @@ export default function PremiumSlideshow({
                   "premium-heading mt-3 font-serif font-semibold leading-tight text-white",
                   compact
                     ? "text-3xl sm:text-4xl"
-                    : "text-4xl sm:text-6xl lg:text-7xl",
+                    : "text-4xl sm:text-5xl lg:text-7xl",
                 )}
               >
                 {slide.title}
@@ -147,7 +153,7 @@ export default function PremiumSlideshow({
                   "premium-heading mt-3 font-serif font-semibold leading-tight text-white",
                   compact
                     ? "text-3xl sm:text-4xl"
-                    : "text-4xl sm:text-6xl lg:text-7xl",
+                    : "text-4xl sm:text-5xl lg:text-7xl",
                 )}
               >
                 {slide.title}

@@ -15,7 +15,8 @@ export default function HeroSection() {
         headingLevel={1}
         contentAlign="center"
         showArrows={false}
-        className="min-h-[calc(100vh-214px)] rounded-none shadow-none"
+        heightClassName="h-[56.25vw] min-h-[560px] min-[520px]:min-h-[420px] max-h-[620px]"
+        className="rounded-none shadow-none"
       >
         <div className="mx-auto flex max-w-xl flex-col items-center justify-center gap-3 sm:flex-row">
             <ButtonLink href="/admissions">Start Admissions</ButtonLink>

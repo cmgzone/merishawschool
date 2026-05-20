@@ -69,6 +69,7 @@ export const heroSlides = [
       "A premium residential boys' school experience in Isinya, shaped by academics, mentorship, faith, sports, creativity, and leadership.",
     image: "/images/hero-tuition-block.png",
     alt: "Merishaw School tuition block and courtyard",
+    imagePosition: "center center",
   },
   {
     eyebrow: "Home of the Boy Child",
@@ -77,6 +78,7 @@ export const heroSlides = [
       "Merishaw combines a serene boarding environment, values-led formation, and future-ready learning pathways for holistic growth.",
     image: "/images/campus-life.jpg",
     alt: "Merishaw School student life and campus environment",
+    imagePosition: "center center",
   },
   {
     eyebrow: "Facilities",
@@ -85,6 +87,7 @@ export const heroSlides = [
       "From resource spaces and science facilities to sports grounds and boarding life, the campus is designed for a complete school experience.",
     image: "/images/gallery-rugby-pitch.png",
     alt: "Merishaw School sports grounds",
+    imagePosition: "center center",
   },
   {
     eyebrow: "Admissions",
@@ -93,6 +96,7 @@ export const heroSlides = [
       "For families seeking a refined, purposeful, and values-driven environment for boys in Junior and Senior Secondary School.",
     image: "/images/resource-centre.jpeg",
     alt: "Merishaw School resource centre building",
+    imagePosition: "center center",
   },
 ];
 

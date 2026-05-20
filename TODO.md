@@ -42,6 +42,7 @@
 - [x] Replace social initials with real Facebook, YouTube, Instagram, and X icons.
 - [x] Add mobile floating social icon bar.
 - [x] Improve tablet/mobile navbar so it feels intentional instead of empty.
+- [x] Improve hero photo framing so images fit naturally at tablet and desktop widths.
 - [ ] Validate every external social, Drive, YouTube, and map link with client-approved production content.
 - [x] Add deployment notes for Contabo VPS + Coolify.
 
