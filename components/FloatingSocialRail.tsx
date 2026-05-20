@@ -97,31 +97,33 @@ export default function FloatingSocialRail() {
           <motion.aside
             key="mobile-social-links"
             aria-label="Mobile social links"
-            className="fixed bottom-4 left-1/2 z-40 flex -translate-x-1/2 items-center gap-2 rounded-md border border-brand-gold/40 bg-white/94 p-2 shadow-premium backdrop-blur lg:hidden"
+            className="pointer-events-none fixed inset-x-0 bottom-4 z-40 flex justify-center px-4 lg:hidden"
             initial={{ opacity: 0, y: 18, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 22, scale: 0.94 }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
           >
-            {socialLinks.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`Visit Merishaw School on ${item.label}`}
-                className={`${item.className} flex h-10 w-10 items-center justify-center rounded-md text-white shadow-sm transition hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2`}
+            <div className="pointer-events-auto flex w-full max-w-[316px] items-center justify-center gap-1.5 rounded-md border border-brand-gold/40 bg-white/94 p-2 shadow-premium backdrop-blur">
+              {socialLinks.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Visit Merishaw School on ${item.label}`}
+                  className={`${item.className} flex h-10 w-10 shrink-0 items-center justify-center rounded-md text-white shadow-sm transition hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2`}
+                >
+                  <BrandSocialIcon brand={item.brand} className="h-4 w-4" />
+                </a>
+              ))}
+              <Link
+                href="/contact"
+                aria-label="Contact Merishaw School"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-brand-gold text-brand-ink shadow-sm transition hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2"
               >
-                <BrandSocialIcon brand={item.brand} className="h-4 w-4" />
-              </a>
-            ))}
-            <Link
-              href="/contact"
-              aria-label="Contact Merishaw School"
-              className="flex h-10 w-10 items-center justify-center rounded-md bg-brand-gold text-brand-ink shadow-sm transition hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2"
-            >
-              <MessageCircle aria-hidden="true" className="h-4 w-4" />
-            </Link>
+                <MessageCircle aria-hidden="true" className="h-4 w-4" />
+              </Link>
+            </div>
           </motion.aside>
         ) : null}
       </AnimatePresence>
