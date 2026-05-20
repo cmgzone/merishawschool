@@ -34,7 +34,7 @@ const footerSocialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-burgundy text-white">
+    <footer data-site-footer className="bg-brand-burgundy text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.2fr_1fr_1fr] lg:px-8">
         <div>
           <div className="flex items-center gap-4">

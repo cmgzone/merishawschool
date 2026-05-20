@@ -43,6 +43,7 @@
 - [x] Add mobile floating social icon bar.
 - [x] Improve tablet/mobile navbar so it feels intentional instead of empty.
 - [x] Improve hero photo framing so images fit naturally at tablet and desktop widths.
+- [x] Fade mobile social icon bar away as users approach the footer.
 - [ ] Validate every external social, Drive, YouTube, and map link with client-approved production content.
 - [x] Add deployment notes for Contabo VPS + Coolify.
 
