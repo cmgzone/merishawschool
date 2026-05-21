@@ -20,6 +20,7 @@ import PremiumSlideshow from "@/components/PremiumSlideshow";
 import PrincipalWelcomeSection from "@/components/PrincipalWelcomeSection";
 import SectionTitle from "@/components/SectionTitle";
 import SupportChildSection from "@/components/SupportChildSection";
+import VideoTourSection from "@/components/VideoTourSection";
 import { academicPrograms, facilities, pillars } from "@/data/academics";
 import { galleryImages, showcaseSlides } from "@/data/gallery";
 import { whoWeAreHighlights, whyChooseMerishaw } from "@/data/home";
@@ -109,6 +110,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <VideoTourSection />
 
       <section className="bg-brand-cream px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
