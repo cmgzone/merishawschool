@@ -43,7 +43,7 @@ export default function PremiumSlideshow({
   const reduceMotion = useReducedMotion();
   const slide = slides[active];
 
-  const intervalMs = compact ? 4200 : 5600;
+  const intervalMs = compact ? 7200 : 9000;
   const slideHeightClassName =
     heightClassName ?? (compact ? "min-h-[440px]" : "min-h-[680px]");
 
@@ -80,10 +80,10 @@ export default function PremiumSlideshow({
         <motion.div
           key={slide.image}
           className="absolute inset-0"
-          initial={reduceMotion ? { opacity: 1 } : { opacity: 0, scale: 1.04 }}
-          animate={reduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1 }}
-          exit={reduceMotion ? { opacity: 1 } : { opacity: 0, scale: 1.02 }}
-          transition={{ duration: 1.05, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: reduceMotion ? 1 : 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: reduceMotion ? 1 : 0 }}
+          transition={{ duration: 1.25, ease: [0.16, 1, 0.3, 1] }}
         >
           <Image
             src={slide.image}
@@ -121,10 +121,10 @@ export default function PremiumSlideshow({
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={`${slide.title}-${active}`}
-            initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 24 }}
+            initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 8 }}
             animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-            exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: -12 }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 0 }}
+            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
             className={cn(
               "premium-hero-copy",
               compact ? "max-w-2xl" : "max-w-4xl",

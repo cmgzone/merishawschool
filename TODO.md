@@ -47,6 +47,7 @@
 - [x] Simplify homepage into a cleaner parent journey with shorter preview sections.
 - [x] Reduce heavy dropdown navigation and remove draft/internal wording from public pages.
 - [x] Add compact homepage welcome video section.
+- [x] Calm down animations with softer fades, slower slideshow timing, and no pulsing CTA loop.
 - [ ] Validate every external social, Drive, YouTube, and map link with client-approved production content.
 - [x] Add deployment notes for Contabo VPS + Coolify.
 

@@ -88,21 +88,17 @@ li {
 .values-marquee-track {
   display: flex;
   width: max-content;
-  animation: values-marquee 36s linear infinite;
+  animation: values-marquee 70s linear infinite;
 }
 
 .contact-pulse {
   position: relative;
+  box-shadow: 0 18px 38px rgba(128, 32, 48, 0.18);
 }
 
 .contact-pulse::before {
-  position: absolute;
-  inset: -4px;
-  z-index: -1;
-  border-radius: 0.55rem;
-  background: rgba(128, 32, 48, 0.28);
+  display: none;
   content: "";
-  animation: contact-pulse 2.4s ease-in-out infinite;
 }
 
 .values-marquee:hover .values-marquee-track {
@@ -116,19 +112,6 @@ li {
 
   to {
     transform: translateX(-50%);
-  }
-}
-
-@keyframes contact-pulse {
-  0%,
-  100% {
-    opacity: 0.38;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0;
-    transform: scale(1.08);
   }
 }
 
