@@ -3,7 +3,17 @@ import ButtonLink from "@/components/ButtonLink";
 import MotionReveal from "@/components/MotionReveal";
 import { csrInitiatives, supportContent } from "@/data/support";
 
-export default function SupportChildSection() {
+type SupportContent = typeof supportContent;
+
+type SupportChildSectionProps = {
+  content?: SupportContent;
+  initiatives?: string[];
+};
+
+export default function SupportChildSection({
+  content = supportContent,
+  initiatives = csrInitiatives,
+}: SupportChildSectionProps) {
   return (
     <section className="bg-brand-cream px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
@@ -12,13 +22,13 @@ export default function SupportChildSection() {
             CSR / Support
           </p>
           <h2 className="mt-3 font-serif text-3xl font-semibold text-brand-ink sm:text-4xl">
-            {supportContent.title}
+            {content.title}
           </h2>
           <p className="mt-5 text-base leading-8 text-brand-muted">
-            {supportContent.description}
+            {content.description}
           </p>
           <p className="mt-4 rounded-md border border-brand-gold/60 bg-white p-4 text-sm leading-7 text-brand-muted">
-            {supportContent.note}
+            {content.note}
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <ButtonLink href="/support-a-child" variant="primary">
@@ -32,7 +42,7 @@ export default function SupportChildSection() {
 
         <MotionReveal delay={0.08}>
           <div className="grid gap-4 sm:grid-cols-2">
-            {csrInitiatives.map((initiative) => (
+            {initiatives.map((initiative) => (
               <div
                 key={initiative}
                 className="rounded-md border border-brand-line bg-white p-5 shadow-sm"

@@ -1,48 +1,60 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { MessageCircle } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import BrandSocialIcon, { type SocialBrand } from "@/components/BrandSocialIcon";
 import { siteConfig } from "@/data/site";
 
-const socialLinks = [
-  {
-    label: "Facebook",
-    brand: "facebook",
-    href: siteConfig.socials.facebook,
-    className: "bg-[#1877F2]",
-  },
-  {
-    label: "YouTube",
-    brand: "youtube",
-    href: siteConfig.socials.youtube,
-    className: "bg-[#FF0000]",
-  },
-  {
-    label: "Instagram",
-    brand: "instagram",
-    href: siteConfig.socials.instagram,
-    className: "bg-gradient-to-br from-[#833AB4] via-[#E1306C] to-[#FCAF45]",
-  },
-  {
-    label: "X",
-    brand: "x",
-    href: siteConfig.socials.x,
-    className: "bg-brand-ink",
-  },
-] satisfies Array<{
-  label: string;
-  brand: SocialBrand;
-  href: string;
-  className: string;
-}>;
+type FloatingSocialRailProps = {
+  socials?: typeof siteConfig.socials;
+};
 
-export default function FloatingSocialRail() {
+export default function FloatingSocialRail({
+  socials = siteConfig.socials,
+}: FloatingSocialRailProps) {
+  const pathname = usePathname();
   const [hideMobileBar, setHideMobileBar] = useState(false);
+  const isAdminPage = pathname.startsWith("/admin");
+  const socialLinks = [
+    {
+      label: "Facebook",
+      brand: "facebook",
+      href: socials.facebook,
+      className: "bg-[#1877F2]",
+    },
+    {
+      label: "YouTube",
+      brand: "youtube",
+      href: socials.youtube,
+      className: "bg-[#FF0000]",
+    },
+    {
+      label: "Instagram",
+      brand: "instagram",
+      href: socials.instagram,
+      className: "bg-gradient-to-br from-[#833AB4] via-[#E1306C] to-[#FCAF45]",
+    },
+    {
+      label: "X",
+      brand: "x",
+      href: socials.x,
+      className: "bg-brand-ink",
+    },
+  ] satisfies Array<{
+    label: string;
+    brand: SocialBrand;
+    href: string;
+    className: string;
+  }>;
 
   useEffect(() => {
+    if (isAdminPage) {
+      return;
+    }
+
     const footer = document.querySelector("[data-site-footer]");
 
     if (!footer) {
@@ -63,7 +75,11 @@ export default function FloatingSocialRail() {
     observer.observe(footer);
 
     return () => observer.disconnect();
-  }, []);
+  }, [isAdminPage]);
+
+  if (isAdminPage) {
+    return null;
+  }
 
   return (
     <>

@@ -6,7 +6,32 @@ import { siteConfig } from "@/data/site";
 
 type Status = "idle" | "error" | "ready";
 
-export default function ContactSection() {
+type ContactSectionSite = {
+  contact: typeof siteConfig.contact;
+};
+
+type ContactSectionIntro = {
+  eyebrow: string;
+  title: string;
+  description: string;
+};
+
+type ContactSectionProps = {
+  site?: ContactSectionSite;
+  intro?: ContactSectionIntro;
+};
+
+const defaultIntro: ContactSectionIntro = {
+  eyebrow: "Contact",
+  title: "Speak with Merishaw School",
+  description:
+    "Reach the school for admissions, downloads, visits, sponsorship discussions, and general enquiries.",
+};
+
+export default function ContactSection({
+  site = siteConfig,
+  intro = defaultIntro,
+}: ContactSectionProps) {
   const [status, setStatus] = useState<Status>("idle");
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -30,38 +55,37 @@ export default function ContactSection() {
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr]">
         <div>
           <p className="text-sm font-bold uppercase text-brand-burgundy">
-            Contact
+            {intro.eyebrow}
           </p>
           <h2 className="mt-3 font-serif text-3xl font-semibold text-brand-ink sm:text-4xl">
-            Speak with Merishaw School
+            {intro.title}
           </h2>
           <p className="mt-4 text-base leading-8 text-brand-muted">
-            Reach the school for admissions, downloads, visits, sponsorship
-            discussions, and general enquiries.
+            {intro.description}
           </p>
 
           <div className="mt-8 space-y-4">
             <a
-              href={`tel:${siteConfig.contact.phonePrimary.replace(/\s/g, "")}`}
+              href={`tel:${site.contact.phonePrimary.replace(/\s/g, "")}`}
               className="flex gap-4 rounded-md border border-brand-line p-4 transition hover:border-brand-gold"
             >
               <Phone className="mt-1 h-5 w-5 shrink-0 text-brand-burgundy" />
               <span>
                 <span className="block font-semibold text-brand-ink">Phone</span>
                 <span className="text-sm text-brand-muted">
-                  {siteConfig.contact.phonePrimary} / {siteConfig.contact.phoneSecondary}
+                  {site.contact.phonePrimary} / {site.contact.phoneSecondary}
                 </span>
               </span>
             </a>
             <a
-              href={`mailto:${siteConfig.contact.email}`}
+              href={`mailto:${site.contact.email}`}
               className="flex gap-4 rounded-md border border-brand-line p-4 transition hover:border-brand-gold"
             >
               <Mail className="mt-1 h-5 w-5 shrink-0 text-brand-burgundy" />
               <span>
                 <span className="block font-semibold text-brand-ink">Email</span>
                 <span className="text-sm text-brand-muted">
-                  {siteConfig.contact.email}
+                  {site.contact.email}
                 </span>
               </span>
             </a>
@@ -70,7 +94,7 @@ export default function ContactSection() {
               <span>
                 <span className="block font-semibold text-brand-ink">Location</span>
                 <span className="text-sm text-brand-muted">
-                  {siteConfig.contact.address}, {siteConfig.contact.postal}
+                  {site.contact.address}, {site.contact.postal}
                 </span>
               </span>
             </div>
@@ -143,7 +167,7 @@ export default function ContactSection() {
           {status === "ready" ? (
             <p className="mt-4 rounded-md bg-white px-4 py-3 text-sm leading-6 text-brand-muted">
               Enquiry details are ready. Connect a production email provider to
-              send from the website, or email {siteConfig.contact.email} directly.
+              send from the website, or email {site.contact.email} directly.
             </p>
           ) : null}
         </form>
@@ -151,4 +175,3 @@ export default function ContactSection() {
     </section>
   );
 }
-

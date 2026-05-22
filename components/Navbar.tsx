@@ -10,7 +10,17 @@ import { navigationGroups, supportNavItem } from "@/data/navigation";
 import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
 
-export default function Navbar() {
+type NavbarSiteConfig = {
+  tagline: string;
+  logoLandscape: string;
+  contact: typeof siteConfig.contact;
+};
+
+type NavbarProps = {
+  site?: NavbarSiteConfig;
+};
+
+export default function Navbar({ site = siteConfig }: NavbarProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [mobileGroup, setMobileGroup] = useState<string | null>(null);
@@ -27,22 +37,22 @@ export default function Navbar() {
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-2 text-xs font-semibold sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <a
-              href={`tel:${siteConfig.contact.phonePrimary.replace(/\s/g, "")}`}
+              href={`tel:${site.contact.phonePrimary.replace(/\s/g, "")}`}
               className="inline-flex items-center gap-2 text-white/88 transition hover:text-brand-gold"
             >
               <Phone aria-hidden="true" className="h-3.5 w-3.5" />
-              {siteConfig.contact.phonePrimary}
+              {site.contact.phonePrimary}
             </a>
             <a
-              href={`mailto:${siteConfig.contact.email}`}
+              href={`mailto:${site.contact.email}`}
               className="inline-flex items-center gap-2 text-white/88 transition hover:text-brand-gold"
             >
               <Mail aria-hidden="true" className="h-3.5 w-3.5" />
-              {siteConfig.contact.email}
+              {site.contact.email}
             </a>
             <span className="inline-flex items-center gap-2 text-white/78">
               <MapPin aria-hidden="true" className="h-3.5 w-3.5" />
-              {siteConfig.contact.address}
+              {site.contact.address}
             </span>
           </div>
           <Link
@@ -64,7 +74,7 @@ export default function Navbar() {
           onClick={() => setOpen(false)}
         >
           <Image
-            src={siteConfig.logoLandscape}
+            src={site.logoLandscape}
             alt="Merishaw School logo"
             width={242}
             height={125}
@@ -76,7 +86,7 @@ export default function Navbar() {
 
         <div className="hidden min-w-0 flex-1 px-2 min-[520px]:block xl:hidden">
           <p className="truncate text-xs font-bold uppercase tracking-[0.14em] text-brand-burgundy">
-            Home of the Boy Child
+            {site.tagline}
           </p>
           <p className="mt-1 truncate text-sm font-semibold text-brand-ink">
             Residential boys&apos; high school
@@ -215,7 +225,7 @@ export default function Navbar() {
                   onClick={() => setOpen(false)}
                 >
                   <Image
-                    src={siteConfig.logoLandscape}
+                    src={site.logoLandscape}
                     alt="Merishaw School logo"
                     width={190}
                     height={98}
@@ -339,7 +349,7 @@ export default function Navbar() {
                   Merishaw School
                 </p>
                 <p className="mt-1 text-sm font-medium text-brand-ink">
-                  Home of the Boy Child
+                  {site.tagline}
                 </p>
               </div>
             </motion.aside>

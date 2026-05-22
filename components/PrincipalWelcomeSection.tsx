@@ -3,9 +3,15 @@ import ButtonLink from "@/components/ButtonLink";
 import MotionReveal from "@/components/MotionReveal";
 import { leaders } from "@/data/leadership";
 
-const principal = leaders[0];
+type Principal = (typeof leaders)[number];
 
-export default function PrincipalWelcomeSection() {
+type PrincipalWelcomeSectionProps = {
+  principal?: Principal;
+};
+
+export default function PrincipalWelcomeSection({
+  principal = leaders[0],
+}: PrincipalWelcomeSectionProps) {
   return (
     <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl overflow-hidden rounded-md border border-brand-line bg-brand-cream shadow-premium lg:grid-cols-[0.9fr_1.1fr]">
@@ -45,10 +51,7 @@ export default function PrincipalWelcomeSection() {
               A personal welcome gives families confidence in the culture.
             </h3>
             <p className="mt-5 text-base leading-8 text-brand-muted">
-              The principal&apos;s welcome note presents Merishaw as a school
-              where boys are mentored into confident, purposeful young men
-              through strong academics, discipline, values, and holistic
-              formation.
+              {principal.description}
             </p>
             <p className="mt-4 text-sm leading-7 text-brand-muted">
               Parents meet the school&apos;s direction early, before moving into

@@ -21,10 +21,7 @@ import PrincipalWelcomeSection from "@/components/PrincipalWelcomeSection";
 import SectionTitle from "@/components/SectionTitle";
 import SupportChildSection from "@/components/SupportChildSection";
 import VideoTourSection from "@/components/VideoTourSection";
-import { academicPrograms, facilities, pillars } from "@/data/academics";
-import { galleryImages, showcaseSlides } from "@/data/gallery";
-import { whoWeAreHighlights, whyChooseMerishaw } from "@/data/home";
-import { siteConfig } from "@/data/site";
+import { getEditableContent } from "@/data/admin-content";
 
 const whyChooseIcons = [ShieldCheck, BookOpenCheck, Building2, Award];
 
@@ -46,10 +43,12 @@ const boardingHighlights = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const content = await getEditableContent();
+
   return (
     <>
-      <HeroSection />
+      <HeroSection slides={content.home.heroSlides} statsItems={content.home.stats} />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
@@ -65,7 +64,7 @@ export default function Home() {
               and leadership so boys can grow with purpose and confidence.
             </p>
             <div className="mt-7 grid gap-3 sm:grid-cols-3">
-              {whoWeAreHighlights.map((highlight) => (
+              {content.home.highlights.map((highlight) => (
                 <div
                   key={highlight.value}
                   className="rounded-md border border-brand-line bg-brand-cream p-4"
@@ -88,7 +87,7 @@ export default function Home() {
           </MotionReveal>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            {whyChooseMerishaw.slice(0, 4).map((item, index) => {
+            {content.home.whyChoose.slice(0, 4).map((item, index) => {
               const Icon = whyChooseIcons[index] ?? ShieldCheck;
 
               return (
@@ -122,7 +121,7 @@ export default function Home() {
             align="center"
           />
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            {academicPrograms.map((program, index) => (
+            {content.academics.programs.map((program, index) => (
               <AcademicCard key={program.title} {...program} index={index} />
             ))}
           </div>
@@ -197,7 +196,7 @@ export default function Home() {
             align="center"
           />
           <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {pillars.map((pillar, index) => (
+            {content.academics.pillars.map((pillar, index) => (
               <PillarCard key={pillar.title} {...pillar} index={index} />
             ))}
           </div>
@@ -214,7 +213,7 @@ export default function Home() {
               Spaces built for learning, boarding, creativity, and sport.
             </h2>
             <div className="mt-7 grid gap-3">
-              {facilities.slice(0, 4).map((facility) => (
+              {content.academics.facilities.slice(0, 4).map((facility) => (
                 <div
                   key={facility}
                   className="rounded-md border border-brand-line bg-brand-cream p-4 text-sm font-semibold leading-7 text-brand-ink"
@@ -243,7 +242,7 @@ export default function Home() {
         </div>
       </section>
 
-      <PrincipalWelcomeSection />
+      <PrincipalWelcomeSection principal={content.leadership.leaders[0]} />
 
       <CTASection
         eyebrow="Admissions"
@@ -255,7 +254,10 @@ export default function Home() {
         secondaryLabel="Fees & Downloads"
       />
 
-      <SupportChildSection />
+      <SupportChildSection
+        content={content.support.content}
+        initiatives={content.support.initiatives}
+      />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
@@ -270,9 +272,9 @@ export default function Home() {
             </ButtonLink>
           </div>
           <div className="mt-10 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
-            <PremiumSlideshow slides={showcaseSlides} compact />
+            <PremiumSlideshow slides={content.gallery.showcaseSlides} compact />
             <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
-              {galleryImages.slice(0, 3).map((image, index) => (
+              {content.gallery.images.slice(0, 3).map((image, index) => (
                 <MotionReveal key={image.src} delay={index * 0.05}>
                   <div className="relative overflow-hidden rounded-md border border-brand-line bg-brand-cream p-3 shadow-card">
                     <div className="relative aspect-[16/9] overflow-hidden rounded-md bg-white">
@@ -311,7 +313,7 @@ export default function Home() {
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/contact">Contact Us</ButtonLink>
               <ButtonLink
-                href={`tel:${siteConfig.contact.phonePrimary.replace(/\s/g, "")}`}
+                href={`tel:${content.site.contact.phonePrimary.replace(/\s/g, "")}`}
                 variant="secondary"
               >
                 Call Now
@@ -320,21 +322,21 @@ export default function Home() {
           </div>
           <div className="grid gap-3">
             <a
-              href={`tel:${siteConfig.contact.phonePrimary.replace(/\s/g, "")}`}
+              href={`tel:${content.site.contact.phonePrimary.replace(/\s/g, "")}`}
               className="flex items-center gap-4 rounded-md border border-brand-line bg-brand-cream p-4 transition hover:border-brand-gold"
             >
               <Phone className="h-5 w-5 shrink-0 text-brand-burgundy" />
               <span className="text-sm font-semibold text-brand-ink">
-                {siteConfig.contact.phonePrimary} / {siteConfig.contact.phoneSecondary}
+                {content.site.contact.phonePrimary} / {content.site.contact.phoneSecondary}
               </span>
             </a>
             <a
-              href={`mailto:${siteConfig.contact.email}`}
+                href={`mailto:${content.site.contact.email}`}
               className="flex items-center gap-4 rounded-md border border-brand-line bg-brand-cream p-4 transition hover:border-brand-gold"
             >
               <Mail className="h-5 w-5 shrink-0 text-brand-burgundy" />
               <span className="break-all text-sm font-semibold text-brand-ink">
-                {siteConfig.contact.email}
+                {content.site.contact.email}
               </span>
             </a>
           </div>

@@ -68,6 +68,10 @@ export default function PremiumSlideshow({
     [slides.length],
   );
 
+  if (!slide) {
+    return null;
+  }
+
   return (
     <div
       className={cn(

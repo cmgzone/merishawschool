@@ -4,7 +4,7 @@ import ButtonLink from "@/components/ButtonLink";
 import MotionReveal from "@/components/MotionReveal";
 import PageHeader from "@/components/PageHeader";
 import SectionTitle from "@/components/SectionTitle";
-import { newsItems } from "@/data/news";
+import { getEditableContent } from "@/data/admin-content";
 
 export const metadata: Metadata = {
   title: "News and Updates",
@@ -12,14 +12,16 @@ export const metadata: Metadata = {
     "Read Merishaw School news and updates from the school community.",
 };
 
-export default function NewsPage() {
+export default async function NewsPage() {
+  const content = await getEditableContent();
+
   return (
     <>
       <PageHeader
-        eyebrow="News"
-        title="Merishaw School news and updates."
-        description="Highlights from academics, sport, student life, and school community moments."
-        image="/images/news-stem.jpg"
+        eyebrow={content.pages.news.eyebrow}
+        title={content.pages.news.title}
+        description={content.pages.news.description}
+        image={content.pages.news.image}
       />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
@@ -30,7 +32,7 @@ export default function NewsPage() {
             description="A focused archive for key school stories and announcements."
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {newsItems.map((item, index) => (
+            {content.news.items.map((item, index) => (
               <MotionReveal key={item.title} delay={index * 0.05}>
                 <article className="h-full overflow-hidden rounded-md border border-brand-line bg-white shadow-card">
                   <div className="relative aspect-[16/10] bg-brand-cream">

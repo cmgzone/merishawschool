@@ -1,16 +1,29 @@
 import { Award, ShieldCheck, Sparkles } from "lucide-react";
 import ButtonLink from "@/components/ButtonLink";
 import MotionReveal from "@/components/MotionReveal";
-import PremiumSlideshow from "@/components/PremiumSlideshow";
+import PremiumSlideshow, { type PremiumSlide } from "@/components/PremiumSlideshow";
 import { heroSlides } from "@/data/gallery";
 import { stats } from "@/data/site";
 
-export default function HeroSection() {
+type HeroStat = {
+  value: string;
+  label: string;
+};
+
+type HeroSectionProps = {
+  slides?: PremiumSlide[];
+  statsItems?: HeroStat[];
+};
+
+export default function HeroSection({
+  slides = heroSlides,
+  statsItems = stats,
+}: HeroSectionProps) {
   return (
     <section className="bg-white">
       <div className="h-10 bg-brand-gold/45 sm:h-14" aria-hidden="true" />
       <PremiumSlideshow
-        slides={heroSlides}
+        slides={slides}
         imagePriority
         headingLevel={1}
         contentAlign="center"
@@ -27,7 +40,7 @@ export default function HeroSection() {
       </PremiumSlideshow>
 
       <MotionReveal className="mx-auto grid max-w-7xl gap-4 px-4 py-7 sm:px-6 md:grid-cols-3 lg:px-8">
-        {stats.map((item) => (
+        {statsItems.map((item) => (
           <div
             key={item.label}
             className="rounded-md border border-brand-line bg-brand-cream p-5 text-center shadow-card"

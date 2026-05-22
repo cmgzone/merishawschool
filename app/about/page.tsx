@@ -6,7 +6,7 @@ import MotionReveal from "@/components/MotionReveal";
 import PageHeader from "@/components/PageHeader";
 import SectionTitle from "@/components/SectionTitle";
 import WelcomeVideoSection from "@/components/WelcomeVideoSection";
-import { facilities, values } from "@/data/academics";
+import { getEditableContent } from "@/data/admin-content";
 
 export const metadata: Metadata = {
   title: "About",
@@ -14,48 +14,38 @@ export const metadata: Metadata = {
     "Learn about Merishaw School's mission, vision, values, facilities, and purpose-led residential boys' education model.",
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const content = await getEditableContent();
+
   return (
     <>
       <PageHeader
-        eyebrow="About"
-        title="A home where boys are mentored into men of integrity."
-        description="Merishaw School combines a serene boarding environment, strong academics, outstanding facilities, and a Christian foundation for whole-person growth."
-        image="/images/resource-centre.jpeg"
+        eyebrow={content.pages.about.eyebrow}
+        title={content.pages.about.title}
+        description={content.pages.about.description}
+        image={content.pages.about.image}
       />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <MotionReveal>
             <p className="text-sm font-bold uppercase text-brand-burgundy">
-              School overview
+              {content.about.overview.eyebrow}
             </p>
             <h2 className="mt-3 font-serif text-3xl font-semibold text-brand-ink sm:text-4xl">
-              State-of-the-art residential education for the boy child.
+              {content.about.overview.title}
             </h2>
             <div className="mt-5 space-y-4 text-base leading-8 text-brand-muted">
-              <p>
-                Merishaw School is a residential boys&apos; high school offering the
-                National Curriculum under 8.4.4 and Competency-Based Education
-                at Junior and Senior Secondary School.
-              </p>
-              <p>
-                The school develops unique programs to bring up wholesome young
-                men who can meet the needs of society and provide leadership in
-                their families, workplaces, the country, and the global stage.
-              </p>
-              <p>
-                The approach emphasizes mentorship, empowerment, academic
-                excellence, character formation, and the restoration of focus on
-                the boy child.
-              </p>
+              {content.about.overview.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
           </MotionReveal>
           <MotionReveal delay={0.08}>
             <div className="relative aspect-[4/3] overflow-hidden rounded-md shadow-premium">
               <Image
-                src="/images/campus-life.jpg"
-                alt="Merishaw School campus life"
+                src={content.about.overview.image}
+                alt={content.about.overview.imageAlt}
                 fill
                 className="object-cover"
                 sizes="(min-width: 1024px) 50vw, 100vw"
@@ -87,7 +77,7 @@ export default function AboutPage() {
                   Vision
                 </h3>
                 <p className="mt-4 text-base leading-8 text-brand-muted">
-                  To develop purpose driven global leaders empowered for success.
+                  {content.about.vision}
                 </p>
               </article>
             </MotionReveal>
@@ -97,16 +87,13 @@ export default function AboutPage() {
                   Mission
                 </h3>
                 <p className="mt-4 text-base leading-8 text-brand-muted">
-                  Merishaw aims to provide a world class education that equips
-                  learners with skills to become critical thinkers, effective
-                  communicators, God fearing, and compassionate leaders with
-                  integrity through the pursuit of academic excellence.
+                  {content.about.mission}
                 </p>
               </article>
             </MotionReveal>
           </div>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map((value, index) => (
+            {content.about.values.map((value, index) => (
               <MotionReveal key={value.label} delay={index * 0.035}>
                 <div className="rounded-md border border-brand-line bg-white p-5">
                   <p className="font-serif text-3xl font-semibold text-brand-burgundy">
@@ -130,7 +117,7 @@ export default function AboutPage() {
             description="Academic, residential, creative, dining, and sporting spaces support a complete school experience."
           />
           <div className="grid gap-3 sm:grid-cols-2">
-            {facilities.map((facility, index) => (
+            {content.academics.facilities.map((facility, index) => (
               <MotionReveal key={facility} delay={index * 0.035}>
                 <div className="rounded-md border border-brand-line bg-brand-cream p-4 text-sm font-semibold leading-7 text-brand-ink">
                   {facility}
@@ -146,8 +133,8 @@ export default function AboutPage() {
           <MotionReveal>
             <div className="relative aspect-[4/3] overflow-hidden rounded-md">
               <Image
-                src="/images/gallery-aerial-campus.jpg"
-                alt="Aerial view of Merishaw School"
+                src={content.about.architecture.image}
+                alt={content.about.architecture.imageAlt}
                 fill
                 className="object-cover"
                 sizes="(min-width: 1024px) 50vw, 100vw"
@@ -156,15 +143,13 @@ export default function AboutPage() {
           </MotionReveal>
           <MotionReveal delay={0.08}>
             <p className="text-sm font-bold uppercase text-brand-gold">
-              Architectural concept
+              {content.about.architecture.eyebrow}
             </p>
             <h2 className="mt-3 font-serif text-3xl font-semibold sm:text-4xl">
-              Built as a home away from home.
+              {content.about.architecture.title}
             </h2>
             <p className="mt-5 text-base font-medium leading-8 text-white/90">
-              Merishaw&apos;s campus is designed to feel calm, ordered, and
-              inspiring, with the facilities and environment learners need to
-              fully enjoy school life.
+              {content.about.architecture.description}
             </p>
             <div className="mt-7">
               <ButtonLink href="/gallery" variant="support">

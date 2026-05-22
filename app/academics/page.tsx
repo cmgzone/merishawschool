@@ -6,7 +6,7 @@ import MotionReveal from "@/components/MotionReveal";
 import PageHeader from "@/components/PageHeader";
 import PillarCard from "@/components/PillarCard";
 import SectionTitle from "@/components/SectionTitle";
-import { academicPrograms, cbeCompetencies, cbePathways, pillars } from "@/data/academics";
+import { getEditableContent } from "@/data/admin-content";
 
 export const metadata: Metadata = {
   title: "Academics",
@@ -14,14 +14,16 @@ export const metadata: Metadata = {
     "Explore Merishaw School's 8.4.4 curriculum, Competency-Based Education, pathways, core competencies, and holistic pillars.",
 };
 
-export default function AcademicsPage() {
+export default async function AcademicsPage() {
+  const content = await getEditableContent();
+
   return (
     <>
       <PageHeader
-        eyebrow="Academics"
-        title="Learning pathways that prepare boys for national and global success."
-        description="Merishaw combines 8.4.4, Competency-Based Education, practical skills, mentorship, and holistic pillars for future-ready learning."
-        image="/images/hero-tuition-block.png"
+        eyebrow={content.pages.academics.eyebrow}
+        title={content.pages.academics.title}
+        description={content.pages.academics.description}
+        image={content.pages.academics.image}
       />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
@@ -32,7 +34,7 @@ export default function AcademicsPage() {
             description="The academic model emphasizes rigorous learning, practical skills, global competitiveness, tailored pathways, and preparation for tertiary education."
           />
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            {academicPrograms.map((program, index) => (
+            {content.academics.programs.map((program, index) => (
               <AcademicCard key={program.title} {...program} index={index} />
             ))}
           </div>
@@ -60,7 +62,7 @@ export default function AcademicsPage() {
             </div>
           </MotionReveal>
           <div className="grid gap-4">
-            {cbePathways.map((pathway, index) => (
+            {content.academics.cbePathways.map((pathway, index) => (
               <MotionReveal key={pathway} delay={index * 0.05}>
                 <div className="rounded-md border border-brand-line bg-white p-5 shadow-sm">
                   <p className="text-sm font-bold uppercase text-brand-burgundy">
@@ -85,7 +87,7 @@ export default function AcademicsPage() {
             align="center"
           />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {cbeCompetencies.map((competency, index) => (
+            {content.academics.cbeCompetencies.map((competency, index) => (
               <MotionReveal key={competency} delay={index * 0.035}>
                 <div className="rounded-md border border-brand-line bg-brand-cream p-5 text-sm font-semibold leading-7 text-brand-ink">
                   {competency}
@@ -105,7 +107,7 @@ export default function AcademicsPage() {
             tone="dark"
           />
           <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {pillars.map((pillar, index) => (
+            {content.academics.pillars.map((pillar, index) => (
               <PillarCard key={pillar.title} {...pillar} index={index} />
             ))}
           </div>

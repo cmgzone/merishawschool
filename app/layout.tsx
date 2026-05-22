@@ -3,6 +3,8 @@ import { Cormorant_Garamond, Inter } from "next/font/google";
 import FloatingSocialRail from "@/components/FloatingSocialRail";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import TawkChat from "@/components/TawkChat";
+import { getEditableContent } from "@/data/admin-content";
 import { seoDefaults, siteConfig } from "@/data/site";
 import "./globals.css";
 
@@ -43,11 +45,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const content = await getEditableContent();
+
   return (
     <html
       lang="en"
@@ -58,10 +62,14 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>
-        <Navbar />
-        <FloatingSocialRail />
+        <Navbar site={content.site} />
+        <FloatingSocialRail socials={content.site.socials} />
         <main id="main-content">{children}</main>
-        <Footer />
+        <Footer site={content.site} />
+        <TawkChat
+          propertyId={content.site.tawkPropertyId}
+          widgetId={content.site.tawkWidgetId}
+        />
       </body>
     </html>
   );

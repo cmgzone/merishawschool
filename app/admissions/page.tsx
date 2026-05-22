@@ -5,6 +5,7 @@ import CTASection from "@/components/CTASection";
 import MotionReveal from "@/components/MotionReveal";
 import PageHeader from "@/components/PageHeader";
 import SectionTitle from "@/components/SectionTitle";
+import { getEditableContent } from "@/data/admin-content";
 
 export const metadata: Metadata = {
   title: "Admissions",
@@ -12,32 +13,24 @@ export const metadata: Metadata = {
     "Start an admissions enquiry for Merishaw School and review application fields, fee downloads, and next steps.",
 };
 
-const applicationFields = [
-  "Parent's full name",
-  "Student's full name",
-  "Parent's phone number",
-  "Parent's email",
-  "Curriculum preference: 8.4.4 or CBE",
-  "8.4.4 options: Form 3 or Form 4",
-  "CBE options: Grade 8, Grade 9, or Grade 10",
-];
+export default async function AdmissionsPage() {
+  const content = await getEditableContent();
 
-export default function AdmissionsPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Admissions"
-        title="Begin your son's Merishaw journey."
-        description="A clear starting point for parents exploring curriculum options, grade placement, fees, and school visits."
-        image="/images/gallery-parade-grounds.png"
+        eyebrow={content.pages.admissions.eyebrow}
+        title={content.pages.admissions.title}
+        description={content.pages.admissions.description}
+        image={content.pages.admissions.image}
       />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr]">
           <SectionTitle
-            eyebrow="Application enquiry"
-            title="Start with the information admissions needs most."
-            description="Parents can prepare contact details, student details, curriculum preference, and the intended grade or form before speaking with the school."
+            eyebrow={content.admissions.applicationIntro.eyebrow}
+            title={content.admissions.applicationIntro.title}
+            description={content.admissions.applicationIntro.description}
           />
           <MotionReveal>
             <div className="rounded-md border border-brand-line bg-brand-cream p-6">
@@ -45,7 +38,7 @@ export default function AdmissionsPage() {
                 Information requested during enquiry
               </h2>
               <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-                {applicationFields.map((field) => (
+                {content.admissions.applicationFields.map((field) => (
                   <li
                     key={field}
                     className="rounded-md border border-brand-line bg-white p-4 text-sm font-semibold leading-6 text-brand-ink"
@@ -59,16 +52,24 @@ export default function AdmissionsPage() {
         </div>
       </section>
 
-      <AdmissionsProcessSection showActions={false} />
+      <AdmissionsProcessSection
+        eyebrow={content.admissions.processIntro.eyebrow}
+        title={content.admissions.processIntro.title}
+        description={content.admissions.processIntro.description}
+        introCardTitle={content.admissions.processPrepTitle}
+        introCardDescription={content.admissions.processPrepDescription}
+        processItems={content.admissions.process}
+        showActions={false}
+      />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <MotionReveal className="mx-auto flex max-w-7xl flex-col justify-between gap-6 rounded-md border border-brand-gold/40 bg-brand-burgundy p-8 text-white md:flex-row md:items-center">
           <div>
             <p className="text-sm font-bold uppercase text-brand-gold">
-              Fees and forms
+              {content.admissions.feesEyebrow}
             </p>
             <h2 className="mt-2 font-serif text-3xl font-semibold">
-              Review the current fee structure.
+              {content.admissions.feesTitle}
             </h2>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">

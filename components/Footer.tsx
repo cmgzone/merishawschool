@@ -5,57 +5,68 @@ import BrandSocialIcon, { type SocialBrand } from "@/components/BrandSocialIcon"
 import { navigation, supportNavItem } from "@/data/navigation";
 import { siteConfig } from "@/data/site";
 
-const footerSocialLinks = [
-  {
-    label: "Facebook",
-    brand: "facebook",
-    href: siteConfig.socials.facebook,
-  },
-  {
-    label: "Instagram",
-    brand: "instagram",
-    href: siteConfig.socials.instagram,
-  },
-  {
-    label: "YouTube",
-    brand: "youtube",
-    href: siteConfig.socials.youtube,
-  },
-  {
-    label: "X",
-    brand: "x",
-    href: siteConfig.socials.x,
-  },
-] satisfies Array<{
-  label: string;
-  brand: SocialBrand;
-  href: string;
-}>;
+type FooterSiteConfig = {
+  name: string;
+  tagline: string;
+  description: string;
+  logoLandscape: string;
+  contact: typeof siteConfig.contact;
+  socials: typeof siteConfig.socials;
+};
 
-export default function Footer() {
+type FooterProps = {
+  site?: FooterSiteConfig;
+};
+
+export default function Footer({ site = siteConfig }: FooterProps) {
+  const footerSocialLinks = [
+    {
+      label: "Facebook",
+      brand: "facebook",
+      href: site.socials.facebook,
+    },
+    {
+      label: "Instagram",
+      brand: "instagram",
+      href: site.socials.instagram,
+    },
+    {
+      label: "YouTube",
+      brand: "youtube",
+      href: site.socials.youtube,
+    },
+    {
+      label: "X",
+      brand: "x",
+      href: site.socials.x,
+    },
+  ] satisfies Array<{
+    label: string;
+    brand: SocialBrand;
+    href: string;
+  }>;
+
   return (
     <footer data-site-footer className="bg-brand-burgundy text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.2fr_1fr_1fr] lg:px-8">
         <div>
           <div className="flex items-center gap-4">
             <Image
-              src={siteConfig.logoLandscape}
+              src={site.logoLandscape}
               alt="Merishaw School logo"
               width={242}
               height={125}
               className="h-20 w-auto rounded bg-white p-2"
             />
             <div>
-              <p className="font-serif text-3xl font-semibold">Merishaw School</p>
+              <p className="font-serif text-3xl font-semibold">{site.name}</p>
               <p className="text-sm font-semibold uppercase text-brand-gold">
-                Home of the Boy Child
+                {site.tagline}
               </p>
             </div>
           </div>
           <p className="mt-5 max-w-md text-sm leading-7 text-white/80">
-            A residential boys&apos; high school committed to academic excellence,
-            values-led formation, mentorship, and the holistic development of
-            purpose-driven global leaders.
+            {site.description}
           </p>
         </div>
 
@@ -84,21 +95,21 @@ export default function Footer() {
             <li className="flex gap-3">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-gold" />
               <span>
-                {siteConfig.contact.address}
+                {site.contact.address}
                 <br />
-                {siteConfig.contact.postal}
+                {site.contact.postal}
               </span>
             </li>
             <li className="flex gap-3">
               <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-gold" />
-              <a href={`tel:${siteConfig.contact.phonePrimary.replace(/\s/g, "")}`}>
-                {siteConfig.contact.phonePrimary} / {siteConfig.contact.phoneSecondary}
+              <a href={`tel:${site.contact.phonePrimary.replace(/\s/g, "")}`}>
+                {site.contact.phonePrimary} / {site.contact.phoneSecondary}
               </a>
             </li>
             <li className="flex gap-3">
               <Mail className="mt-0.5 h-4 w-4 shrink-0 text-brand-gold" />
-              <a href={`mailto:${siteConfig.contact.email}`}>
-                {siteConfig.contact.email}
+              <a href={`mailto:${site.contact.email}`}>
+                {site.contact.email}
               </a>
             </li>
           </ul>

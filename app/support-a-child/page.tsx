@@ -5,7 +5,7 @@ import MotionReveal from "@/components/MotionReveal";
 import PageHeader from "@/components/PageHeader";
 import SectionTitle from "@/components/SectionTitle";
 import SupportChildSection from "@/components/SupportChildSection";
-import { csrInitiatives, supportContent } from "@/data/support";
+import { getEditableContent } from "@/data/admin-content";
 
 export const metadata: Metadata = {
   title: "Support a Boy's Education",
@@ -20,14 +20,16 @@ const sponsorshipAreas = [
   "Mentorship, wellness, and holistic development",
 ];
 
-export default function SupportAChildPage() {
+export default async function SupportAChildPage() {
+  const content = await getEditableContent();
+
   return (
     <>
       <PageHeader
-        eyebrow="CSR / Support"
-        title="Support a deserving boy's education journey."
-        description="A professional sponsorship pathway for partners who want to help a learner access Merishaw's values-led residential education."
-        image="/images/campus-life.jpg"
+        eyebrow={content.pages.support.eyebrow}
+        title={content.pages.support.title}
+        description={content.pages.support.description}
+        image={content.pages.support.image}
       />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
@@ -40,10 +42,10 @@ export default function SupportAChildPage() {
               A clear sponsorship conversation, handled directly by the school.
             </h2>
             <p className="mt-5 text-base leading-8 text-brand-muted">
-              {supportContent.description}
+              {content.support.content.description}
             </p>
             <p className="mt-4 rounded-md border border-brand-gold/70 bg-brand-cream p-4 text-sm leading-7 text-brand-muted">
-              {supportContent.note}
+              {content.support.content.note}
             </p>
           </MotionReveal>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -63,7 +65,10 @@ export default function SupportAChildPage() {
         </div>
       </section>
 
-      <SupportChildSection />
+      <SupportChildSection
+        content={content.support.content}
+        initiatives={content.support.initiatives}
+      />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
@@ -74,7 +79,7 @@ export default function SupportAChildPage() {
             align="center"
           />
           <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {csrInitiatives.map((initiative, index) => (
+            {content.support.initiatives.map((initiative, index) => (
               <MotionReveal key={initiative} delay={index * 0.04}>
                 <article className="h-full rounded-md border border-brand-line bg-white p-6 shadow-card">
                   <HeartHandshake className="h-6 w-6 text-brand-burgundy" />
@@ -94,7 +99,7 @@ export default function SupportAChildPage() {
         description="No payment gateway is included in this phase. The next step is a direct conversation with the school so sponsorship details can be handled properly."
         primaryHref="/contact"
         primaryLabel="Contact the School"
-        secondaryHref={`mailto:enquiries@merishawschools.sc.ke`}
+        secondaryHref={`mailto:${content.site.contact.email}`}
         secondaryLabel="Email Enquiries"
       />
     </>

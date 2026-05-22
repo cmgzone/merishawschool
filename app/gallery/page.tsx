@@ -7,8 +7,7 @@ import PageHeader from "@/components/PageHeader";
 import PremiumSlideshow from "@/components/PremiumSlideshow";
 import SectionTitle from "@/components/SectionTitle";
 import WelcomeVideoSection from "@/components/WelcomeVideoSection";
-import { galleryImages, showcaseSlides } from "@/data/gallery";
-import { siteConfig } from "@/data/site";
+import { getEditableContent } from "@/data/admin-content";
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -16,19 +15,21 @@ export const metadata: Metadata = {
     "View Merishaw School campus, boarding, sports, facilities, and student life images.",
 };
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const content = await getEditableContent();
+
   return (
     <>
       <PageHeader
-        eyebrow="Gallery"
-        title="Campus, facilities, and student life at Merishaw."
-        description="Explore a cleaner visual tour of the learning spaces, boarding environment, sports grounds, and student-life moments."
-        image="/images/gallery-aerial-campus.jpg"
+        eyebrow={content.pages.gallery.eyebrow}
+        title={content.pages.gallery.title}
+        description={content.pages.gallery.description}
+        image={content.pages.gallery.image}
       />
 
       <section className="bg-brand-burgundy px-3 py-3 sm:px-5 sm:py-5 lg:px-6">
         <PremiumSlideshow
-          slides={showcaseSlides}
+          slides={content.gallery.showcaseSlides}
           compact
           className="mx-auto max-w-7xl"
         />
@@ -49,7 +50,7 @@ export default function GalleryPage() {
             description="Campus buildings, resource spaces, sports grounds, boarding facilities, and student-life moments."
           />
           <div className="mt-10">
-            <GalleryGrid images={galleryImages} />
+            <GalleryGrid images={content.gallery.images} />
           </div>
         </div>
       </section>
@@ -79,9 +80,9 @@ export default function GalleryPage() {
               for more of the Merishaw story.
             </p>
             <div className="mt-7">
-              <ButtonLink href={siteConfig.socials.youtube}>
-                Open YouTube Channel
-              </ButtonLink>
+            <ButtonLink href={content.site.socials.youtube}>
+              Open YouTube Channel
+            </ButtonLink>
             </div>
           </MotionReveal>
         </div>
