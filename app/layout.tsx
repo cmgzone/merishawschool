@@ -67,6 +67,7 @@ export default async function RootLayout({
         <main id="main-content">{children}</main>
         <Footer site={content.site} />
         <TawkChat
+          embedUrl={content.site.tawkEmbedUrl}
           propertyId={content.site.tawkPropertyId}
           widgetId={content.site.tawkWidgetId}
         />

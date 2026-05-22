@@ -47,6 +47,7 @@ export type EditableSite = {
   contact: EditableContact;
   socials: EditableSocials;
   mapEmbed: string;
+  tawkEmbedUrl: string;
   tawkPropertyId: string;
   tawkWidgetId: string;
 };
@@ -257,6 +258,7 @@ export const defaultAdminContent: EditableContent = {
     contact: { ...siteConfig.contact },
     socials: { ...siteConfig.socials },
     mapEmbed: siteConfig.mapEmbed,
+    tawkEmbedUrl: "",
     tawkPropertyId: "",
     tawkWidgetId: "",
   },

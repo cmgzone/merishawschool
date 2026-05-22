@@ -134,11 +134,13 @@ function TextArea({
   label,
   value,
   onChange,
+  placeholder,
   rows = 4,
 }: {
   label: string;
   value: string;
   onChange: (value: string) => void;
+  placeholder?: string;
   rows?: number;
 }) {
   return (
@@ -147,6 +149,7 @@ function TextArea({
       <textarea
         value={value}
         rows={rows}
+        placeholder={placeholder}
         onChange={(event) => onChange(event.target.value)}
         className="mt-2 w-full resize-y rounded-md border border-brand-line bg-white px-3 py-2.5 text-sm font-medium leading-6 text-brand-ink outline-none transition placeholder:text-brand-muted/60 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-gold/40"
       />
@@ -562,8 +565,8 @@ export default function AdminContentEditor({
             Live chat (Tawk.to)
           </h3>
           <p className="mb-4 text-sm text-brand-muted">
-            Add your Tawk.to Property ID and Widget ID to show a live chat
-            bubble on every page. Find them in your{" "}
+            Paste your Tawk.to embed URL or the full widget script to show a
+            live chat bubble on every page. Find it in your{" "}
             <a
               href="https://dashboard.tawk.to"
               target="_blank"
@@ -572,36 +575,24 @@ export default function AdminContentEditor({
             >
               Tawk.to dashboard
             </a>{" "}
-            under Administration → Channels → Chat Widget. The embed URL format
-            is:{" "}
+            under Administration &gt; Channels &gt; Chat Widget. The widget URL
+            looks like:{" "}
             <code className="rounded bg-white px-1.5 py-0.5 text-xs font-bold text-brand-ink">
               https://embed.tawk.to/PROPERTY_ID/WIDGET_ID
             </code>
           </p>
-          <div className="grid gap-5 lg:grid-cols-2">
-            <Field
-              label="Property ID"
-              value={content.site.tawkPropertyId}
-              placeholder="e.g. 6123abc456def789012345"
-              onChange={(tawkPropertyId) =>
-                updateContent((current) => ({
-                  ...current,
-                  site: { ...current.site, tawkPropertyId },
-                }))
-              }
-            />
-            <Field
-              label="Widget ID"
-              value={content.site.tawkWidgetId}
-              placeholder="e.g. 1abc2def3"
-              onChange={(tawkWidgetId) =>
-                updateContent((current) => ({
-                  ...current,
-                  site: { ...current.site, tawkWidgetId },
-                }))
-              }
-            />
-          </div>
+          <TextArea
+            label="Tawk.to widget embed"
+            value={content.site.tawkEmbedUrl}
+            placeholder="Paste https://embed.tawk.to/PROPERTY_ID/WIDGET_ID or the full Tawk.to script code"
+            rows={4}
+            onChange={(tawkEmbedUrl) =>
+              updateContent((current) => ({
+                ...current,
+                site: { ...current.site, tawkEmbedUrl },
+              }))
+            }
+          />
         </div>
       </div>
     );

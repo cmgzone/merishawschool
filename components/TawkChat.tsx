@@ -5,33 +5,33 @@ import Script from "next/script";
 /**
  * Tawk.to live chat widget.
  *
- * Configured via the admin panel under Site → Live chat (Tawk.to).
- * Falls back to NEXT_PUBLIC_TAWK_PROPERTY_ID / NEXT_PUBLIC_TAWK_WIDGET_ID
- * environment variables if admin values are not set.
+ * Configured via the admin panel under Site > Live chat (Tawk.to).
+ * The admin can paste the full embed URL or the full Tawk script snippet.
+ * Falls back to NEXT_PUBLIC_TAWK_EMBED_URL, then to the legacy
+ * NEXT_PUBLIC_TAWK_PROPERTY_ID / NEXT_PUBLIC_TAWK_WIDGET_ID environment
+ * variables if admin values are not set.
  *
- * The widget will not render if neither source has both IDs.
- *
- * To get your IDs:
- *   1. Sign up at https://www.tawk.to
- *   2. Create a property for Merishaw Schools
- *   3. Go to Administration → Channels → Chat Widget
- *   4. Your embed code URL will be: https://embed.tawk.to/PROPERTY_ID/WIDGET_ID
- *   5. Paste those two values in the admin panel under Site → Live chat
+ * The widget will not render if no valid Tawk embed URL can be resolved.
  */
 export default function TawkChat({
+  embedUrl: adminEmbedUrl,
   propertyId: adminPropertyId,
   widgetId: adminWidgetId,
 }: {
+  embedUrl?: string;
   propertyId?: string;
   widgetId?: string;
 }) {
-  const propertyId =
-    adminPropertyId || process.env.NEXT_PUBLIC_TAWK_PROPERTY_ID || "";
-  const widgetId =
-    adminWidgetId || process.env.NEXT_PUBLIC_TAWK_WIDGET_ID || "";
+  const embedUrl =
+    getTawkEmbedUrl(adminEmbedUrl) ||
+    getTawkEmbedUrl(process.env.NEXT_PUBLIC_TAWK_EMBED_URL) ||
+    buildTawkEmbedUrl(adminPropertyId, adminWidgetId) ||
+    buildTawkEmbedUrl(
+      process.env.NEXT_PUBLIC_TAWK_PROPERTY_ID,
+      process.env.NEXT_PUBLIC_TAWK_WIDGET_ID,
+    );
 
-  // Don't render anything if not configured
-  if (!propertyId || !widgetId) return null;
+  if (!embedUrl) return null;
 
   return (
     <Script id="tawk-chat" strategy="afterInteractive">
@@ -51,7 +51,7 @@ export default function TawkChat({
           var s1 = document.createElement("script");
           var s0 = document.getElementsByTagName("script")[0];
           s1.async = true;
-          s1.src = 'https://embed.tawk.to/' + '${propertyId}' + '/' + '${widgetId}';
+          s1.src = ${JSON.stringify(embedUrl)};
           s1.charset = 'UTF-8';
           s1.setAttribute('crossorigin', '*');
           s0.parentNode.insertBefore(s1, s0);
@@ -59,4 +59,31 @@ export default function TawkChat({
       `}
     </Script>
   );
+}
+
+function getTawkEmbedUrl(value?: string) {
+  if (!value) return "";
+
+  const match = value.match(
+    /https:\/\/embed\.tawk\.to\/([a-z0-9]+)\/([a-z0-9_-]+)/i,
+  );
+
+  return match ? `https://embed.tawk.to/${match[1]}/${match[2]}` : "";
+}
+
+function buildTawkEmbedUrl(propertyId?: string, widgetId?: string) {
+  const property = normalizeTawkPart(propertyId);
+  const widget = normalizeTawkPart(widgetId);
+
+  return property && widget
+    ? `https://embed.tawk.to/${property}/${widget}`
+    : "";
+}
+
+function normalizeTawkPart(value?: string) {
+  const trimmed = value?.trim();
+
+  if (!trimmed || !/^[a-z0-9_-]+$/i.test(trimmed)) return "";
+
+  return trimmed;
 }
