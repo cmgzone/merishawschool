@@ -1,37 +1,42 @@
-# Merishaw Schools Brand Guide
+# Merishaw School Brand Guide
 
-## Color System
+Source: `C:\Users\Admin\Downloads\Merishaw Brand Book (1).pdf`.
 
-- Primary ink: `#102020` for navbar, footer, deep headings, dark buttons, and premium contrast areas.
-- Secondary burgundy: `#802030` for CTAs, active navigation, highlights, and important accents.
-- Accent gold: `#D0C090` for section markers, borders, stats, and subtle premium details.
-- White: `#FFFFFF` for clean surfaces and high-contrast text areas.
-- Soft background: `#F7F4EE` for warm section backgrounds.
-- Text: `#111827` for primary body copy.
-- Muted text: `#475569` for supporting copy, captions, and metadata.
-- Line color: `#E5E0D7` for borders and dividers.
+## Core Identity
 
-## Button Styles
+- Use the combined Merishaw School logo by default.
+- The separate lion emblem is reserved for merchandise, social media, and watermark-style visual moments.
+- Do not stretch the logo, recolor it outside permitted applications, change the logo/type relationship, or recreate the logo text in another font.
 
-- Primary button: burgundy background, white text, subtle shadow, and dark hover state.
-- Secondary button: white or transparent background, primary ink text, gold or ink border.
-- Support button: gold background, primary ink text, visible focus ring, and burgundy hover accent.
-- Buttons should use clear action labels and preserve accessible touch targets on mobile.
+## Official Colors
 
-## Typography Recommendation
+- Maroon: `#7A212E` / Pantone 188C / RGB 122 33 46. Primary brand color for CTAs, active states, section anchors, and strong panels.
+- Beige: `#D7B98A` / Pantone 467C / RGB 214 185 139. Accent color for support actions, labels, dividers, and premium details.
+- Grey: `#A2A9AE` / Pantone 429C / RGB 164 170 173. Secondary brand support color for quiet backgrounds, lines, and subtle UI.
+- Black: `#000000` / Pantone Black 6 C. Text, dark panels, and high-contrast logo applications.
+- White: `#FFFFFF`. Clean page surfaces and reversed logo applications.
 
-- Body: Inter for modern readability.
-- Headings: Cormorant Garamond for a more premium editorial school identity.
-- Use strong spacing, short line lengths, and clear hierarchy across mobile and desktop.
+## Digital Tokens
 
-## Layout Style
+- `brand-burgundy`: official maroon `#7A212E`.
+- `brand-gold`: official beige `#D7B98A`.
+- `brand-grey`: official grey `#A2A9AE`.
+- `brand-ink`: official black `#000000`.
+- `brand-cream`: light beige tint for page backgrounds.
+- `brand-line`: light grey tint for borders.
+- `brand-muted`: accessible grey text derived from the official grey family.
 
-- Premium, clean, light-first design with confident dark sections.
-- Cards should be crisp with small-radius corners, subtle borders, and gentle shadows.
-- Avoid childish visuals, decorative clutter, and crowded layouts.
+## Communication Style
 
-## Animation Style
+- Brand material should be emotive, image-led, and minimal in text.
+- Prefer real school photography as the lead visual.
+- Use maroon and beige angular or banded accents sparingly, especially around advertising-style CTAs and banners.
+- The lion emblem may appear as a low-contrast watermark when it supports the design without competing with content.
 
-- Use Framer Motion for subtle fade-and-slide entrance animations, polished hover states, and mobile menu transitions.
-- Keep animations short and elegant.
-- Respect reduced-motion preferences.
+## UI Use
+
+- Primary button: maroon background with white text.
+- Support button: beige background with black text.
+- Secondary button: white background, black text, and beige or grey border.
+- Dark sections should use maroon or black with beige accents.
+- Keep cards crisp with small-radius corners and restrained shadows.

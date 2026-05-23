@@ -5,7 +5,7 @@
 :root {
   color-scheme: light;
   --background: #ffffff;
-  --foreground: #111827;
+  --foreground: #000000;
 }
 
 * {
@@ -24,8 +24,8 @@ body {
 }
 
 ::selection {
-  background: #d0c090;
-  color: #102020;
+  background: #d7b98a;
+  color: #000000;
 }
 
 img {
@@ -61,23 +61,23 @@ li {
   left: 0;
   height: 0.12em;
   border-radius: 999px;
-  background: linear-gradient(90deg, #d0c090, rgba(208, 192, 144, 0.12));
+  background: linear-gradient(90deg, #d7b98a, rgba(215, 185, 138, 0.12));
   content: "";
 }
 
 .gold-outline-text {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(208, 192, 144, 0.68);
+  -webkit-text-stroke: 1px rgba(215, 185, 138, 0.68);
 }
 
 .brand-sheen {
   background:
-    linear-gradient(135deg, rgba(208, 192, 144, 0.18), transparent 34%),
-    linear-gradient(315deg, rgba(128, 32, 48, 0.12), transparent 38%);
+    linear-gradient(135deg, rgba(215, 185, 138, 0.18), transparent 34%),
+    linear-gradient(315deg, rgba(122, 33, 46, 0.12), transparent 38%);
 }
 
 .premium-hero-copy {
-  text-shadow: 0 2px 22px rgba(16, 32, 32, 0.48);
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.48);
 }
 
 .values-marquee {
@@ -93,7 +93,7 @@ li {
 
 .contact-pulse {
   position: relative;
-  box-shadow: 0 18px 38px rgba(128, 32, 48, 0.18);
+  box-shadow: 0 18px 38px rgba(122, 33, 46, 0.18);
 }
 
 .contact-pulse::before {
@@ -121,7 +121,7 @@ li {
   top: -4rem;
   z-index: 100;
   border-radius: 0.375rem;
-  background: #102020;
+  background: #000000;
   color: white;
   padding: 0.75rem 1rem;
   transition: top 160ms ease;

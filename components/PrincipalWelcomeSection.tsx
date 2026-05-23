@@ -17,7 +17,7 @@ export default function PrincipalWelcomeSection({
       <div className="mx-auto grid max-w-7xl overflow-hidden rounded-md border border-brand-line bg-brand-cream shadow-premium lg:grid-cols-[0.9fr_1.1fr]">
         <MotionReveal className="bg-white">
           <div className="flex h-full flex-col">
-            <div className="relative flex min-h-[420px] flex-1 items-end justify-center overflow-hidden bg-gradient-to-b from-[#f7f4ee] via-white to-brand-cream p-4 sm:min-h-[460px] sm:p-6 lg:min-h-[680px]">
+            <div className="relative flex min-h-[420px] flex-1 items-end justify-center overflow-hidden bg-gradient-to-b from-brand-cream via-white to-brand-cream p-4 sm:min-h-[460px] sm:p-6 lg:min-h-[680px]">
               <div className="absolute inset-0 brand-sheen opacity-70" />
               <Image
                 src={principal.image}

@@ -46,6 +46,8 @@ export default function PremiumSlideshow({
   const intervalMs = compact ? 7200 : 9000;
   const slideHeightClassName =
     heightClassName ?? (compact ? "min-h-[440px]" : "min-h-[680px]");
+  const hasFeaturedEyebrow =
+    headingLevel === 1 && contentAlign === "center" && !compact;
 
   useEffect(() => {
     if (reduceMotion || slides.length < 2) {
@@ -80,38 +82,54 @@ export default function PremiumSlideshow({
         className,
       )}
     >
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.div
-          key={slide.image}
-          className="absolute inset-0"
-          initial={{ opacity: reduceMotion ? 1 : 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: reduceMotion ? 1 : 0 }}
-          transition={{ duration: 1.25, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <Image
-            src={slide.image}
-            alt={slide.alt}
-            fill
-            className="object-cover brightness-110 contrast-105 saturate-105"
-            style={{ objectPosition: slide.imagePosition ?? "center" }}
-            sizes="100vw"
-            preload={imagePriority && active === 0}
-            loading={imagePriority && active === 0 ? "eager" : "lazy"}
-            fetchPriority={imagePriority && active === 0 ? "high" : undefined}
-          />
-        </motion.div>
-      </AnimatePresence>
+      <div className="absolute inset-0 bg-white">
+        {slides.map((item, index) => {
+          const isActive = active === index;
+          const shouldPreload = imagePriority && index === 0;
+          const shouldLoadEagerly = imagePriority ? index < 2 : index === 0;
+
+          return (
+            <motion.div
+              key={`${item.image}-${index}`}
+              className="absolute inset-0"
+              initial={false}
+              animate={{ opacity: isActive ? 1 : 0 }}
+              transition={
+                reduceMotion
+                  ? { duration: 0 }
+                  : { duration: 1.25, ease: [0.16, 1, 0.3, 1] }
+              }
+              aria-hidden={!isActive}
+            >
+              <Image
+                src={item.image}
+                alt={item.alt}
+                fill
+                className="scale-[1.02] object-cover brightness-110 contrast-105 saturate-105"
+                style={{ objectPosition: item.imagePosition ?? "center" }}
+                sizes="100vw"
+                preload={shouldPreload}
+                loading={
+                  shouldPreload ? undefined : shouldLoadEagerly ? "eager" : "lazy"
+                }
+                fetchPriority={
+                  shouldPreload || shouldLoadEagerly ? "high" : undefined
+                }
+              />
+            </motion.div>
+          );
+        })}
+      </div>
 
       <div
         className={cn(
           "absolute inset-0",
           contentAlign === "center"
-            ? "bg-brand-ink/34"
+            ? "bg-gradient-to-b from-brand-ink/16 via-brand-ink/4 to-brand-ink/14"
             : "bg-gradient-to-r from-brand-ink/45 via-brand-ink/10 to-transparent",
         )}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/28 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/18 via-transparent to-transparent" />
 
       <div
         className={cn(
@@ -136,7 +154,14 @@ export default function PremiumSlideshow({
             )}
           >
             {slide.eyebrow ? (
-              <p className="text-sm font-bold uppercase text-brand-gold">
+              <p
+                className={cn(
+                  "font-bold uppercase text-brand-gold",
+                  hasFeaturedEyebrow
+                    ? "premium-heading font-serif text-4xl font-semibold leading-tight text-brand-gold drop-shadow sm:text-5xl lg:text-7xl"
+                    : "text-sm",
+                )}
+              >
                 {slide.eyebrow}
               </p>
             ) : null}
@@ -144,9 +169,11 @@ export default function PremiumSlideshow({
               <h1
                 className={cn(
                   "premium-heading mt-3 font-serif font-semibold leading-tight text-white",
-                  compact
-                    ? "text-3xl sm:text-4xl"
-                    : "text-4xl sm:text-5xl lg:text-7xl",
+                  hasFeaturedEyebrow
+                    ? "text-2xl sm:text-3xl lg:text-5xl"
+                    : compact
+                      ? "text-3xl sm:text-4xl"
+                      : "text-4xl sm:text-5xl lg:text-7xl",
                 )}
               >
                 {slide.title}
@@ -155,9 +182,11 @@ export default function PremiumSlideshow({
               <h2
                 className={cn(
                   "premium-heading mt-3 font-serif font-semibold leading-tight text-white",
-                  compact
-                    ? "text-3xl sm:text-4xl"
-                    : "text-4xl sm:text-5xl lg:text-7xl",
+                  hasFeaturedEyebrow
+                    ? "text-2xl sm:text-3xl lg:text-5xl"
+                    : compact
+                      ? "text-3xl sm:text-4xl"
+                      : "text-4xl sm:text-5xl lg:text-7xl",
                 )}
               >
                 {slide.title}

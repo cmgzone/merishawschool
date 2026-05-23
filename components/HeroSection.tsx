@@ -21,7 +21,6 @@ export default function HeroSection({
 }: HeroSectionProps) {
   return (
     <section className="bg-white">
-      <div className="h-10 bg-brand-gold/45 sm:h-14" aria-hidden="true" />
       <PremiumSlideshow
         slides={slides}
         imagePriority

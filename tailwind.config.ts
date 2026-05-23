@@ -10,12 +10,13 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          ink: "#102020",
-          burgundy: "#802030",
-          gold: "#D0C090",
-          cream: "#F7F4EE",
-          line: "#E5E0D7",
-          muted: "#475569",
+          ink: "#000000",
+          burgundy: "#7A212E",
+          gold: "#D7B98A",
+          grey: "#A2A9AE",
+          cream: "#F8F1E5",
+          line: "#D9DDE0",
+          muted: "#5F666B",
         },
       },
       fontFamily: {
@@ -23,12 +24,12 @@ const config: Config = {
         serif: ["var(--font-lora)", "Cormorant Garamond", "Georgia", "serif"],
       },
       boxShadow: {
-        premium: "0 24px 80px rgba(16, 32, 32, 0.12)",
-        card: "0 18px 50px rgba(16, 32, 32, 0.08)",
+        premium: "0 24px 80px rgba(0, 0, 0, 0.12)",
+        card: "0 18px 50px rgba(0, 0, 0, 0.08)",
       },
       backgroundImage: {
         "gold-radial":
-          "radial-gradient(circle at top left, rgba(208, 192, 144, 0.24), transparent 32rem)",
+          "radial-gradient(circle at top left, rgba(215, 185, 138, 0.24), transparent 32rem)",
       },
     },
   },
