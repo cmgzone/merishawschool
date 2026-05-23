@@ -21,6 +21,28 @@
       "x": "https://twitter.com/MerishawSchool",
       "youtube": "https://www.youtube.com/channel/UC_Ev7T9BY_9GyxFFckLwz0Q"
     },
+    "partners": [
+      {
+        "name": "Partner Logo 1",
+        "logo": "",
+        "href": ""
+      },
+      {
+        "name": "Partner Logo 2",
+        "logo": "",
+        "href": ""
+      },
+      {
+        "name": "Partner Logo 3",
+        "logo": "",
+        "href": ""
+      },
+      {
+        "name": "Partner Logo 4",
+        "logo": "",
+        "href": ""
+      }
+    ],
     "mapEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.9763029979285!2d36.84367297467117!3d-1.7411036982428307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182fc78b1fbd4825%3A0xf088a04f4550b5c!2sMerishaw%20School!5e0!3m2!1sen!2ske!4v1671699607906!5m2!1sen!2ske",
     "tawkEmbedUrl": "https://embed.tawk.to/6a10a3353768c91c323d8b2c/default",
     "tawkPropertyId": "",
@@ -160,9 +182,9 @@
       "image": "/images/merishaw-bg.jpeg"
     },
     "news": {
-      "eyebrow": "News",
-      "title": "Merishaw School news and updates.",
-      "description": "Highlights from academics, sport, student life, and school community moments.",
+      "eyebrow": "News & Events",
+      "title": "Merishaw School news and events.",
+      "description": "Highlights from academics, sport, student life, events, and school community moments.",
       "image": "/images/news-stem.jpg"
     },
     "contact": {
@@ -203,11 +225,107 @@
         "image": "/images/resource-centre.jpeg"
       },
       {
-        "slug": "extra-curricular-activities",
-        "title": "Extra-curricular Activities",
-        "eyebrow": "School Life",
-        "description": "A future overview of clubs, societies, sports, arts, competitions, trips, and student-life activities.",
-        "needed": "This page is being refreshed with clubs, societies, sports, arts, trips, competitions, and student-life activities.",
+        "slug": "our-classrooms",
+        "title": "Our Classrooms",
+        "eyebrow": "Academics",
+        "description": "A future overview of Merishaw's classroom environment, teaching spaces, learner support, and academic routines.",
+        "needed": "Content needed: approved copy, classroom photos, learning-space details, teaching approach, and learner support information.",
+        "image": "/images/resource-centre.jpeg"
+      },
+      {
+        "slug": "science-block",
+        "title": "Science Block",
+        "eyebrow": "Academics",
+        "description": "A future overview of the science block, laboratories, practical lessons, safety standards, and STEM learning spaces.",
+        "needed": "Content needed: approved science block copy, lab photos, facilities list, practical learning details, and safety guidance.",
+        "image": "/images/resource-centre.jpeg"
+      },
+      {
+        "slug": "aviation",
+        "title": "Aviation",
+        "eyebrow": "Academics",
+        "description": "A future page for Merishaw's aviation exposure, learning pathways, activities, partnerships, and student opportunities.",
+        "needed": "Content needed: approved aviation programme copy, photos, learning outcomes, partnerships, activities, and student participation details.",
+        "image": "/images/resource-centre.jpeg"
+      },
+      {
+        "slug": "workshop",
+        "title": "Workshop",
+        "eyebrow": "Academics",
+        "description": "A future overview of workshop spaces, practical skills, hands-on projects, tools, and technical learning.",
+        "needed": "Content needed: approved workshop copy, facility photos, equipment details, safety rules, project examples, and learner outcomes.",
+        "image": "/images/resource-centre.jpeg"
+      },
+      {
+        "slug": "robotics",
+        "title": "Robotics",
+        "eyebrow": "Academics",
+        "description": "A future page for robotics, coding, engineering design, competitions, innovation projects, and digital problem-solving.",
+        "needed": "Content needed: approved robotics copy, photos, project examples, equipment details, club or class structure, and competition information.",
+        "image": "/images/resource-centre.jpeg"
+      },
+      {
+        "slug": "resource-centre",
+        "title": "Resource Centre",
+        "eyebrow": "Academics",
+        "description": "A future overview of the resource centre, reading culture, study support, digital resources, and research spaces.",
+        "needed": "Content needed: approved resource centre copy, photos, library or digital resource details, study support information, and opening routines.",
+        "image": "/images/resource-centre.jpeg"
+      },
+      {
+        "slug": "languages",
+        "title": "Languages",
+        "eyebrow": "Academics",
+        "description": "A future page for language learning, communication skills, reading, writing, public speaking, and cultural exposure.",
+        "needed": "Content needed: approved languages copy, subject details, photos, learner activities, public speaking opportunities, and language support information.",
+        "image": "/images/resource-centre.jpeg"
+      },
+      {
+        "slug": "art-gallery",
+        "title": "Art Gallery",
+        "eyebrow": "Academics",
+        "description": "A future showcase for visual arts, student creativity, exhibitions, creative projects, and artistic development.",
+        "needed": "Content needed: approved art gallery copy, student artwork photos, exhibition details, creative arts activities, and learner achievement highlights.",
+        "image": "/images/resource-centre.jpeg"
+      },
+      {
+        "slug": "admin-block",
+        "title": "Admin Block",
+        "eyebrow": "Infrastructure",
+        "description": "A future overview of Merishaw's administration block, visitor reception, offices, parent support, and school operations spaces.",
+        "needed": "Content needed: approved admin block copy, photos, office or reception details, visitor guidance, and parent support information.",
+        "image": "/images/resource-centre.jpeg"
+      },
+      {
+        "slug": "gmax",
+        "title": "GMAX",
+        "eyebrow": "Infrastructure",
+        "description": "A future page for Merishaw's GMAX facility, learning experiences, activities, equipment, and student use.",
+        "needed": "Content needed: approved GMAX copy, photos, facility purpose, equipment details, learning activities, and student participation information.",
+        "image": "/images/resource-centre.jpeg"
+      },
+      {
+        "slug": "movie-theatre",
+        "title": "Movie Theatre",
+        "eyebrow": "Infrastructure",
+        "description": "A future overview of the movie theatre space, multimedia learning, screenings, presentations, and student enrichment activities.",
+        "needed": "Content needed: approved movie theatre copy, photos, seating or equipment details, learning use cases, screenings, and presentation activities.",
+        "image": "/images/resource-centre.jpeg"
+      },
+      {
+        "slug": "sports",
+        "title": "Sports",
+        "eyebrow": "Extra-curricular Activities",
+        "description": "A future overview of Merishaw's sports programmes, teams, facilities, training, and competitions.",
+        "needed": "This page is being refreshed with approved copy about sports programmes, teams, training schedules, facilities, competitions, and student achievements.",
+        "image": "/images/resource-centre.jpeg"
+      },
+      {
+        "slug": "clubs",
+        "title": "Clubs",
+        "eyebrow": "Extra-curricular Activities",
+        "description": "A future overview of Merishaw's clubs, societies, creative groups, leadership forums, and student interests.",
+        "needed": "This page is being refreshed with approved copy about clubs, societies, creative groups, leadership forums, meeting times, and student participation.",
         "image": "/images/resource-centre.jpeg"
       },
       {

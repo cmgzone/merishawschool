@@ -43,9 +43,71 @@ export default function TawkChat({
         Tawk_API.customStyle = {
           visibility: {
             desktop: { position: 'br', xOffset: 20, yOffset: 20 },
-            mobile:  { position: 'br', xOffset: 10, yOffset: 10 },
+            mobile:  { position: 'br', xOffset: 8, yOffset: 8 },
           },
         };
+
+        function isTawkFrame(frame) {
+          var style = frame.getAttribute('style') || '';
+
+          return (
+            style.indexOf('position:fixed') !== -1 &&
+            style.indexOf('z-index:100000') !== -1 &&
+            style.indexOf('cursor:none') !== -1
+          );
+        }
+
+        function setImportantStyle(element, property, value) {
+          if (element.style.getPropertyValue(property) === value) return;
+
+          element.style.setProperty(property, value, 'important');
+        }
+
+        function resizeTawkForMobile() {
+          var isMobile = window.matchMedia('(max-width: 640px)').matches;
+          var frames = document.querySelectorAll('iframe');
+
+          frames.forEach(function(frame) {
+            if (!isTawkFrame(frame)) return;
+
+            if (isMobile) {
+              var width = parseInt(frame.getAttribute('width') || frame.style.width || '0', 10);
+              var height = parseInt(frame.getAttribute('height') || frame.style.height || '0', 10);
+
+              setImportantStyle(frame, 'transform', 'scale(0.84)');
+              setImportantStyle(frame, '-webkit-transform', 'scale(0.84)');
+              setImportantStyle(frame, '-ms-transform', 'scale(0.84)');
+              setImportantStyle(frame, 'transform-origin', 'bottom right');
+
+              if (width <= 90 && height <= 90) {
+                setImportantStyle(frame, 'right', '12px');
+                setImportantStyle(frame, 'bottom', '12px');
+              }
+            } else {
+              setImportantStyle(frame, 'transform', 'none');
+              setImportantStyle(frame, '-webkit-transform', 'none');
+              setImportantStyle(frame, '-ms-transform', 'none');
+            }
+          });
+        }
+
+        window.addEventListener('resize', resizeTawkForMobile);
+        var tawkResizeObserver = new MutationObserver(resizeTawkForMobile);
+        tawkResizeObserver.observe(document.documentElement, {
+          childList: true,
+          subtree: true,
+          attributes: true,
+          attributeFilter: ['style'],
+        });
+        var tawkResizeAttempts = 0;
+        var tawkResizeTimer = window.setInterval(function() {
+          resizeTawkForMobile();
+          tawkResizeAttempts += 1;
+
+          if (tawkResizeAttempts > 40) {
+            window.clearInterval(tawkResizeTimer);
+          }
+        }, 500);
 
         (function(){
           var s1 = document.createElement("script");

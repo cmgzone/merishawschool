@@ -25,8 +25,8 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
   const [open, setOpen] = useState(false);
   const [mobileGroup, setMobileGroup] = useState<string | null>(null);
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = (href?: string) =>
+    href ? (href === "/" ? pathname === "/" : pathname.startsWith(href)) : false;
 
   const groupIsActive = (item: (typeof navigationGroups)[number]) =>
     isActive(item.href) || item.children?.some((child) => isActive(child.href));
@@ -34,24 +34,24 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
   return (
     <header className="sticky top-0 z-50 border-b border-brand-line/80 bg-white/95 backdrop-blur-xl">
       <div className="hidden border-b border-brand-line bg-brand-ink text-white lg:block">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-2 text-xs font-semibold sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-4 py-1.5 text-[11px] font-semibold sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
             <a
               href={`tel:${site.contact.phonePrimary.replace(/\s/g, "")}`}
               className="inline-flex items-center gap-2 text-white/88 transition hover:text-brand-gold"
             >
-              <Phone aria-hidden="true" className="h-3.5 w-3.5" />
+              <Phone aria-hidden="true" className="h-3 w-3" />
               {site.contact.phonePrimary}
             </a>
             <a
               href={`mailto:${site.contact.email}`}
               className="inline-flex items-center gap-2 text-white/88 transition hover:text-brand-gold"
             >
-              <Mail aria-hidden="true" className="h-3.5 w-3.5" />
+              <Mail aria-hidden="true" className="h-3 w-3" />
               {site.contact.email}
             </a>
-            <span className="inline-flex items-center gap-2 text-white/78">
-              <MapPin aria-hidden="true" className="h-3.5 w-3.5" />
+            <span className="hidden items-center gap-2 text-white/78 min-[1180px]:inline-flex">
+              <MapPin aria-hidden="true" className="h-3 w-3" />
               {site.contact.address}
             </span>
           </div>
@@ -60,13 +60,13 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
             className="inline-flex items-center gap-2 text-brand-gold transition hover:text-white"
           >
             Book a visit or enquire
-            <ChevronDown aria-hidden="true" className="h-3.5 w-3.5 -rotate-90" />
+            <ChevronDown aria-hidden="true" className="h-3 w-3 -rotate-90" />
           </Link>
         </div>
       </div>
       <nav
         aria-label="Primary navigation"
-        className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8 xl:py-2.5"
       >
         <Link
           href="/"
@@ -78,7 +78,7 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
             alt="Merishaw School logo"
             width={242}
             height={125}
-            className="h-16 w-auto sm:h-[72px]"
+            className="h-14 w-auto sm:h-16 xl:h-12"
             loading="eager"
             priority
           />
@@ -97,22 +97,43 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
           {navigationGroups.map((item) =>
             item.children ? (
               <div key={item.label} className="group relative">
-                <Link
-                  href={item.href}
-                  className={cn(
-                    "inline-flex items-center gap-1 rounded-md px-2.5 py-2 text-sm font-semibold transition hover:bg-brand-cream hover:text-brand-burgundy",
-                    groupIsActive(item)
-                      ? "text-brand-burgundy"
-                      : "text-brand-ink/80",
-                  )}
-                  aria-haspopup="true"
-                >
-                  {item.label}
-                  <ChevronDown
-                    aria-hidden="true"
-                    className="h-3.5 w-3.5 transition group-hover:rotate-180"
-                  />
-                </Link>
+                {item.href ? (
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "inline-flex items-center gap-1 whitespace-nowrap rounded-md px-2 py-1.5 text-[13px] font-semibold leading-tight transition hover:bg-brand-cream hover:text-brand-burgundy",
+                      groupIsActive(item)
+                        ? "text-brand-burgundy"
+                        : "text-brand-ink/80",
+                    )}
+                    aria-haspopup="true"
+                    aria-label={item.label}
+                  >
+                    {item.label}
+                    <ChevronDown
+                      aria-hidden="true"
+                      className="h-3 w-3 transition group-hover:rotate-180"
+                    />
+                  </Link>
+                ) : (
+                  <button
+                    type="button"
+                    className={cn(
+                      "inline-flex items-center gap-1 whitespace-nowrap rounded-md px-2 py-1.5 text-[13px] font-semibold leading-tight transition hover:bg-brand-cream hover:text-brand-burgundy",
+                      groupIsActive(item)
+                        ? "text-brand-burgundy"
+                        : "text-brand-ink/80",
+                    )}
+                    aria-haspopup="true"
+                    aria-label={item.label}
+                  >
+                    {item.label}
+                    <ChevronDown
+                      aria-hidden="true"
+                      className="h-3 w-3 transition group-hover:rotate-180"
+                    />
+                  </button>
+                )}
                 <div className="pointer-events-none absolute left-0 top-full z-50 w-72 translate-y-2 pt-3 opacity-0 transition duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100">
                   <div className="overflow-hidden rounded-md border border-brand-line bg-white shadow-premium">
                     <div className="border-b border-brand-line bg-brand-cream px-4 py-3">
@@ -142,11 +163,12 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-md px-2.5 py-2 text-sm font-semibold transition hover:bg-brand-cream hover:text-brand-burgundy",
+                  "whitespace-nowrap rounded-md px-2 py-1.5 text-[13px] font-semibold leading-tight transition hover:bg-brand-cream hover:text-brand-burgundy",
                   isActive(item.href)
                     ? "text-brand-burgundy"
                     : "text-brand-ink/80",
                 )}
+                aria-label={item.label}
               >
                 {item.label}
               </Link>
@@ -154,20 +176,21 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
           )}
         </div>
 
-        <div className="hidden items-center gap-3 xl:flex">
+        <div className="hidden items-center gap-2 xl:flex">
           <Link
             href="/contact"
-            className="contact-pulse inline-flex min-h-12 items-center gap-2 rounded-md bg-brand-burgundy px-6 py-3 text-base font-bold text-white shadow-lg shadow-brand-burgundy/25 transition hover:-translate-y-0.5 hover:bg-brand-ink focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2"
+            className="contact-pulse inline-flex min-h-9 items-center gap-1.5 rounded-md bg-brand-burgundy px-3 py-1.5 text-[13px] font-bold text-white shadow-lg shadow-brand-burgundy/20 transition hover:-translate-y-0.5 hover:bg-brand-ink focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2"
           >
-            <Mail aria-hidden="true" className="h-5 w-5" />
-            Contact Us
+            <Mail aria-hidden="true" className="h-3.5 w-3.5" />
+            Contact
           </Link>
           <Link
             href={supportNavItem.href}
-            className="inline-flex min-h-11 items-center gap-2 rounded-md bg-brand-gold px-4 py-2 text-sm font-bold text-brand-ink shadow-sm transition hover:bg-brand-burgundy hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2"
+            className="inline-flex min-h-9 items-center gap-1.5 rounded-md bg-brand-gold px-3 py-1.5 text-[13px] font-bold text-brand-ink shadow-sm transition hover:bg-brand-burgundy hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2"
+            aria-label={supportNavItem.label}
           >
-            <HeartHandshake aria-hidden="true" className="h-4 w-4" />
-            {supportNavItem.label}
+            <HeartHandshake aria-hidden="true" className="h-3.5 w-3.5" />
+            Sponsor
           </Link>
         </div>
 
@@ -179,7 +202,7 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
             aria-label="Contact Merishaw School"
           >
             <Mail aria-hidden="true" className="h-4 w-4" />
-            <span className="hidden min-[520px]:inline">Enquire</span>
+            <span className="hidden min-[520px]:inline">Contact Us</span>
           </Link>
           <Link
             href={supportNavItem.href}
@@ -303,13 +326,15 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
                               className="overflow-hidden border-t border-brand-line"
                             >
                               <div className="grid py-2">
-                                <Link
-                                  href={item.href}
-                                  onClick={() => setOpen(false)}
-                                  className="px-5 py-2 text-sm font-bold text-brand-burgundy transition hover:bg-brand-cream"
-                                >
-                                  {item.label} Overview
-                                </Link>
+                                {item.href ? (
+                                  <Link
+                                    href={item.href}
+                                    onClick={() => setOpen(false)}
+                                    className="px-5 py-2 text-sm font-bold text-brand-burgundy transition hover:bg-brand-cream"
+                                  >
+                                    {item.label} Overview
+                                  </Link>
+                                ) : null}
                                 {item.children.map((child) => (
                                   <Link
                                     key={`${item.label}-${child.label}`}

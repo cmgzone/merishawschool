@@ -1,16 +1,16 @@
 import Image from "next/image";
 import ButtonLink from "@/components/ButtonLink";
 import MotionReveal from "@/components/MotionReveal";
-import { leaders } from "@/data/leadership";
+import { principal as defaultPrincipal } from "@/data/leadership";
 
-type Principal = (typeof leaders)[number];
+type Principal = typeof defaultPrincipal;
 
 type PrincipalWelcomeSectionProps = {
   principal?: Principal;
 };
 
 export default function PrincipalWelcomeSection({
-  principal = leaders[0],
+  principal = defaultPrincipal,
 }: PrincipalWelcomeSectionProps) {
   return (
     <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">

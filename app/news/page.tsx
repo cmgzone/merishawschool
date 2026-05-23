@@ -7,9 +7,9 @@ import SectionTitle from "@/components/SectionTitle";
 import { getEditableContent } from "@/data/admin-content";
 
 export const metadata: Metadata = {
-  title: "News and Updates",
+  title: "News & Events",
   description:
-    "Read Merishaw School news and updates from the school community.",
+    "Read Merishaw School news, events, and updates from the school community.",
 };
 
 export default async function NewsPage() {

@@ -17,7 +17,13 @@ import {
   whoWeAreHighlights,
   whyChooseMerishaw,
 } from "@/data/home";
-import { leaders, studentCouncil } from "@/data/leadership";
+import {
+  boardMembers,
+  principal,
+  seniorManagement,
+  studentCouncil,
+  studentLeaders,
+} from "@/data/leadership";
 import { newsItems } from "@/data/news";
 import { siteConfig, stats } from "@/data/site";
 import { csrInitiatives, supportContent } from "@/data/support";
@@ -37,6 +43,12 @@ export type EditableSocials = {
   youtube: string;
 };
 
+export type EditablePartner = {
+  name: string;
+  logo: string;
+  href: string;
+};
+
 export type EditableSite = {
   name: string;
   tagline: string;
@@ -46,6 +58,7 @@ export type EditableSite = {
   logoLandscape: string;
   contact: EditableContact;
   socials: EditableSocials;
+  partners: EditablePartner[];
   mapEmbed: string;
   tawkEmbedUrl: string;
   tawkPropertyId: string;
@@ -103,12 +116,14 @@ export type EditableNewsItem = {
   category: string;
 };
 
-export type EditableLeader = {
+export type EditableLeadershipPerson = {
   name: string;
   role: string;
   image: string;
   description: string;
 };
+
+export type EditableLeader = EditableLeadershipPerson;
 
 export type EditableStudentCouncilMember = {
   role: string;
@@ -234,8 +249,11 @@ export type EditableContent = {
     items: EditableNewsItem[];
   };
   leadership: {
-    leaders: EditableLeader[];
-    studentCouncil: EditableStudentCouncilMember[];
+    boardMembers: EditableLeadershipPerson[];
+    principal: EditableLeadershipPerson;
+    seniorManagement: EditableLeadershipPerson[];
+    studentCouncil: EditableLeadershipPerson[];
+    studentLeaders: EditableLeadershipPerson[];
   };
   support: {
     content: EditableSupportContent;
@@ -257,6 +275,7 @@ export const defaultAdminContent: EditableContent = {
     logoLandscape: siteConfig.logoLandscape,
     contact: { ...siteConfig.contact },
     socials: { ...siteConfig.socials },
+    partners: siteConfig.partners.map((partner) => ({ ...partner })),
     mapEmbed: siteConfig.mapEmbed,
     tawkEmbedUrl: "",
     tawkPropertyId: "",
@@ -318,10 +337,10 @@ export const defaultAdminContent: EditableContent = {
       image: "/images/merishaw-bg.jpeg",
     },
     news: {
-      eyebrow: "News",
-      title: "Merishaw School news and updates.",
+      eyebrow: "News & Events",
+      title: "Merishaw School news and events.",
       description:
-        "Highlights from academics, sport, student life, and school community moments.",
+        "Highlights from academics, sport, student life, events, and school community moments.",
       image: "/images/news-stem.jpg",
     },
     contact: {
@@ -435,8 +454,11 @@ export const defaultAdminContent: EditableContent = {
     items: newsItems.map((item) => ({ ...item })),
   },
   leadership: {
-    leaders: leaders.map((leader) => ({ ...leader })),
+    boardMembers: boardMembers.map((member) => ({ ...member })),
+    principal: { ...principal },
+    seniorManagement: seniorManagement.map((member) => ({ ...member })),
     studentCouncil: studentCouncil.map((member) => ({ ...member })),
+    studentLeaders: studentLeaders.map((member) => ({ ...member })),
   },
   support: {
     content: { ...supportContent },
@@ -469,8 +491,63 @@ function mergeWithDefaults<T>(defaults: T, override: unknown): T {
   return typeof override === typeof defaults ? (override as T) : defaults;
 }
 
+function isLeadershipPerson(value: unknown): value is EditableLeadershipPerson {
+  return (
+    isRecord(value) &&
+    typeof value.name === "string" &&
+    typeof value.role === "string" &&
+    typeof value.image === "string" &&
+    typeof value.description === "string"
+  );
+}
+
+function isLegacyStudentCouncilMember(
+  value: unknown,
+): value is EditableStudentCouncilMember {
+  return (
+    isRecord(value) &&
+    typeof value.role === "string" &&
+    typeof value.quote === "string"
+  );
+}
+
+function migrateLeadershipContent(value: unknown): unknown {
+  if (!isRecord(value) || !isRecord(value.leadership)) {
+    return value;
+  }
+
+  const legacyLeaders = Array.isArray(value.leadership.leaders)
+    ? value.leadership.leaders.filter(isLeadershipPerson)
+    : [];
+  const legacyCouncil = Array.isArray(value.leadership.studentCouncil)
+    ? value.leadership.studentCouncil
+    : [];
+
+  const nextLeadership: Record<string, unknown> = { ...value.leadership };
+
+  if (!("principal" in nextLeadership) && legacyLeaders[0]) {
+    nextLeadership.principal = legacyLeaders[0];
+  }
+
+  if (
+    Array.isArray(nextLeadership.studentCouncil) &&
+    nextLeadership.studentCouncil.every(isLegacyStudentCouncilMember)
+  ) {
+    nextLeadership.studentCouncil = legacyCouncil
+      .filter(isLegacyStudentCouncilMember)
+      .map((member) => ({
+        name: member.role,
+        role: "Student Council",
+        image: "/images/gallery-student-life-2.jpg",
+        description: member.quote,
+      }));
+  }
+
+  return { ...value, leadership: nextLeadership };
+}
+
 export function normalizeEditableContent(value: unknown): EditableContent {
-  return mergeWithDefaults(defaultAdminContent, value);
+  return mergeWithDefaults(defaultAdminContent, migrateLeadershipContent(value));
 }
 
 export async function getEditableContent(): Promise<EditableContent> {

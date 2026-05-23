@@ -30,14 +30,13 @@ import type {
   EditableContent,
   EditableDownloadItem,
   EditableGalleryImage,
-  EditableLeader,
+  EditableLeadershipPerson,
   EditableNewsItem,
   EditablePageHeader,
   EditablePillar,
   EditableSectionIntro,
   EditableSlide,
   EditableStat,
-  EditableStudentCouncilMember,
   EditableTextCard,
   EditableValue,
 } from "@/data/admin-content";
@@ -76,8 +75,8 @@ const tabs = [
   { id: "admissions", label: "Admissions", icon: ClipboardList },
   { id: "gallery", label: "Gallery", icon: ImageIcon },
   { id: "downloads", label: "Downloads", icon: Download },
-  { id: "news", label: "News", icon: Newspaper },
-  { id: "leadership", label: "Principal", icon: UserRound },
+  { id: "news", label: "News & Events", icon: Newspaper },
+  { id: "leadership", label: "Leadership", icon: UserRound },
   { id: "support", label: "Support", icon: HeartHandshake },
 ] satisfies Array<{ id: TabId; label: string; icon: typeof Settings }>;
 
@@ -90,7 +89,7 @@ const pageHeaderConfigs = [
   { id: "leadership", label: "Leadership" },
   { id: "gallery", label: "Gallery" },
   { id: "downloads", label: "Downloads" },
-  { id: "news", label: "News" },
+  { id: "news", label: "News & Events" },
   { id: "contact", label: "Contact" },
   { id: "support", label: "Support" },
 ] satisfies Array<{ id: PageHeaderKey; label: string }>;
@@ -1573,7 +1572,7 @@ export default function AdminContentEditor({
   function renderNews() {
     return (
       <div className="grid gap-6">
-        <PanelTitle eyebrow="News" title="School updates">
+        <PanelTitle eyebrow="News & Events" title="School updates">
           <AddButton
             onClick={() =>
               updateContent((current) => ({
@@ -1639,95 +1638,94 @@ export default function AdminContentEditor({
   function renderLeadership() {
     return (
       <div className="grid gap-6">
-        <PanelTitle eyebrow="Principal" title="Leadership content">
-          <AddButton
-            onClick={() =>
-              updateContent((current) => ({
-                ...current,
-                leadership: {
-                  ...current.leadership,
-                  leaders: [
-                    ...current.leadership.leaders,
-                    {
-                      name: "New leader",
-                      role: "School Leadership",
-                      image: "/images/merishaw-bg.jpeg",
-                      description: "Add leadership note.",
-                    },
-                  ],
-                },
-              }))
-            }
-          >
-            Leader
-          </AddButton>
-        </PanelTitle>
-        <div className="grid gap-4">
-          {content.leadership.leaders.map((leader, index) => (
-            <article
-              key={`${leader.name}-${index}`}
-              className="rounded-md border border-brand-line bg-brand-cream p-4"
-            >
-              <div className="mb-4 flex items-center justify-between gap-3">
-                <h3 className="font-serif text-xl font-semibold text-brand-ink">
-                  {index === 0 ? "Principal welcome" : `Leader ${index + 1}`}
-                </h3>
-                <RemoveButton
-                  onClick={() =>
-                    updateContent((current) => ({
-                      ...current,
-                      leadership: {
-                        ...current.leadership,
-                        leaders: removeArrayItem(
-                          current.leadership.leaders,
-                          index,
-                        ),
-                      },
-                    }))
-                  }
-                />
-              </div>
-              <LeaderEditor
-                csrfToken={csrfToken}
-                leader={leader}
-                onChange={(nextLeader) =>
-                  updateContent((current) => ({
-                    ...current,
-                    leadership: {
-                      ...current.leadership,
-                      leaders: updateArrayItem(
-                        current.leadership.leaders,
-                        index,
-                        nextLeader,
-                      ),
-                    },
-                  }))
-                }
-              />
-            </article>
-          ))}
-        </div>
-        <StudentCouncilEditor
-          items={content.leadership.studentCouncil}
-          onAdd={() =>
+        <PanelTitle eyebrow="Leadership" title="Leadership content" />
+        <LeadershipPeopleEditor
+          csrfToken={csrfToken}
+          title="Board Members"
+          addLabel="Board member"
+          items={content.leadership.boardMembers}
+          newItem={{
+            name: "New board member",
+            role: "Board Member",
+            image: "/images/resource-centre.jpeg",
+            description: "Add board member profile.",
+          }}
+          onChange={(boardMembers) =>
             updateContent((current) => ({
               ...current,
-              leadership: {
-                ...current.leadership,
-                studentCouncil: [
-                  ...current.leadership.studentCouncil,
-                  {
-                    role: "Student leader",
-                    quote: "Add student leadership quote.",
-                  },
-                ],
-              },
+              leadership: { ...current.leadership, boardMembers },
             }))
           }
-          onChange={(items) =>
+        />
+        <div className="grid gap-4">
+          <h3 className="font-serif text-2xl font-semibold text-brand-ink">
+            Principal
+          </h3>
+          <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+            <LeadershipPersonEditor
+              csrfToken={csrfToken}
+              person={content.leadership.principal}
+              noteLabel="Principal welcome / leadership note"
+              onChange={(principal) =>
+                updateContent((current) => ({
+                  ...current,
+                  leadership: { ...current.leadership, principal },
+                }))
+              }
+            />
+          </article>
+        </div>
+        <LeadershipPeopleEditor
+          csrfToken={csrfToken}
+          title="Senior Management Team"
+          addLabel="Manager"
+          items={content.leadership.seniorManagement}
+          newItem={{
+            name: "New senior manager",
+            role: "Senior Management",
+            image: "/images/gallery-parade-grounds.png",
+            description: "Add senior management profile.",
+          }}
+          onChange={(seniorManagement) =>
             updateContent((current) => ({
               ...current,
-              leadership: { ...current.leadership, studentCouncil: items },
+              leadership: { ...current.leadership, seniorManagement },
+            }))
+          }
+        />
+        <LeadershipPeopleEditor
+          csrfToken={csrfToken}
+          title="Student Council"
+          addLabel="Council member"
+          items={content.leadership.studentCouncil}
+          newItem={{
+            name: "New student council member",
+            role: "Student Council",
+            image: "/images/gallery-student-life-2.jpg",
+            description: "Add student council profile.",
+          }}
+          onChange={(studentCouncil) =>
+            updateContent((current) => ({
+              ...current,
+              leadership: { ...current.leadership, studentCouncil },
+            }))
+          }
+        />
+        <LeadershipPeopleEditor
+          csrfToken={csrfToken}
+          title="Student Leadership / Student Leaders"
+          addLabel="Student leader"
+          items={content.leadership.studentLeaders}
+          newItem={{
+            name: "New student leader",
+            role: "Student Leader",
+            image: "/images/gallery-student-life-3.jpg",
+            description: "Add student leader profile.",
+          }}
+          onChange={(studentLeaders) =>
+            updateContent((current) => ({
+              ...current,
+              leadership: { ...current.leadership, studentLeaders },
             }))
           }
         />
@@ -2594,60 +2592,70 @@ function NewsEditor({
   );
 }
 
-function LeaderEditor({
+function LeadershipPersonEditor({
   csrfToken,
-  leader,
+  person,
   onChange,
+  noteLabel = "Profile note",
 }: {
   csrfToken: string;
-  leader: EditableLeader;
-  onChange: (leader: EditableLeader) => void;
+  person: EditableLeadershipPerson;
+  onChange: (person: EditableLeadershipPerson) => void;
+  noteLabel?: string;
 }) {
   return (
     <div className="grid gap-5">
       <div className="grid gap-5 lg:grid-cols-2">
         <Field
           label="Name"
-          value={leader.name}
-          onChange={(name) => onChange({ ...leader, name })}
+          value={person.name}
+          onChange={(name) => onChange({ ...person, name })}
         />
         <Field
           label="Role"
-          value={leader.role}
-          onChange={(role) => onChange({ ...leader, role })}
+          value={person.role}
+          onChange={(role) => onChange({ ...person, role })}
         />
       </div>
       <TextArea
-        label="Welcome / leadership note"
-        value={leader.description}
-        onChange={(description) => onChange({ ...leader, description })}
+        label={noteLabel}
+        value={person.description}
+        onChange={(description) => onChange({ ...person, description })}
       />
       <ImageField
         csrfToken={csrfToken}
         label="Photo path"
-        value={leader.image}
-        onChange={(image) => onChange({ ...leader, image })}
+        value={person.image}
+        onChange={(image) => onChange({ ...person, image })}
       />
     </div>
   );
 }
 
-function StudentCouncilEditor({
+function LeadershipPeopleEditor({
+  csrfToken,
+  title,
   items,
-  onAdd,
+  newItem,
+  addLabel,
   onChange,
 }: {
-  items: EditableStudentCouncilMember[];
-  onAdd: () => void;
-  onChange: (items: EditableStudentCouncilMember[]) => void;
+  csrfToken: string;
+  title: string;
+  items: EditableLeadershipPerson[];
+  newItem: EditableLeadershipPerson;
+  addLabel: string;
+  onChange: (items: EditableLeadershipPerson[]) => void;
 }) {
   return (
     <div className="grid gap-4">
       <div className="flex items-center justify-between gap-3">
         <h3 className="font-serif text-2xl font-semibold text-brand-ink">
-          Student council voices
+          {title}
         </h3>
-        <AddButton onClick={onAdd}>Voice</AddButton>
+        <AddButton onClick={() => onChange([...items, newItem])}>
+          {addLabel}
+        </AddButton>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         {items.map((item, index) => (
@@ -2655,25 +2663,17 @@ function StudentCouncilEditor({
             key={`${item.role}-${index}`}
             className="rounded-md border border-brand-line bg-brand-cream p-4"
           >
-            <div className="mb-4 flex justify-end">
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <h4 className="font-serif text-xl font-semibold text-brand-ink">
+                {item.name || `${title} ${index + 1}`}
+              </h4>
               <RemoveButton onClick={() => onChange(removeArrayItem(items, index))} />
             </div>
-            <div className="grid gap-4">
-              <Field
-                label="Role"
-                value={item.role}
-                onChange={(role) =>
-                  onChange(updateArrayItem(items, index, { ...item, role }))
-                }
-              />
-              <TextArea
-                label="Quote"
-                value={item.quote}
-                onChange={(quote) =>
-                  onChange(updateArrayItem(items, index, { ...item, quote }))
-                }
-              />
-            </div>
+            <LeadershipPersonEditor
+              csrfToken={csrfToken}
+              person={item}
+              onChange={(person) => onChange(updateArrayItem(items, index, person))}
+            />
           </article>
         ))}
       </div>

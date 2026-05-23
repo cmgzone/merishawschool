@@ -242,7 +242,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <PrincipalWelcomeSection principal={content.leadership.leaders[0]} />
+      <PrincipalWelcomeSection principal={content.leadership.principal} />
 
       <CTASection
         eyebrow="Admissions"

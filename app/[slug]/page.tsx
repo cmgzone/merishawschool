@@ -70,10 +70,10 @@ export default async function ContentNeededPage({ params }: PageProps) {
       <section className="bg-brand-cream px-4 py-16 sm:px-6 lg:px-8">
         <MotionReveal className="mx-auto max-w-3xl rounded-md border border-brand-gold/60 bg-white p-7 shadow-card">
           <p className="text-sm font-bold uppercase text-brand-burgundy">
-            Coming soon
+            Content needed
           </p>
           <h2 className="mt-3 font-serif text-4xl font-semibold leading-tight text-brand-ink">
-            This page is being refreshed.
+            This page needs approved content.
           </h2>
           <p className="mt-5 text-base leading-8 text-brand-muted">
             {page.needed}

@@ -6,6 +6,8 @@ type PageHeaderProps = {
   title: string;
   description: string;
   image?: string;
+  imageFit?: "cover" | "contain";
+  imagePosition?: string;
 };
 
 export default function PageHeader({
@@ -13,6 +15,8 @@ export default function PageHeader({
   title,
   description,
   image = "/images/resource-centre.jpeg",
+  imageFit = "cover",
+  imagePosition = "center",
 }: PageHeaderProps) {
   return (
     <section className="relative overflow-hidden bg-brand-burgundy text-white">
@@ -20,7 +24,8 @@ export default function PageHeader({
         src={image}
         alt=""
         fill
-        className="object-cover opacity-[0.34] brightness-110 contrast-105"
+        className="opacity-[0.34] brightness-110 contrast-105"
+        style={{ objectFit: imageFit, objectPosition: imagePosition }}
         preload
         loading="eager"
         sizes="100vw"
