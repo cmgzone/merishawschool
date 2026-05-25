@@ -7,7 +7,9 @@ import {
   adminSessionCookieName,
   canUseLocalDevAuth,
   getAdminSessionFromToken,
+  isAdminEmailConfigured,
   isAdminPasswordConfigured,
+  isAdminSessionSecretConfigured,
   isUsingHashedAdminPassword,
 } from "@/lib/admin-auth";
 
@@ -16,6 +18,10 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Admin",
   description: "Edit Merishaw School website content and images.",
+  robots: {
+    follow: false,
+    index: false,
+  },
 };
 
 export default async function AdminPage() {
@@ -31,7 +37,11 @@ export default async function AdminPage() {
     return (
       <AdminLogin
         authRequired={authRequired}
+        emailRequired={process.env.NODE_ENV === "production"}
+        emailReady={isAdminEmailConfigured()}
         localDevAuth={localDevAuth}
+        sessionSecretRequired={process.env.NODE_ENV === "production"}
+        sessionSecretReady={isAdminSessionSecretConfigured()}
         usesHashedPassword={isUsingHashedAdminPassword()}
       />
     );

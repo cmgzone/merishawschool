@@ -313,6 +313,14 @@
         "image": "/images/resource-centre.jpeg"
       },
       {
+        "slug": "csr",
+        "title": "CSR",
+        "eyebrow": "Community Impact",
+        "description": "A future page for Merishaw's corporate social responsibility work, community outreach, environmental activities, partnerships, and impact stories.",
+        "needed": "Content needed: approved CSR copy, photos, community impact stories, partner details, outreach activities, environmental initiatives, and donation or participation guidance.",
+        "image": "/images/campus-life.jpg"
+      },
+      {
         "slug": "sports",
         "title": "Sports",
         "eyebrow": "Extra-curricular Activities",

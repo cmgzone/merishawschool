@@ -1,22 +1,72 @@
 "use client";
 
-import { FormEvent, useState } from "react";
-import { LockKeyhole, LogIn } from "lucide-react";
+import { FormEvent, ReactNode, useState } from "react";
 import { useRouter } from "next/navigation";
 
 type AdminLoginProps = {
   authRequired: boolean;
+  emailReady: boolean;
+  emailRequired: boolean;
   localDevAuth: boolean;
+  sessionSecretReady: boolean;
+  sessionSecretRequired: boolean;
   usesHashedPassword: boolean;
 };
 
+function LoginSvgIcon({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      {children}
+    </svg>
+  );
+}
+
+function LockKeyhole({ className }: { className?: string }) {
+  return (
+    <LoginSvgIcon className={className}>
+      <rect x="5" y="10" width="14" height="11" rx="2" />
+      <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+      <path d="M12 15v2" />
+    </LoginSvgIcon>
+  );
+}
+
+function LogIn({ className }: { className?: string }) {
+  return (
+    <LoginSvgIcon className={className}>
+      <path d="M15 3h4v18h-4" />
+      <path d="M10 17l5-5-5-5" />
+      <path d="M3 12h12" />
+    </LoginSvgIcon>
+  );
+}
+
 export default function AdminLogin({
   authRequired,
+  emailReady,
+  emailRequired,
   localDevAuth,
+  sessionSecretReady,
+  sessionSecretRequired,
   usesHashedPassword,
 }: AdminLoginProps) {
   const router = useRouter();
-  const [username, setUsername] = useState("admin");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -30,7 +80,7 @@ export default function AdminLogin({
       const response = await fetch("/api/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password, username }),
+        body: JSON.stringify({ email, password }),
       });
       const payload = (await response.json().catch(() => ({}))) as {
         error?: string;
@@ -76,19 +126,21 @@ export default function AdminLogin({
             </h2>
             <p className="mt-2 text-sm leading-7 text-brand-muted">
               {authRequired
-                ? "Enter the admin username and password configured for this website."
-                : "Local development mode is available because ADMIN_PASSWORD is not set."}
+                ? "Enter the admin email and password configured for this website."
+                : "Local development mode is available because admin credentials are not set."}
             </p>
           </div>
 
           {authRequired ? (
             <>
               <label className="block text-sm font-semibold text-brand-ink">
-                Username
+                Admin email
                 <input
-                  value={username}
-                  onChange={(event) => setUsername(event.target.value)}
+                  type="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
                   autoComplete="username"
+                  inputMode="email"
                   className="mt-2 w-full rounded-md border border-brand-line bg-white px-4 py-3 text-sm font-medium outline-none transition focus:border-brand-burgundy focus:ring-2 focus:ring-brand-gold/40"
                   required
                 />
@@ -114,7 +166,19 @@ export default function AdminLogin({
 
           {!authRequired && !localDevAuth ? (
             <p className="rounded-md bg-red-50 p-4 text-sm font-semibold leading-6 text-red-700">
-              Set ADMIN_PASSWORD before using the admin panel on a public host.
+              Set ADMIN_PASSWORD_HASH before using the admin panel on a public host.
+            </p>
+          ) : null}
+
+          {emailRequired && !emailReady ? (
+            <p className="rounded-md bg-red-50 p-4 text-sm font-semibold leading-6 text-red-700">
+              Set ADMIN_EMAIL before using the admin panel in production.
+            </p>
+          ) : null}
+
+          {sessionSecretRequired && !sessionSecretReady ? (
+            <p className="rounded-md bg-red-50 p-4 text-sm font-semibold leading-6 text-red-700">
+              Set ADMIN_SESSION_SECRET before using the admin panel in production.
             </p>
           ) : null}
 
@@ -126,7 +190,12 @@ export default function AdminLogin({
 
           <button
             type="submit"
-            disabled={submitting || (!authRequired && !localDevAuth)}
+            disabled={
+              submitting ||
+              (!authRequired && !localDevAuth) ||
+              (emailRequired && !emailReady) ||
+              (sessionSecretRequired && !sessionSecretReady)
+            }
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-brand-burgundy px-5 py-3 text-sm font-bold text-white transition hover:bg-brand-ink focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
           >
             <LogIn className="h-4 w-4" />

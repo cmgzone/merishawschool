@@ -4,7 +4,12 @@ import { FormEvent, useState } from "react";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { siteConfig } from "@/data/site";
 
-type Status = "idle" | "error" | "ready";
+type Status = "idle" | "error" | "sending" | "success";
+
+type SubmitState = {
+  status: Status;
+  message: string;
+};
 
 type ContactSectionSite = {
   contact: typeof siteConfig.contact;
@@ -32,22 +37,76 @@ export default function ContactSection({
   site = siteConfig,
   intro = defaultIntro,
 }: ContactSectionProps) {
-  const [status, setStatus] = useState<Status>("idle");
+  const [submitState, setSubmitState] = useState<SubmitState>({
+    status: "idle",
+    message: "",
+  });
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const data = new FormData(form);
     const name = String(data.get("name") || "").trim();
     const email = String(data.get("email") || "").trim();
+    const phone = String(data.get("phone") || "").trim();
     const subject = String(data.get("subject") || "").trim();
     const message = String(data.get("message") || "").trim();
+    const website = String(data.get("website") || "").trim();
 
     if (!name || !email || !subject || !message) {
-      setStatus("error");
+      setSubmitState({
+        status: "error",
+        message: "Please complete the required fields.",
+      });
       return;
     }
 
-    setStatus("ready");
+    setSubmitState({
+      status: "sending",
+      message: "Sending enquiry...",
+    });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          subject,
+          message,
+          website,
+        }),
+      });
+      const result = (await response.json().catch(() => ({}))) as {
+        error?: string;
+        message?: string;
+      };
+
+      if (!response.ok) {
+        throw new Error(
+          result.error ||
+            `We could not send the enquiry right now. Please email ${site.contact.email} directly.`,
+        );
+      }
+
+      setSubmitState({
+        status: "success",
+        message: result.message || "Thank you. Your enquiry has been sent.",
+      });
+      form.reset();
+    } catch (error) {
+      setSubmitState({
+        status: "error",
+        message:
+          error instanceof Error
+            ? error.message
+            : `We could not send the enquiry right now. Please email ${site.contact.email} directly.`,
+      });
+    }
   }
 
   return (
@@ -105,6 +164,13 @@ export default function ContactSection({
           onSubmit={onSubmit}
           className="rounded-md border border-brand-line bg-brand-cream p-5 shadow-card sm:p-7"
         >
+          <input
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            className="hidden"
+            aria-hidden="true"
+          />
           <div className="grid gap-4 sm:grid-cols-2">
             <label className="text-sm font-semibold text-brand-ink">
               Your Name
@@ -153,21 +219,25 @@ export default function ContactSection({
           </label>
           <button
             type="submit"
-            className="mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-brand-burgundy px-5 py-3 text-sm font-bold text-white transition hover:bg-brand-ink focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2"
+            disabled={submitState.status === "sending"}
+            className="mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-brand-burgundy px-5 py-3 text-sm font-bold text-white transition hover:bg-brand-ink focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-brand-muted"
           >
-            Prepare Enquiry
+            {submitState.status === "sending" ? "Sending..." : "Send Enquiry"}
             <Send className="h-4 w-4" />
           </button>
 
-          {status === "error" ? (
-            <p className="mt-4 rounded-md bg-white px-4 py-3 text-sm font-semibold text-brand-burgundy">
-              Please complete the required fields.
-            </p>
-          ) : null}
-          {status === "ready" ? (
-            <p className="mt-4 rounded-md bg-white px-4 py-3 text-sm leading-6 text-brand-muted">
-              Enquiry details are ready. Connect a production email provider to
-              send from the website, or email {site.contact.email} directly.
+          {submitState.message ? (
+            <p
+              className={`mt-4 rounded-md bg-white px-4 py-3 text-sm leading-6 ${
+                submitState.status === "success"
+                  ? "font-semibold text-green-700"
+                  : submitState.status === "sending"
+                    ? "text-brand-muted"
+                    : "font-semibold text-brand-burgundy"
+              }`}
+              aria-live="polite"
+            >
+              {submitState.message}
             </p>
           ) : null}
         </form>

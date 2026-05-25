@@ -3,10 +3,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, HeartHandshake, Mail, MapPin, Menu, Phone, X } from "lucide-react";
+import {
+  ChevronDown,
+  HandHeart,
+  HeartHandshake,
+  Mail,
+  MapPin,
+  Menu,
+  Phone,
+  X,
+} from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { navigationGroups, supportNavItem } from "@/data/navigation";
+import { csrNavItem, navigationGroups, supportNavItem } from "@/data/navigation";
 import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
 
@@ -185,6 +194,14 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
             Contact
           </Link>
           <Link
+            href={csrNavItem.href}
+            className="inline-flex min-h-9 items-center gap-1.5 rounded-md border border-brand-gold bg-white px-3 py-1.5 text-[13px] font-bold text-brand-burgundy shadow-sm transition hover:bg-brand-cream focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2"
+            aria-label="CSR"
+          >
+            <HandHeart aria-hidden="true" className="h-3.5 w-3.5" />
+            {csrNavItem.label}
+          </Link>
+          <Link
             href={supportNavItem.href}
             className="inline-flex min-h-9 items-center gap-1.5 rounded-md bg-brand-gold px-3 py-1.5 text-[13px] font-bold text-brand-ink shadow-sm transition hover:bg-brand-burgundy hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2"
             aria-label={supportNavItem.label}
@@ -211,6 +228,15 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
           >
             <HeartHandshake aria-hidden="true" className="h-4 w-4" />
             Sponsor
+          </Link>
+          <Link
+            href={csrNavItem.href}
+            className="hidden h-11 items-center justify-center gap-2 rounded-md border border-brand-gold bg-white px-4 text-sm font-bold text-brand-burgundy shadow-sm transition hover:bg-brand-cream focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 lg:inline-flex"
+            onClick={() => setOpen(false)}
+            aria-label="CSR"
+          >
+            <HandHeart aria-hidden="true" className="h-4 w-4" />
+            CSR
           </Link>
           <button
             type="button"
@@ -265,7 +291,7 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
                 </button>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 border-b border-brand-line bg-brand-cream px-5 py-4">
+              <div className="grid grid-cols-3 gap-3 border-b border-brand-line bg-brand-cream px-5 py-4">
                 <Link
                   href="/contact"
                   onClick={() => setOpen(false)}
@@ -273,6 +299,14 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
                 >
                   <Mail aria-hidden="true" className="h-4 w-4" />
                   Contact
+                </Link>
+                <Link
+                  href={csrNavItem.href}
+                  onClick={() => setOpen(false)}
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-brand-gold bg-white px-3 py-3 text-sm font-bold text-brand-burgundy shadow-sm"
+                >
+                  <HandHeart aria-hidden="true" className="h-4 w-4" />
+                  CSR
                 </Link>
                 <Link
                   href={supportNavItem.href}

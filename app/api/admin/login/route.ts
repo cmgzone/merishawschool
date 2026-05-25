@@ -6,7 +6,9 @@ import {
   clearLoginAttempts,
   createAdminSessionToken,
   getAdminSessionCookieOptions,
+  isAdminEmailConfigured,
   isAdminPasswordConfigured,
+  isAdminSessionSecretConfigured,
   recordFailedLogin,
   verifyAdminCredentials,
 } from "@/lib/admin-auth";
@@ -14,16 +16,38 @@ import {
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
+function getString(value: unknown) {
+  return typeof value === "string" ? value : "";
+}
+
 export async function POST(request: NextRequest) {
   const host = request.headers.get("host") ?? "";
   const body = (await request.json().catch(() => ({}))) as {
-    password?: string;
-    username?: string;
+    email?: unknown;
+    password?: unknown;
+    username?: unknown;
   };
-  const password = body.password ?? "";
-  const username = body.username ?? "admin";
+  const email = getString(body.email) || getString(body.username);
+  const password = getString(body.password);
   const localDevAuth = canUseLocalDevAuth(host);
-  const rateLimit = checkLoginRateLimit(request, username);
+  const rateLimit = checkLoginRateLimit(request, email);
+
+  if (process.env.NODE_ENV === "production" && !isAdminEmailConfigured()) {
+    return NextResponse.json(
+      { error: "Set ADMIN_EMAIL before using admin login." },
+      { status: 503 },
+    );
+  }
+
+  if (
+    process.env.NODE_ENV === "production" &&
+    !isAdminSessionSecretConfigured()
+  ) {
+    return NextResponse.json(
+      { error: "Set ADMIN_SESSION_SECRET before using admin login." },
+      { status: 503 },
+    );
+  }
 
   if (!rateLimit.allowed) {
     return NextResponse.json(
@@ -38,23 +62,23 @@ export async function POST(request: NextRequest) {
   }
 
   const passwordMatches = isAdminPasswordConfigured()
-    ? verifyAdminCredentials(username, password)
+    ? verifyAdminCredentials(email, password)
     : localDevAuth;
 
   if (!passwordMatches) {
-    recordFailedLogin(request, username);
+    recordFailedLogin(request, email);
 
     return NextResponse.json(
       {
         error: isAdminPasswordConfigured()
-          ? "Invalid admin password."
-          : "Set ADMIN_PASSWORD to enable admin login.",
+          ? "Invalid admin email or password."
+          : "Set ADMIN_PASSWORD_HASH to enable admin login.",
       },
       { status: isAdminPasswordConfigured() ? 401 : 503 },
     );
   }
 
-  clearLoginAttempts(request, username);
+  clearLoginAttempts(request, email);
 
   const sessionToken = createAdminSessionToken(host);
 

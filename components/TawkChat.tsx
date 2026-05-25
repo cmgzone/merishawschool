@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import Script from "next/script";
 
 /**
@@ -22,6 +23,10 @@ export default function TawkChat({
   propertyId?: string;
   widgetId?: string;
 }) {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/admin")) return null;
+
   const embedUrl =
     getTawkEmbedUrl(adminEmbedUrl) ||
     getTawkEmbedUrl(process.env.NEXT_PUBLIC_TAWK_EMBED_URL) ||

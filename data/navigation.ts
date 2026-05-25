@@ -80,3 +80,8 @@ export const supportNavItem = {
   label: "Sponsor a Child",
   href: "/support-a-child",
 };
+
+export const csrNavItem = {
+  label: "CSR",
+  href: "/csr",
+};

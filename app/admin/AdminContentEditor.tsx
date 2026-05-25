@@ -1,28 +1,15 @@
 "use client";
 
-import {
-  AlertTriangle,
-  BookOpenCheck,
-  CheckCircle2,
-  ClipboardList,
-  Download,
-  FileText,
-  HeartHandshake,
-  Home,
-  ImageIcon,
-  ImagePlus,
-  LogOut,
-  Newspaper,
-  Plus,
-  RotateCcw,
-  Save,
-  Settings,
-  Trash2,
-  Upload,
-  UserRound,
-} from "lucide-react";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, ReactNode, useId, useMemo, useState } from "react";
+import {
+  ChangeEvent,
+  ReactNode,
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import type {
   EditableAcademicProgram,
   EditableAdmissionsStep,
@@ -66,6 +53,231 @@ type SaveStatus =
   | { tone: "saved"; message: string }
   | { tone: "error"; message: string };
 
+type IconProps = {
+  className?: string;
+};
+
+type IconComponent = (props: IconProps) => ReactNode;
+
+function AdminSvgIcon({
+  children,
+  className,
+}: IconProps & { children: ReactNode }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      {children}
+    </svg>
+  );
+}
+
+function AlertTriangle({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <path d="M12 3 2 21h20L12 3Z" />
+      <path d="M12 9v5" />
+      <path d="M12 18h.01" />
+    </AdminSvgIcon>
+  );
+}
+
+function BookOpenCheck({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H20v17H8a4 4 0 0 0-4 4Z" />
+      <path d="M4 5.5A3.5 3.5 0 0 0 .5 2" />
+      <path d="m9 12 2 2 4-5" />
+    </AdminSvgIcon>
+  );
+}
+
+function CheckCircle2({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="m8 12 2.5 2.5L16 9" />
+    </AdminSvgIcon>
+  );
+}
+
+function ClipboardList({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <path d="M9 4h6" />
+      <path d="M9 2h6v4H9z" />
+      <path d="M5 4h3v4h8V4h3v18H5z" />
+      <path d="M9 12h6" />
+      <path d="M9 16h6" />
+    </AdminSvgIcon>
+  );
+}
+
+function Download({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <path d="M12 3v12" />
+      <path d="m7 10 5 5 5-5" />
+      <path d="M5 21h14" />
+    </AdminSvgIcon>
+  );
+}
+
+function FileText({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <path d="M6 3h8l4 4v14H6z" />
+      <path d="M14 3v5h4" />
+      <path d="M9 13h6" />
+      <path d="M9 17h6" />
+    </AdminSvgIcon>
+  );
+}
+
+function HeartHandshake({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <path d="M12 21s-7-4.5-9-9.5C1.8 8.4 3.7 5 7 5c2 0 3.2 1 5 3 1.8-2 3-3 5-3 3.3 0 5.2 3.4 4 6.5C19 16.5 12 21 12 21Z" />
+      <path d="m8 13 2 2 4-4 2 2" />
+    </AdminSvgIcon>
+  );
+}
+
+function Home({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <path d="m3 11 9-8 9 8" />
+      <path d="M5 10v11h14V10" />
+      <path d="M10 21v-6h4v6" />
+    </AdminSvgIcon>
+  );
+}
+
+function ImageIcon({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <circle cx="8" cy="10" r="1.5" />
+      <path d="m4 17 5-5 4 4 3-3 4 4" />
+    </AdminSvgIcon>
+  );
+}
+
+function ImagePlus({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="M12 9v6" />
+      <path d="M9 12h6" />
+      <path d="m4 17 4-4 3 3" />
+    </AdminSvgIcon>
+  );
+}
+
+function LogOut({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <path d="M10 17v2H4V5h6v2" />
+      <path d="M14 7l5 5-5 5" />
+      <path d="M8 12h11" />
+    </AdminSvgIcon>
+  );
+}
+
+function Newspaper({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <path d="M4 5h14v14H4z" />
+      <path d="M18 8h2v11h-2" />
+      <path d="M7 9h5" />
+      <path d="M7 13h8" />
+      <path d="M7 17h8" />
+    </AdminSvgIcon>
+  );
+}
+
+function Plus({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <path d="M12 5v14" />
+      <path d="M5 12h14" />
+    </AdminSvgIcon>
+  );
+}
+
+function RotateCcw({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <path d="M3 7v6h6" />
+      <path d="M3.5 13A8.5 8.5 0 1 0 6 6" />
+    </AdminSvgIcon>
+  );
+}
+
+function Save({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <path d="M5 3h12l2 2v16H5z" />
+      <path d="M8 3v6h8V3" />
+      <path d="M8 21v-7h8v7" />
+    </AdminSvgIcon>
+  );
+}
+
+function Settings({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <circle cx="12" cy="12" r="3" />
+      <path d="M12 2v3" />
+      <path d="M12 19v3" />
+      <path d="M2 12h3" />
+      <path d="M19 12h3" />
+      <path d="m4.9 4.9 2.1 2.1" />
+      <path d="m17 17 2.1 2.1" />
+      <path d="m19.1 4.9-2.1 2.1" />
+      <path d="m7 17-2.1 2.1" />
+    </AdminSvgIcon>
+  );
+}
+
+function Trash2({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <path d="M4 7h16" />
+      <path d="M10 11v6" />
+      <path d="M14 11v6" />
+      <path d="M6 7l1 14h10l1-14" />
+      <path d="M9 7V4h6v3" />
+    </AdminSvgIcon>
+  );
+}
+
+function Upload({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <path d="M12 21V9" />
+      <path d="m7 14 5-5 5 5" />
+      <path d="M5 3h14" />
+    </AdminSvgIcon>
+  );
+}
+
+function UserRound({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21a8 8 0 0 1 16 0" />
+    </AdminSvgIcon>
+  );
+}
+
 const tabs = [
   { id: "site", label: "Site", icon: Settings },
   { id: "pages", label: "Pages", icon: FileText },
@@ -78,7 +290,7 @@ const tabs = [
   { id: "news", label: "News & Events", icon: Newspaper },
   { id: "leadership", label: "Leadership", icon: UserRound },
   { id: "support", label: "Support", icon: HeartHandshake },
-] satisfies Array<{ id: TabId; label: string; icon: typeof Settings }>;
+] satisfies Array<{ id: TabId; label: string; icon: IconComponent }>;
 
 type PageHeaderKey = Exclude<keyof EditableContent["pages"], "comingSoon">;
 
@@ -100,6 +312,36 @@ function updateArrayItem<T>(items: T[], index: number, value: T) {
 
 function removeArrayItem<T>(items: T[], index: number) {
   return items.filter((_, itemIndex) => itemIndex !== index);
+}
+
+function slugifyAdminTarget(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "") || "items";
+}
+
+function getAddTargetId(prefix: string, index: number) {
+  return `${slugifyAdminTarget(prefix)}-${index}`;
+}
+
+function focusAddedItem(targetId?: string) {
+  if (!targetId) {
+    return;
+  }
+
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      const target = document.querySelector<HTMLElement>(
+        `[data-admin-add-target="${targetId}"]`,
+      );
+
+      target?.scrollIntoView({ behavior: "smooth", block: "start" });
+      target
+        ?.querySelector<HTMLElement>("input, textarea, button")
+        ?.focus({ preventScroll: true });
+    });
+  });
 }
 
 function Field({
@@ -180,15 +422,51 @@ function PanelTitle({
   );
 }
 
-function AddButton({ children, onClick }: { children: ReactNode; onClick: () => void }) {
+function AddButton({
+  children,
+  onClick,
+  revealTargetId,
+}: {
+  children: ReactNode;
+  onClick: () => void;
+  revealTargetId?: string;
+}) {
+  const [justAdded, setJustAdded] = useState(false);
+  const feedbackTimeoutRef = useRef<number | null>(null);
+
+  useEffect(
+    () => () => {
+      if (feedbackTimeoutRef.current) {
+        window.clearTimeout(feedbackTimeoutRef.current);
+      }
+    },
+    [],
+  );
+
+  function handleClick() {
+    onClick();
+    focusAddedItem(revealTargetId);
+    setJustAdded(true);
+
+    if (feedbackTimeoutRef.current) {
+      window.clearTimeout(feedbackTimeoutRef.current);
+    }
+
+    feedbackTimeoutRef.current = window.setTimeout(() => {
+      setJustAdded(false);
+    }, 1400);
+  }
+
+  const Icon = justAdded ? CheckCircle2 : Plus;
+
   return (
     <button
       type="button"
-      onClick={onClick}
-      className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-brand-ink px-4 py-2 text-sm font-bold text-white transition hover:bg-brand-burgundy focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2"
+      onClick={handleClick}
+      className="inline-flex min-h-11 min-w-24 items-center justify-center gap-2 rounded-md bg-brand-ink px-4 py-2 text-sm font-bold text-white transition hover:bg-brand-burgundy focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2"
     >
-      <Plus className="h-4 w-4" />
-      {children}
+      <Icon className="h-4 w-4" />
+      {justAdded ? "Added" : children}
     </button>
   );
 }
@@ -325,6 +603,7 @@ export default function AdminContentEditor({
 
   function updateContent(updater: (current: EditableContent) => EditableContent) {
     setHasChanges(true);
+    setStatus({ tone: "idle", message: "Unsaved changes" });
     setContent(updater);
   }
 
@@ -643,6 +922,10 @@ export default function AdminContentEditor({
               Additional pages
             </h3>
             <AddButton
+              revealTargetId={getAddTargetId(
+                "pages-additional-pages",
+                content.pages.comingSoon.length,
+              )}
               onClick={() =>
                 updateContent((current) => ({
                   ...current,
@@ -669,6 +952,7 @@ export default function AdminContentEditor({
           {content.pages.comingSoon.map((page, index) => (
             <article
               key={`${page.slug}-${index}`}
+              data-admin-add-target={getAddTargetId("pages-additional-pages", index)}
               className="rounded-md border border-brand-line bg-brand-cream p-4"
             >
               <div className="mb-4 flex items-center justify-between gap-3">
@@ -938,6 +1222,10 @@ export default function AdminContentEditor({
       <div className="grid gap-6">
         <PanelTitle eyebrow="Home" title="Homepage content">
           <AddButton
+            revealTargetId={getAddTargetId(
+              "home-hero-slides",
+              content.home.heroSlides.length,
+            )}
             onClick={() =>
               updateContent((current) => ({
                 ...current,
@@ -965,6 +1253,7 @@ export default function AdminContentEditor({
           {content.home.heroSlides.map((slide, index) => (
             <article
               key={`${slide.title}-${index}`}
+              data-admin-add-target={getAddTargetId("home-hero-slides", index)}
               className="rounded-md border border-brand-line bg-brand-cream p-4"
             >
               <div className="mb-4 flex items-center justify-between gap-3">
@@ -1146,6 +1435,10 @@ export default function AdminContentEditor({
               Pillars
             </h3>
             <AddButton
+              revealTargetId={getAddTargetId(
+                "academics-pillars",
+                content.academics.pillars.length,
+              )}
               onClick={() =>
                 updateContent((current) => ({
                   ...current,
@@ -1170,6 +1463,7 @@ export default function AdminContentEditor({
           {content.academics.pillars.map((pillar, index) => (
             <article
               key={`${pillar.title}-${index}`}
+              data-admin-add-target={getAddTargetId("academics-pillars", index)}
               className="rounded-md border border-brand-line bg-brand-cream p-4"
             >
               <div className="mb-4 flex items-center justify-between gap-3">
@@ -1431,6 +1725,10 @@ export default function AdminContentEditor({
       <div className="grid gap-6">
         <PanelTitle eyebrow="Gallery" title="Pictures and showcase slides">
           <AddButton
+            revealTargetId={getAddTargetId(
+              "gallery-pictures",
+              content.gallery.images.length,
+            )}
             onClick={() =>
               updateContent((current) => ({
                 ...current,
@@ -1455,6 +1753,7 @@ export default function AdminContentEditor({
           {content.gallery.images.map((image, index) => (
             <article
               key={`${image.src}-${index}`}
+              data-admin-add-target={getAddTargetId("gallery-pictures", index)}
               className="rounded-md border border-brand-line bg-brand-cream p-4"
             >
               <div className="mb-4 flex items-center justify-between gap-3">
@@ -1499,6 +1798,10 @@ export default function AdminContentEditor({
               Showcase slides
             </h3>
             <AddButton
+              revealTargetId={getAddTargetId(
+                "gallery-showcase-slides",
+                content.gallery.showcaseSlides.length,
+              )}
               onClick={() =>
                 updateContent((current) => ({
                   ...current,
@@ -1524,6 +1827,10 @@ export default function AdminContentEditor({
           {content.gallery.showcaseSlides.map((slide, index) => (
             <article
               key={`${slide.title}-${index}`}
+              data-admin-add-target={getAddTargetId(
+                "gallery-showcase-slides",
+                index,
+              )}
               className="rounded-md border border-brand-line bg-brand-cream p-4"
             >
               <div className="mb-4 flex items-center justify-between gap-3">
@@ -1574,6 +1881,7 @@ export default function AdminContentEditor({
       <div className="grid gap-6">
         <PanelTitle eyebrow="News & Events" title="School updates">
           <AddButton
+            revealTargetId={getAddTargetId("news-updates", content.news.items.length)}
             onClick={() =>
               updateContent((current) => ({
                 ...current,
@@ -1599,6 +1907,7 @@ export default function AdminContentEditor({
           {content.news.items.map((item, index) => (
             <article
               key={`${item.title}-${index}`}
+              data-admin-add-target={getAddTargetId("news-updates", index)}
               className="rounded-md border border-brand-line bg-brand-cream p-4"
             >
               <div className="mb-4 flex items-center justify-between gap-3">
@@ -1639,6 +1948,21 @@ export default function AdminContentEditor({
     return (
       <div className="grid gap-6">
         <PanelTitle eyebrow="Leadership" title="Leadership content" />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Leadership page hero
+          </h3>
+          <PageHeaderEditor
+            csrfToken={csrfToken}
+            header={content.pages.leadership}
+            onChange={(leadership) =>
+              updateContent((current) => ({
+                ...current,
+                pages: { ...current.pages, leadership },
+              }))
+            }
+          />
+        </article>
         <LeadershipPeopleEditor
           csrfToken={csrfToken}
           title="Board Members"
@@ -1883,6 +2207,7 @@ export default function AdminContentEditor({
                   </p>
                 </div>
                 <div
+                  aria-live="polite"
                   className={cn(
                     "inline-flex min-h-11 items-center gap-2 rounded-md border px-3 py-2 text-sm font-bold",
                     statusClassName,
@@ -2118,18 +2443,26 @@ function StatsEditor({
   onAdd: () => void;
   onChange: (items: EditableStat[]) => void;
 }) {
+  const targetPrefix = `stats-${title}`;
+
   return (
     <div className="grid gap-4">
       <div className="flex items-center justify-between gap-3">
         <h3 className="font-serif text-2xl font-semibold text-brand-ink">
           {title}
         </h3>
-        <AddButton onClick={onAdd}>Item</AddButton>
+        <AddButton
+          revealTargetId={getAddTargetId(targetPrefix, items.length)}
+          onClick={onAdd}
+        >
+          Item
+        </AddButton>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         {items.map((item, index) => (
           <article
             key={`${item.value}-${index}`}
+            data-admin-add-target={getAddTargetId(targetPrefix, index)}
             className="rounded-md border border-brand-line bg-brand-cream p-4"
           >
             <div className="mb-4 flex justify-end">
@@ -2169,18 +2502,26 @@ function TextCardEditor({
   onAdd: () => void;
   onChange: (items: EditableTextCard[]) => void;
 }) {
+  const targetPrefix = `text-cards-${title}`;
+
   return (
     <div className="grid gap-4">
       <div className="flex items-center justify-between gap-3">
         <h3 className="font-serif text-2xl font-semibold text-brand-ink">
           {title}
         </h3>
-        <AddButton onClick={onAdd}>Item</AddButton>
+        <AddButton
+          revealTargetId={getAddTargetId(targetPrefix, items.length)}
+          onClick={onAdd}
+        >
+          Item
+        </AddButton>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         {items.map((item, index) => (
           <article
             key={`${item.title}-${index}`}
+            data-admin-add-target={getAddTargetId(targetPrefix, index)}
             className="rounded-md border border-brand-line bg-brand-cream p-4"
           >
             <div className="mb-4 flex justify-end">
@@ -2220,18 +2561,26 @@ function ProgramEditor({
   onAdd: () => void;
   onChange: (items: EditableAcademicProgram[]) => void;
 }) {
+  const targetPrefix = "academic-programs";
+
   return (
     <div className="grid gap-4">
       <div className="flex items-center justify-between gap-3">
         <h3 className="font-serif text-2xl font-semibold text-brand-ink">
           Programs
         </h3>
-        <AddButton onClick={onAdd}>Program</AddButton>
+        <AddButton
+          revealTargetId={getAddTargetId(targetPrefix, items.length)}
+          onClick={onAdd}
+        >
+          Program
+        </AddButton>
       </div>
       <div className="grid gap-4 lg:grid-cols-3">
         {items.map((item, index) => (
           <article
             key={`${item.title}-${index}`}
+            data-admin-add-target={getAddTargetId(targetPrefix, index)}
             className="rounded-md border border-brand-line bg-brand-cream p-4"
           >
             <div className="mb-4 flex justify-end">
@@ -2276,18 +2625,26 @@ function ValuesEditor({
   onAdd: () => void;
   onChange: (items: EditableValue[]) => void;
 }) {
+  const targetPrefix = "about-values";
+
   return (
     <div className="grid gap-4">
       <div className="flex items-center justify-between gap-3">
         <h3 className="font-serif text-2xl font-semibold text-brand-ink">
           Mission, vision, values
         </h3>
-        <AddButton onClick={onAdd}>Value</AddButton>
+        <AddButton
+          revealTargetId={getAddTargetId(targetPrefix, items.length)}
+          onClick={onAdd}
+        >
+          Value
+        </AddButton>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         {items.map((item, index) => (
           <article
             key={`${item.letter}-${item.label}-${index}`}
+            data-admin-add-target={getAddTargetId(targetPrefix, index)}
             className="rounded-md border border-brand-line bg-brand-cream p-4"
           >
             <div className="mb-4 flex justify-end">
@@ -2325,18 +2682,26 @@ function AdmissionsStepsEditor({
   onAdd: () => void;
   onChange: (items: EditableAdmissionsStep[]) => void;
 }) {
+  const targetPrefix = "admissions-steps";
+
   return (
     <div className="grid gap-4">
       <div className="flex items-center justify-between gap-3">
         <h3 className="font-serif text-2xl font-semibold text-brand-ink">
           Admissions process steps
         </h3>
-        <AddButton onClick={onAdd}>Step</AddButton>
+        <AddButton
+          revealTargetId={getAddTargetId(targetPrefix, items.length)}
+          onClick={onAdd}
+        >
+          Step
+        </AddButton>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         {items.map((item, index) => (
           <article
             key={`${item.step}-${item.title}-${index}`}
+            data-admin-add-target={getAddTargetId(targetPrefix, index)}
             className="rounded-md border border-brand-line bg-brand-cream p-4"
           >
             <div className="mb-4 flex justify-end">
@@ -2390,18 +2755,26 @@ function DownloadItemsEditor({
   onAdd: () => void;
   onChange: (items: EditableDownloadItem[]) => void;
 }) {
+  const targetPrefix = "download-items";
+
   return (
     <div className="grid gap-4">
       <div className="flex items-center justify-between gap-3">
         <h3 className="font-serif text-2xl font-semibold text-brand-ink">
           Download documents
         </h3>
-        <AddButton onClick={onAdd}>Document</AddButton>
+        <AddButton
+          revealTargetId={getAddTargetId(targetPrefix, items.length)}
+          onClick={onAdd}
+        >
+          Document
+        </AddButton>
       </div>
       <div className="grid gap-4">
         {items.map((item, index) => (
           <article
             key={`${item.title}-${index}`}
+            data-admin-add-target={getAddTargetId(targetPrefix, index)}
             className="rounded-md border border-brand-line bg-brand-cream p-4"
           >
             <div className="mb-4 flex justify-end">
@@ -2647,13 +3020,18 @@ function LeadershipPeopleEditor({
   addLabel: string;
   onChange: (items: EditableLeadershipPerson[]) => void;
 }) {
+  const targetPrefix = `leadership-${title}`;
+
   return (
     <div className="grid gap-4">
       <div className="flex items-center justify-between gap-3">
         <h3 className="font-serif text-2xl font-semibold text-brand-ink">
           {title}
         </h3>
-        <AddButton onClick={() => onChange([...items, newItem])}>
+        <AddButton
+          revealTargetId={getAddTargetId(targetPrefix, items.length)}
+          onClick={() => onChange([...items, newItem])}
+        >
           {addLabel}
         </AddButton>
       </div>
@@ -2661,6 +3039,7 @@ function LeadershipPeopleEditor({
         {items.map((item, index) => (
           <article
             key={`${item.role}-${index}`}
+            data-admin-add-target={getAddTargetId(targetPrefix, index)}
             className="rounded-md border border-brand-line bg-brand-cream p-4"
           >
             <div className="mb-4 flex items-center justify-between gap-3">
@@ -2692,18 +3071,26 @@ function StringListEditor({
   onAdd: () => void;
   onChange: (items: string[]) => void;
 }) {
+  const targetPrefix = `string-list-${title}`;
+
   return (
     <div className="grid gap-4">
       <div className="flex items-center justify-between gap-3">
         <h3 className="font-serif text-2xl font-semibold text-brand-ink">
           {title}
         </h3>
-        <AddButton onClick={onAdd}>Item</AddButton>
+        <AddButton
+          revealTargetId={getAddTargetId(targetPrefix, items.length)}
+          onClick={onAdd}
+        >
+          Item
+        </AddButton>
       </div>
       <div className="grid gap-3">
         {items.map((item, index) => (
           <div
             key={`${item}-${index}`}
+            data-admin-add-target={getAddTargetId(targetPrefix, index)}
             className="grid gap-3 rounded-md border border-brand-line bg-brand-cream p-4 sm:grid-cols-[1fr_auto] sm:items-end"
           >
             <Field

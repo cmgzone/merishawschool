@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
       {
         error: isAdminPasswordConfigured()
           ? "Admin login required."
-          : "Set ADMIN_PASSWORD before using admin APIs on a public host.",
+          : "Set ADMIN_PASSWORD_HASH before using admin APIs on a public host.",
       },
       { status: 401 },
     );
@@ -35,7 +35,7 @@ export async function PUT(request: NextRequest) {
       {
         error: isAdminPasswordConfigured()
           ? "Admin session or CSRF token is invalid."
-          : "Set ADMIN_PASSWORD before saving content on a public host.",
+          : "Set ADMIN_PASSWORD_HASH before saving content on a public host.",
       },
       { status: 401 },
     );

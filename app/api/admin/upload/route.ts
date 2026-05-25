@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import crypto from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { isAdminPasswordConfigured, verifyAdminRequest } from "@/lib/admin-auth";
@@ -62,6 +63,7 @@ const imageSignatures = [
 
 function safeFileName(name: string) {
   const extension = path.extname(name).toLowerCase();
+  const randomSuffix = crypto.randomBytes(6).toString("hex");
   const baseName = path
     .basename(name, extension)
     .toLowerCase()
@@ -69,7 +71,7 @@ function safeFileName(name: string) {
     .replace(/^-|-$/g, "")
     .slice(0, 80);
 
-  return `${baseName || "image"}-${Date.now()}${extension}`;
+  return `${baseName || "image"}-${Date.now()}-${randomSuffix}${extension}`;
 }
 
 export async function POST(request: NextRequest) {
@@ -78,7 +80,7 @@ export async function POST(request: NextRequest) {
       {
         error: isAdminPasswordConfigured()
           ? "Admin session or CSRF token is invalid."
-          : "Set ADMIN_PASSWORD before uploading images on a public host.",
+          : "Set ADMIN_PASSWORD_HASH before uploading images on a public host.",
       },
       { status: 401 },
     );
