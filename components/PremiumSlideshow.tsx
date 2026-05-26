@@ -125,7 +125,7 @@ export default function PremiumSlideshow({
         className={cn(
           "absolute inset-0",
           contentAlign === "center"
-            ? "bg-gradient-to-b from-brand-ink/16 via-brand-ink/4 to-brand-ink/14"
+            ? "premium-slideshow-center-overlay"
             : "bg-gradient-to-r from-brand-ink/45 via-brand-ink/10 to-transparent",
         )}
       />
@@ -150,16 +150,16 @@ export default function PremiumSlideshow({
             className={cn(
               "premium-hero-copy",
               compact ? "max-w-2xl" : "max-w-4xl",
-              contentAlign === "center" && "mx-auto",
+              contentAlign === "center" && "mx-auto w-full min-w-0",
             )}
           >
             {slide.eyebrow ? (
               <p
                 className={cn(
-                  "font-bold uppercase text-brand-gold",
+                  "font-bold text-brand-gold",
                   hasFeaturedEyebrow
-                    ? "premium-heading font-serif text-4xl font-semibold leading-tight text-brand-gold drop-shadow sm:text-5xl lg:text-7xl"
-                    : "text-sm",
+                    ? "premium-heading brand-slideshow-wordmark mx-auto font-serif text-4xl font-semibold leading-tight sm:text-5xl lg:text-7xl"
+                    : "text-sm uppercase tracking-[0.18em] drop-shadow",
                 )}
               >
                 {slide.eyebrow}
@@ -196,7 +196,7 @@ export default function PremiumSlideshow({
               className={cn(
                 "mt-5 font-semibold leading-8 text-white drop-shadow",
                 compact ? "text-base" : "max-w-2xl text-lg",
-                contentAlign === "center" && "mx-auto",
+                contentAlign === "center" && "mx-auto w-full min-w-0",
               )}
             >
               {slide.description}

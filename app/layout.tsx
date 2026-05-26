@@ -28,6 +28,13 @@ export const metadata: Metadata = {
     default: seoDefaults.defaultTitle,
   },
   description: seoDefaults.description,
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
+  },
   openGraph: {
     title: seoDefaults.defaultTitle,
     description: seoDefaults.description,
