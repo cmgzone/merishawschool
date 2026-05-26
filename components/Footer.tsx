@@ -138,9 +138,9 @@ export default function Footer({ site = siteConfig }: FooterProps) {
                   <Image
                     src={partner.logo}
                     alt={`${partner.name} logo`}
-                    width={80}
-                    height={80}
-                    className="max-h-7 max-w-7 object-contain"
+                    width={160}
+                    height={64}
+                    className="h-auto w-auto max-h-11 max-w-40 object-contain"
                   />
                 ) : (
                   <span className="text-[10px] font-bold uppercase text-brand-burgundy">
@@ -149,7 +149,7 @@ export default function Footer({ site = siteConfig }: FooterProps) {
                 );
 
                 const className =
-                  "flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white p-2 shadow-sm transition hover:border-brand-gold hover:shadow-md";
+                  "flex h-16 w-48 items-center justify-center rounded-md border border-white/25 bg-white px-4 py-2 shadow-sm transition hover:border-brand-gold hover:shadow-md";
 
                 return partner.href ? (
                   <a

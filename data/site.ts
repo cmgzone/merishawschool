@@ -20,10 +20,21 @@ export const siteConfig = {
     youtube: "https://www.youtube.com/channel/UC_Ev7T9BY_9GyxFFckLwz0Q",
   },
   partners: [
-    { name: "Partner Logo 1", logo: "", href: "" },
-    { name: "Partner Logo 2", logo: "", href: "" },
-    { name: "Partner Logo 3", logo: "", href: "" },
-    { name: "Partner Logo 4", logo: "", href: "" },
+    {
+      name: "Co-operative Bank",
+      logo: "/images/partners/co-operative-bank-footer-logo.png",
+      href: "https://www.co-opbank.co.ke/",
+    },
+    {
+      name: "Family Bank",
+      logo: "/images/partners/family-bank-logo.jpg",
+      href: "https://familybank.co.ke/",
+    },
+    {
+      name: "Equity Bank",
+      logo: "/images/partners/equity-bank-cropped-logo.png",
+      href: "https://equitygroupholdings.com/ke/",
+    },
   ],
   mapEmbed:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.9763029979285!2d36.84367297467117!3d-1.7411036982428307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182fc78b1fbd4825%3A0xf088a04f4550b5c!2sMerishaw%20School!5e0!3m2!1sen!2ske!4v1671699607906!5m2!1sen!2ske",
