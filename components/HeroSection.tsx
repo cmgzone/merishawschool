@@ -31,8 +31,8 @@ export default function HeroSection({
         className="rounded-none shadow-none"
       >
         <div className="mx-auto flex max-w-xl flex-col items-center justify-center gap-3 sm:flex-row">
-            <ButtonLink href="/admissions">Start Admissions</ButtonLink>
-            <ButtonLink href="/support-a-child" variant="support">
+            <ButtonLink href="/admissions" size="sm">Start Admissions</ButtonLink>
+            <ButtonLink href="/support-a-child" variant="support" size="sm">
               Sponsor a Child
             </ButtonLink>
         </div>

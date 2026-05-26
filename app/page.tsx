@@ -311,10 +311,11 @@ export default async function Home() {
               general enquiries, the school team is ready to help.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/contact">Contact Us</ButtonLink>
+              <ButtonLink href="/contact" size="sm">Contact Us</ButtonLink>
               <ButtonLink
                 href={`tel:${content.site.contact.phonePrimary.replace(/\s/g, "")}`}
                 variant="secondary"
+                size="sm"
               >
                 Call Now
               </ButtonLink>
