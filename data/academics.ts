@@ -1,15 +1,15 @@
 export const academicPrograms = [
   {
-    title: "8.4.4 Curriculum",
-    eyebrow: "Form 1-4",
+    title: "8-4-4 Curriculum",
+    eyebrow: "Form 3 and Form 4",
     description:
-      "Merishaw offers the 8.4.4 system with a focus on academic excellence, character development, practical skills, and preparation for KCSE and tertiary transitions.",
+      "Kenya's 8-4-4 system is being phased out as the final cohorts complete secondary school. Merishaw currently supports Form 3 and Form 4 learners through the transition.",
   },
   {
     title: "Competency-Based Education",
     eyebrow: "Grade 7-12",
     description:
-      "The school offers Junior and Senior Secondary learning under CBE, helping learners grow as critical thinkers, effective communicators, and responsible lifelong learners.",
+      "Competency-Based Education, often referred to as CBC, prioritizes practical skills, critical thinking, values, continuous assessment, and tailored career pathways.",
   },
   {
     title: "Holistic Boarding Experience",
@@ -19,20 +19,79 @@ export const academicPrograms = [
   },
 ];
 
+export const curriculumTransition = {
+  title: "Kenya's education system is moving from 8-4-4 to CBE.",
+  description:
+    "The 8-4-4 model is officially being phased out and replaced by the Competency-Based Curriculum. The final KCPE examinations were held in 2023, and the remaining 8-4-4 learners will complete secondary school as the last cohorts progress through Form 3 and Form 4.",
+  highlights: [
+    "No new 8-4-4 classes are being admitted.",
+    "Merishaw currently has two 8-4-4 cohorts: Form 3 and Form 4.",
+    "The transition favours practical skills, core values, continuous assessment, and applied learning.",
+  ],
+};
+
+export const legacy844Principles = [
+  {
+    title: "Subject-based design",
+    description:
+      "Standardized syllabi were prescribed for every subject, with emphasis on theoretical knowledge and memorization.",
+  },
+  {
+    title: "Centralized evaluation",
+    description:
+      "Progression relied heavily on standardized, high-stakes national examinations at the end of primary and secondary cycles.",
+  },
+  {
+    title: "Academic progression",
+    description:
+      "The system aimed to prepare learners for white-collar and civil-service careers through identical nationwide content delivery.",
+  },
+];
+
+export const cbeOverview = {
+  title: "CBE focuses on mastery, application, and pathways.",
+  description:
+    "Competency-Based Education replaces the traditional exam-focused system with a 2-6-3-3-3 structure. It ensures learners master specific abilities and apply knowledge rather than only memorizing facts for examinations.",
+  facilitiesNote:
+    "Merishaw School facilities, resources, and infrastructure have been optimized for CBE through practical learning spaces, STEM exposure, sports, mentorship, digital literacy, and hands-on training.",
+};
+
+export const cbeStages = [
+  {
+    title: "Pre-Primary",
+    description: "PP1 and PP2 establish early developmental skills.",
+  },
+  {
+    title: "Primary School",
+    description:
+      "Grades 1 to 6 focus on core literacy, numeracy, and foundational life skills.",
+  },
+  {
+    title: "Junior School",
+    description:
+      "Grades 7 to 9 act as a transitional period where learners explore a broad spectrum of subjects.",
+  },
+  {
+    title: "Senior School",
+    description:
+      "Grades 10 to 12 allow learners to specialize based on talents and interests across career pathways.",
+  },
+];
+
 export const cbePathways = [
   "Arts and Sports Science",
   "Social Sciences",
-  "Science, Technology, Engineering and Mathematics",
+  "STEM: Science, Technology, Engineering and Mathematics",
 ];
 
 export const cbeCompetencies = [
-  "Critical thinking and problem solving",
   "Communication and collaboration",
-  "Citizenship",
-  "Digital literacy",
+  "Critical thinking and problem solving",
   "Creativity and imagination",
+  "Citizenship and social responsibility",
+  "Digital literacy",
   "Learning to learn",
-  "Self-efficacy",
+  "Self-efficacy and confidence",
 ];
 
 export const pillars = [

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import CTASection from "@/components/CTASection";
 import LeadershipCard from "@/components/LeadershipCard";
 import PageHeader from "@/components/PageHeader";
+import PrincipalWelcomeSection from "@/components/PrincipalWelcomeSection";
 import SectionTitle from "@/components/SectionTitle";
 import {
   getEditableContent,
@@ -84,19 +85,7 @@ export default async function LeadershipPage() {
         columns="four"
       />
 
-      <section className="bg-brand-cream px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <SectionTitle
-            eyebrow="Principal"
-            title="Day-to-day leadership for the Merishaw community."
-            description="The principal gives direction to the school's academic, pastoral, boarding, and character-formation culture."
-            align="center"
-          />
-          <div className="mt-10">
-            <LeadershipCard {...leadership.principal} variant="featured" />
-          </div>
-        </div>
-      </section>
+      <PrincipalWelcomeSection principal={leadership.principal} variant="full" />
 
       <LeadershipPeopleSection
         eyebrow="Senior Management Team"

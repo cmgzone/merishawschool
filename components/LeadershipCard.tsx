@@ -20,6 +20,10 @@ export default function LeadershipCard({
   variant = "default",
 }: LeadershipCardProps) {
   const featured = variant === "featured";
+  const paragraphs = description
+    .split(/\n{2,}/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
 
   return (
     <MotionReveal delay={index * 0.06}>
@@ -55,14 +59,16 @@ export default function LeadershipCard({
           >
             {name}
           </h3>
-          <p
+          <div
             className={cn(
-              "mt-4 leading-7 text-brand-muted",
+              "mt-4 space-y-3 leading-7 text-brand-muted",
               featured ? "text-base sm:text-lg sm:leading-8" : "text-sm",
             )}
           >
-            {description}
-          </p>
+            {paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
         </div>
       </article>
     </MotionReveal>

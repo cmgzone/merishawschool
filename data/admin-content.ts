@@ -296,17 +296,17 @@ export const defaultAdminContent: EditableContent = {
       image: "/images/hero-tuition-block.png",
     },
     about: {
-      eyebrow: "About",
-      title: "A home where boys are mentored into men of integrity.",
+      eyebrow: "About Us",
+      title: "Transforming boys into men of purpose.",
       description:
-        "Merishaw School combines a serene boarding environment, strong academics, outstanding facilities, and a Christian foundation for whole-person growth.",
+        "Merishaw School is the Home of the Boy Child, a Maasai-homestead-inspired residential school nurturing boys into confident, principled Morans.",
       image: "/images/resource-centre.jpeg",
     },
     academics: {
       eyebrow: "Academics",
       title: "Learning pathways that prepare boys for national and global success.",
       description:
-        "Merishaw combines 8.4.4, Competency-Based Education, practical skills, mentorship, and holistic pillars for future-ready learning.",
+        "Merishaw strengthens Competency-Based Education with facilities, resources, and infrastructure optimized for CBE.",
       image: "/images/hero-tuition-block.png",
     },
     admissions: {
@@ -368,25 +368,30 @@ export const defaultAdminContent: EditableContent = {
   },
   about: {
     overview: {
-      eyebrow: "School overview",
-      title: "State-of-the-art residential education for the boy child.",
+      eyebrow: "About Merishaw",
+      title: "A home where the seed of greatness is protected and nurtured.",
       paragraphs: [
-        "Merishaw School is a residential boys' high school offering the National Curriculum under 8.4.4 and Competency-Based Education at Junior and Senior Secondary School.",
-        "The school develops unique programs to bring up wholesome young men who can meet the needs of society and provide leadership in their families, workplaces, the country, and the global stage.",
-        "The approach emphasizes mentorship, empowerment, academic excellence, character formation, and the restoration of focus on the boy child.",
+        "The dream of every parent is that their son becomes a pillar of society. At Merishaw School, we believe that the circumstances in which one is born do not determine their future. We believe that in every child there is a God-given seed of greatness.",
+        "However, this seed can be placed at risk at any stage of growth through negative influence and harmful environmental exposure.",
+        "The Vision Bearer of Merishaw School identified the expanding gap in access to quality education for the boy child, alongside deteriorating performance and increasing dropout rates.",
+        "To address this problem, he invested heavily in the establishment of Merishaw School. The school was conceptualized and designed around the Maasai homestead, bringing to life a nexus of home and school: the Home of the Boy Child.",
+        "The name Merishaw was adapted from the rite of passage process implemented by the Maasai community for boys aged between 9 and 15 years, called il-mirisho, which means Conqueror.",
+        "In the spirit of this meaning, Merishaw School identifies itself as the place where boys are nurtured and transformed into Morans, standing tall in society and proud of self.",
+        "At the core of our mission is an environment that builds men of confidence, moulds boys into men of integrity, develops talents and sports as diverse career pathways, develops global leaders and inspired entrepreneurs, and prepares young men to harness new technologies for the good of humanity.",
+        "Our singular vision is transforming boys into men of purpose. Welcome to Merishaw, Home of the Boy Child.",
       ],
       image: "/images/campus-life.jpg",
       imageAlt: "Merishaw School campus life",
     },
-    vision: "To develop purpose driven global leaders empowered for success.",
+    vision: "Transforming boys into men of purpose.",
     mission:
-      "Merishaw aims to provide a world class education that equips learners with skills to become critical thinkers, effective communicators, God fearing, and compassionate leaders with integrity through the pursuit of academic excellence.",
+      "To provide a home-like, values-led environment that builds confidence, moulds integrity, develops talents and sports, inspires entrepreneurship and global leadership, and prepares boys to harness technology for the good of humanity.",
     values: values.map((value) => ({ ...value })),
     architecture: {
       eyebrow: "Architectural concept",
-      title: "Built as a home away from home.",
+      title: "Designed around the Maasai homestead.",
       description:
-        "Merishaw's campus is designed to feel calm, ordered, and inspiring, with the facilities and environment learners need to fully enjoy school life.",
+        "Merishaw was conceptualized as a nexus of home and school, a campus that gives boys belonging, structure, protection, and the confidence to grow as Morans.",
       image: "/images/gallery-aerial-campus.jpg",
       imageAlt: "Aerial view of Merishaw School",
     },

@@ -141,15 +141,15 @@
       "image": "/images/hero-tuition-block.png"
     },
     "about": {
-      "eyebrow": "About",
-      "title": "A home where boys are mentored into men of integrity.",
-      "description": "Merishaw School combines a serene boarding environment, strong academics, outstanding facilities, and a Christian foundation for whole-person growth.",
+      "eyebrow": "About Us",
+      "title": "Transforming boys into men of purpose.",
+      "description": "Merishaw School is the Home of the Boy Child, a Maasai-homestead-inspired residential school nurturing boys into confident, principled Morans.",
       "image": "/images/resource-centre.jpeg"
     },
     "academics": {
       "eyebrow": "Academics",
       "title": "Learning pathways that prepare boys for national and global success.",
-      "description": "Merishaw combines 8.4.4, Competency-Based Education, practical skills, mentorship, and holistic pillars for future-ready learning.",
+      "description": "Merishaw strengthens Competency-Based Education with facilities, resources, and infrastructure optimized for CBE.",
       "image": "/images/hero-tuition-block.png"
     },
     "admissions": {
@@ -367,18 +367,23 @@
   },
   "about": {
     "overview": {
-      "eyebrow": "School overview",
-      "title": "State-of-the-art residential education for the boy child.",
+      "eyebrow": "About Merishaw",
+      "title": "A home where the seed of greatness is protected and nurtured.",
       "paragraphs": [
-        "Merishaw School is a residential boys' high school offering the National Curriculum under 8.4.4 and Competency-Based Education at Junior and Senior Secondary School.",
-        "The school develops unique programs to bring up wholesome young men who can meet the needs of society and provide leadership in their families, workplaces, the country, and the global stage.",
-        "The approach emphasizes mentorship, empowerment, academic excellence, character formation, and the restoration of focus on the boy child."
+        "The dream of every parent is that their son becomes a pillar of society. At Merishaw School, we believe that the circumstances in which one is born do not determine their future. We believe that in every child there is a God-given seed of greatness.",
+        "However, this seed can be placed at risk at any stage of growth through negative influence and harmful environmental exposure.",
+        "The Vision Bearer of Merishaw School identified the expanding gap in access to quality education for the boy child, alongside deteriorating performance and increasing dropout rates.",
+        "To address this problem, he invested heavily in the establishment of Merishaw School. The school was conceptualized and designed around the Maasai homestead, bringing to life a nexus of home and school: the Home of the Boy Child.",
+        "The name Merishaw was adapted from the rite of passage process implemented by the Maasai community for boys aged between 9 and 15 years, called il-mirisho, which means Conqueror.",
+        "In the spirit of this meaning, Merishaw School identifies itself as the place where boys are nurtured and transformed into Morans, standing tall in society and proud of self.",
+        "At the core of our mission is an environment that builds men of confidence, moulds boys into men of integrity, develops talents and sports as diverse career pathways, develops global leaders and inspired entrepreneurs, and prepares young men to harness new technologies for the good of humanity.",
+        "Our singular vision is transforming boys into men of purpose. Welcome to Merishaw, Home of the Boy Child."
       ],
       "image": "/images/campus-life.jpg",
       "imageAlt": "Merishaw School campus life"
     },
-    "vision": "To develop purpose driven global leaders empowered for success.",
-    "mission": "Merishaw aims to provide a world class education that equips learners with skills to become critical thinkers, effective communicators, God fearing, and compassionate leaders with integrity through the pursuit of academic excellence.",
+    "vision": "Transforming boys into men of purpose.",
+    "mission": "To provide a home-like, values-led environment that builds confidence, moulds integrity, develops talents and sports, inspires entrepreneurship and global leadership, and prepares boys to harness technology for the good of humanity.",
     "values": [
       {
         "letter": "M",
@@ -415,8 +420,8 @@
     ],
     "architecture": {
       "eyebrow": "Architectural concept",
-      "title": "Built as a home away from home.",
-      "description": "Merishaw's campus is designed to feel calm, ordered, and inspiring, with the facilities and environment learners need to fully enjoy school life.",
+      "title": "Designed around the Maasai homestead.",
+      "description": "Merishaw was conceptualized as a nexus of home and school, a campus that gives boys belonging, structure, protection, and the confidence to grow as Morans.",
       "image": "/images/gallery-aerial-campus.jpg",
       "imageAlt": "Aerial view of Merishaw School"
     }
@@ -424,14 +429,14 @@
   "academics": {
     "programs": [
       {
-        "title": "8.4.4 Curriculum",
-        "eyebrow": "Form 1-4",
-        "description": "Merishaw offers the 8.4.4 system with a focus on academic excellence, character development, practical skills, and preparation for KCSE and tertiary transitions."
+        "title": "8-4-4 Curriculum",
+        "eyebrow": "Form 3 and Form 4",
+        "description": "Kenya's 8-4-4 system is being phased out as the final cohorts complete secondary school. Merishaw currently supports Form 3 and Form 4 learners through the transition."
       },
       {
         "title": "Competency-Based Education",
         "eyebrow": "Grade 7-12",
-        "description": "The school offers Junior and Senior Secondary learning under CBE, helping learners grow as critical thinkers, effective communicators, and responsible lifelong learners."
+        "description": "Competency-Based Education, often referred to as CBC, prioritizes practical skills, critical thinking, values, continuous assessment, and tailored career pathways."
       },
       {
         "title": "Holistic Boarding Experience",
@@ -442,16 +447,16 @@
     "cbePathways": [
       "Arts and Sports Science",
       "Social Sciences",
-      "Science, Technology, Engineering and Mathematics"
+      "STEM: Science, Technology, Engineering and Mathematics"
     ],
     "cbeCompetencies": [
-      "Critical thinking and problem solving",
       "Communication and collaboration",
-      "Citizenship",
-      "Digital literacy",
+      "Critical thinking and problem solving",
       "Creativity and imagination",
+      "Citizenship and social responsibility",
+      "Digital literacy",
       "Learning to learn",
-      "Self-efficacy"
+      "Self-efficacy and confidence"
     ],
     "pillars": [
       {
@@ -714,7 +719,7 @@
         "name": "David Gideon Kariuki HSC",
         "role": "Chief Principal",
         "image": "/images/principal-david-kariuki.png",
-        "description": "The principal's welcome note positions Merishaw as a place where boys are mentored into confident, purposeful young men through strong academics, discipline, and holistic formation."
+        "description": "This is an exciting time to join Merishaw School as we continue to build on our successes and strengthen our position as the Home of the Boy Child and the best boys school in Sub-Saharan Africa. We have achieved the institutionalization of our core values: Men of Valor and Purpose, Empowered Entrepreneurs, Resilience, Innovation, Spirituality, Honesty, Accountability, and a Winning Mentality that transforms our boys to Morans.\n\nWe pride ourselves with being much more than the best in academic results, but on being part of a community of learners, both students and staff, pursuing excellence in everything we do.\n\nOur state-of-the-art facilities provide access to a wide range of activities designed to enable our students to fully invest themselves in many aspects of modern society. These include Olympic-standard competitive sports, data science and robotics, art, aviation, music, dance, performance arts, and other clubs, with many of our students achieving regional, national, and global success.\n\nOur students are able to gain a variety of experiences, working as apprentices in engineering workshops and agriculture, taking overseas trips to experience different cultures and values, and participating in world scholars programs aimed at raising their aspirations.\n\nThese invaluable experiences are specifically aimed at ensuring all students are equipped with the necessary skills, knowledge, and understanding, beyond those attained in the classroom, which best prepares them to win in their life, with increasing confidence and courage.\n\nWe support this further with our parent-led mentorship program, aimed at developing our young students' resilience, critical thinking, initiative, reflection, and desire to seek out challenge. These are attributes possessed by the most successful and happy in society.\n\nWe are an open, forward-thinking, and outward-facing school that values partnership. We are confident that, by cultivating strategic partnerships where we share best practices and benchmark, we are becoming a centre of excellence that secures the Founder's vision at the heart of this community."
       },
       {
         "name": "Director's Message",

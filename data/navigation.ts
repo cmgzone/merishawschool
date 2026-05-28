@@ -2,7 +2,7 @@ export const navigation = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Academics", href: "/academics" },
-  { label: "Infrastructure", href: "/admin-block" },
+  { label: "Infrastructure", href: "/infrastructure" },
   { label: "Admissions", href: "/admissions" },
   { label: "Sports", href: "/sports" },
   { label: "Clubs", href: "/clubs" },
@@ -26,8 +26,8 @@ export const navigationGroups = [
     label: "Academics",
     href: "/academics",
     children: [
-      { label: "Curriculum", href: "/academics" },
       { label: "CBE Pathways", href: "/academics" },
+      { label: "8-4-4 Curriculum", href: "/academics/844" },
       { label: "Six Pillars", href: "/academics" },
       { label: "Our Classrooms", href: "/our-classrooms" },
       { label: "Science Block", href: "/science-block" },
@@ -52,7 +52,9 @@ export const navigationGroups = [
   },
   {
     label: "Infrastructure",
+    href: "/infrastructure",
     children: [
+      { label: "Architectural Concept", href: "/infrastructure" },
       { label: "Admin Block", href: "/admin-block" },
       { label: "GMAX", href: "/gmax" },
       { label: "Movie Theatre", href: "/movie-theatre" },
