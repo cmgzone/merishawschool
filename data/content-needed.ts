@@ -111,14 +111,7 @@ export const contentNeededPages = {
     needed:
       "Content needed: approved movie theatre copy, photos, seating or equipment details, learning use cases, screenings, and presentation activities.",
   },
-  csr: {
-    title: "CSR",
-    eyebrow: "Community Impact",
-    description:
-      "A future page for Merishaw's corporate social responsibility work, community outreach, environmental activities, partnerships, and impact stories.",
-    needed:
-      "Content needed: approved CSR copy, photos, community impact stories, partner details, outreach activities, environmental initiatives, and donation or participation guidance.",
-  },
+
   sports: {
     title: "Sports",
     eyebrow: "Extra-curricular Activities",
