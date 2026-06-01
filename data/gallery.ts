@@ -111,8 +111,8 @@ export const galleryImages = [
   },
   {
     src: "/images/gallery-unicaf-partnership.jpeg",
-    alt: "Merishaw School and UNICAF representatives marking a partnership moment",
-    category: "Partnerships",
+    alt: "Merishaw School and UNICAF representatives supporting a CSR initiative",
+    category: "CSR",
   },
 ];
 
@@ -197,12 +197,12 @@ export const showcaseSlides = [
     alt: "Merishaw School administration block and entrance fountain",
   },
   {
-    eyebrow: "Partnerships",
-    title: "An outward-facing school that values strategic partnerships.",
+    eyebrow: "CSR",
+    title: "Working with partners to strengthen community impact.",
     description:
-      "Merishaw continues to build relationships that widen opportunity, strengthen learning, and support future-ready pathways.",
+      "Merishaw's CSR approach brings partners and stakeholders together to support lasting change in the wider community.",
     image: "/images/gallery-unicaf-partnership.jpeg",
-    alt: "Merishaw School and UNICAF representatives marking a partnership moment",
+    alt: "Merishaw School and UNICAF representatives supporting a CSR initiative",
   },
 ];
 

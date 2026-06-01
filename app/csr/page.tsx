@@ -19,7 +19,7 @@ export default async function CSRPage() {
         eyebrow="Community Impact"
         title="CSR"
         description="Corporate Social Responsibility at Merishaw School."
-        image="/images/pillar-social-collaboration.jpeg"
+        image="/images/gallery-unicaf-partnership.jpeg"
       />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
