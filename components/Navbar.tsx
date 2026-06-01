@@ -14,7 +14,7 @@ import {
   X,
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { csrNavItem, navigationGroups, supportNavItem } from "@/data/navigation";
 import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
@@ -40,8 +40,15 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
   const groupIsActive = (item: (typeof navigationGroups)[number]) =>
     isActive(item.href) || item.children?.some((child) => isActive(child.href));
 
+  useEffect(() => {
+    document.documentElement.classList.toggle("mobile-menu-open", open);
+    window.dispatchEvent(new Event("merishaw:mobile-menu-toggle"));
+
+    return () => document.documentElement.classList.remove("mobile-menu-open");
+  }, [open]);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-brand-line/80 bg-white/95 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-brand-line/80 bg-white/95 pt-[env(safe-area-inset-top)] backdrop-blur-xl">
       <div className="hidden border-b border-brand-line bg-brand-ink text-white lg:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-4 py-1.5 text-[11px] font-semibold sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
@@ -264,7 +271,7 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-              className="ml-auto flex h-dvh min-h-dvh w-full max-w-[420px] flex-col bg-white shadow-premium"
+              className="ml-auto flex h-dvh min-h-dvh w-full max-w-[420px] flex-col bg-white pb-[env(safe-area-inset-bottom)] shadow-premium"
               aria-label="Mobile navigation"
             >
               <div className="flex items-center justify-between border-b border-brand-line px-5 py-4">

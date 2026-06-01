@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import FloatingSocialRail from "@/components/FloatingSocialRail";
 import Footer from "@/components/Footer";
@@ -52,6 +52,12 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -71,7 +77,9 @@ export default async function RootLayout({
         </a>
         <Navbar site={content.site} />
         <FloatingSocialRail socials={content.site.socials} />
-        <main id="main-content">{children}</main>
+        <main id="main-content" className="min-w-0 overflow-x-clip">
+          {children}
+        </main>
         <Footer site={content.site} />
         <TawkChat
           embedUrl={content.site.tawkEmbedUrl}

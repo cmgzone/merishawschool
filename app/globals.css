@@ -13,14 +13,29 @@
 }
 
 html {
+  max-width: 100%;
+  overflow-x: clip;
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
+  max-width: 100%;
+  overflow-x: clip;
   background: var(--background);
   color: var(--foreground);
   text-rendering: geometricPrecision;
+}
+
+html.mobile-menu-open,
+html.mobile-menu-open body {
+  overflow: hidden;
+}
+
+html.mobile-menu-open iframe[style*="cursor: none"],
+html.mobile-menu-open iframe[style*="cursor:none"] {
+  pointer-events: none !important;
+  visibility: hidden !important;
 }
 
 ::selection {

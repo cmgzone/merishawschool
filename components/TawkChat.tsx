@@ -56,9 +56,9 @@ export default function TawkChat({
           var style = frame.getAttribute('style') || '';
 
           return (
-            style.indexOf('position:fixed') !== -1 &&
-            style.indexOf('z-index:100000') !== -1 &&
-            style.indexOf('cursor:none') !== -1
+            /position\\s*:\\s*fixed/i.test(style) &&
+            /z-index\\s*:\\s*100000/i.test(style) &&
+            /cursor\\s*:\\s*none/i.test(style)
           );
         }
 
@@ -70,10 +70,14 @@ export default function TawkChat({
 
         function resizeTawkForMobile() {
           var isMobile = window.matchMedia('(max-width: 640px)').matches;
+          var mobileMenuOpen = document.documentElement.classList.contains('mobile-menu-open');
           var frames = document.querySelectorAll('iframe');
 
           frames.forEach(function(frame) {
             if (!isTawkFrame(frame)) return;
+
+            setImportantStyle(frame, 'visibility', mobileMenuOpen ? 'hidden' : 'visible');
+            setImportantStyle(frame, 'pointer-events', mobileMenuOpen ? 'none' : 'auto');
 
             if (isMobile) {
               var width = parseInt(frame.getAttribute('width') || frame.style.width || '0', 10);
@@ -97,6 +101,7 @@ export default function TawkChat({
         }
 
         window.addEventListener('resize', resizeTawkForMobile);
+        window.addEventListener('merishaw:mobile-menu-toggle', resizeTawkForMobile);
         var tawkResizeObserver = new MutationObserver(resizeTawkForMobile);
         tawkResizeObserver.observe(document.documentElement, {
           childList: true,

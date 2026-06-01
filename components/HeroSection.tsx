@@ -27,7 +27,7 @@ export default function HeroSection({
         headingLevel={1}
         contentAlign="center"
         showArrows={false}
-        heightClassName="h-[56.25vw] min-h-[560px] min-[520px]:min-h-[420px] max-h-[620px]"
+        heightClassName="h-[56.25vw] min-h-[max(560px,calc(100svh-5rem))] min-[520px]:min-h-[420px] lg:min-h-[560px] max-h-[620px]"
         className="rounded-none shadow-none"
       >
         <div className="mx-auto flex max-w-xl flex-col items-center justify-center gap-3 sm:flex-row">
@@ -38,16 +38,16 @@ export default function HeroSection({
         </div>
       </PremiumSlideshow>
 
-      <MotionReveal className="mx-auto grid max-w-7xl gap-4 px-4 py-7 sm:px-6 md:grid-cols-3 lg:px-8">
+      <MotionReveal className="mx-auto grid max-w-7xl grid-cols-3 gap-2 px-3 py-5 sm:gap-4 sm:px-6 sm:py-7 lg:px-8">
         {statsItems.map((item) => (
           <div
             key={item.label}
-            className="rounded-md border border-brand-line bg-brand-cream p-5 text-center shadow-card"
+            className="rounded-md border border-brand-line bg-brand-cream p-2 text-center shadow-card sm:p-5"
           >
-            <p className="font-serif text-3xl font-semibold text-brand-ink">
+            <p className="font-serif text-xl font-semibold leading-tight text-brand-ink sm:text-3xl">
               {item.value}
             </p>
-            <p className="mt-2 text-xs font-bold uppercase leading-5 text-brand-muted">
+            <p className="mt-1 text-[9px] font-bold uppercase leading-4 text-brand-muted sm:mt-2 sm:text-xs sm:leading-5">
               {item.label}
             </p>
           </div>
