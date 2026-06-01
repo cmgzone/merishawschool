@@ -1,5 +1,55 @@
 export const galleryImages = [
   {
+    src: "/images/gallery-campus-aerial-residential.jpeg",
+    alt: "Wide aerial view of Merishaw School residential and learning blocks",
+    category: "Campus",
+  },
+  {
+    src: "/images/gallery-campus-aerial-learning-block.jpeg",
+    alt: "Aerial view of the Merishaw School learning blocks and courtyard",
+    category: "Campus",
+  },
+  {
+    src: "/images/gallery-campus-aerial-sports-grounds.jpeg",
+    alt: "Aerial view of Merishaw School sports grounds and campus",
+    category: "Sports",
+  },
+  {
+    src: "/images/gallery-soccer-academy.jpeg",
+    alt: "Merishaw Soccer Academy students competing on the school field",
+    category: "Sports",
+  },
+  {
+    src: "/images/gallery-campus-residential-block.jpeg",
+    alt: "Merishaw School residential block and landscaped courtyard",
+    category: "Boarding",
+  },
+  {
+    src: "/images/gallery-campus-administration-block.jpeg",
+    alt: "Merishaw School administration block and entrance fountain",
+    category: "Campus",
+  },
+  {
+    src: "/images/gallery-hostel-manyatta-palace.jpeg",
+    alt: "Manyatta Palace hostel block at Merishaw School",
+    category: "Boarding",
+  },
+  {
+    src: "/images/gallery-hostel-state-house.jpeg",
+    alt: "State House hostel block at Merishaw School",
+    category: "Boarding",
+  },
+  {
+    src: "/images/gallery-hostel-room.jpeg",
+    alt: "Merishaw School hostel room with bunk bed and student lockers",
+    category: "Boarding",
+  },
+  {
+    src: "/images/gallery-hostel-common-room.jpeg",
+    alt: "Merishaw School hostel common room with lounge seating",
+    category: "Boarding",
+  },
+  {
     src: "/images/hero-tuition-block.png",
     alt: "Merishaw School tuition block across the multi-purpose hall courtyard",
     category: "Campus",
@@ -59,6 +109,11 @@ export const galleryImages = [
     alt: "Merishaw School sports day",
     category: "Sports",
   },
+  {
+    src: "/images/gallery-unicaf-partnership.jpeg",
+    alt: "Merishaw School and UNICAF representatives marking a partnership moment",
+    category: "Partnerships",
+  },
 ];
 
 export const heroSlides = [
@@ -67,8 +122,8 @@ export const heroSlides = [
     title: "A campus built for ambition, discipline, and purpose.",
     description:
       "A premium residential boys' school experience in Isinya, shaped by academics, mentorship, faith, sports, creativity, and leadership.",
-    image: "/images/hero-tuition-block.png",
-    alt: "Merishaw School tuition block and courtyard",
+    image: "/images/hero-administration-fountain.jpeg",
+    alt: "Merishaw School administration block and entrance fountain",
     imagePosition: "center center",
   },
   {
@@ -85,8 +140,8 @@ export const heroSlides = [
     title: "Learning, boarding, sport, and creativity in one destination.",
     description:
       "From resource spaces and science facilities to sports grounds and boarding life, the campus is designed for a complete school experience.",
-    image: "/images/gallery-rugby-pitch.png",
-    alt: "Merishaw School sports grounds",
+    image: "/images/gallery-soccer-academy.jpeg",
+    alt: "Merishaw Soccer Academy students competing on the school field",
     imagePosition: "center center",
   },
   {
@@ -103,35 +158,51 @@ export const heroSlides = [
 export const showcaseSlides = [
   {
     eyebrow: "Campus",
-    title: "Architecture that feels calm, ordered, and aspirational.",
+    title: "A complete campus built for purpose and ambition.",
     description:
-      "The new visual system gives the campus the space and cinematic treatment it deserves.",
-    image: "/images/gallery-aerial-campus.jpg",
-    alt: "Aerial view of Merishaw School campus",
+      "Aerial views reveal a carefully planned residential school environment for learning, growth, and community.",
+    image: "/images/gallery-campus-aerial-residential.jpeg",
+    alt: "Wide aerial view of Merishaw School residential and learning blocks",
   },
   {
     eyebrow: "Learning",
-    title: "Resource spaces for focused study and discovery.",
+    title: "Learning spaces designed around a clear academic rhythm.",
     description:
-      "Academic spaces are presented as part of a premium, whole-school learning environment.",
-    image: "/images/gallery-resource-centre.jpeg",
-    alt: "Merishaw School resource centre",
-  },
-  {
-    eyebrow: "Boarding",
-    title: "A residential experience designed as a home away from home.",
-    description:
-      "Boarding, dining, and student-life spaces support discipline, friendship, and care.",
-    image: "/images/gallery-dormitory.jpeg",
-    alt: "Merishaw School dormitory overview",
+      "Classrooms, courtyards, and shared spaces come together in an ordered environment for focused study.",
+    image: "/images/gallery-campus-aerial-learning-block.jpeg",
+    alt: "Aerial view of the Merishaw School learning blocks and courtyard",
   },
   {
     eyebrow: "Sport",
-    title: "Grounds that communicate energy and excellence.",
+    title: "Grounds that make room for energy, discipline, and excellence.",
     description:
-      "Sports and talent development remain a visible part of the Merishaw promise.",
-    image: "/images/sports-day.jpg",
-    alt: "Merishaw School sports day",
+      "The campus brings together fields, athletics facilities, and residential life in one destination.",
+    image: "/images/gallery-soccer-academy.jpeg",
+    alt: "Merishaw Soccer Academy students competing on the school field",
+  },
+  {
+    eyebrow: "Boarding",
+    title: "Residential spaces shaped for structure and belonging.",
+    description:
+      "Boarding blocks and landscaped courtyards support a calm home-away-from-home experience.",
+    image: "/images/gallery-campus-residential-block.jpeg",
+    alt: "Merishaw School residential block and landscaped courtyard",
+  },
+  {
+    eyebrow: "Welcome",
+    title: "An entrance that reflects the Merishaw standard.",
+    description:
+      "The administration block gives families a confident first impression of the school environment.",
+    image: "/images/gallery-campus-administration-block.jpeg",
+    alt: "Merishaw School administration block and entrance fountain",
+  },
+  {
+    eyebrow: "Partnerships",
+    title: "An outward-facing school that values strategic partnerships.",
+    description:
+      "Merishaw continues to build relationships that widen opportunity, strengthen learning, and support future-ready pathways.",
+    image: "/images/gallery-unicaf-partnership.jpeg",
+    alt: "Merishaw School and UNICAF representatives marking a partnership moment",
   },
 ];
 

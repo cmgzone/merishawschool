@@ -321,7 +321,7 @@ export const defaultAdminContent: EditableContent = {
       title: "Leadership rooted in mentorship, growth, and accountability.",
       description:
         "Meet the leadership voice shaping the culture, mentorship, and student formation at Merishaw.",
-      image: "/images/principal-david-kariuki.png",
+      image: "/images/principal-mr-aringo.jpeg",
     },
     gallery: {
       eyebrow: "Gallery",

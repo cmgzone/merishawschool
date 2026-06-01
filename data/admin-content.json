@@ -49,8 +49,8 @@
         "eyebrow": "Merishaw School",
         "title": "A campus built for ambition, discipline, and purpose.",
         "description": "A premium residential boys' school experience in Isinya, shaped by academics, mentorship, faith, sports, creativity, and leadership.",
-        "image": "/images/hero-tuition-block.png",
-        "alt": "Merishaw School tuition block and courtyard",
+        "image": "/images/hero-administration-fountain.jpeg",
+        "alt": "Merishaw School administration block and entrance fountain",
         "imagePosition": "center center"
       },
       {
@@ -65,8 +65,8 @@
         "eyebrow": "Facilities",
         "title": "Learning, boarding, sport, and creativity in one destination.",
         "description": "From resource spaces and science facilities to sports grounds and boarding life, the campus is designed for a complete school experience.",
-        "image": "/images/gallery-rugby-pitch.png",
-        "alt": "Merishaw School sports grounds",
+        "image": "/images/gallery-soccer-academy.jpeg",
+        "alt": "Merishaw Soccer Academy students competing on the school field",
         "imagePosition": "center center"
       },
       {
@@ -162,7 +162,7 @@
       "eyebrow": "Leadership",
       "title": "Leadership rooted in mentorship, growth, and accountability.",
       "description": "Meet the leadership voice shaping the culture, mentorship, and student formation at Merishaw.",
-      "image": "/images/principal-david-kariuki.png"
+      "image": "/images/principal-mr-aringo.jpeg"
     },
     "gallery": {
       "eyebrow": "Gallery",
@@ -460,8 +460,8 @@
       },
       {
         "title": "Sports and Talents",
-        "image": "/images/pillar-sports.jpg",
-        "imageAlt": "Merishaw students participating in sports day",
+        "image": "/images/gallery-soccer-academy.jpeg",
+        "imageAlt": "Merishaw Soccer Academy students competing on the school field",
         "description": "A nurturing environment where students explore, develop, and excel in sporting and talent areas while building discipline and resilience."
       },
       {
@@ -597,6 +597,56 @@
   "gallery": {
     "images": [
       {
+        "src": "/images/gallery-campus-aerial-residential.jpeg",
+        "alt": "Wide aerial view of Merishaw School residential and learning blocks",
+        "category": "Campus"
+      },
+      {
+        "src": "/images/gallery-campus-aerial-learning-block.jpeg",
+        "alt": "Aerial view of the Merishaw School learning blocks and courtyard",
+        "category": "Campus"
+      },
+      {
+        "src": "/images/gallery-campus-aerial-sports-grounds.jpeg",
+        "alt": "Aerial view of Merishaw School sports grounds and campus",
+        "category": "Sports"
+      },
+      {
+        "src": "/images/gallery-soccer-academy.jpeg",
+        "alt": "Merishaw Soccer Academy students competing on the school field",
+        "category": "Sports"
+      },
+      {
+        "src": "/images/gallery-campus-residential-block.jpeg",
+        "alt": "Merishaw School residential block and landscaped courtyard",
+        "category": "Boarding"
+      },
+      {
+        "src": "/images/gallery-campus-administration-block.jpeg",
+        "alt": "Merishaw School administration block and entrance fountain",
+        "category": "Campus"
+      },
+      {
+        "src": "/images/gallery-hostel-manyatta-palace.jpeg",
+        "alt": "Manyatta Palace hostel block at Merishaw School",
+        "category": "Boarding"
+      },
+      {
+        "src": "/images/gallery-hostel-state-house.jpeg",
+        "alt": "State House hostel block at Merishaw School",
+        "category": "Boarding"
+      },
+      {
+        "src": "/images/gallery-hostel-room.jpeg",
+        "alt": "Merishaw School hostel room with bunk bed and student lockers",
+        "category": "Boarding"
+      },
+      {
+        "src": "/images/gallery-hostel-common-room.jpeg",
+        "alt": "Merishaw School hostel common room with lounge seating",
+        "category": "Boarding"
+      },
+      {
         "src": "/images/hero-tuition-block.png",
         "alt": "Merishaw School tuition block across the multi-purpose hall courtyard",
         "category": "Campus"
@@ -655,36 +705,55 @@
         "src": "/images/sports-day.jpg",
         "alt": "Merishaw School sports day",
         "category": "Sports"
+      },
+      {
+        "src": "/images/gallery-unicaf-partnership.jpeg",
+        "alt": "Merishaw School and UNICAF representatives marking a partnership moment",
+        "category": "Partnerships"
       }
     ],
     "showcaseSlides": [
       {
         "eyebrow": "Campus",
-        "title": "Architecture that feels calm, ordered, and aspirational.",
-        "description": "The new visual system gives the campus the space and cinematic treatment it deserves.",
-        "image": "/images/gallery-aerial-campus.jpg",
-        "alt": "Aerial view of Merishaw School campus"
+        "title": "A complete campus built for purpose and ambition.",
+        "description": "Aerial views reveal a carefully planned residential school environment for learning, growth, and community.",
+        "image": "/images/gallery-campus-aerial-residential.jpeg",
+        "alt": "Wide aerial view of Merishaw School residential and learning blocks"
       },
       {
         "eyebrow": "Learning",
-        "title": "Resource spaces for focused study and discovery.",
-        "description": "Academic spaces are presented as part of a premium, whole-school learning environment.",
-        "image": "/images/gallery-resource-centre.jpeg",
-        "alt": "Merishaw School resource centre"
-      },
-      {
-        "eyebrow": "Boarding",
-        "title": "A residential experience designed as a home away from home.",
-        "description": "Boarding, dining, and student-life spaces support discipline, friendship, and care.",
-        "image": "/images/gallery-dormitory.jpeg",
-        "alt": "Merishaw School dormitory overview"
+        "title": "Learning spaces designed around a clear academic rhythm.",
+        "description": "Classrooms, courtyards, and shared spaces come together in an ordered environment for focused study.",
+        "image": "/images/gallery-campus-aerial-learning-block.jpeg",
+        "alt": "Aerial view of the Merishaw School learning blocks and courtyard"
       },
       {
         "eyebrow": "Sport",
-        "title": "Grounds that communicate energy and excellence.",
-        "description": "Sports and talent development remain a visible part of the Merishaw promise.",
-        "image": "/images/sports-day.jpg",
-        "alt": "Merishaw School sports day"
+        "title": "Grounds that make room for energy, discipline, and excellence.",
+        "description": "The campus brings together fields, athletics facilities, and residential life in one destination.",
+        "image": "/images/gallery-soccer-academy.jpeg",
+        "alt": "Merishaw Soccer Academy students competing on the school field"
+      },
+      {
+        "eyebrow": "Boarding",
+        "title": "Residential spaces shaped for structure and belonging.",
+        "description": "Boarding blocks and landscaped courtyards support a calm home-away-from-home experience.",
+        "image": "/images/gallery-campus-residential-block.jpeg",
+        "alt": "Merishaw School residential block and landscaped courtyard"
+      },
+      {
+        "eyebrow": "Welcome",
+        "title": "An entrance that reflects the Merishaw standard.",
+        "description": "The administration block gives families a confident first impression of the school environment.",
+        "image": "/images/gallery-campus-administration-block.jpeg",
+        "alt": "Merishaw School administration block and entrance fountain"
+      },
+      {
+        "eyebrow": "Partnerships",
+        "title": "An outward-facing school that values strategic partnerships.",
+        "description": "Merishaw continues to build relationships that widen opportunity, strengthen learning, and support future-ready pathways.",
+        "image": "/images/gallery-unicaf-partnership.jpeg",
+        "alt": "Merishaw School and UNICAF representatives marking a partnership moment"
       }
     ]
   },
@@ -709,9 +778,9 @@
   "leadership": {
     "leaders": [
       {
-        "name": "David Gideon Kariuki HSC",
+        "name": "Mr Aringo",
         "role": "Chief Principal",
-        "image": "/images/principal-david-kariuki.png",
+        "image": "/images/principal-mr-aringo.jpeg",
         "description": "This is an exciting time to join Merishaw School as we continue to build on our successes and strengthen our position as the Home of the Boy Child and the best boys school in Sub-Saharan Africa. We have achieved the institutionalization of our core values: Men of Valor and Purpose, Empowered Entrepreneurs, Resilience, Innovation, Spirituality, Honesty, Accountability, and a Winning Mentality that transforms our boys to Morans.\n\nWe pride ourselves with being much more than the best in academic results, but on being part of a community of learners, both students and staff, pursuing excellence in everything we do.\n\nOur state-of-the-art facilities provide access to a wide range of activities designed to enable our students to fully invest themselves in many aspects of modern society. These include Olympic-standard competitive sports, data science and robotics, art, aviation, music, dance, performance arts, and other clubs, with many of our students achieving regional, national, and global success.\n\nOur students are able to gain a variety of experiences, working as apprentices in engineering workshops and agriculture, taking overseas trips to experience different cultures and values, and participating in world scholars programs aimed at raising their aspirations.\n\nThese invaluable experiences are specifically aimed at ensuring all students are equipped with the necessary skills, knowledge, and understanding, beyond those attained in the classroom, which best prepares them to win in their life, with increasing confidence and courage.\n\nWe support this further with our parent-led mentorship program, aimed at developing our young students' resilience, critical thinking, initiative, reflection, and desire to seek out challenge. These are attributes possessed by the most successful and happy in society.\n\nWe are an open, forward-thinking, and outward-facing school that values partnership. We are confident that, by cultivating strategic partnerships where we share best practices and benchmark, we are becoming a centre of excellence that secures the Founder's vision at the heart of this community."
       },
       {

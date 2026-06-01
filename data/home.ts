@@ -48,8 +48,8 @@ export const experiencePathways = [
     eyebrow: "Boarding",
     description:
       "See how boarding, mentorship, student routines, sport, faith, and facilities support a disciplined boys' school experience.",
-    image: "/images/gallery-dormitory.jpeg",
-    imageAlt: "Merishaw School dormitory and residential facilities",
+    image: "/images/gallery-hostel-manyatta-palace.jpeg",
+    imageAlt: "Manyatta Palace hostel block at Merishaw School",
     href: "/about",
     cta: "Explore School Life",
   },

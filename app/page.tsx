@@ -43,6 +43,25 @@ const boardingHighlights = [
   },
 ];
 
+const hostelGallery = [
+  {
+    src: "/images/gallery-hostel-manyatta-palace.jpeg",
+    alt: "Manyatta Palace hostel block at Merishaw School",
+  },
+  {
+    src: "/images/gallery-hostel-state-house.jpeg",
+    alt: "State House hostel block at Merishaw School",
+  },
+  {
+    src: "/images/gallery-hostel-room.jpeg",
+    alt: "Merishaw School hostel room with bunk bed and student lockers",
+  },
+  {
+    src: "/images/gallery-hostel-common-room.jpeg",
+    alt: "Merishaw School hostel common room with lounge seating",
+  },
+];
+
 export default async function Home() {
   const content = await getEditableContent();
 
@@ -131,14 +150,32 @@ export default async function Home() {
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
           <MotionReveal>
-            <div className="relative aspect-[16/11] overflow-hidden rounded-md shadow-premium">
-              <Image
-                src="/images/gallery-dormitory.jpeg"
-                alt="Merishaw School boarding facilities"
-                fill
-                className="object-cover brightness-105"
-                sizes="(min-width: 1024px) 55vw, 100vw"
-              />
+            <div className="grid gap-3">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-md shadow-premium">
+                <Image
+                  src={hostelGallery[0].src}
+                  alt={hostelGallery[0].alt}
+                  fill
+                  className="object-cover brightness-105"
+                  sizes="(min-width: 1024px) 55vw, 100vw"
+                />
+              </div>
+              <div className="grid grid-cols-3 gap-3">
+                {hostelGallery.slice(1).map((image) => (
+                  <div
+                    key={image.src}
+                    className="relative aspect-[4/3] overflow-hidden rounded-md border border-brand-line bg-brand-cream shadow-card"
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      className="object-cover transition duration-500 hover:scale-105"
+                      sizes="(min-width: 1024px) 18vw, 33vw"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </MotionReveal>
           <MotionReveal delay={0.08}>

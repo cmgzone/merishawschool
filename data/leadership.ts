@@ -16,9 +16,9 @@ export const principalWelcomeNote = [
 ].join("\n\n");
 
 export const principal: LeadershipPerson = {
-  name: "David Gideon Kariuki HSC",
+  name: "Mr Aringo",
   role: "Chief Principal",
-  image: "/images/principal-david-kariuki.png",
+  image: "/images/principal-mr-aringo.jpeg",
   description: principalWelcomeNote,
 };
 
@@ -71,7 +71,7 @@ export const seniorManagement: LeadershipPerson[] = [
   {
     name: "Director of Boarding",
     role: "Residential Life",
-    image: "/images/gallery-dormitory.jpeg",
+    image: "/images/gallery-hostel-manyatta-palace.jpeg",
     description:
       "Guides the boarding environment so learners experience structure, care, accountability, and belonging.",
   },
@@ -112,7 +112,7 @@ export const studentLeaders: LeadershipPerson[] = [
   {
     name: "Boarding Leader",
     role: "Student Leader",
-    image: "/images/gallery-dormitory.jpeg",
+    image: "/images/gallery-hostel-state-house.jpeg",
     description:
       "Helps promote order, care, and responsibility within the boarding community.",
   },

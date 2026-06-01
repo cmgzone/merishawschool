@@ -104,8 +104,8 @@ export const pillars = [
   },
   {
     title: "Sports and Talents",
-    image: "/images/pillar-sports.jpg",
-    imageAlt: "Merishaw students participating in sports day",
+    image: "/images/gallery-soccer-academy.jpeg",
+    imageAlt: "Merishaw Soccer Academy students competing on the school field",
     description:
       "A nurturing environment where students explore, develop, and excel in sporting and talent areas while building discipline and resilience.",
   },
