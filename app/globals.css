@@ -101,6 +101,40 @@ li {
     linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(122, 33, 46, 0.16) 44%, rgba(0, 0, 0, 0.56));
 }
 
+.page-header-cinematic-image {
+  animation: page-header-cinematic 18s ease-in-out infinite alternate;
+  transform: scale(1.06);
+  transform-origin: center center;
+  will-change: transform;
+}
+
+@keyframes page-header-cinematic {
+  from {
+    transform: scale(1.06) translate3d(-0.7%, -0.45%, 0);
+  }
+
+  to {
+    transform: scale(1.14) translate3d(0.8%, 0.55%, 0);
+  }
+}
+
+.page-header-cinematic-contain-image {
+  animation: page-header-cinematic-contain 18s ease-in-out infinite alternate;
+  transform: scale(0.97);
+  transform-origin: center center;
+  will-change: transform;
+}
+
+@keyframes page-header-cinematic-contain {
+  from {
+    transform: scale(0.97);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
 .brand-slideshow-wordmark {
   position: relative;
   display: inline-block;
@@ -198,6 +232,16 @@ li {
 
   .values-marquee-track {
     animation: none;
+  }
+
+  .page-header-cinematic-image {
+    animation: none;
+    transform: scale(1.06);
+  }
+
+  .page-header-cinematic-contain-image {
+    animation: none;
+    transform: scale(1);
   }
 
   .contact-pulse::before {

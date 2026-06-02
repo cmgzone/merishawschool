@@ -159,43 +159,97 @@ export const galleryImages = [
     alt: "Merishaw School and UNICAF representatives supporting a CSR initiative",
     category: "CSR",
   },
+  {
+    src: "/images/academics-engaged-classroom.jpeg",
+    alt: "Merishaw School student raising his hand during a classroom lesson",
+    category: "Learning",
+  },
+  {
+    src: "/images/academics-robotics-circuit.jpeg",
+    alt: "Merishaw School student testing a robotics circuit during a practical STEM activity",
+    category: "STEM",
+  },
+  {
+    src: "/images/academics-robotics-soldering.jpeg",
+    alt: "Merishaw School student soldering a robotics component during a hands-on technology session",
+    category: "STEM",
+  },
+  {
+    src: "/images/academics-engineering-workshop.jpeg",
+    alt: "Merishaw School student wearing protective equipment during an engineering workshop activity",
+    category: "Life Skills",
+  },
+  {
+    src: "/images/academics-science-lab.jpeg",
+    alt: "Merishaw School students conducting a practical experiment in the science laboratory",
+    category: "Learning",
+  },
+  {
+    src: "/images/academics-exam-time.jpeg",
+    alt: "Merishaw School students completing an assessment in a classroom",
+    category: "Learning",
+  },
+  {
+    src: "/images/academics-agriculture.jpeg",
+    alt: "Merishaw School students learning practical agriculture skills in the school garden",
+    category: "Life Skills",
+  },
+  {
+    src: "/images/clubs-music-drums.jpeg",
+    alt: "Drum kit ready for Merishaw School music and talent development activities",
+    category: "Talents",
+  },
+  {
+    src: "/images/leadership-security-team.jpeg",
+    alt: "Merishaw School security team standing together at the campus entrance",
+    category: "Campus Care",
+  },
 ];
 
 export const heroSlides = [
   {
-    eyebrow: "Merishaw School",
-    title: "A campus built for ambition, discipline, and purpose.",
-    description:
-      "A premium residential boys' school experience in Isinya, shaped by academics, mentorship, faith, sports, creativity, and leadership.",
-    image: "/images/hero-administration-fountain.jpeg",
-    alt: "Merishaw School administration block and entrance fountain",
-    imagePosition: "center center",
-  },
-  {
     eyebrow: "Home of the Boy Child",
-    title: "Where boys are formed into men of integrity.",
+    title: "Our Morans at the heart of a protected learning community.",
     description:
-      "Merishaw combines a serene boarding environment, values-led formation, and future-ready learning pathways for holistic growth.",
-    image: "/images/campus-life.jpg",
-    alt: "Merishaw School student life and campus environment",
+      "Inspired by the concentric design of a Maasai homestead, Merishaw places our Morans at the centre, surrounded by teachers and staff who guide, nurture, and protect them.",
+    image: "/images/hero-concentric-campus.jpeg",
+    alt: "Aerial view of Merishaw School showing its concentric campus design",
     imagePosition: "center center",
   },
   {
-    eyebrow: "Facilities",
-    title: "Learning, boarding, sport, and creativity in one destination.",
+    eyebrow: "State-of-the-art facilities",
+    title: "Spaces designed for learning, talent, and excellence.",
     description:
-      "From resource spaces and science facilities to sports grounds and boarding life, the campus is designed for a complete school experience.",
-    image: "/images/gallery-soccer-academy.jpeg",
-    alt: "Merishaw Soccer Academy students competing on the school field",
+      "From our multipurpose hall to our learning, boarding, and sports spaces, Merishaw gives every Moran room to discover his strengths and pursue excellence.",
+    image: "/images/hero-state-of-the-art-facilities.jpeg",
+    alt: "Merishaw School multipurpose hall with stage, large screen, and seating",
     imagePosition: "center center",
   },
   {
-    eyebrow: "Admissions",
-    title: "A serious school for serious futures.",
+    eyebrow: "A conducive learning environment",
+    title: "Where every Moran is inspired to learn, collaborate, and grow.",
     description:
-      "For families seeking a refined, purposeful, and values-driven environment for boys in Junior and Senior Secondary School.",
-    image: "/images/resource-centre.jpeg",
-    alt: "Merishaw School resource centre building",
+      "Our calm, engaging learning spaces encourage curiosity, teamwork, confidence, and the daily pursuit of excellence.",
+    image: "/images/hero-conducive-learning-environment.jpeg",
+    alt: "Merishaw School students collaborating around a classroom desk",
+    imagePosition: "center center",
+  },
+  {
+    eyebrow: "Life skills programs",
+    title: "Preparing Morans to lead, create, and thrive.",
+    description:
+      "Our programs inculcate leadership, entrepreneurship, technology, innovation, sports, and talent development through practical experiences beyond the classroom.",
+    image: "/images/hero-life-skills-programs.jpeg",
+    alt: "Merishaw School students learning practical agriculture skills in the school garden",
+    imagePosition: "center center",
+  },
+  {
+    eyebrow: "Christian character formation",
+    title: "Nurturing character through values founded in Christianity.",
+    description:
+      "Our chaplain is available 24/7 to guide, counsel, and walk alongside every Moran as he grows in faith, integrity, and purpose.",
+    image: "/images/hero-christian-character-formation.jpeg",
+    alt: "Merishaw School chaplain seated at a desk with an open Bible",
     imagePosition: "center center",
   },
 ];

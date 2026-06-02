@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import AcademicExperiencePage from "@/components/AcademicExperiencePage";
 import ButtonLink from "@/components/ButtonLink";
 import MotionReveal from "@/components/MotionReveal";
 import PageHeader from "@/components/PageHeader";
+import {
+  academicExperiencePages,
+  type AcademicExperienceSlug,
+} from "@/data/academics";
 import { getEditableContent, type EditableContent } from "@/data/admin-content";
 import { contentNeededPages, type ContentNeededSlug } from "@/data/content-needed";
 
@@ -31,12 +36,27 @@ function getPage(slug: string, content: EditableContent) {
   );
 }
 
+function getAcademicExperiencePage(slug: string) {
+  return slug in academicExperiencePages
+    ? academicExperiencePages[slug as AcademicExperienceSlug]
+    : null;
+}
+
 export function generateStaticParams() {
   return Object.keys(contentNeededPages).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
+  const academicExperiencePage = getAcademicExperiencePage(slug);
+
+  if (academicExperiencePage) {
+    return {
+      title: academicExperiencePage.title,
+      description: academicExperiencePage.description,
+    };
+  }
+
   const content = await getEditableContent();
   const page = getPage(slug, content);
 
@@ -52,6 +72,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ContentNeededPage({ params }: PageProps) {
   const { slug } = await params;
+  const academicExperiencePage = getAcademicExperiencePage(slug);
+
+  if (academicExperiencePage) {
+    return <AcademicExperiencePage page={academicExperiencePage} />;
+  }
+
   const content = await getEditableContent();
   const page = getPage(slug, content);
 

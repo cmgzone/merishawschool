@@ -86,18 +86,74 @@ export const seniorManagement: LeadershipPerson[] = [
 
 export const studentCouncil: LeadershipPerson[] = [
   {
-    name: "School Captain",
-    role: "Student Council",
-    image: "/images/gallery-student-life-2.jpg",
+    name: "Victor Muuo",
+    role: "School President",
+    image: "/images/student-council-victor-muuo.jpeg",
     description:
-      "Represents student voice and works with school leadership to promote responsibility, teamwork, and positive school culture.",
+      "Leads the student council and represents student voice across the school community.",
   },
   {
-    name: "Deputy School Captain",
-    role: "Student Council",
-    image: "/images/gallery-student-life-3.jpg",
+    name: "Victor Kemboi",
+    role: "Deputy President",
+    image: "/images/student-council-victor-kemboi.jpeg",
     description:
-      "Supports the School Captain and helps coordinate student participation, peer mentorship, and school activities.",
+      "Supports the School President and helps coordinate council responsibilities.",
+  },
+  {
+    name: "Brian Ruto",
+    role: "Prime Minister",
+    image: "/images/student-council-brian-ruto.jpeg",
+    description:
+      "Supports the student council executive and helps coordinate student leadership responsibilities.",
+  },
+  {
+    name: "Michael Bob",
+    role: "DH Captain",
+    image: "/images/student-council-michael-bob.jpeg",
+    description:
+      "Supports student responsibility, discipline, and positive daily school life.",
+  },
+  {
+    name: "Mohammed Abdikad",
+    role: "Captain",
+    image: "/images/student-council-mohammed-abdikad.jpeg",
+    description:
+      "Supports student leadership, responsibility, and positive school culture.",
+  },
+  {
+    name: "Ronald Kinoti",
+    role: "Games Captain",
+    image: "/images/student-council-ronald-kinoti.jpeg",
+    description:
+      "Encourages participation, teamwork, discipline, and sportsmanship.",
+  },
+  {
+    name: "Trevor Chomba",
+    role: "Halls of Residence Captain",
+    image: "/images/student-council-trevor-chomba.jpeg",
+    description:
+      "Supports responsibility, order, and a positive residential experience.",
+  },
+  {
+    name: "Caleb Kamau",
+    role: "Academic Captain",
+    image: "/images/student-council-caleb-kamau.jpeg",
+    description:
+      "Promotes academic focus, study discipline, and peer encouragement.",
+  },
+  {
+    name: "Chibu Obieche",
+    role: "Chapel and Mentorship Captain",
+    image: "/images/student-council-chibu-obieche.jpeg",
+    description:
+      "Supports chapel life, mentorship, values, and character formation.",
+  },
+  {
+    name: "Kawwagi",
+    role: "Entertainment Captain",
+    image: "/images/student-council-kawwagi.jpeg",
+    description:
+      "Encourages creativity, participation, and vibrant student activities.",
   },
 ];
 

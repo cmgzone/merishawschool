@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { CheckCircle2, Layers3, Route } from "lucide-react";
 import AcademicCard from "@/components/AcademicCard";
 import ButtonLink from "@/components/ButtonLink";
@@ -12,6 +13,49 @@ import {
   cbeStages,
 } from "@/data/academics";
 import { getEditableContent } from "@/data/admin-content";
+
+const learningInAction = [
+  {
+    title: "Robotics and coding",
+    description:
+      "Students build, test, troubleshoot, and refine ideas through practical technology projects.",
+    image: "/images/academics-robotics-soldering.jpeg",
+    alt: "Merishaw School student soldering a robotics component during a hands-on technology session",
+    className: "md:col-span-2 md:row-span-2",
+  },
+  {
+    title: "Agriculture",
+    description:
+      "The school garden turns science, enterprise, and care for the environment into lived experience.",
+    image: "/images/academics-agriculture.jpeg",
+    alt: "Merishaw School students learning practical agriculture skills in the school garden",
+    className: "",
+  },
+  {
+    title: "Science laboratory",
+    description:
+      "Laboratory sessions create space for observation, experimentation, and confident inquiry.",
+    image: "/images/academics-science-lab.jpeg",
+    alt: "Merishaw School students conducting a practical experiment in the science laboratory",
+    className: "",
+  },
+  {
+    title: "Engineering workshop",
+    description:
+      "Practical workshop exposure develops care, problem-solving, and respect for skilled work.",
+    image: "/images/academics-engineering-workshop.jpeg",
+    alt: "Merishaw School student wearing protective equipment during an engineering workshop activity",
+    className: "",
+  },
+  {
+    title: "Focused learning",
+    description:
+      "Structured classroom routines support concentration, participation, and academic progress.",
+    image: "/images/academics-engaged-classroom.jpeg",
+    alt: "Merishaw School student raising his hand during a classroom lesson",
+    className: "",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Academics",
@@ -45,6 +89,45 @@ export default async function AcademicsPage() {
           <div className="mt-10 grid gap-5 md:grid-cols-2">
             {cbePrograms.map((program, index) => (
               <AcademicCard key={program.title} {...program} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-brand-burgundy px-4 py-16 text-white sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <SectionTitle
+            eyebrow="Learning in action"
+            title="Knowledge becomes confidence when boys can put it to work."
+            description="Merishaw combines focused classroom learning with practical spaces for robotics, agriculture, science, and workshop exposure."
+            tone="dark"
+          />
+          <div className="mt-10 grid auto-rows-[15rem] gap-4 md:grid-cols-4">
+            {learningInAction.map((item, index) => (
+              <MotionReveal
+                key={item.title}
+                delay={index * 0.04}
+                className={item.className}
+              >
+                <article className="group relative h-full overflow-hidden rounded-md border border-white/15 bg-brand-ink shadow-card">
+                  <Image
+                    src={item.image}
+                    alt={item.alt}
+                    fill
+                    className="object-cover transition duration-700 group-hover:scale-105"
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-ink via-brand-ink/25 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-5">
+                    <h3 className="font-serif text-2xl font-semibold">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 max-w-lg text-sm leading-6 text-white/80">
+                      {item.description}
+                    </p>
+                  </div>
+                </article>
+              </MotionReveal>
             ))}
           </div>
         </div>

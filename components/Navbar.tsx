@@ -152,11 +152,6 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
                 )}
                 <div className="pointer-events-none absolute left-0 top-full z-50 w-72 translate-y-2 pt-3 opacity-0 transition duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100">
                   <div className="overflow-hidden rounded-md border border-brand-line bg-white shadow-premium">
-                    <div className="border-b border-brand-line bg-brand-cream px-4 py-3">
-                      <p className="text-xs font-bold uppercase tracking-wide text-brand-burgundy">
-                        {item.label}
-                      </p>
-                    </div>
                     <div className="grid py-2">
                       {item.children.map((child) => (
                         <Link
