@@ -1,8 +1,7 @@
 export const csrInitiatives = [
-  "Environmental initiatives and school/community clean-up programs",
-  "Community service and outreach activities",
-  "Donation drives that support practical needs in the wider community",
-  "Health and wellness campaigns that promote responsible citizenship",
+  "Outreach programs: students and the Merishaw community volunteer at local centers, including Kajiado Children's Home.",
+  "Values and integrity: boys cultivate empathy, humility, and compassion through guided community service.",
+  "Life skills: Community Service Learning develops citizenship, entrepreneurship, and civic responsibility.",
 ];
 
 export const supportContent = {
