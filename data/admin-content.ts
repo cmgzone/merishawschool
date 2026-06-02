@@ -77,6 +77,7 @@ export type EditableTextCard = {
 
 export type EditableSlide = {
   eyebrow?: string;
+  eyebrowStyle?: "featured" | "label";
   title: string;
   description: string;
   image: string;

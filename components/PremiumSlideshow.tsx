@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 
 export type PremiumSlide = {
   eyebrow?: string;
+  eyebrowStyle?: "featured" | "label";
   title: string;
   description: string;
   image: string;
@@ -48,6 +49,8 @@ export default function PremiumSlideshow({
     heightClassName ?? (compact ? "min-h-[440px]" : "min-h-[680px]");
   const hasFeaturedEyebrow =
     headingLevel === 1 && contentAlign === "center" && !compact;
+  const useFeaturedEyebrow =
+    hasFeaturedEyebrow && slide.eyebrowStyle !== "label";
 
   useEffect(() => {
     if (reduceMotion || slides.length < 2) {
@@ -157,7 +160,7 @@ export default function PremiumSlideshow({
               <p
                 className={cn(
                   "font-bold text-brand-gold",
-                  hasFeaturedEyebrow
+                  useFeaturedEyebrow
                     ? "premium-heading brand-slideshow-wordmark mx-auto font-serif text-4xl font-semibold leading-tight sm:text-5xl lg:text-7xl"
                     : "text-sm uppercase tracking-[0.18em] drop-shadow",
                 )}
@@ -169,7 +172,7 @@ export default function PremiumSlideshow({
               <h1
                 className={cn(
                   "premium-heading mt-3 font-serif font-semibold leading-tight text-white",
-                  hasFeaturedEyebrow
+                  useFeaturedEyebrow
                     ? "text-2xl sm:text-3xl lg:text-5xl"
                     : compact
                       ? "text-3xl sm:text-4xl"

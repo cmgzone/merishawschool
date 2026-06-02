@@ -244,13 +244,14 @@ export const heroSlides = [
     imagePosition: "center center",
   },
   {
-    eyebrow: "Christian character formation",
-    title: "Nurturing character through values founded in Christianity.",
+    eyebrow: "Faith & Character",
+    eyebrowStyle: "label" as const,
+    title: "Character grounded in Christian faith.",
     description:
       "Our chaplain is available 24/7 to guide, counsel, and walk alongside every Moran as he grows in faith, integrity, and purpose.",
     image: "/images/hero-christian-character-formation.jpeg",
     alt: "Merishaw School chaplain seated at a desk with an open Bible",
-    imagePosition: "center center",
+    imagePosition: "center 22%",
   },
 ];
 
