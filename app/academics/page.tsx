@@ -3,10 +3,8 @@ import Image from "next/image";
 import { CheckCircle2, Layers3, Route } from "lucide-react";
 import AcademicCard from "@/components/AcademicCard";
 import ButtonLink from "@/components/ButtonLink";
-import CTASection from "@/components/CTASection";
 import MotionReveal from "@/components/MotionReveal";
 import PageHeader from "@/components/PageHeader";
-import PillarCard from "@/components/PillarCard";
 import SectionTitle from "@/components/SectionTitle";
 import {
   cbeOverview,
@@ -234,31 +232,6 @@ export default async function AcademicsPage() {
         </div>
       </section>
 
-      <section className="bg-brand-burgundy px-4 py-16 text-white sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <SectionTitle
-            eyebrow="Pillars"
-            title="Six pillars for holistic formation."
-            description="Each pillar supports the school's aim of transforming boys into men of purpose and integrity."
-            tone="dark"
-          />
-          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {content.academics.pillars.map((pillar, index) => (
-              <PillarCard key={pillar.title} {...pillar} index={index} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <CTASection
-        eyebrow="Next step"
-        title="Discuss the right academic pathway for your son."
-        description="Admissions can advise on CBE grades, learner placement, and the information needed for a complete application."
-        primaryHref="/admissions"
-        primaryLabel="Admissions"
-        secondaryHref="/contact"
-        secondaryLabel="Contact Us"
-      />
     </>
   );
 }
