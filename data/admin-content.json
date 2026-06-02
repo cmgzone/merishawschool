@@ -617,6 +617,36 @@
         "category": "Sports"
       },
       {
+        "src": "/images/sports-soccer-match.jpeg",
+        "alt": "Merishaw Soccer Academy students competing for the ball",
+        "category": "Sports"
+      },
+      {
+        "src": "/images/sports-swimming-butterfly.jpeg",
+        "alt": "Merishaw School swimmer practising butterfly stroke",
+        "category": "Swimming"
+      },
+      {
+        "src": "/images/sports-swimming-training.jpeg",
+        "alt": "Merishaw School swimmer training in a pool lane",
+        "category": "Swimming"
+      },
+      {
+        "src": "/images/sports-lacrosse-match.jpeg",
+        "alt": "Merishaw School students playing lacrosse on the field",
+        "category": "Lacrosse"
+      },
+      {
+        "src": "/images/clubs-badminton-court.jpeg",
+        "alt": "Merishaw School student playing badminton on the indoor court",
+        "category": "Clubs"
+      },
+      {
+        "src": "/images/clubs-table-tennis.jpeg",
+        "alt": "Merishaw School students playing table tennis",
+        "category": "Clubs"
+      },
+      {
         "src": "/images/aviation-group-briefing.jpeg",
         "alt": "Merishaw School aviation students receiving a briefing beside an aircraft",
         "category": "Aviation"
@@ -776,6 +806,13 @@
         "description": "Guided aviation exposure connects technical curiosity, career awareness, and the confidence to imagine ambitious futures.",
         "image": "/images/aviation-group-briefing.jpeg",
         "alt": "Merishaw School aviation students receiving a briefing beside an aircraft"
+      },
+      {
+        "eyebrow": "Swimming",
+        "title": "Sporting pathways that build discipline and resilience.",
+        "description": "From field sports to swimming, students have room to train, compete, and pursue steady personal improvement.",
+        "image": "/images/sports-swimming-butterfly.jpeg",
+        "alt": "Merishaw School swimmer practising butterfly stroke"
       }
     ]
   },
