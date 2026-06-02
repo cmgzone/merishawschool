@@ -26,8 +26,8 @@ export const navigationGroups = [
     label: "Academics",
     href: "/academics",
     children: [
-      { label: "CBE Pathways", href: "/academics" },
       { label: "8-4-4 Curriculum", href: "/academics/844" },
+      { label: "CBE Pathways", href: "/academics" },
       { label: "Six Pillars", href: "/academics" },
       { label: "Our Classrooms", href: "/our-classrooms" },
       { label: "Science Block", href: "/science-block" },

@@ -131,6 +131,64 @@ function StudentCouncilSection({
   );
 }
 
+function GoverningCouncilSection() {
+  const councilPriorities = [
+    {
+      title: "Institutional stewardship",
+      description:
+        "Supports a clear long-term direction for the school and responsible stewardship of its mission and resources.",
+      icon: HeartHandshake,
+    },
+    {
+      title: "Standards and accountability",
+      description:
+        "Keeps attention on sound governance, quality expectations, and transparent decision-making.",
+      icon: ShieldCheck,
+    },
+    {
+      title: "Community partnership",
+      description:
+        "Strengthens constructive relationships around the shared purpose of forming confident, responsible young men.",
+      icon: UsersRound,
+    },
+  ];
+
+  return (
+    <section className="bg-brand-burgundy px-4 py-16 text-white sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        <SectionTitle
+          eyebrow="Governing Council"
+          title="Stewardship that keeps the school focused on its purpose."
+          description="The Governing Council supports institutional direction, accountability, and the partnerships that help Merishaw continue to grow with confidence."
+          align="center"
+          tone="dark"
+        />
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          {councilPriorities.map((priority, index) => {
+            const Icon = priority.icon;
+
+            return (
+              <MotionReveal key={priority.title} delay={index * 0.06}>
+                <article className="h-full rounded-md border border-white/15 bg-white/10 p-6">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-gold text-brand-burgundy">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mt-5 font-serif text-2xl font-semibold">
+                    {priority.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-white/80">
+                    {priority.description}
+                  </p>
+                </article>
+              </MotionReveal>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function CampusSupportSection() {
   const supportPoints = [
     {
@@ -229,8 +287,7 @@ export default async function LeadershipPage() {
         title={content.pages.leadership.title}
         description={content.pages.leadership.description}
         image={content.pages.leadership.image}
-        imageFit="contain"
-        imagePosition="right center"
+        showImage={false}
       />
 
       <LeadershipPeopleSection
@@ -240,6 +297,8 @@ export default async function LeadershipPage() {
         people={leadership.boardMembers}
         columns="four"
       />
+
+      <GoverningCouncilSection />
 
       <PrincipalWelcomeSection principal={leadership.principal} variant="full" />
 
