@@ -617,6 +617,21 @@
         "category": "Sports"
       },
       {
+        "src": "/images/aviation-group-briefing.jpeg",
+        "alt": "Merishaw School aviation students receiving a briefing beside an aircraft",
+        "category": "Aviation"
+      },
+      {
+        "src": "/images/aviation-student-controls.jpeg",
+        "alt": "Merishaw School aviation student learning at the aircraft controls",
+        "category": "Aviation"
+      },
+      {
+        "src": "/images/aviation-technical-briefing.jpeg",
+        "alt": "Merishaw School aviation students listening to a technical briefing",
+        "category": "Aviation"
+      },
+      {
         "src": "/images/gallery-campus-residential-block.jpeg",
         "alt": "Merishaw School residential block and landscaped courtyard",
         "category": "Boarding"
@@ -754,6 +769,13 @@
         "description": "Merishaw's CSR approach brings partners and stakeholders together to support lasting change in the wider community.",
         "image": "/images/gallery-unicaf-partnership.jpeg",
         "alt": "Merishaw School and UNICAF representatives supporting a CSR initiative"
+      },
+      {
+        "eyebrow": "Aviation",
+        "title": "Learning experiences that invite boys to aim higher.",
+        "description": "Guided aviation exposure connects technical curiosity, career awareness, and the confidence to imagine ambitious futures.",
+        "image": "/images/aviation-group-briefing.jpeg",
+        "alt": "Merishaw School aviation students receiving a briefing beside an aircraft"
       }
     ]
   },
