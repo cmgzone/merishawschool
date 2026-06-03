@@ -55,32 +55,32 @@ export const boardMembers: LeadershipPerson[] = [
 
 export const seniorManagement: LeadershipPerson[] = [
   {
-    name: "Deputy Principal",
-    role: "School Administration",
-    image: "/images/gallery-parade-grounds.png",
+    name: "Deputy Principal Academics",
+    role: "Senior Management Team",
+    image: "/images/smt-deputy-principal-academics.jpeg",
     description:
-      "Supports daily school operations, discipline, coordination, and the smooth running of academic and boarding life.",
+      "Leads academic coordination, learner progress, curriculum delivery, and the standards that keep classroom learning focused.",
   },
   {
-    name: "Dean of Studies",
-    role: "Academic Leadership",
-    image: "/images/hero-tuition-block.png",
+    name: "Human Resource Manager",
+    role: "Senior Management Team",
+    image: "/images/smt-human-resource-manager.jpeg",
     description:
-      "Coordinates teaching, assessment, learner progress, and curriculum delivery across the school.",
+      "Supports staff welfare, professional coordination, recruitment processes, and the people systems behind daily school life.",
   },
   {
-    name: "Director of Boarding",
-    role: "Residential Life",
-    image: "/images/gallery-hostel-manyatta-palace.jpeg",
+    name: "Operations Manager",
+    role: "Senior Management Team",
+    image: "/images/smt-operations-manager.jpeg",
     description:
-      "Guides the boarding environment so learners experience structure, care, accountability, and belonging.",
+      "Coordinates operational systems, facilities support, and the practical routines that keep the school environment running smoothly.",
   },
   {
-    name: "Guidance and Counselling Lead",
-    role: "Student Welfare",
-    image: "/images/gallery-student-life-1.jpg",
+    name: "Deputy Principal Admin",
+    role: "Senior Management Team",
+    image: "/images/smt-deputy-principal-admin.jpeg",
     description:
-      "Supports learner wellbeing, mentorship, character formation, and positive decision-making.",
+      "Supports administration, discipline, coordination, and the orderly running of academic, boarding, and student-life routines.",
   },
 ];
 

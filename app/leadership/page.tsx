@@ -25,6 +25,7 @@ type LeadershipSectionProps = {
   people: EditableLeadershipPerson[];
   tone?: "white" | "cream";
   columns?: "three" | "four";
+  imagePosition?: string;
 };
 
 function LeadershipPeopleSection({
@@ -34,6 +35,7 @@ function LeadershipPeopleSection({
   people,
   tone = "white",
   columns = "three",
+  imagePosition,
 }: LeadershipSectionProps) {
   const gridClass =
     columns === "four"
@@ -57,6 +59,7 @@ function LeadershipPeopleSection({
               key={`${person.role}-${person.name}-${index}`}
               {...person}
               index={index}
+              imagePosition={imagePosition}
             />
           ))}
         </div>
@@ -92,7 +95,7 @@ function StudentCouncilSection({
             </div>
           </MotionReveal>
         </div>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-5">
           {people.map((person, index) => (
             <MotionReveal key={`${person.role}-${index}`} delay={index * 0.04}>
               <article className="h-full rounded-md border border-brand-line bg-white p-5 text-center shadow-card">
@@ -307,6 +310,8 @@ export default async function LeadershipPage() {
         title="Coordinating academics, boarding, welfare, and daily school life."
         description="The senior management team supports the principal in running a focused, orderly, and caring residential school environment."
         people={leadership.seniorManagement}
+        columns="four"
+        imagePosition="top"
       />
 
       <CampusSupportSection />

@@ -7,6 +7,7 @@ type LeadershipCardProps = {
   role: string;
   image: string;
   description: string;
+  imagePosition?: string;
   index?: number;
   variant?: "default" | "featured";
 };
@@ -16,6 +17,7 @@ export default function LeadershipCard({
   role,
   image,
   description,
+  imagePosition = "center",
   index = 0,
   variant = "default",
 }: LeadershipCardProps) {
@@ -44,6 +46,7 @@ export default function LeadershipCard({
             alt={`${name} - ${role}`}
             fill
             className="object-cover"
+            style={{ objectPosition: imagePosition }}
             sizes={featured ? "256px" : "144px"}
           />
         </div>
