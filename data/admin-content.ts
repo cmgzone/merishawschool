@@ -384,9 +384,10 @@ export const defaultAdminContent: EditableContent = {
       image: "/images/campus-life.jpg",
       imageAlt: "Merishaw School campus life",
     },
-    vision: "Transforming boys into men of purpose.",
+    vision:
+      "An extraordinary journey developing men of valor who are well-rounded, confident, and socially responsible, who succeed in a rapidly changing world and impact society in a transformative way.",
     mission:
-      "To provide a home-like, values-led environment that builds confidence, moulds integrity, develops talents and sports, inspires entrepreneurship and global leadership, and prepares boys to harness technology for the good of humanity.",
+      "Provide our students with the best internationally recognized curriculum-based education, preparing them for world-class universities of their choice. We apply critical pedagogy in a collaborative learning environment that inspires self-confidence and encourages hands-on experience, independent study, and research projects, while developing students' creativity and critical thinking skills.",
     values: values.map((value) => ({ ...value })),
     architecture: {
       eyebrow: "Architectural concept",
