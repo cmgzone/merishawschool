@@ -390,7 +390,7 @@ export const defaultAdminContent: EditableContent = {
     vision:
       "An extraordinary journey developing men of valor who are well-rounded, confident, and socially responsible, who succeed in a rapidly changing world and impact society in a transformative way.",
     mission:
-      "Provide our students with the best internationally recognized curriculum-based education, preparing them for world-class universities of their choice. We apply critical pedagogy in a collaborative learning environment that inspires self-confidence and encourages hands-on experience, independent study, and research projects, while developing students' creativity and critical thinking skills.",
+      "Provide our students with the best internationally recognized competency-based curriculum education, preparing them for world-class universities of their choice. Apply critical pedagogy in a collaborative learning environment that inspires self-confidence and encourages hands-on experience, independent study, and research projects, while developing students' creativity and critical thinking skills.",
     values: values.map((value) => ({ ...value })),
     architecture: {
       eyebrow: "Architectural concept",
