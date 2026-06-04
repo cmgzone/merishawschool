@@ -364,7 +364,10 @@ export const defaultAdminContent: EditableContent = {
       eyebrow: page.eyebrow,
       description: page.description,
       needed: page.needed,
-      image: "/images/resource-centre.jpeg",
+      image:
+        slug === "gmax"
+          ? "/images/gmax-facility.jpeg"
+          : "/images/resource-centre.jpeg",
     })),
   },
   about: {

@@ -30,7 +30,7 @@ export const navigationGroups = [
       { label: "CBE Pathways", href: "/academics" },
       { label: "Six Pillars", href: "/academics" },
       { label: "Our Classrooms", href: "/our-classrooms" },
-      { label: "Science Block", href: "/science-block" },
+      { label: "Science and Laboratory", href: "/science-block" },
       { label: "Aviation", href: "/aviation" },
       { label: "Workshop", href: "/workshop" },
       { label: "Robotics", href: "/robotics" },

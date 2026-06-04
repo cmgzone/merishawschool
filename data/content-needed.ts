@@ -32,12 +32,12 @@ export const contentNeededPages = {
       "Content needed: approved copy, classroom photos, learning-space details, teaching approach, and learner support information.",
   },
   "science-block": {
-    title: "Science Block",
+    title: "Science and Laboratory",
     eyebrow: "Academics",
     description:
-      "A future overview of the science block, laboratories, practical lessons, safety standards, and STEM learning spaces.",
+      "A future overview of science and laboratory spaces, practical lessons, safety standards, and STEM learning spaces.",
     needed:
-      "Content needed: approved science block copy, lab photos, facilities list, practical learning details, and safety guidance.",
+      "Content needed: approved science and laboratory copy, lab photos, facilities list, practical learning details, and safety guidance.",
   },
   aviation: {
     title: "Aviation",
@@ -99,7 +99,7 @@ export const contentNeededPages = {
     title: "GMAX",
     eyebrow: "Infrastructure",
     description:
-      "A future page for Merishaw's GMAX facility, learning experiences, activities, equipment, and student use.",
+      "Explore Merishaw's GMAX facility, a versatile space for gatherings, presentations, performances, indoor activities, and student experiences.",
     needed:
       "Content needed: approved GMAX copy, photos, facility purpose, equipment details, learning activities, and student participation information.",
   },

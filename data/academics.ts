@@ -222,10 +222,10 @@ export const academicExperiencePages = {
     ],
   },
   "science-block": {
-    title: "Science Block",
+    title: "Science and Laboratory",
     eyebrow: "Academics / STEM",
     description:
-      "Practical science spaces help students investigate ideas, work carefully, and turn curiosity into disciplined inquiry.",
+      "Practical science and laboratory spaces help students investigate ideas, work carefully, and turn curiosity into disciplined inquiry.",
     heroImage: "/images/academics-science-lab.jpeg",
     introTitle: "Science becomes memorable when learners can test an idea.",
     introDescription:

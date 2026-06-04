@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import AcademicExperiencePage from "@/components/AcademicExperiencePage";
 import ButtonLink from "@/components/ButtonLink";
@@ -15,6 +16,19 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
+const gmaxGalleryImages = [
+  {
+    src: "/images/gmax-facility.jpeg",
+    alt: "GMAX facility at Merishaw School with seating, stage, and sports-themed entrance",
+    title: "GMAX facility view",
+  },
+  {
+    src: "/images/gmax-stage.jpeg",
+    alt: "GMAX stage, screen, and seating area at Merishaw School",
+    title: "GMAX stage and seating",
+  },
+];
+
 function getDefaultPage(slug: string) {
   if (slug in contentNeededPages) {
     const page = contentNeededPages[slug as ContentNeededSlug];
@@ -22,7 +36,10 @@ function getDefaultPage(slug: string) {
     return {
       ...page,
       slug,
-      image: "/images/resource-centre.jpeg",
+      image:
+        slug === "gmax"
+          ? "/images/gmax-facility.jpeg"
+          : "/images/resource-centre.jpeg",
     };
   }
 
@@ -40,6 +57,26 @@ function getAcademicExperiencePage(slug: string) {
   return slug in academicExperiencePages
     ? academicExperiencePages[slug as AcademicExperienceSlug]
     : null;
+}
+
+function ContentNeededCard({ needed }: { needed: string }) {
+  return (
+    <>
+      <p className="text-sm font-bold uppercase text-brand-burgundy">
+        Content needed
+      </p>
+      <h2 className="mt-3 font-serif text-4xl font-semibold leading-tight text-brand-ink">
+        This page needs approved content.
+      </h2>
+      <p className="mt-5 text-base leading-8 text-brand-muted">{needed}</p>
+      <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+        <ButtonLink href="/contact">Contact School</ButtonLink>
+        <ButtonLink href="/" variant="secondary">
+          Back Home
+        </ButtonLink>
+      </div>
+    </>
+  );
 }
 
 export function generateStaticParams() {
@@ -94,23 +131,34 @@ export default async function ContentNeededPage({ params }: PageProps) {
         image={page.image}
       />
       <section className="bg-brand-cream px-4 py-16 sm:px-6 lg:px-8">
-        <MotionReveal className="mx-auto max-w-3xl rounded-md border border-brand-gold/60 bg-white p-7 shadow-card">
-          <p className="text-sm font-bold uppercase text-brand-burgundy">
-            Content needed
-          </p>
-          <h2 className="mt-3 font-serif text-4xl font-semibold leading-tight text-brand-ink">
-            This page needs approved content.
-          </h2>
-          <p className="mt-5 text-base leading-8 text-brand-muted">
-            {page.needed}
-          </p>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/contact">Contact School</ButtonLink>
-            <ButtonLink href="/" variant="secondary">
-              Back Home
-            </ButtonLink>
+        {slug === "gmax" ? (
+          <div className="mx-auto max-w-7xl">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {gmaxGalleryImages.map((image, index) => (
+                <MotionReveal key={image.src} delay={index * 0.05}>
+                  <article className="h-full rounded-md border border-brand-line bg-white p-3 shadow-card">
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-brand-ink">
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        className="object-contain"
+                        sizes="(min-width: 1024px) 34vw, (min-width: 640px) 45vw, 100vw"
+                      />
+                    </div>
+                    <p className="mt-3 text-sm font-semibold uppercase text-brand-burgundy">
+                      {image.title}
+                    </p>
+                  </article>
+                </MotionReveal>
+              ))}
+            </div>
           </div>
-        </MotionReveal>
+        ) : (
+          <MotionReveal className="mx-auto max-w-3xl rounded-md border border-brand-gold/60 bg-white p-7 shadow-card">
+            <ContentNeededCard needed={page.needed} />
+          </MotionReveal>
+        )}
       </section>
     </>
   );
