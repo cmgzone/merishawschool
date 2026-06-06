@@ -14,7 +14,6 @@ const staticRoutes = [
   "/contact",
   "/csr",
   "/downloads",
-  "/founders-mission",
   "/founders-vision",
   "/gallery",
   "/infrastructure",
