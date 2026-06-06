@@ -11,10 +11,24 @@
 ## Coolify Setup
 
 - Create a new application in Coolify from the project Git repository.
-- Use Node.js buildpack or Docker/Nixpacks default Node detection.
+- Use Dockerfile deployment, or use Node.js buildpack / Nixpacks default Node detection.
+- Dockerfile path: `./Dockerfile`
 - Build command: `npm run build`
 - Start command: `npm run start`
 - Expose port: `3000`
+
+## Docker Persistent Storage
+
+When deploying with the Dockerfile, add persistent storage in Coolify for:
+
+- `/app/data`: stores admin-edited site content in `admin-content.json`.
+- `/app/public/uploads`: stores images uploaded from the admin panel.
+
+Do not mount over all of `/app/public`, because that would hide the bundled
+static assets from the Docker image.
+
+On first start, the container seeds `admin-content.json` into an empty
+`/app/data` mount.
 
 ## Environment Variables
 
