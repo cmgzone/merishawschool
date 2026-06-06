@@ -127,7 +127,7 @@ export default function Footer({ site = siteConfig }: FooterProps) {
               </h2>
               <span className="h-px w-16 bg-white/20 sm:w-28" />
             </div>
-            <div className="mt-5 flex flex-wrap justify-center gap-3">
+            <div className="mt-5 grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:justify-center sm:gap-3">
               {partners.map((partner, index) => {
                 const initials = partner.name
                   .split(/\s+/)
@@ -140,7 +140,7 @@ export default function Footer({ site = siteConfig }: FooterProps) {
                     alt={`${partner.name} logo`}
                     width={160}
                     height={64}
-                    className="h-auto w-auto max-h-11 max-w-40 object-contain"
+                    className="h-auto w-auto max-h-7 max-w-[5.25rem] object-contain sm:max-h-11 sm:max-w-40"
                   />
                 ) : (
                   <span className="text-[10px] font-bold uppercase text-brand-burgundy">
@@ -149,7 +149,7 @@ export default function Footer({ site = siteConfig }: FooterProps) {
                 );
 
                 const className =
-                  "flex h-16 w-48 items-center justify-center rounded-md border border-white/25 bg-white px-4 py-2 shadow-sm transition hover:border-brand-gold hover:shadow-md";
+                  "flex h-12 w-full items-center justify-center rounded-md border border-white/25 bg-white px-2 py-1.5 shadow-sm transition hover:border-brand-gold hover:shadow-md sm:h-16 sm:w-48 sm:px-4 sm:py-2";
 
                 return partner.href ? (
                   <a
