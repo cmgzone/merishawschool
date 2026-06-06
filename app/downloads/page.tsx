@@ -20,6 +20,7 @@ export default async function DownloadsPage() {
         title={content.pages.downloads.title}
         description={content.pages.downloads.description}
         image={content.pages.downloads.image}
+        imagePosition={content.pages.downloads.imagePosition}
       />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">

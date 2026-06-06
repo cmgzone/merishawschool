@@ -20,6 +20,7 @@ export default async function ContactPage() {
         title={content.pages.contact.title}
         description={content.pages.contact.description}
         image={content.pages.contact.image}
+        imagePosition={content.pages.contact.imagePosition}
       />
       <ContactSection site={content.site} intro={content.contact.sectionIntro} />
       <section className="bg-brand-cream px-4 pb-16 sm:px-6 lg:px-8">

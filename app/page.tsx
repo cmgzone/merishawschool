@@ -8,7 +8,18 @@ export default async function Home() {
   return (
     <>
       <HeroSection slides={content.home.heroSlides} />
-      <WelcomeVideoSection tone="cream" />
+      <WelcomeVideoSection
+        eyebrow={content.homeVideo.eyebrow}
+        title={content.homeVideo.title}
+        description={content.homeVideo.description}
+        embedUrl={content.homeVideo.embedUrl}
+        videoTitle={content.homeVideo.videoTitle}
+        primaryHref={content.homeVideo.primaryAction.href}
+        primaryLabel={content.homeVideo.primaryAction.label}
+        secondaryHref={content.homeVideo.secondaryAction.href}
+        secondaryLabel={content.homeVideo.secondaryAction.label}
+        tone="cream"
+      />
     </>
   );
 }

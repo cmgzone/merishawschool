@@ -6,26 +6,7 @@ import PageHeader from "@/components/PageHeader";
 import SectionTitle from "@/components/SectionTitle";
 import { getEditableContent } from "@/data/admin-content";
 
-const coreCommunityServiceInitiatives = [
-  {
-    title: "Outreach Programs",
-    description:
-      "Students and the Merishaw community regularly volunteer at local centers, spreading joy and donations to organizations such as the Kajiado Children's Home.",
-    icon: UsersRound,
-  },
-  {
-    title: "Values & Integrity",
-    description:
-      "The school's spiritual and counseling teams guide the boys to cultivate a spirit of empathy, humility, and compassion through community service.",
-    icon: HeartHandshake,
-  },
-  {
-    title: "Life Skills",
-    description:
-      "The Community Service Learning program, featured in the Competency-Based Curriculum, equips learners with practical life skills, including citizenship, entrepreneurship, and civic responsibility.",
-    icon: BookOpenCheck,
-  },
-];
+const initiativeIcons = [UsersRound, HeartHandshake, BookOpenCheck];
 
 export const metadata: Metadata = {
   title: "CSR — Corporate Social Responsibility",
@@ -39,44 +20,23 @@ export default async function CSRPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Community Impact"
-        title="CSR"
-        description="Corporate Social Responsibility at Merishaw School."
-        image="/images/gallery-unicaf-partnership.jpeg"
+        eyebrow={content.pages.csr.eyebrow}
+        title={content.pages.csr.title}
+        description={content.pages.csr.description}
+        image={content.pages.csr.image}
+        imagePosition={content.pages.csr.imagePosition}
       />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
           <MotionReveal>
             <h2 className="font-serif text-3xl font-semibold text-brand-ink sm:text-4xl">
-              CSR
+              {content.csr.body.title}
             </h2>
             <div className="mt-8 space-y-6 text-base leading-8 text-brand-muted">
-              <p>
-                Merishaw School CSR is focused on implementing community programs in areas that
-                surround the school and are faced with limited access to quality education, health
-                services and access to water and nutrition.
-              </p>
-              <p>
-                We work with partner organizations to implement programs in collaboration with
-                stakeholders.
-              </p>
-              <p>
-                All our CSR programs and activities are guided by the commitment to make lasting
-                change in community defined in the Sustainable Development Goals.
-              </p>
-              <p>
-                Our CSR program is structured to provide an objectively measured impact.
-              </p>
-              <p>
-                We engage local and national government as necessary throughout the strategy
-                development process as an enabler of systems-level change.
-              </p>
-              <p>
-                We are a visionary organization that is designed and committed to advance boy child
-                education and to support young men in the region to be holistically equipped to
-                access dignified and fulfilling work.
-              </p>
+              {content.csr.body.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
           </MotionReveal>
         </div>
@@ -85,14 +45,14 @@ export default async function CSRPage() {
       <section className="bg-brand-cream px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionTitle
-            eyebrow="Community Service Learning"
-            title="Core Community Service Initiatives"
-            description="Merishaw gives boys practical opportunities to serve, reflect, and grow into responsible citizens."
+            eyebrow={content.csr.initiativesIntro.eyebrow}
+            title={content.csr.initiativesIntro.title}
+            description={content.csr.initiativesIntro.description}
             align="center"
           />
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            {coreCommunityServiceInitiatives.map((initiative, index) => {
-              const Icon = initiative.icon;
+            {content.csr.initiatives.map((initiative, index) => {
+              const Icon = initiativeIcons[index] ?? HeartHandshake;
 
               return (
                 <MotionReveal key={initiative.title} delay={index * 0.05}>
@@ -115,13 +75,13 @@ export default async function CSRPage() {
       </section>
 
       <CTASection
-        eyebrow="Get Involved"
-        title="Partner with Merishaw School."
-        description="Speak with our team to learn how you can support our community programs."
-        primaryHref="/contact"
-        primaryLabel="Contact the School"
-        secondaryHref={`mailto:${content.site.contact.email}`}
-        secondaryLabel="Email Enquiries"
+        eyebrow={content.csr.cta.eyebrow}
+        title={content.csr.cta.title}
+        description={content.csr.cta.description}
+        primaryHref={content.csr.cta.primaryHref}
+        primaryLabel={content.csr.cta.primaryLabel}
+        secondaryHref={content.csr.cta.secondaryHref}
+        secondaryLabel={content.csr.cta.secondaryLabel}
       />
     </>
   );

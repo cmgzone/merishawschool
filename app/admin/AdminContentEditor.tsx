@@ -12,14 +12,22 @@ import {
 } from "react";
 import type {
   EditableAcademicProgram,
+  EditableAcademicExperiencePage,
   EditableAdmissionsStep,
+  EditableButtonAction,
   EditableComingSoonPage,
   EditableContent,
+  EditableCTA,
   EditableDownloadItem,
   EditableGalleryImage,
+  EditableImageCard,
+  EditableImageItem,
   EditableLeadershipPerson,
+  EditableMediaSection,
   EditableNewsItem,
   EditablePageHeader,
+  EditableParagraphSection,
+  EditablePartner,
   EditablePillar,
   EditableSectionIntro,
   EditableSlide,
@@ -40,7 +48,10 @@ type TabId =
   | "about"
   | "home"
   | "academics"
+  | "academicExperiences"
   | "admissions"
+  | "activities"
+  | "campus"
   | "gallery"
   | "downloads"
   | "news"
@@ -259,6 +270,18 @@ function Trash2({ className }: IconProps) {
   );
 }
 
+function Trophy({ className }: IconProps) {
+  return (
+    <AdminSvgIcon className={className}>
+      <path d="M8 21h8" />
+      <path d="M12 17v4" />
+      <path d="M7 4h10v4a5 5 0 0 1-10 0Z" />
+      <path d="M5 5H3v2a4 4 0 0 0 4 4" />
+      <path d="M19 5h2v2a4 4 0 0 1-4 4" />
+    </AdminSvgIcon>
+  );
+}
+
 function Upload({ className }: IconProps) {
   return (
     <AdminSvgIcon className={className}>
@@ -284,7 +307,10 @@ const tabs = [
   { id: "about", label: "About", icon: BookOpenCheck },
   { id: "home", label: "Home", icon: Home },
   { id: "academics", label: "Academics", icon: BookOpenCheck },
+  { id: "academicExperiences", label: "Academic Detail", icon: FileText },
   { id: "admissions", label: "Admissions", icon: ClipboardList },
+  { id: "activities", label: "Activities", icon: Trophy },
+  { id: "campus", label: "Campus", icon: Home },
   { id: "gallery", label: "Gallery", icon: ImageIcon },
   { id: "downloads", label: "Downloads", icon: Download },
   { id: "news", label: "News & Events", icon: Newspaper },
@@ -297,11 +323,18 @@ type PageHeaderKey = Exclude<keyof EditableContent["pages"], "comingSoon">;
 const pageHeaderConfigs = [
   { id: "about", label: "About" },
   { id: "academics", label: "Academics" },
+  { id: "legacy844", label: "8-4-4 Curriculum" },
   { id: "admissions", label: "Admissions" },
+  { id: "aviation", label: "Aviation" },
+  { id: "clubs", label: "Clubs" },
+  { id: "csr", label: "CSR" },
+  { id: "foundersVision", label: "Founder's Vision" },
+  { id: "infrastructure", label: "Infrastructure" },
   { id: "leadership", label: "Leadership" },
   { id: "gallery", label: "Gallery" },
   { id: "downloads", label: "Downloads" },
   { id: "news", label: "News & Events" },
+  { id: "sports", label: "Sports" },
   { id: "contact", label: "Contact" },
   { id: "support", label: "Support" },
 ] satisfies Array<{ id: PageHeaderKey; label: string }>;
@@ -577,6 +610,207 @@ function ImageField({
   );
 }
 
+function ButtonActionEditor({
+  title,
+  action,
+  onChange,
+}: {
+  title: string;
+  action: EditableButtonAction;
+  onChange: (action: EditableButtonAction) => void;
+}) {
+  return (
+    <div className="grid gap-4 rounded-md border border-brand-line bg-white p-4 sm:grid-cols-2">
+      <Field
+        label={`${title} label`}
+        value={action.label}
+        onChange={(label) => onChange({ ...action, label })}
+      />
+      <Field
+        label={`${title} URL`}
+        value={action.href}
+        onChange={(href) => onChange({ ...action, href })}
+      />
+    </div>
+  );
+}
+
+function CTAEditor({
+  cta,
+  onChange,
+}: {
+  cta: EditableCTA;
+  onChange: (cta: EditableCTA) => void;
+}) {
+  return (
+    <div className="grid gap-5">
+      <SectionIntroEditor
+        intro={cta}
+        onChange={(intro) => onChange({ ...cta, ...intro })}
+      />
+      <div className="grid gap-4 lg:grid-cols-2">
+        <div className="rounded-md border border-brand-line bg-white p-4">
+          <div className="grid gap-4">
+            <Field
+              label="Primary button label"
+              value={cta.primaryLabel}
+              onChange={(primaryLabel) => onChange({ ...cta, primaryLabel })}
+            />
+            <Field
+              label="Primary button URL"
+              value={cta.primaryHref}
+              onChange={(primaryHref) => onChange({ ...cta, primaryHref })}
+            />
+          </div>
+        </div>
+        <div className="rounded-md border border-brand-line bg-white p-4">
+          <div className="grid gap-4">
+            <Field
+              label="Secondary button label"
+              value={cta.secondaryLabel}
+              onChange={(secondaryLabel) => onChange({ ...cta, secondaryLabel })}
+            />
+            <Field
+              label="Secondary button URL"
+              value={cta.secondaryHref}
+              onChange={(secondaryHref) => onChange({ ...cta, secondaryHref })}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MediaSectionEditor({
+  csrfToken,
+  section,
+  onChange,
+}: {
+  csrfToken: string;
+  section: EditableMediaSection;
+  onChange: (section: EditableMediaSection) => void;
+}) {
+  return (
+    <div className="grid gap-5">
+      <SectionIntroEditor
+        intro={section}
+        onChange={(intro) => onChange({ ...section, ...intro })}
+      />
+      <ImageField
+        csrfToken={csrfToken}
+        label="Section image"
+        value={section.image}
+        onChange={(image) => onChange({ ...section, image })}
+      />
+      <div className="grid gap-5 lg:grid-cols-2">
+        <Field
+          label="Image alt text"
+          value={section.imageAlt}
+          onChange={(imageAlt) => onChange({ ...section, imageAlt })}
+        />
+        <Field
+          label="Image position"
+          value={section.imagePosition ?? "center"}
+          onChange={(imagePosition) => onChange({ ...section, imagePosition })}
+        />
+      </div>
+      {section.primaryAction ? (
+        <ButtonActionEditor
+          title="Primary action"
+          action={section.primaryAction}
+          onChange={(primaryAction) => onChange({ ...section, primaryAction })}
+        />
+      ) : null}
+      {section.secondaryAction ? (
+        <ButtonActionEditor
+          title="Secondary action"
+          action={section.secondaryAction}
+          onChange={(secondaryAction) =>
+            onChange({ ...section, secondaryAction })
+          }
+        />
+      ) : null}
+    </div>
+  );
+}
+
+function ParagraphSectionEditor({
+  csrfToken,
+  section,
+  onChange,
+}: {
+  csrfToken: string;
+  section: EditableParagraphSection;
+  onChange: (section: EditableParagraphSection) => void;
+}) {
+  return (
+    <div className="grid gap-5">
+      <div className="grid gap-5 lg:grid-cols-2">
+        <Field
+          label="Eyebrow"
+          value={section.eyebrow}
+          onChange={(eyebrow) => onChange({ ...section, eyebrow })}
+        />
+        <Field
+          label="Title"
+          value={section.title}
+          onChange={(title) => onChange({ ...section, title })}
+        />
+      </div>
+      <StringListEditor
+        title="Paragraphs"
+        items={section.paragraphs}
+        onAdd={() =>
+          onChange({
+            ...section,
+            paragraphs: [...section.paragraphs, "New paragraph"],
+          })
+        }
+        onChange={(paragraphs) => onChange({ ...section, paragraphs })}
+      />
+      {section.image !== undefined ? (
+        <ImageField
+          csrfToken={csrfToken}
+          label="Section image"
+          value={section.image}
+          onChange={(image) => onChange({ ...section, image })}
+        />
+      ) : null}
+      {section.imageAlt !== undefined || section.image !== undefined ? (
+        <div className="grid gap-5 lg:grid-cols-2">
+          <Field
+            label="Image alt text"
+            value={section.imageAlt ?? ""}
+            onChange={(imageAlt) => onChange({ ...section, imageAlt })}
+          />
+          <Field
+            label="Image position"
+            value={section.imagePosition ?? "center"}
+            onChange={(imagePosition) => onChange({ ...section, imagePosition })}
+          />
+        </div>
+      ) : null}
+      {section.primaryAction ? (
+        <ButtonActionEditor
+          title="Primary action"
+          action={section.primaryAction}
+          onChange={(primaryAction) => onChange({ ...section, primaryAction })}
+        />
+      ) : null}
+      {section.secondaryAction ? (
+        <ButtonActionEditor
+          title="Secondary action"
+          action={section.secondaryAction}
+          onChange={(secondaryAction) =>
+            onChange({ ...section, secondaryAction })
+          }
+        />
+      ) : null}
+    </div>
+  );
+}
+
 export default function AdminContentEditor({
   csrfToken,
   initialContent,
@@ -596,7 +830,8 @@ export default function AdminContentEditor({
       hero: content.home.heroSlides.length,
       gallery: content.gallery.images.length,
       news: content.news.items.length,
-      pillars: content.academics.pillars.length,
+      partners: content.site.partners.length,
+      pages: Object.keys(content.academicExperiences).length,
     }),
     [content],
   );
@@ -827,6 +1062,32 @@ export default function AdminContentEditor({
             />
           ))}
         </div>
+        <PartnersEditor
+          csrfToken={csrfToken}
+          items={content.site.partners}
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              site: {
+                ...current.site,
+                partners: [
+                  ...current.site.partners,
+                  {
+                    name: "New partner",
+                    logo: "/images/merishaw-logo.png",
+                    href: "",
+                  },
+                ],
+              },
+            }))
+          }
+          onChange={(partners) =>
+            updateContent((current) => ({
+              ...current,
+              site: { ...current.site, partners },
+            }))
+          }
+        />
         <TextArea
           label="Google map embed URL"
           value={content.site.mapEmbed}
@@ -871,6 +1132,28 @@ export default function AdminContentEditor({
               }))
             }
           />
+          <div className="mt-5 grid gap-5 lg:grid-cols-2">
+            <Field
+              label="Tawk property ID"
+              value={content.site.tawkPropertyId}
+              onChange={(tawkPropertyId) =>
+                updateContent((current) => ({
+                  ...current,
+                  site: { ...current.site, tawkPropertyId },
+                }))
+              }
+            />
+            <Field
+              label="Tawk widget ID"
+              value={content.site.tawkWidgetId}
+              onChange={(tawkWidgetId) =>
+                updateContent((current) => ({
+                  ...current,
+                  site: { ...current.site, tawkWidgetId },
+                }))
+              }
+            />
+          </div>
         </div>
       </div>
     );
@@ -1114,6 +1397,20 @@ export default function AdminContentEditor({
             }
           />
         </div>
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Values section intro
+          </h3>
+          <SectionIntroEditor
+            intro={content.about.valuesIntro}
+            onChange={(valuesIntro) =>
+              updateContent((current) => ({
+                ...current,
+                about: { ...current.about, valuesIntro },
+              }))
+            }
+          />
+        </article>
         <ValuesEditor
           items={content.about.values}
           onAdd={() =>
@@ -1129,6 +1426,45 @@ export default function AdminContentEditor({
             updateContent((current) => ({
               ...current,
               about: { ...current.about, values: valuesItems },
+            }))
+          }
+        />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Development pillars intro
+          </h3>
+          <SectionIntroEditor
+            intro={content.about.developmentPillarsIntro}
+            onChange={(developmentPillarsIntro) =>
+              updateContent((current) => ({
+                ...current,
+                about: { ...current.about, developmentPillarsIntro },
+              }))
+            }
+          />
+        </article>
+        <TextCardEditor
+          title="Development pillars"
+          items={content.about.developmentPillars}
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              about: {
+                ...current.about,
+                developmentPillars: [
+                  ...current.about.developmentPillars,
+                  {
+                    title: "New pillar",
+                    description: "Add pillar details.",
+                  },
+                ],
+              },
+            }))
+          }
+          onChange={(developmentPillars) =>
+            updateContent((current) => ({
+              ...current,
+              about: { ...current.about, developmentPillars },
             }))
           }
         />
@@ -1213,6 +1549,87 @@ export default function AdminContentEditor({
             />
           </div>
         </article>
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Founder&apos;s Vision intro
+          </h3>
+          <div className="grid gap-5">
+            <SectionIntroEditor
+              intro={content.foundersVision.intro}
+              onChange={(intro) =>
+                updateContent((current) => ({
+                  ...current,
+                  foundersVision: {
+                    ...current.foundersVision,
+                    intro: { ...current.foundersVision.intro, ...intro },
+                  },
+                }))
+              }
+            />
+            <TextArea
+              label="Founder quote"
+              value={content.foundersVision.intro.quote}
+              rows={3}
+              onChange={(quote) =>
+                updateContent((current) => ({
+                  ...current,
+                  foundersVision: {
+                    ...current.foundersVision,
+                    intro: { ...current.foundersVision.intro, quote },
+                  },
+                }))
+              }
+            />
+            <ButtonActionEditor
+              title="Primary action"
+              action={content.foundersVision.intro.primaryAction}
+              onChange={(primaryAction) =>
+                updateContent((current) => ({
+                  ...current,
+                  foundersVision: {
+                    ...current.foundersVision,
+                    intro: { ...current.foundersVision.intro, primaryAction },
+                  },
+                }))
+              }
+            />
+            <ButtonActionEditor
+              title="Secondary action"
+              action={content.foundersVision.intro.secondaryAction}
+              onChange={(secondaryAction) =>
+                updateContent((current) => ({
+                  ...current,
+                  foundersVision: {
+                    ...current.foundersVision,
+                    intro: { ...current.foundersVision.intro, secondaryAction },
+                  },
+                }))
+              }
+            />
+          </div>
+        </article>
+        <StringListEditor
+          title="Founder's Vision paragraphs"
+          items={content.foundersVision.paragraphs}
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              foundersVision: {
+                ...current.foundersVision,
+                paragraphs: [
+                  ...current.foundersVision.paragraphs,
+                  "New founder paragraph",
+                ],
+              },
+            }))
+          }
+          onChange={(paragraphs) =>
+            updateContent((current) => ({
+              ...current,
+              foundersVision: { ...current.foundersVision, paragraphs },
+            }))
+          }
+        />
       </div>
     );
   }
@@ -1292,6 +1709,87 @@ export default function AdminContentEditor({
             </article>
           ))}
         </div>
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Welcome video
+          </h3>
+          <div className="grid gap-5">
+            <div className="grid gap-5 lg:grid-cols-2">
+              <Field
+                label="Eyebrow"
+                value={content.homeVideo.eyebrow}
+                onChange={(eyebrow) =>
+                  updateContent((current) => ({
+                    ...current,
+                    homeVideo: { ...current.homeVideo, eyebrow },
+                  }))
+                }
+              />
+              <Field
+                label="Title"
+                value={content.homeVideo.title}
+                onChange={(title) =>
+                  updateContent((current) => ({
+                    ...current,
+                    homeVideo: { ...current.homeVideo, title },
+                  }))
+                }
+              />
+            </div>
+            <TextArea
+              label="Description"
+              value={content.homeVideo.description}
+              onChange={(description) =>
+                updateContent((current) => ({
+                  ...current,
+                  homeVideo: { ...current.homeVideo, description },
+                }))
+              }
+            />
+            <div className="grid gap-5 lg:grid-cols-2">
+              <Field
+                label="YouTube embed URL"
+                value={content.homeVideo.embedUrl}
+                onChange={(embedUrl) =>
+                  updateContent((current) => ({
+                    ...current,
+                    homeVideo: { ...current.homeVideo, embedUrl },
+                  }))
+                }
+              />
+              <Field
+                label="Video title"
+                value={content.homeVideo.videoTitle}
+                onChange={(videoTitle) =>
+                  updateContent((current) => ({
+                    ...current,
+                    homeVideo: { ...current.homeVideo, videoTitle },
+                  }))
+                }
+              />
+            </div>
+            <ButtonActionEditor
+              title="Primary action"
+              action={content.homeVideo.primaryAction}
+              onChange={(primaryAction) =>
+                updateContent((current) => ({
+                  ...current,
+                  homeVideo: { ...current.homeVideo, primaryAction },
+                }))
+              }
+            />
+            <ButtonActionEditor
+              title="Secondary action"
+              action={content.homeVideo.secondaryAction}
+              onChange={(secondaryAction) =>
+                updateContent((current) => ({
+                  ...current,
+                  homeVideo: { ...current.homeVideo, secondaryAction },
+                }))
+              }
+            />
+          </div>
+        </article>
         <StatsEditor
           title="Top stats"
           items={content.home.stats}
@@ -1363,6 +1861,20 @@ export default function AdminContentEditor({
     return (
       <div className="grid gap-6">
         <PanelTitle eyebrow="Academics" title="Programs, pillars, and facilities" />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            CBE intro
+          </h3>
+          <SectionIntroEditor
+            intro={content.academics.cbeIntro}
+            onChange={(cbeIntro) =>
+              updateContent((current) => ({
+                ...current,
+                academics: { ...current.academics, cbeIntro },
+              }))
+            }
+          />
+        </article>
         <ProgramEditor
           items={content.academics.programs}
           onAdd={() =>
@@ -1388,6 +1900,190 @@ export default function AdminContentEditor({
             }))
           }
         />
+        <ImageCardsEditor
+          csrfToken={csrfToken}
+          title="Learning in action"
+          items={content.academics.learningInAction}
+          showClassName
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              academics: {
+                ...current.academics,
+                learningInAction: [
+                  ...current.academics.learningInAction,
+                  {
+                    title: "New learning moment",
+                    description: "Add learning moment details.",
+                    image: "/images/academics-engaged-classroom.jpeg",
+                    imageAlt: "Merishaw School",
+                    className: "",
+                  },
+                ],
+              },
+            }))
+          }
+          onChange={(learningInAction) =>
+            updateContent((current) => ({
+              ...current,
+              academics: { ...current.academics, learningInAction },
+            }))
+          }
+        />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            CBE overview
+          </h3>
+          <div className="grid gap-5">
+            <div className="grid gap-5 lg:grid-cols-2">
+              <Field
+                label="Eyebrow"
+                value={content.academics.cbeOverview.eyebrow}
+                onChange={(eyebrow) =>
+                  updateContent((current) => ({
+                    ...current,
+                    academics: {
+                      ...current.academics,
+                      cbeOverview: {
+                        ...current.academics.cbeOverview,
+                        eyebrow,
+                      },
+                    },
+                  }))
+                }
+              />
+              <Field
+                label="Title"
+                value={content.academics.cbeOverview.title}
+                onChange={(title) =>
+                  updateContent((current) => ({
+                    ...current,
+                    academics: {
+                      ...current.academics,
+                      cbeOverview: { ...current.academics.cbeOverview, title },
+                    },
+                  }))
+                }
+              />
+            </div>
+            <TextArea
+              label="Description"
+              value={content.academics.cbeOverview.description}
+              onChange={(description) =>
+                updateContent((current) => ({
+                  ...current,
+                  academics: {
+                    ...current.academics,
+                    cbeOverview: {
+                      ...current.academics.cbeOverview,
+                      description,
+                    },
+                  },
+                }))
+              }
+            />
+            <div className="grid gap-5 lg:grid-cols-2">
+              <Field
+                label="Note eyebrow"
+                value={content.academics.cbeOverview.noteEyebrow}
+                onChange={(noteEyebrow) =>
+                  updateContent((current) => ({
+                    ...current,
+                    academics: {
+                      ...current.academics,
+                      cbeOverview: {
+                        ...current.academics.cbeOverview,
+                        noteEyebrow,
+                      },
+                    },
+                  }))
+                }
+              />
+              <TextArea
+                label="Note"
+                value={content.academics.cbeOverview.note}
+                rows={3}
+                onChange={(note) =>
+                  updateContent((current) => ({
+                    ...current,
+                    academics: {
+                      ...current.academics,
+                      cbeOverview: { ...current.academics.cbeOverview, note },
+                    },
+                  }))
+                }
+              />
+            </div>
+            <ButtonActionEditor
+              title="Primary action"
+              action={content.academics.cbeOverview.primaryAction}
+              onChange={(primaryAction) =>
+                updateContent((current) => ({
+                  ...current,
+                  academics: {
+                    ...current.academics,
+                    cbeOverview: {
+                      ...current.academics.cbeOverview,
+                      primaryAction,
+                    },
+                  },
+                }))
+              }
+            />
+            <ButtonActionEditor
+              title="Secondary action"
+              action={content.academics.cbeOverview.secondaryAction}
+              onChange={(secondaryAction) =>
+                updateContent((current) => ({
+                  ...current,
+                  academics: {
+                    ...current.academics,
+                    cbeOverview: {
+                      ...current.academics.cbeOverview,
+                      secondaryAction,
+                    },
+                  },
+                }))
+              }
+            />
+          </div>
+        </article>
+        <TextCardEditor
+          title="CBE stages"
+          items={content.academics.cbeStages}
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              academics: {
+                ...current.academics,
+                cbeStages: [
+                  ...current.academics.cbeStages,
+                  { title: "New stage", description: "Add stage details." },
+                ],
+              },
+            }))
+          }
+          onChange={(cbeStages) =>
+            updateContent((current) => ({
+              ...current,
+              academics: { ...current.academics, cbeStages },
+            }))
+          }
+        />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Pathways intro
+          </h3>
+          <SectionIntroEditor
+            intro={content.academics.pathwaysIntro}
+            onChange={(pathwaysIntro) =>
+              updateContent((current) => ({
+                ...current,
+                academics: { ...current.academics, pathwaysIntro },
+              }))
+            }
+          />
+        </article>
         <StringListEditor
           title="CBE pathways"
           items={content.academics.cbePathways}
@@ -1407,6 +2103,20 @@ export default function AdminContentEditor({
             }))
           }
         />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Competencies intro
+          </h3>
+          <SectionIntroEditor
+            intro={content.academics.competenciesIntro}
+            onChange={(competenciesIntro) =>
+              updateContent((current) => ({
+                ...current,
+                academics: { ...current.academics, competenciesIntro },
+              }))
+            }
+          />
+        </article>
         <StringListEditor
           title="Core competencies"
           items={content.academics.cbeCompetencies}
@@ -1429,6 +2139,129 @@ export default function AdminContentEditor({
             }))
           }
         />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            8-4-4 transition
+          </h3>
+          <div className="grid gap-5">
+            <SectionIntroEditor
+              intro={content.legacy844.transition}
+              onChange={(transition) =>
+                updateContent((current) => ({
+                  ...current,
+                  legacy844: {
+                    ...current.legacy844,
+                    transition: {
+                      ...current.legacy844.transition,
+                      ...transition,
+                    },
+                  },
+                }))
+              }
+            />
+            <ButtonActionEditor
+              title="Primary action"
+              action={content.legacy844.transition.primaryAction}
+              onChange={(primaryAction) =>
+                updateContent((current) => ({
+                  ...current,
+                  legacy844: {
+                    ...current.legacy844,
+                    transition: {
+                      ...current.legacy844.transition,
+                      primaryAction,
+                    },
+                  },
+                }))
+              }
+            />
+            <ButtonActionEditor
+              title="Secondary action"
+              action={content.legacy844.transition.secondaryAction}
+              onChange={(secondaryAction) =>
+                updateContent((current) => ({
+                  ...current,
+                  legacy844: {
+                    ...current.legacy844,
+                    transition: {
+                      ...current.legacy844.transition,
+                      secondaryAction,
+                    },
+                  },
+                }))
+              }
+            />
+          </div>
+        </article>
+        <StringListEditor
+          title="8-4-4 highlights"
+          items={content.legacy844.highlights}
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              legacy844: {
+                ...current.legacy844,
+                highlights: [...current.legacy844.highlights, "New highlight"],
+              },
+            }))
+          }
+          onChange={(highlights) =>
+            updateContent((current) => ({
+              ...current,
+              legacy844: { ...current.legacy844, highlights },
+            }))
+          }
+        />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            8-4-4 principles intro
+          </h3>
+          <SectionIntroEditor
+            intro={content.legacy844.principlesIntro}
+            onChange={(principlesIntro) =>
+              updateContent((current) => ({
+                ...current,
+                legacy844: { ...current.legacy844, principlesIntro },
+              }))
+            }
+          />
+        </article>
+        <TextCardEditor
+          title="8-4-4 principles"
+          items={content.legacy844.principles}
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              legacy844: {
+                ...current.legacy844,
+                principles: [
+                  ...current.legacy844.principles,
+                  { title: "New principle", description: "Add principle details." },
+                ],
+              },
+            }))
+          }
+          onChange={(principles) =>
+            updateContent((current) => ({
+              ...current,
+              legacy844: { ...current.legacy844, principles },
+            }))
+          }
+        />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            8-4-4 CTA
+          </h3>
+          <CTAEditor
+            cta={content.legacy844.cta}
+            onChange={(cta) =>
+              updateContent((current) => ({
+                ...current,
+                legacy844: { ...current.legacy844, cta },
+              }))
+            }
+          />
+        </article>
         <div className="grid gap-4">
           <div className="flex items-center justify-between gap-3">
             <h3 className="font-serif text-2xl font-semibold text-brand-ink">
@@ -1521,6 +2354,42 @@ export default function AdminContentEditor({
             }))
           }
         />
+      </div>
+    );
+  }
+
+  function renderAcademicExperiences() {
+    return (
+      <div className="grid gap-6">
+        <PanelTitle
+          eyebrow="Academic detail"
+          title="Classrooms, labs, workshops, and learning experiences"
+        />
+        <div className="grid gap-4">
+          {Object.entries(content.academicExperiences).map(([slug, page]) => (
+            <article
+              key={slug}
+              className="rounded-md border border-brand-line bg-brand-cream p-4"
+            >
+              <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+                /{slug}
+              </h3>
+              <AcademicExperienceEditor
+                csrfToken={csrfToken}
+                page={page}
+                onChange={(nextPage) =>
+                  updateContent((current) => ({
+                    ...current,
+                    academicExperiences: {
+                      ...current.academicExperiences,
+                      [slug]: nextPage,
+                    },
+                  }))
+                }
+              />
+            </article>
+          ))}
+        </div>
       </div>
     );
   }
@@ -1656,6 +2525,854 @@ export default function AdminContentEditor({
             }
           />
         </div>
+        <div className="grid gap-4 lg:grid-cols-2">
+          <ButtonActionEditor
+            title="Fees primary action"
+            action={content.admissions.feesPrimaryAction}
+            onChange={(feesPrimaryAction) =>
+              updateContent((current) => ({
+                ...current,
+                admissions: { ...current.admissions, feesPrimaryAction },
+              }))
+            }
+          />
+          <ButtonActionEditor
+            title="Fees secondary action"
+            action={content.admissions.feesSecondaryAction}
+            onChange={(feesSecondaryAction) =>
+              updateContent((current) => ({
+                ...current,
+                admissions: { ...current.admissions, feesSecondaryAction },
+              }))
+            }
+          />
+        </div>
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Admissions page CTA
+          </h3>
+          <CTAEditor
+            cta={content.admissions.cta}
+            onChange={(cta) =>
+              updateContent((current) => ({
+                ...current,
+                admissions: { ...current.admissions, cta },
+              }))
+            }
+          />
+        </article>
+      </div>
+    );
+  }
+
+  function renderActivities() {
+    return (
+      <div className="grid gap-6">
+        <PanelTitle eyebrow="Activities" title="Sports, clubs, and aviation" />
+
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Sports intro
+          </h3>
+          <MediaSectionEditor
+            csrfToken={csrfToken}
+            section={content.sports.intro}
+            onChange={(intro) =>
+              updateContent((current) => ({
+                ...current,
+                sports: { ...current.sports, intro },
+              }))
+            }
+          />
+        </article>
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Sports programme intro
+          </h3>
+          <SectionIntroEditor
+            intro={content.sports.programmeIntro}
+            onChange={(programmeIntro) =>
+              updateContent((current) => ({
+                ...current,
+                sports: { ...current.sports, programmeIntro },
+              }))
+            }
+          />
+        </article>
+        <ImageCardsEditor
+          csrfToken={csrfToken}
+          title="Sports programmes"
+          items={content.sports.programmes}
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              sports: {
+                ...current.sports,
+                programmes: [
+                  ...current.sports.programmes,
+                  {
+                    title: "New sport",
+                    description: "Add sport details.",
+                    image: "/images/sports-soccer-match.jpeg",
+                    imageAlt: "Merishaw School sport",
+                  },
+                ],
+              },
+            }))
+          }
+          onChange={(programmes) =>
+            updateContent((current) => ({
+              ...current,
+              sports: { ...current.sports, programmes },
+            }))
+          }
+        />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Sports coaching
+          </h3>
+          <MediaSectionEditor
+            csrfToken={csrfToken}
+            section={content.sports.coaching}
+            onChange={(coaching) =>
+              updateContent((current) => ({
+                ...current,
+                sports: { ...current.sports, coaching },
+              }))
+            }
+          />
+        </article>
+        <StringListEditor
+          title="Sports coaching values"
+          items={content.sports.coachingValues}
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              sports: {
+                ...current.sports,
+                coachingValues: [
+                  ...current.sports.coachingValues,
+                  "New value",
+                ],
+              },
+            }))
+          }
+          onChange={(coachingValues) =>
+            updateContent((current) => ({
+              ...current,
+              sports: { ...current.sports, coachingValues },
+            }))
+          }
+        />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Sports gallery intro
+          </h3>
+          <SectionIntroEditor
+            intro={content.sports.galleryIntro}
+            onChange={(galleryIntro) =>
+              updateContent((current) => ({
+                ...current,
+                sports: { ...current.sports, galleryIntro },
+              }))
+            }
+          />
+        </article>
+        <ImageItemsEditor
+          csrfToken={csrfToken}
+          title="Sports gallery"
+          items={content.sports.gallery}
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              sports: {
+                ...current.sports,
+                gallery: [
+                  ...current.sports.gallery,
+                  {
+                    src: "/images/sports-soccer-match.jpeg",
+                    alt: "Merishaw School sport",
+                  },
+                ],
+              },
+            }))
+          }
+          onChange={(gallery) =>
+            updateContent((current) => ({
+              ...current,
+              sports: { ...current.sports, gallery },
+            }))
+          }
+        />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Sports CTA
+          </h3>
+          <CTAEditor
+            cta={content.sports.cta}
+            onChange={(cta) =>
+              updateContent((current) => ({
+                ...current,
+                sports: { ...current.sports, cta },
+              }))
+            }
+          />
+        </article>
+
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Clubs intro
+          </h3>
+          <MediaSectionEditor
+            csrfToken={csrfToken}
+            section={content.clubs.intro}
+            onChange={(intro) =>
+              updateContent((current) => ({
+                ...current,
+                clubs: { ...current.clubs, intro },
+              }))
+            }
+          />
+        </article>
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Club highlights intro
+          </h3>
+          <SectionIntroEditor
+            intro={content.clubs.highlightsIntro}
+            onChange={(highlightsIntro) =>
+              updateContent((current) => ({
+                ...current,
+                clubs: { ...current.clubs, highlightsIntro },
+              }))
+            }
+          />
+        </article>
+        <TextCardEditor
+          title="Club highlights"
+          items={content.clubs.highlights}
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              clubs: {
+                ...current.clubs,
+                highlights: [
+                  ...current.clubs.highlights,
+                  { title: "New club", description: "Add club details." },
+                ],
+              },
+            }))
+          }
+          onChange={(highlights) =>
+            updateContent((current) => ({
+              ...current,
+              clubs: { ...current.clubs, highlights },
+            }))
+          }
+        />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Featured club
+          </h3>
+          <div className="grid gap-5">
+            <div className="grid gap-5 lg:grid-cols-2">
+              <Field
+                label="Eyebrow"
+                value={content.clubs.featured.eyebrow}
+                onChange={(eyebrow) =>
+                  updateContent((current) => ({
+                    ...current,
+                    clubs: {
+                      ...current.clubs,
+                      featured: { ...current.clubs.featured, eyebrow },
+                    },
+                  }))
+                }
+              />
+              <Field
+                label="Title"
+                value={content.clubs.featured.title}
+                onChange={(title) =>
+                  updateContent((current) => ({
+                    ...current,
+                    clubs: {
+                      ...current.clubs,
+                      featured: { ...current.clubs.featured, title },
+                    },
+                  }))
+                }
+              />
+            </div>
+            <StringListEditor
+              title="Featured club paragraphs"
+              items={content.clubs.featured.paragraphs}
+              onAdd={() =>
+                updateContent((current) => ({
+                  ...current,
+                  clubs: {
+                    ...current.clubs,
+                    featured: {
+                      ...current.clubs.featured,
+                      paragraphs: [
+                        ...current.clubs.featured.paragraphs,
+                        "New paragraph",
+                      ],
+                    },
+                  },
+                }))
+              }
+              onChange={(paragraphs) =>
+                updateContent((current) => ({
+                  ...current,
+                  clubs: {
+                    ...current.clubs,
+                    featured: { ...current.clubs.featured, paragraphs },
+                  },
+                }))
+              }
+            />
+            {[
+              ["Callout", "callout"],
+              ["Theme eyebrow", "themeEyebrow"],
+              ["Theme title", "themeTitle"],
+              ["Progression eyebrow", "progressionEyebrow"],
+              ["Progression description", "progressionDescription"],
+              ["Note", "note"],
+            ].map(([label, key]) => (
+              <TextArea
+                key={key}
+                label={label}
+                value={
+                  content.clubs.featured[
+                    key as keyof typeof content.clubs.featured
+                  ] as string
+                }
+                rows={key === "progressionDescription" ? 4 : 3}
+                onChange={(value) =>
+                  updateContent((current) => ({
+                    ...current,
+                    clubs: {
+                      ...current.clubs,
+                      featured: {
+                        ...current.clubs.featured,
+                        [key]: value,
+                      },
+                    },
+                  }))
+                }
+              />
+            ))}
+            <ImageField
+              csrfToken={csrfToken}
+              label="Featured image"
+              value={content.clubs.featured.image}
+              onChange={(image) =>
+                updateContent((current) => ({
+                  ...current,
+                  clubs: {
+                    ...current.clubs,
+                    featured: { ...current.clubs.featured, image },
+                  },
+                }))
+              }
+            />
+            <Field
+              label="Featured image alt text"
+              value={content.clubs.featured.imageAlt}
+              onChange={(imageAlt) =>
+                updateContent((current) => ({
+                  ...current,
+                  clubs: {
+                    ...current.clubs,
+                    featured: { ...current.clubs.featured, imageAlt },
+                  },
+                }))
+              }
+            />
+          </div>
+        </article>
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Signature clubs intro
+          </h3>
+          <SectionIntroEditor
+            intro={content.clubs.signatureIntro}
+            onChange={(signatureIntro) =>
+              updateContent((current) => ({
+                ...current,
+                clubs: { ...current.clubs, signatureIntro },
+              }))
+            }
+          />
+        </article>
+        <TextCardEditor
+          title="Signature clubs"
+          items={content.clubs.signatureClubs}
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              clubs: {
+                ...current.clubs,
+                signatureClubs: [
+                  ...current.clubs.signatureClubs,
+                  {
+                    title: "New signature club",
+                    description: "Add club details.",
+                  },
+                ],
+              },
+            }))
+          }
+          onChange={(signatureClubs) =>
+            updateContent((current) => ({
+              ...current,
+              clubs: { ...current.clubs, signatureClubs },
+            }))
+          }
+        />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Additional clubs
+          </h3>
+          <div className="grid gap-5">
+            <SectionIntroEditor
+              intro={{
+                eyebrow: content.clubs.additionalClubs.eyebrow,
+                title: content.clubs.additionalClubs.title,
+                description: "",
+              }}
+              onChange={(intro) =>
+                updateContent((current) => ({
+                  ...current,
+                  clubs: {
+                    ...current.clubs,
+                    additionalClubs: {
+                      ...current.clubs.additionalClubs,
+                      eyebrow: intro.eyebrow,
+                      title: intro.title,
+                    },
+                  },
+                }))
+              }
+            />
+            <TextCardEditor
+              title="Additional club groups"
+              items={content.clubs.additionalClubs.groups}
+              onAdd={() =>
+                updateContent((current) => ({
+                  ...current,
+                  clubs: {
+                    ...current.clubs,
+                    additionalClubs: {
+                      ...current.clubs.additionalClubs,
+                      groups: [
+                        ...current.clubs.additionalClubs.groups,
+                        { title: "New group", description: "Add group details." },
+                      ],
+                    },
+                  },
+                }))
+              }
+              onChange={(groups) =>
+                updateContent((current) => ({
+                  ...current,
+                  clubs: {
+                    ...current.clubs,
+                    additionalClubs: {
+                      ...current.clubs.additionalClubs,
+                      groups,
+                    },
+                  },
+                }))
+              }
+            />
+          </div>
+        </article>
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Clubs gallery intro
+          </h3>
+          <SectionIntroEditor
+            intro={content.clubs.galleryIntro}
+            onChange={(galleryIntro) =>
+              updateContent((current) => ({
+                ...current,
+                clubs: { ...current.clubs, galleryIntro },
+              }))
+            }
+          />
+        </article>
+        <ImageItemsEditor
+          csrfToken={csrfToken}
+          title="Clubs gallery"
+          items={content.clubs.gallery}
+          showClassName
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              clubs: {
+                ...current.clubs,
+                gallery: [
+                  ...current.clubs.gallery,
+                  {
+                    src: "/images/clubs-table-tennis.jpeg",
+                    alt: "Merishaw School club activity",
+                    className: "",
+                  },
+                ],
+              },
+            }))
+          }
+          onChange={(gallery) =>
+            updateContent((current) => ({
+              ...current,
+              clubs: { ...current.clubs, gallery },
+            }))
+          }
+        />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Clubs CTA
+          </h3>
+          <CTAEditor
+            cta={content.clubs.cta}
+            onChange={(cta) =>
+              updateContent((current) => ({
+                ...current,
+                clubs: { ...current.clubs, cta },
+              }))
+            }
+          />
+        </article>
+
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Aviation intro
+          </h3>
+          <MediaSectionEditor
+            csrfToken={csrfToken}
+            section={content.aviation.intro}
+            onChange={(intro) =>
+              updateContent((current) => ({
+                ...current,
+                aviation: { ...current.aviation, intro },
+              }))
+            }
+          />
+        </article>
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Aviation highlights intro
+          </h3>
+          <SectionIntroEditor
+            intro={content.aviation.highlightsIntro}
+            onChange={(highlightsIntro) =>
+              updateContent((current) => ({
+                ...current,
+                aviation: { ...current.aviation, highlightsIntro },
+              }))
+            }
+          />
+        </article>
+        <TextCardEditor
+          title="Aviation highlights"
+          items={content.aviation.highlights}
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              aviation: {
+                ...current.aviation,
+                highlights: [
+                  ...current.aviation.highlights,
+                  {
+                    title: "New aviation highlight",
+                    description: "Add aviation details.",
+                  },
+                ],
+              },
+            }))
+          }
+          onChange={(highlights) =>
+            updateContent((current) => ({
+              ...current,
+              aviation: { ...current.aviation, highlights },
+            }))
+          }
+        />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Aviation gallery intro
+          </h3>
+          <SectionIntroEditor
+            intro={content.aviation.galleryIntro}
+            onChange={(galleryIntro) =>
+              updateContent((current) => ({
+                ...current,
+                aviation: { ...current.aviation, galleryIntro },
+              }))
+            }
+          />
+        </article>
+        <ImageItemsEditor
+          csrfToken={csrfToken}
+          title="Aviation gallery"
+          items={content.aviation.gallery}
+          showClassName
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              aviation: {
+                ...current.aviation,
+                gallery: [
+                  ...current.aviation.gallery,
+                  {
+                    src: "/images/aviation-group-briefing.jpeg",
+                    alt: "Merishaw School aviation activity",
+                    className: "",
+                  },
+                ],
+              },
+            }))
+          }
+          onChange={(gallery) =>
+            updateContent((current) => ({
+              ...current,
+              aviation: { ...current.aviation, gallery },
+            }))
+          }
+        />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Aviation CTA
+          </h3>
+          <CTAEditor
+            cta={content.aviation.cta}
+            onChange={(cta) =>
+              updateContent((current) => ({
+                ...current,
+                aviation: { ...current.aviation, cta },
+              }))
+            }
+          />
+        </article>
+      </div>
+    );
+  }
+
+  function renderCampus() {
+    return (
+      <div className="grid gap-6">
+        <PanelTitle eyebrow="Campus" title="Infrastructure and campus concept" />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Campus concept
+          </h3>
+          <ParagraphSectionEditor
+            csrfToken={csrfToken}
+            section={content.infrastructure.concept}
+            onChange={(concept) =>
+              updateContent((current) => ({
+                ...current,
+                infrastructure: { ...current.infrastructure, concept },
+              }))
+            }
+          />
+        </article>
+        <StatsEditor
+          title="Infrastructure stats"
+          items={content.infrastructure.stats}
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              infrastructure: {
+                ...current.infrastructure,
+                stats: [
+                  ...current.infrastructure.stats,
+                  { value: "New stat", label: "Label" },
+                ],
+              },
+            }))
+          }
+          onChange={(stats) =>
+            updateContent((current) => ({
+              ...current,
+              infrastructure: { ...current.infrastructure, stats },
+            }))
+          }
+        />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Site location
+          </h3>
+          <ParagraphSectionEditor
+            csrfToken={csrfToken}
+            section={content.infrastructure.siteLocation}
+            onChange={(siteLocation) =>
+              updateContent((current) => ({
+                ...current,
+                infrastructure: {
+                  ...current.infrastructure,
+                  siteLocation,
+                },
+              }))
+            }
+          />
+        </article>
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Architectural intro
+          </h3>
+          <SectionIntroEditor
+            intro={content.infrastructure.architecturalIntro}
+            onChange={(architecturalIntro) =>
+              updateContent((current) => ({
+                ...current,
+                infrastructure: {
+                  ...current.infrastructure,
+                  architecturalIntro,
+                },
+              }))
+            }
+          />
+        </article>
+        <TextCardEditor
+          title="Architectural inspirations"
+          items={content.infrastructure.architecturalInspirations}
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              infrastructure: {
+                ...current.infrastructure,
+                architecturalInspirations: [
+                  ...current.infrastructure.architecturalInspirations,
+                  {
+                    title: "New inspiration",
+                    description: "Add inspiration details.",
+                  },
+                ],
+              },
+            }))
+          }
+          onChange={(architecturalInspirations) =>
+            updateContent((current) => ({
+              ...current,
+              infrastructure: {
+                ...current.infrastructure,
+                architecturalInspirations,
+              },
+            }))
+          }
+        />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Sustainability intro
+          </h3>
+          <SectionIntroEditor
+            intro={content.infrastructure.sustainabilityIntro}
+            onChange={(sustainabilityIntro) =>
+              updateContent((current) => ({
+                ...current,
+                infrastructure: {
+                  ...current.infrastructure,
+                  sustainabilityIntro,
+                },
+              }))
+            }
+          />
+        </article>
+        <StringListEditor
+          title="Sustainability strategies"
+          items={content.infrastructure.sustainabilityStrategies}
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              infrastructure: {
+                ...current.infrastructure,
+                sustainabilityStrategies: [
+                  ...current.infrastructure.sustainabilityStrategies,
+                  "New sustainability strategy",
+                ],
+              },
+            }))
+          }
+          onChange={(sustainabilityStrategies) =>
+            updateContent((current) => ({
+              ...current,
+              infrastructure: {
+                ...current.infrastructure,
+                sustainabilityStrategies,
+              },
+            }))
+          }
+        />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Social setting
+          </h3>
+          <ParagraphSectionEditor
+            csrfToken={csrfToken}
+            section={content.infrastructure.maasai}
+            onChange={(maasai) =>
+              updateContent((current) => ({
+                ...current,
+                infrastructure: { ...current.infrastructure, maasai },
+              }))
+            }
+          />
+        </article>
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Master plan intro
+          </h3>
+          <SectionIntroEditor
+            intro={content.infrastructure.masterPlanIntro}
+            onChange={(masterPlanIntro) =>
+              updateContent((current) => ({
+                ...current,
+                infrastructure: {
+                  ...current.infrastructure,
+                  masterPlanIntro,
+                },
+              }))
+            }
+          />
+        </article>
+        <TextCardEditor
+          title="Master plan layers"
+          items={content.infrastructure.masterPlanLayers}
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              infrastructure: {
+                ...current.infrastructure,
+                masterPlanLayers: [
+                  ...current.infrastructure.masterPlanLayers,
+                  { title: "New layer", description: "Add layer details." },
+                ],
+              },
+            }))
+          }
+          onChange={(masterPlanLayers) =>
+            updateContent((current) => ({
+              ...current,
+              infrastructure: { ...current.infrastructure, masterPlanLayers },
+            }))
+          }
+        />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Campus visit CTA
+          </h3>
+          <CTAEditor
+            cta={content.infrastructure.visitCta}
+            onChange={(visitCta) =>
+              updateContent((current) => ({
+                ...current,
+                infrastructure: { ...current.infrastructure, visitCta },
+              }))
+            }
+          />
+        </article>
       </div>
     );
   }
@@ -2103,6 +3820,78 @@ export default function AdminContentEditor({
             }
           />
         </div>
+        <div className="grid gap-4 lg:grid-cols-2">
+          <ButtonActionEditor
+            title="Support section primary action"
+            action={content.support.sectionPrimaryAction}
+            onChange={(sectionPrimaryAction) =>
+              updateContent((current) => ({
+                ...current,
+                support: { ...current.support, sectionPrimaryAction },
+              }))
+            }
+          />
+          <ButtonActionEditor
+            title="Support section secondary action"
+            action={content.support.sectionSecondaryAction}
+            onChange={(sectionSecondaryAction) =>
+              updateContent((current) => ({
+                ...current,
+                support: { ...current.support, sectionSecondaryAction },
+              }))
+            }
+          />
+        </div>
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Sponsorship intro
+          </h3>
+          <SectionIntroEditor
+            intro={content.support.sponsorshipIntro}
+            onChange={(sponsorshipIntro) =>
+              updateContent((current) => ({
+                ...current,
+                support: { ...current.support, sponsorshipIntro },
+              }))
+            }
+          />
+        </article>
+        <StringListEditor
+          title="Sponsorship areas"
+          items={content.support.sponsorshipAreas}
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              support: {
+                ...current.support,
+                sponsorshipAreas: [
+                  ...current.support.sponsorshipAreas,
+                  "New sponsorship area",
+                ],
+              },
+            }))
+          }
+          onChange={(sponsorshipAreas) =>
+            updateContent((current) => ({
+              ...current,
+              support: { ...current.support, sponsorshipAreas },
+            }))
+          }
+        />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Support initiatives intro
+          </h3>
+          <SectionIntroEditor
+            intro={content.support.initiativesIntro}
+            onChange={(initiativesIntro) =>
+              updateContent((current) => ({
+                ...current,
+                support: { ...current.support, initiativesIntro },
+              }))
+            }
+          />
+        </article>
         <StringListEditor
           title="CSR initiatives"
           items={content.support.initiatives}
@@ -2122,45 +3911,162 @@ export default function AdminContentEditor({
             }))
           }
         />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            Support CTA
+          </h3>
+          <CTAEditor
+            cta={content.support.cta}
+            onChange={(cta) =>
+              updateContent((current) => ({
+                ...current,
+                support: { ...current.support, cta },
+              }))
+            }
+          />
+        </article>
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            CSR body
+          </h3>
+          <div className="grid gap-5">
+            <Field
+              label="Title"
+              value={content.csr.body.title}
+              onChange={(title) =>
+                updateContent((current) => ({
+                  ...current,
+                  csr: {
+                    ...current.csr,
+                    body: { ...current.csr.body, title },
+                  },
+                }))
+              }
+            />
+            <StringListEditor
+              title="CSR paragraphs"
+              items={content.csr.body.paragraphs}
+              onAdd={() =>
+                updateContent((current) => ({
+                  ...current,
+                  csr: {
+                    ...current.csr,
+                    body: {
+                      ...current.csr.body,
+                      paragraphs: [
+                        ...current.csr.body.paragraphs,
+                        "New CSR paragraph",
+                      ],
+                    },
+                  },
+                }))
+              }
+              onChange={(paragraphs) =>
+                updateContent((current) => ({
+                  ...current,
+                  csr: {
+                    ...current.csr,
+                    body: { ...current.csr.body, paragraphs },
+                  },
+                }))
+              }
+            />
+          </div>
+        </article>
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            CSR initiatives intro
+          </h3>
+          <SectionIntroEditor
+            intro={content.csr.initiativesIntro}
+            onChange={(initiativesIntro) =>
+              updateContent((current) => ({
+                ...current,
+                csr: { ...current.csr, initiativesIntro },
+              }))
+            }
+          />
+        </article>
+        <TextCardEditor
+          title="CSR initiative cards"
+          items={content.csr.initiatives}
+          onAdd={() =>
+            updateContent((current) => ({
+              ...current,
+              csr: {
+                ...current.csr,
+                initiatives: [
+                  ...current.csr.initiatives,
+                  { title: "New initiative", description: "Add initiative details." },
+                ],
+              },
+            }))
+          }
+          onChange={(initiatives) =>
+            updateContent((current) => ({
+              ...current,
+              csr: { ...current.csr, initiatives },
+            }))
+          }
+        />
+        <article className="rounded-md border border-brand-line bg-brand-cream p-4">
+          <h3 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+            CSR CTA
+          </h3>
+          <CTAEditor
+            cta={content.csr.cta}
+            onChange={(cta) =>
+              updateContent((current) => ({
+                ...current,
+                csr: { ...current.csr, cta },
+              }))
+            }
+          />
+        </article>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-brand-cream">
-      <section className="bg-brand-ink px-4 py-10 text-white sm:px-6 lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(215,185,138,0.35),transparent_30rem),linear-gradient(180deg,#fffaf0_0%,#f8f1e5_34%,#ffffff_100%)]">
+      <section className="relative overflow-hidden bg-brand-ink px-4 py-10 text-white sm:px-6 lg:px-8">
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(215,185,138,0.22),transparent_36%),linear-gradient(90deg,rgba(122,33,46,0.58),transparent_58%)]" />
+        <div className="relative mx-auto flex max-w-7xl flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-sm font-bold uppercase tracking-wide text-brand-gold">
               Merishaw Admin
             </p>
             <h1 className="mt-2 font-serif text-4xl font-semibold leading-tight sm:text-5xl">
-              Website content manager
+              Website command centre
             </h1>
+            <p className="mt-4 max-w-2xl text-sm font-medium leading-7 text-white/75">
+              Manage the site identity, page copy, images, CTAs, galleries, and
+              partner visibility from one polished editing surface.
+            </p>
           </div>
           <div className="grid gap-2 sm:grid-cols-4 lg:min-w-[520px]">
-            <div className="rounded-md border border-white/15 bg-white/10 p-3">
+            <div className="rounded-md border border-white/15 bg-white/10 p-3 shadow-card backdrop-blur">
               <p className="text-2xl font-bold">{counts.hero}</p>
               <p className="text-xs font-semibold uppercase text-white/70">
                 Hero slides
               </p>
             </div>
-            <div className="rounded-md border border-white/15 bg-white/10 p-3">
+            <div className="rounded-md border border-white/15 bg-white/10 p-3 shadow-card backdrop-blur">
               <p className="text-2xl font-bold">{counts.gallery}</p>
               <p className="text-xs font-semibold uppercase text-white/70">
                 Pictures
               </p>
             </div>
-            <div className="rounded-md border border-white/15 bg-white/10 p-3">
+            <div className="rounded-md border border-white/15 bg-white/10 p-3 shadow-card backdrop-blur">
               <p className="text-2xl font-bold">{counts.news}</p>
               <p className="text-xs font-semibold uppercase text-white/70">
                 Updates
               </p>
             </div>
-            <div className="rounded-md border border-white/15 bg-white/10 p-3">
-              <p className="text-2xl font-bold">{counts.pillars}</p>
+            <div className="rounded-md border border-white/15 bg-white/10 p-3 shadow-card backdrop-blur">
+              <p className="text-2xl font-bold">{counts.partners}</p>
               <p className="text-xs font-semibold uppercase text-white/70">
-                Pillars
+                Partners
               </p>
             </div>
           </div>
@@ -2169,7 +4075,7 @@ export default function AdminContentEditor({
 
       <section className="px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[240px_1fr]">
-          <aside className="h-fit rounded-md border border-brand-line bg-white p-3 shadow-card">
+          <aside className="h-fit rounded-md border border-brand-line/80 bg-white/95 p-3 shadow-premium lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto">
             <nav aria-label="Admin sections" className="grid gap-1">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
@@ -2183,7 +4089,7 @@ export default function AdminContentEditor({
                     className={cn(
                       "flex min-h-11 items-center gap-3 rounded-md px-3 py-2 text-left text-sm font-bold transition focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2",
                       isActive
-                        ? "bg-brand-burgundy text-white"
+                        ? "bg-brand-burgundy text-white shadow-sm"
                         : "text-brand-ink hover:bg-brand-cream",
                     )}
                   >
@@ -2196,7 +4102,7 @@ export default function AdminContentEditor({
           </aside>
 
           <div className="grid min-w-0 gap-4">
-            <div className="grid gap-3 rounded-md border border-brand-line bg-white p-4 shadow-card lg:grid-cols-[1fr_auto] lg:items-center">
+            <div className="grid gap-3 rounded-md border border-brand-line bg-white/95 p-4 shadow-premium lg:grid-cols-[1fr_auto] lg:items-center">
               <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
                 <div>
                   <p className="text-sm font-bold text-brand-ink">
@@ -2248,13 +4154,18 @@ export default function AdminContentEditor({
               </div>
             </div>
 
-            <div className="rounded-md border border-brand-line bg-white p-5 shadow-card sm:p-6">
+            <div className="rounded-md border border-brand-line bg-white/95 p-5 shadow-premium sm:p-6">
               {activeTab === "site" ? renderSite() : null}
               {activeTab === "pages" ? renderPages() : null}
               {activeTab === "about" ? renderAbout() : null}
               {activeTab === "home" ? renderHome() : null}
               {activeTab === "academics" ? renderAcademics() : null}
+              {activeTab === "academicExperiences"
+                ? renderAcademicExperiences()
+                : null}
               {activeTab === "admissions" ? renderAdmissions() : null}
+              {activeTab === "activities" ? renderActivities() : null}
+              {activeTab === "campus" ? renderCampus() : null}
               {activeTab === "gallery" ? renderGallery() : null}
               {activeTab === "downloads" ? renderDownloads() : null}
               {activeTab === "news" ? renderNews() : null}
@@ -2295,6 +4206,11 @@ function PageHeaderEditor({
         label="Description"
         value={header.description}
         onChange={(description) => onChange({ ...header, description })}
+      />
+      <Field
+        label="Image position"
+        value={header.imagePosition ?? "center"}
+        onChange={(imagePosition) => onChange({ ...header, imagePosition })}
       />
       <ImageField
         csrfToken={csrfToken}
@@ -2548,6 +4464,374 @@ function TextCardEditor({
           </article>
         ))}
       </div>
+    </div>
+  );
+}
+
+function PartnersEditor({
+  csrfToken,
+  items,
+  onAdd,
+  onChange,
+}: {
+  csrfToken: string;
+  items: EditablePartner[];
+  onAdd: () => void;
+  onChange: (items: EditablePartner[]) => void;
+}) {
+  const targetPrefix = "site-partners";
+
+  return (
+    <div className="grid gap-4">
+      <div className="flex items-center justify-between gap-3">
+        <h3 className="font-serif text-2xl font-semibold text-brand-ink">
+          Partner logos
+        </h3>
+        <AddButton
+          revealTargetId={getAddTargetId(targetPrefix, items.length)}
+          onClick={onAdd}
+        >
+          Partner
+        </AddButton>
+      </div>
+      <div className="grid gap-4 lg:grid-cols-2">
+        {items.map((partner, index) => (
+          <article
+            key={`${partner.name}-${index}`}
+            data-admin-add-target={getAddTargetId(targetPrefix, index)}
+            className="rounded-md border border-brand-line bg-brand-cream p-4"
+          >
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <h4 className="font-serif text-xl font-semibold text-brand-ink">
+                {partner.name || `Partner ${index + 1}`}
+              </h4>
+              <RemoveButton onClick={() => onChange(removeArrayItem(items, index))} />
+            </div>
+            <div className="grid gap-4">
+              <Field
+                label="Partner name"
+                value={partner.name}
+                onChange={(name) =>
+                  onChange(updateArrayItem(items, index, { ...partner, name }))
+                }
+              />
+              <Field
+                label="Partner link"
+                value={partner.href}
+                onChange={(href) =>
+                  onChange(updateArrayItem(items, index, { ...partner, href }))
+                }
+              />
+              <ImageField
+                csrfToken={csrfToken}
+                label="Partner logo"
+                value={partner.logo}
+                onChange={(logo) =>
+                  onChange(updateArrayItem(items, index, { ...partner, logo }))
+                }
+              />
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ImageCardsEditor({
+  csrfToken,
+  title,
+  items,
+  onAdd,
+  onChange,
+  showClassName = false,
+}: {
+  csrfToken: string;
+  title: string;
+  items: Array<EditableImageCard & { className?: string }>;
+  onAdd: () => void;
+  onChange: (items: Array<EditableImageCard & { className?: string }>) => void;
+  showClassName?: boolean;
+}) {
+  const targetPrefix = `image-cards-${title}`;
+
+  return (
+    <div className="grid gap-4">
+      <div className="flex items-center justify-between gap-3">
+        <h3 className="font-serif text-2xl font-semibold text-brand-ink">
+          {title}
+        </h3>
+        <AddButton
+          revealTargetId={getAddTargetId(targetPrefix, items.length)}
+          onClick={onAdd}
+        >
+          Card
+        </AddButton>
+      </div>
+      <div className="grid gap-4 lg:grid-cols-2">
+        {items.map((item, index) => (
+          <article
+            key={`${item.title}-${index}`}
+            data-admin-add-target={getAddTargetId(targetPrefix, index)}
+            className="rounded-md border border-brand-line bg-brand-cream p-4"
+          >
+            <div className="mb-4 flex justify-end">
+              <RemoveButton onClick={() => onChange(removeArrayItem(items, index))} />
+            </div>
+            <div className="grid gap-4">
+              <Field
+                label="Title"
+                value={item.title}
+                onChange={(titleValue) =>
+                  onChange(
+                    updateArrayItem(items, index, {
+                      ...item,
+                      title: titleValue,
+                    }),
+                  )
+                }
+              />
+              <TextArea
+                label="Description"
+                value={item.description}
+                onChange={(description) =>
+                  onChange(updateArrayItem(items, index, { ...item, description }))
+                }
+              />
+              <ImageField
+                csrfToken={csrfToken}
+                label="Image"
+                value={item.image}
+                onChange={(image) =>
+                  onChange(updateArrayItem(items, index, { ...item, image }))
+                }
+              />
+              <Field
+                label="Image alt text"
+                value={item.imageAlt}
+                onChange={(imageAlt) =>
+                  onChange(updateArrayItem(items, index, { ...item, imageAlt }))
+                }
+              />
+              {showClassName ? (
+                <Field
+                  label="Layout class"
+                  value={item.className ?? ""}
+                  onChange={(className) =>
+                    onChange(
+                      updateArrayItem(items, index, { ...item, className }),
+                    )
+                  }
+                />
+              ) : null}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ImageItemsEditor({
+  csrfToken,
+  title,
+  items,
+  onAdd,
+  onChange,
+  showClassName = false,
+}: {
+  csrfToken: string;
+  title: string;
+  items: EditableImageItem[];
+  onAdd: () => void;
+  onChange: (items: EditableImageItem[]) => void;
+  showClassName?: boolean;
+}) {
+  const targetPrefix = `image-items-${title}`;
+
+  return (
+    <div className="grid gap-4">
+      <div className="flex items-center justify-between gap-3">
+        <h3 className="font-serif text-2xl font-semibold text-brand-ink">
+          {title}
+        </h3>
+        <AddButton
+          revealTargetId={getAddTargetId(targetPrefix, items.length)}
+          onClick={onAdd}
+        >
+          Image
+        </AddButton>
+      </div>
+      <div className="grid gap-4 md:grid-cols-2">
+        {items.map((item, index) => (
+          <article
+            key={`${item.src}-${index}`}
+            data-admin-add-target={getAddTargetId(targetPrefix, index)}
+            className="rounded-md border border-brand-line bg-brand-cream p-4"
+          >
+            <div className="mb-4 flex justify-end">
+              <RemoveButton onClick={() => onChange(removeArrayItem(items, index))} />
+            </div>
+            <div className="grid gap-4">
+              <ImageField
+                csrfToken={csrfToken}
+                label="Image"
+                value={item.src}
+                onChange={(src) =>
+                  onChange(updateArrayItem(items, index, { ...item, src }))
+                }
+              />
+              <Field
+                label="Alt text"
+                value={item.alt}
+                onChange={(alt) =>
+                  onChange(updateArrayItem(items, index, { ...item, alt }))
+                }
+              />
+              {showClassName ? (
+                <Field
+                  label="Layout class"
+                  value={item.className ?? ""}
+                  onChange={(className) =>
+                    onChange(updateArrayItem(items, index, { ...item, className }))
+                  }
+                />
+              ) : null}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AcademicExperienceEditor({
+  csrfToken,
+  page,
+  onChange,
+}: {
+  csrfToken: string;
+  page: EditableAcademicExperiencePage;
+  onChange: (page: EditableAcademicExperiencePage) => void;
+}) {
+  return (
+    <div className="grid gap-5">
+      <div className="grid gap-5 lg:grid-cols-2">
+        <Field
+          label="Eyebrow"
+          value={page.eyebrow}
+          onChange={(eyebrow) => onChange({ ...page, eyebrow })}
+        />
+        <Field
+          label="Title"
+          value={page.title}
+          onChange={(title) => onChange({ ...page, title })}
+        />
+      </div>
+      <TextArea
+        label="Description"
+        value={page.description}
+        onChange={(description) => onChange({ ...page, description })}
+      />
+      <ImageField
+        csrfToken={csrfToken}
+        label="Hero image"
+        value={page.heroImage ?? ""}
+        onChange={(heroImage) => onChange({ ...page, heroImage })}
+      />
+      <div className="rounded-md border border-brand-line bg-white p-4">
+        <div className="grid gap-5">
+          <Field
+            label="Intro eyebrow"
+            value={page.introEyebrow}
+            onChange={(introEyebrow) => onChange({ ...page, introEyebrow })}
+          />
+          <Field
+            label="Intro title"
+            value={page.introTitle}
+            onChange={(introTitle) => onChange({ ...page, introTitle })}
+          />
+          <TextArea
+            label="Intro description"
+            value={page.introDescription}
+            onChange={(introDescription) =>
+              onChange({ ...page, introDescription })
+            }
+          />
+          <ButtonActionEditor
+            title="Intro primary"
+            action={page.introPrimaryAction}
+            onChange={(introPrimaryAction) =>
+              onChange({ ...page, introPrimaryAction })
+            }
+          />
+          <ButtonActionEditor
+            title="Intro secondary"
+            action={page.introSecondaryAction}
+            onChange={(introSecondaryAction) =>
+              onChange({ ...page, introSecondaryAction })
+            }
+          />
+        </div>
+      </div>
+      <article className="rounded-md border border-brand-line bg-white p-4">
+        <h4 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+          Highlights intro
+        </h4>
+        <SectionIntroEditor
+          intro={page.highlightsIntro}
+          onChange={(highlightsIntro) => onChange({ ...page, highlightsIntro })}
+        />
+      </article>
+      <TextCardEditor
+        title="Highlights"
+        items={page.highlights}
+        onAdd={() =>
+          onChange({
+            ...page,
+            highlights: [
+              ...page.highlights,
+              { title: "New highlight", description: "Add highlight details." },
+            ],
+          })
+        }
+        onChange={(highlights) => onChange({ ...page, highlights })}
+      />
+      <article className="rounded-md border border-brand-line bg-white p-4">
+        <h4 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+          Gallery intro
+        </h4>
+        <SectionIntroEditor
+          intro={page.galleryIntro}
+          onChange={(galleryIntro) => onChange({ ...page, galleryIntro })}
+        />
+      </article>
+      <ImageItemsEditor
+        csrfToken={csrfToken}
+        title="Photos"
+        items={page.photos}
+        showClassName
+        onAdd={() =>
+          onChange({
+            ...page,
+            photos: [
+              ...page.photos,
+              {
+                src: "/images/resource-centre.jpeg",
+                alt: "Merishaw School",
+                className: "",
+              },
+            ],
+          })
+        }
+        onChange={(photos) => onChange({ ...page, photos })}
+      />
+      <article className="rounded-md border border-brand-line bg-white p-4">
+        <h4 className="mb-4 font-serif text-xl font-semibold text-brand-ink">
+          Page CTA
+        </h4>
+        <CTAEditor cta={page.cta} onChange={(cta) => onChange({ ...page, cta })} />
+      </article>
     </div>
   );
 }

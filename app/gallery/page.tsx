@@ -25,6 +25,7 @@ export default async function GalleryPage() {
         title={content.pages.gallery.title}
         description={content.pages.gallery.description}
         image={content.pages.gallery.image}
+        imagePosition={content.pages.gallery.imagePosition}
       />
 
       <section className="bg-brand-burgundy px-3 py-3 sm:px-5 sm:py-5 lg:px-6">

@@ -8,11 +8,19 @@ type SupportContent = typeof supportContent;
 type SupportChildSectionProps = {
   content?: SupportContent;
   initiatives?: string[];
+  primaryHref?: string;
+  primaryLabel?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
 };
 
 export default function SupportChildSection({
   content = supportContent,
   initiatives = csrInitiatives,
+  primaryHref = "/support-a-child",
+  primaryLabel = "Explore Sponsorship",
+  secondaryHref = "/contact",
+  secondaryLabel = "Talk to Admissions",
 }: SupportChildSectionProps) {
   return (
     <section className="bg-brand-cream px-4 py-16 sm:px-6 lg:px-8">
@@ -31,11 +39,11 @@ export default function SupportChildSection({
             {content.note}
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/support-a-child" variant="primary">
-              Explore Sponsorship
+            <ButtonLink href={primaryHref} variant="primary">
+              {primaryLabel}
             </ButtonLink>
-            <ButtonLink href="/contact" variant="secondary">
-              Talk to Admissions
+            <ButtonLink href={secondaryHref} variant="secondary">
+              {secondaryLabel}
             </ButtonLink>
           </div>
         </MotionReveal>

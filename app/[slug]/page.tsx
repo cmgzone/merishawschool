@@ -5,10 +5,6 @@ import AcademicExperiencePage from "@/components/AcademicExperiencePage";
 import ButtonLink from "@/components/ButtonLink";
 import MotionReveal from "@/components/MotionReveal";
 import PageHeader from "@/components/PageHeader";
-import {
-  academicExperiencePages,
-  type AcademicExperienceSlug,
-} from "@/data/academics";
 import { getEditableContent, type EditableContent } from "@/data/admin-content";
 import { contentNeededPages, type ContentNeededSlug } from "@/data/content-needed";
 
@@ -53,10 +49,8 @@ function getPage(slug: string, content: EditableContent) {
   );
 }
 
-function getAcademicExperiencePage(slug: string) {
-  return slug in academicExperiencePages
-    ? academicExperiencePages[slug as AcademicExperienceSlug]
-    : null;
+function getAcademicExperiencePage(slug: string, content: EditableContent) {
+  return content.academicExperiences[slug] ?? null;
 }
 
 function ContentNeededCard({ needed }: { needed: string }) {
@@ -85,7 +79,8 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const academicExperiencePage = getAcademicExperiencePage(slug);
+  const content = await getEditableContent();
+  const academicExperiencePage = getAcademicExperiencePage(slug, content);
 
   if (academicExperiencePage) {
     return {
@@ -94,7 +89,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const content = await getEditableContent();
   const page = getPage(slug, content);
 
   if (!page) {
@@ -109,13 +103,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ContentNeededPage({ params }: PageProps) {
   const { slug } = await params;
-  const academicExperiencePage = getAcademicExperiencePage(slug);
+  const content = await getEditableContent();
+  const academicExperiencePage = getAcademicExperiencePage(slug, content);
 
   if (academicExperiencePage) {
     return <AcademicExperiencePage page={academicExperiencePage} />;
   }
 
-  const content = await getEditableContent();
   const page = getPage(slug, content);
 
   if (!page) {

@@ -3,34 +3,6 @@ import MotionReveal from "@/components/MotionReveal";
 import PageHeader from "@/components/PageHeader";
 import { getEditableContent } from "@/data/admin-content";
 
-const developmentPillars = [
-  {
-    title: "Spiritual Well-Being",
-    description:
-      "Promotes godly character, respect for diversity, and a strong sense of faith to guide boys away from societal ills.",
-  },
-  {
-    title: "Digital Literacy",
-    description:
-      "Embeds critical 21st-century technological skills into the curriculum, preparing students for the demands of the digital age.",
-  },
-  {
-    title: "Sports and Talents",
-    description:
-      "Cultivates extracurricular capabilities through diverse offerings, ranging from traditional sports such as soccer and basketball to unconventional activities such as fencing and golf.",
-  },
-  {
-    title: "Social and Collaboration",
-    description:
-      "Focuses on community outreach, corporate social responsibility, and exchange programs such as AFS Kenya.",
-  },
-  {
-    title: "STEM & Expanded Curriculum",
-    description:
-      "Fosters cross-disciplinary learning by integrating science, technology, engineering, and mathematics alongside vocational and technical skills.",
-  },
-];
-
 export const metadata: Metadata = {
   title: "Mission, Vision and Values",
   description:
@@ -43,10 +15,11 @@ export default async function AboutPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Mission, Vision and Values"
-        title="Our vision, mission and values."
-        description="Merishaw School's vision statement, mission statement, and MERISHAW core values."
+        eyebrow={content.pages.about.eyebrow}
+        title={content.pages.about.title}
+        description={content.pages.about.description}
         image={content.pages.about.image}
+        imagePosition={content.pages.about.imagePosition}
       />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
@@ -78,11 +51,16 @@ export default async function AboutPage() {
           <MotionReveal delay={0.12} className="mt-14">
             <div className="max-w-3xl">
               <p className="text-sm font-bold uppercase text-brand-burgundy">
-                Core Values
+                {content.about.valuesIntro.eyebrow}
               </p>
               <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight text-brand-ink sm:text-4xl">
-                The MERISHAW acronym.
+                {content.about.valuesIntro.title}
               </h2>
+              {content.about.valuesIntro.description ? (
+                <p className="mt-4 text-base leading-8 text-brand-muted sm:text-lg">
+                  {content.about.valuesIntro.description}
+                </p>
+              ) : null}
             </div>
           </MotionReveal>
 
@@ -104,20 +82,19 @@ export default async function AboutPage() {
           <MotionReveal delay={0.12} className="mt-14">
             <div className="max-w-4xl">
               <p className="text-sm font-bold uppercase text-brand-burgundy">
-                Values in Practice
+                {content.about.developmentPillarsIntro.eyebrow}
               </p>
               <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight text-brand-ink sm:text-4xl">
-                Core educational and development pillars.
+                {content.about.developmentPillarsIntro.title}
               </h2>
               <p className="mt-4 text-base leading-8 text-brand-muted sm:text-lg">
-                These values are integrated into Merishaw&apos;s core
-                educational and development pillars.
+                {content.about.developmentPillarsIntro.description}
               </p>
             </div>
           </MotionReveal>
 
           <div className="mt-8 grid gap-4 lg:grid-cols-2">
-            {developmentPillars.map((pillar, index) => (
+            {content.about.developmentPillars.map((pillar, index) => (
               <MotionReveal key={pillar.title} delay={index * 0.035}>
                 <article className="h-full rounded-md border border-brand-line bg-brand-cream p-5 sm:p-6">
                   <h3 className="font-serif text-2xl font-semibold text-brand-ink">

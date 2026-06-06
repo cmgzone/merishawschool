@@ -6,6 +6,12 @@ type WelcomeVideoSectionProps = {
   eyebrow?: string;
   title?: string;
   description?: string;
+  embedUrl?: string;
+  videoTitle?: string;
+  primaryHref?: string;
+  primaryLabel?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
   tone?: "light" | "cream";
 };
 
@@ -13,6 +19,12 @@ export default function WelcomeVideoSection({
   eyebrow = "Welcome video",
   title = "Welcome to Merishaw School.",
   description = "Watch the Merishaw School welcome video and experience the campus, values, and learning environment behind the Home of the Boy Child.",
+  embedUrl = "https://www.youtube.com/embed/RIQKNGVncwg",
+  videoTitle = "Merishaw School welcome video",
+  primaryHref = "/admissions",
+  primaryLabel = "Start Admissions",
+  secondaryHref = "/gallery",
+  secondaryLabel = "View Gallery",
   tone = "light",
 }: WelcomeVideoSectionProps) {
   return (
@@ -28,8 +40,8 @@ export default function WelcomeVideoSection({
           <div className="overflow-hidden rounded-md border border-brand-gold/40 bg-brand-burgundy shadow-premium">
             <div className="aspect-video">
               <iframe
-                src="https://www.youtube.com/embed/RIQKNGVncwg"
-                title="Merishaw School welcome video"
+                src={embedUrl}
+                title={videoTitle}
                 className="h-full w-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
@@ -52,9 +64,9 @@ export default function WelcomeVideoSection({
             {description}
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/admissions">Start Admissions</ButtonLink>
-            <ButtonLink href="/gallery" variant="secondary">
-              View Gallery
+            <ButtonLink href={primaryHref}>{primaryLabel}</ButtonLink>
+            <ButtonLink href={secondaryHref} variant="secondary">
+              {secondaryLabel}
             </ButtonLink>
           </div>
         </MotionReveal>
@@ -62,4 +74,3 @@ export default function WelcomeVideoSection({
     </section>
   );
 }
-

@@ -22,6 +22,7 @@ export default async function NewsPage() {
         title={content.pages.news.title}
         description={content.pages.news.description}
         image={content.pages.news.image}
+        imagePosition={content.pages.news.imagePosition}
       />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">

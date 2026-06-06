@@ -10,14 +10,14 @@ import CTASection from "@/components/CTASection";
 import MotionReveal from "@/components/MotionReveal";
 import PageHeader from "@/components/PageHeader";
 import SectionTitle from "@/components/SectionTitle";
-import type { AcademicExperiencePage as AcademicExperiencePageData } from "@/data/academics";
+import type { EditableAcademicExperiencePage } from "@/data/admin-content";
 
 const highlightIcons = [BookOpenCheck, Lightbulb, CheckCircle2, Sparkles];
 
 export default function AcademicExperiencePage({
   page,
 }: {
-  page: AcademicExperiencePageData;
+  page: EditableAcademicExperiencePage;
 }) {
   const primaryPhoto = page.photos[0];
 
@@ -39,7 +39,7 @@ export default function AcademicExperiencePage({
         >
           <MotionReveal>
             <p className="text-sm font-bold uppercase text-brand-burgundy">
-              Learning experience
+              {page.introEyebrow}
             </p>
             <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight text-brand-ink sm:text-5xl">
               {page.introTitle}
@@ -48,9 +48,11 @@ export default function AcademicExperiencePage({
               {page.introDescription}
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/academics">Explore Academics</ButtonLink>
-              <ButtonLink href="/contact" variant="secondary">
-                Plan a Visit
+              <ButtonLink href={page.introPrimaryAction.href}>
+                {page.introPrimaryAction.label}
+              </ButtonLink>
+              <ButtonLink href={page.introSecondaryAction.href} variant="secondary">
+                {page.introSecondaryAction.label}
               </ButtonLink>
             </div>
           </MotionReveal>
@@ -74,9 +76,9 @@ export default function AcademicExperiencePage({
       <section className="bg-brand-cream px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionTitle
-            eyebrow="What students develop"
-            title="Practical experiences that strengthen learning habits."
-            description="Each experience gives boys another way to build confidence, responsibility, curiosity, and a sense of purpose."
+            eyebrow={page.highlightsIntro.eyebrow}
+            title={page.highlightsIntro.title}
+            description={page.highlightsIntro.description}
             align="center"
           />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -107,9 +109,9 @@ export default function AcademicExperiencePage({
         <section className="bg-brand-burgundy px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <SectionTitle
-              eyebrow="Inside the experience"
-              title="Spaces and moments that make learning visible."
-              description="A closer look at the environment supporting student curiosity, skill, and steady growth."
+              eyebrow={page.galleryIntro.eyebrow}
+              title={page.galleryIntro.title}
+              description={page.galleryIntro.description}
               tone="dark"
             />
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -136,13 +138,13 @@ export default function AcademicExperiencePage({
       ) : null}
 
       <CTASection
-        eyebrow="Admissions"
-        title="Explore a learning environment built for the whole boy."
-        description="Speak with the school team about academics, student opportunities, curriculum pathways, and planning a visit."
-        primaryHref="/admissions"
-        primaryLabel="Start Admissions"
-        secondaryHref="/contact"
-        secondaryLabel="Contact School"
+        eyebrow={page.cta.eyebrow}
+        title={page.cta.title}
+        description={page.cta.description}
+        primaryHref={page.cta.primaryHref}
+        primaryLabel={page.cta.primaryLabel}
+        secondaryHref={page.cta.secondaryHref}
+        secondaryLabel={page.cta.secondaryLabel}
       />
     </>
   );

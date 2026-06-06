@@ -18,16 +18,7 @@ import ButtonLink from "@/components/ButtonLink";
 import MotionReveal from "@/components/MotionReveal";
 import PageHeader from "@/components/PageHeader";
 import SectionTitle from "@/components/SectionTitle";
-import {
-  architecturalInspirations,
-  conceptIntro,
-  infrastructureHero,
-  infrastructureStats,
-  maasaiContext,
-  masterPlanLayers,
-  siteLocation,
-  sustainabilityStrategies,
-} from "@/data/infrastructure";
+import { getEditableContent } from "@/data/admin-content";
 
 export const metadata: Metadata = {
   title: "Infrastructure",
@@ -40,44 +31,56 @@ const inspirationIcons = [Wind, Leaf, ShieldCheck];
 const sustainabilityIcons = [Sun, Wind, Trees, Leaf, Droplets, Droplets, Droplets];
 const layerIcons = [Route, Building2, Home, Layers3, Trees, UsersRound];
 
-export default function InfrastructurePage() {
+export default async function InfrastructurePage() {
+  const content = await getEditableContent();
+
   return (
     <>
       <PageHeader
-        eyebrow={infrastructureHero.eyebrow}
-        title={infrastructureHero.title}
-        description={infrastructureHero.description}
-        image={infrastructureHero.image}
+        eyebrow={content.pages.infrastructure.eyebrow}
+        title={content.pages.infrastructure.title}
+        description={content.pages.infrastructure.description}
+        image={content.pages.infrastructure.image}
+        imagePosition={content.pages.infrastructure.imagePosition}
       />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <MotionReveal>
             <p className="text-sm font-bold uppercase text-brand-burgundy">
-              Campus concept
+              {content.infrastructure.concept.eyebrow}
             </p>
             <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight text-brand-ink sm:text-5xl">
-              A community designed to form conquerors.
+              {content.infrastructure.concept.title}
             </h2>
             <div className="mt-6 space-y-4 text-base leading-8 text-brand-muted">
-              {conceptIntro.map((paragraph) => (
+              {content.infrastructure.concept.paragraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/gallery">View Campus Gallery</ButtonLink>
-              <ButtonLink href="/contact" variant="secondary">
-                Plan a Visit
-              </ButtonLink>
+              {content.infrastructure.concept.primaryAction ? (
+                <ButtonLink href={content.infrastructure.concept.primaryAction.href}>
+                  {content.infrastructure.concept.primaryAction.label}
+                </ButtonLink>
+              ) : null}
+              {content.infrastructure.concept.secondaryAction ? (
+                <ButtonLink
+                  href={content.infrastructure.concept.secondaryAction.href}
+                  variant="secondary"
+                >
+                  {content.infrastructure.concept.secondaryAction.label}
+                </ButtonLink>
+              ) : null}
             </div>
           </MotionReveal>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            {infrastructureStats.map((stat, index) => {
+            {content.infrastructure.stats.map((stat, index) => {
               const Icon = statIcons[index] ?? Building2;
 
               return (
-                <MotionReveal key={stat.label} delay={index * 0.04}>
+                <MotionReveal key={`${stat.label}-${index}`} delay={index * 0.04}>
                   <article className="h-full rounded-md border border-brand-line bg-brand-cream p-5">
                     <div className="flex h-11 w-11 items-center justify-center rounded-md bg-brand-burgundy text-brand-gold">
                       <Icon className="h-5 w-5" />
@@ -101,23 +104,26 @@ export default function InfrastructurePage() {
           <MotionReveal>
             <div className="relative aspect-[16/11] overflow-hidden rounded-md shadow-premium">
               <Image
-                src="/images/gallery-campus-view.jpg"
-                alt="Merishaw School campus in its Kajiado setting"
+                src={content.infrastructure.siteLocation.image ?? ""}
+                alt={content.infrastructure.siteLocation.imageAlt ?? ""}
                 fill
                 className="object-cover"
+                style={{
+                  objectPosition: content.infrastructure.siteLocation.imagePosition,
+                }}
                 sizes="(min-width: 1024px) 55vw, 100vw"
               />
             </div>
           </MotionReveal>
           <MotionReveal delay={0.08}>
             <p className="text-sm font-bold uppercase text-brand-burgundy">
-              Site location
+              {content.infrastructure.siteLocation.eyebrow}
             </p>
             <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight text-brand-ink sm:text-5xl">
-              Isinya&apos;s open savannah becomes part of the school experience.
+              {content.infrastructure.siteLocation.title}
             </h2>
             <div className="mt-6 space-y-4 text-base leading-8 text-brand-muted">
-              {siteLocation.map((paragraph) => (
+              {content.infrastructure.siteLocation.paragraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
@@ -128,17 +134,17 @@ export default function InfrastructurePage() {
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionTitle
-            eyebrow="Architectural inspirations"
-            title="The campus draws from physical openness, sustainable systems, and Maasai social structure."
-            description="Each design choice connects the school to its environment while supporting safety, creativity, movement, and whole-boy formation."
+            eyebrow={content.infrastructure.architecturalIntro.eyebrow}
+            title={content.infrastructure.architecturalIntro.title}
+            description={content.infrastructure.architecturalIntro.description}
             align="center"
           />
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            {architecturalInspirations.map((item, index) => {
+            {content.infrastructure.architecturalInspirations.map((item, index) => {
               const Icon = inspirationIcons[index] ?? Building2;
 
               return (
-                <MotionReveal key={item.title} delay={index * 0.05}>
+                <MotionReveal key={`${item.title}-${index}`} delay={index * 0.05}>
                   <article className="h-full rounded-md border border-brand-line bg-brand-cream p-6 shadow-card">
                     <div className="flex h-12 w-12 items-center justify-center rounded-md bg-brand-burgundy text-brand-gold">
                       <Icon className="h-5 w-5" />
@@ -160,17 +166,17 @@ export default function InfrastructurePage() {
       <section className="bg-brand-burgundy px-4 py-16 text-white sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
           <SectionTitle
-            eyebrow="Sustainability"
-            title="Designed to reduce waste, harvest natural resources, and regulate microclimate."
-            description="Passive design strategies and campus systems work together to reduce energy demand and support daily comfort."
+            eyebrow={content.infrastructure.sustainabilityIntro.eyebrow}
+            title={content.infrastructure.sustainabilityIntro.title}
+            description={content.infrastructure.sustainabilityIntro.description}
             tone="dark"
           />
           <div className="grid gap-4 sm:grid-cols-2">
-            {sustainabilityStrategies.map((strategy, index) => {
+            {content.infrastructure.sustainabilityStrategies.map((strategy, index) => {
               const Icon = sustainabilityIcons[index] ?? Leaf;
 
               return (
-                <MotionReveal key={strategy} delay={index * 0.035}>
+                <MotionReveal key={`${strategy}-${index}`} delay={index * 0.035}>
                   <article className="flex gap-4 rounded-md border border-white/15 bg-white/8 p-4">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-brand-gold text-brand-ink">
                       <Icon className="h-5 w-5" />
@@ -190,13 +196,13 @@ export default function InfrastructurePage() {
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <MotionReveal>
             <p className="text-sm font-bold uppercase text-brand-burgundy">
-              Social setting
+              {content.infrastructure.maasai.eyebrow}
             </p>
             <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight text-brand-ink sm:text-5xl">
-              A master plan inspired by the Maasai Emanyatta.
+              {content.infrastructure.maasai.title}
             </h2>
             <div className="mt-6 space-y-4 text-base leading-8 text-brand-muted">
-              {maasaiContext.map((paragraph) => (
+              {content.infrastructure.maasai.paragraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
@@ -204,10 +210,11 @@ export default function InfrastructurePage() {
           <MotionReveal delay={0.08}>
             <div className="relative aspect-[4/3] overflow-hidden rounded-md shadow-premium">
               <Image
-                src="/images/gallery-aerial-campus.jpg"
-                alt="Aerial view of Merishaw School campus master plan"
+                src={content.infrastructure.maasai.image ?? ""}
+                alt={content.infrastructure.maasai.imageAlt ?? ""}
                 fill
                 className="object-cover"
+                style={{ objectPosition: content.infrastructure.maasai.imagePosition }}
                 sizes="(min-width: 1024px) 50vw, 100vw"
               />
             </div>
@@ -218,17 +225,17 @@ export default function InfrastructurePage() {
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionTitle
-            eyebrow="Movement, zoning and master planning"
-            title="A clear axis organizes daily student life from gate to boarding community."
-            description="The school master plan follows the logical flow of student activities, with courtyards, buffers, and layers of care shaping the campus."
+            eyebrow={content.infrastructure.masterPlanIntro.eyebrow}
+            title={content.infrastructure.masterPlanIntro.title}
+            description={content.infrastructure.masterPlanIntro.description}
             align="center"
           />
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {masterPlanLayers.map((layer, index) => {
+            {content.infrastructure.masterPlanLayers.map((layer, index) => {
               const Icon = layerIcons[index] ?? Layers3;
 
               return (
-                <MotionReveal key={layer.title} delay={index * 0.04}>
+                <MotionReveal key={`${layer.title}-${index}`} delay={index * 0.04}>
                   <article className="h-full rounded-md border border-brand-line bg-brand-cream p-6">
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex h-11 w-11 items-center justify-center rounded-md bg-brand-burgundy text-brand-gold">
@@ -256,21 +263,24 @@ export default function InfrastructurePage() {
         <MotionReveal className="mx-auto grid max-w-7xl gap-8 rounded-md border border-brand-gold/50 bg-white p-7 shadow-premium lg:grid-cols-[1fr_0.8fr] lg:items-center lg:p-10">
           <div>
             <p className="text-sm font-bold uppercase text-brand-burgundy">
-              Experience the campus
+              {content.infrastructure.visitCta.eyebrow}
             </p>
             <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight text-brand-ink sm:text-5xl">
-              See how the architectural concept supports daily life.
+              {content.infrastructure.visitCta.title}
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-8 text-brand-muted">
-              Visit Merishaw to see the arrival boulevard, courtyards, learning
-              spaces, boarding community, sports grounds, and the wider campus
-              environment.
+              {content.infrastructure.visitCta.description}
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-            <ButtonLink href="/contact">Book a Visit</ButtonLink>
-            <ButtonLink href="/gallery" variant="secondary">
-              View Gallery
+            <ButtonLink href={content.infrastructure.visitCta.primaryHref}>
+              {content.infrastructure.visitCta.primaryLabel}
+            </ButtonLink>
+            <ButtonLink
+              href={content.infrastructure.visitCta.secondaryHref}
+              variant="secondary"
+            >
+              {content.infrastructure.visitCta.secondaryLabel}
             </ButtonLink>
           </div>
         </MotionReveal>

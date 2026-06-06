@@ -6,65 +6,9 @@ import CTASection from "@/components/CTASection";
 import MotionReveal from "@/components/MotionReveal";
 import PageHeader from "@/components/PageHeader";
 import SectionTitle from "@/components/SectionTitle";
+import { getEditableContent } from "@/data/admin-content";
 
-const sportsProgrammes = [
-  {
-    title: "Soccer Academy",
-    description:
-      "Training and competitive play develop technique, fitness, decision-making, teamwork, and composure under pressure.",
-    image: "/images/sports-soccer-match.jpeg",
-    alt: "Merishaw Soccer Academy students competing for the ball",
-  },
-  {
-    title: "Swimming",
-    description:
-      "Pool sessions help students build endurance, water confidence, stroke technique, discipline, and personal resilience.",
-    image: "/images/sports-swimming-butterfly.jpeg",
-    alt: "Merishaw School swimmer practising butterfly stroke",
-  },
-  {
-    title: "Lacrosse",
-    description:
-      "Lacrosse introduces students to pace, coordination, tactical awareness, and a team sport with growing international reach.",
-    image: "/images/sports-lacrosse-match.jpeg",
-    alt: "Merishaw School students playing lacrosse on the field",
-  },
-];
-
-const sportsGallery = [
-  {
-    src: "/images/sports-soccer-match.jpeg",
-    alt: "Merishaw Soccer Academy students competing for the ball",
-  },
-  {
-    src: "/images/gallery-soccer-academy.jpeg",
-    alt: "Merishaw Soccer Academy student driving forward with the ball",
-  },
-  {
-    src: "/images/sports-lacrosse-passing.jpeg",
-    alt: "Merishaw School lacrosse students preparing a pass",
-  },
-  {
-    src: "/images/sports-lacrosse-match.jpeg",
-    alt: "Merishaw School students playing lacrosse on the field",
-  },
-  {
-    src: "/images/sports-swimming-butterfly.jpeg",
-    alt: "Merishaw School swimmer practising butterfly stroke",
-  },
-  {
-    src: "/images/sports-swimming-breaststroke.jpeg",
-    alt: "Merishaw School swimmer practising breaststroke",
-  },
-  {
-    src: "/images/sports-swimming-training.jpeg",
-    alt: "Merishaw School swimmer training in a pool lane",
-  },
-  {
-    src: "/images/sports-swimming-freestyle.jpeg",
-    alt: "Merishaw School swimmer practising freestyle in a pool lane",
-  },
-];
+const coachingIcons = [UsersRound, Trophy, Target, Medal];
 
 export const metadata: Metadata = {
   title: "Sports",
@@ -72,45 +16,55 @@ export const metadata: Metadata = {
     "Explore Merishaw School sports, including soccer, swimming, lacrosse, structured coaching, teamwork, and talent development.",
 };
 
-export default function SportsPage() {
+export default async function SportsPage() {
+  const content = await getEditableContent();
+
   return (
     <>
       <PageHeader
-        eyebrow="Extra-curricular Activities"
-        title="Sport that develops discipline, teamwork, and a winning mentality."
-        description="Merishaw gives boys room to compete, train, and grow through soccer, swimming, lacrosse, and a wider culture of active participation."
-        image="/images/sports-soccer-match.jpeg"
-        imagePosition="center 54%"
+        eyebrow={content.pages.sports.eyebrow}
+        title={content.pages.sports.title}
+        description={content.pages.sports.description}
+        image={content.pages.sports.image}
+        imagePosition={content.pages.sports.imagePosition}
       />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <MotionReveal>
             <p className="text-sm font-bold uppercase text-brand-burgundy">
-              Sports and talents
+              {content.sports.intro.eyebrow}
             </p>
             <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight text-brand-ink sm:text-5xl">
-              Train the body. Strengthen the character.
+              {content.sports.intro.title}
             </h2>
             <p className="mt-5 text-base leading-8 text-brand-muted">
-              Sporting life at Merishaw sits alongside academic focus and
-              character formation. Boys learn how to prepare, respond to
-              challenge, play for the team, and pursue steady improvement.
+              {content.sports.intro.description}
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/clubs">Explore Clubs</ButtonLink>
-              <ButtonLink href="/contact" variant="secondary">
-                Contact School
-              </ButtonLink>
+              {content.sports.intro.primaryAction ? (
+                <ButtonLink href={content.sports.intro.primaryAction.href}>
+                  {content.sports.intro.primaryAction.label}
+                </ButtonLink>
+              ) : null}
+              {content.sports.intro.secondaryAction ? (
+                <ButtonLink
+                  href={content.sports.intro.secondaryAction.href}
+                  variant="secondary"
+                >
+                  {content.sports.intro.secondaryAction.label}
+                </ButtonLink>
+              ) : null}
             </div>
           </MotionReveal>
           <MotionReveal delay={0.08}>
             <div className="relative aspect-[16/10] overflow-hidden rounded-md shadow-premium">
               <Image
-                src="/images/sports-lacrosse-passing.jpeg"
-                alt="Merishaw School lacrosse students preparing a pass"
+                src={content.sports.intro.image}
+                alt={content.sports.intro.imageAlt}
                 fill
                 className="object-cover"
+                style={{ objectPosition: content.sports.intro.imagePosition }}
                 sizes="(min-width: 1024px) 55vw, 100vw"
               />
             </div>
@@ -121,19 +75,19 @@ export default function SportsPage() {
       <section className="bg-brand-cream px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionTitle
-            eyebrow="Sports programme"
-            title="Different sporting pathways. Shared habits of excellence."
-            description="Each programme creates opportunities for fitness, resilience, teamwork, and confident participation."
+            eyebrow={content.sports.programmeIntro.eyebrow}
+            title={content.sports.programmeIntro.title}
+            description={content.sports.programmeIntro.description}
             align="center"
           />
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            {sportsProgrammes.map((programme, index) => (
+            {content.sports.programmes.map((programme, index) => (
               <MotionReveal key={programme.title} delay={index * 0.05}>
                 <article className="h-full overflow-hidden rounded-md border border-brand-line bg-white shadow-card">
                   <div className="relative aspect-[4/3]">
                     <Image
                       src={programme.image}
-                      alt={programme.alt}
+                      alt={programme.imageAlt}
                       fill
                       className="object-cover"
                       sizes="(min-width: 1024px) 33vw, 100vw"
@@ -159,41 +113,36 @@ export default function SportsPage() {
           <MotionReveal>
             <div className="relative aspect-video overflow-hidden rounded-md shadow-premium">
               <Image
-                src="/images/sports-coach.jpeg"
-                alt="Merishaw School sports coach speaking beside the school field"
+                src={content.sports.coaching.image}
+                alt={content.sports.coaching.imageAlt}
                 fill
                 className="object-cover"
+                style={{ objectPosition: content.sports.coaching.imagePosition }}
                 sizes="(min-width: 1024px) 55vw, 100vw"
               />
             </div>
           </MotionReveal>
           <MotionReveal delay={0.08}>
             <p className="text-sm font-bold uppercase text-brand-gold">
-              Coaching culture
+              {content.sports.coaching.eyebrow}
             </p>
             <h2 className="mt-3 font-serif text-3xl font-semibold sm:text-4xl">
-              Purposeful guidance behind every training session.
+              {content.sports.coaching.title}
             </h2>
             <p className="mt-5 text-base font-medium leading-8 text-white/90">
-              Merishaw&apos;s sporting environment encourages discipline,
-              sportsmanship, courage, and a healthy competitive mindset.
+              {content.sports.coaching.description}
             </p>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              {[
-                { label: "Teamwork", icon: UsersRound },
-                { label: "Resilience", icon: Trophy },
-                { label: "Technique", icon: Target },
-                { label: "Confidence", icon: Medal },
-              ].map((item) => {
-                const Icon = item.icon;
+              {content.sports.coachingValues.map((label, index) => {
+                const Icon = coachingIcons[index] ?? Medal;
 
                 return (
                   <div
-                    key={item.label}
+                    key={`${label}-${index}`}
                     className="flex items-center gap-3 rounded-md border border-white/15 bg-white/10 p-4"
                   >
                     <Icon className="h-5 w-5 text-brand-gold" />
-                    <p className="text-sm font-bold">{item.label}</p>
+                    <p className="text-sm font-bold">{label}</p>
                   </div>
                 );
               })}
@@ -205,13 +154,13 @@ export default function SportsPage() {
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionTitle
-            eyebrow="Sports gallery"
-            title="A closer look at active school life."
-            description="From the field to the pool, students have room to train, participate, and develop their talents."
+            eyebrow={content.sports.galleryIntro.eyebrow}
+            title={content.sports.galleryIntro.title}
+            description={content.sports.galleryIntro.description}
           />
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {sportsGallery.map((photo, index) => (
-              <MotionReveal key={photo.src} delay={index * 0.035}>
+            {content.sports.gallery.map((photo, index) => (
+              <MotionReveal key={`${photo.src}-${index}`} delay={index * 0.035}>
                 <div className="relative aspect-[4/3] overflow-hidden rounded-md border border-brand-line bg-brand-cream shadow-card">
                   <Image
                     src={photo.src}
@@ -228,13 +177,13 @@ export default function SportsPage() {
       </section>
 
       <CTASection
-        eyebrow="Admissions"
-        title="Find the right environment for your son's growth."
-        description="Speak with the school team about academics, boarding, sports, clubs, and planning your visit to Merishaw."
-        primaryHref="/admissions"
-        primaryLabel="Start Admissions"
-        secondaryHref="/contact"
-        secondaryLabel="Contact School"
+        eyebrow={content.sports.cta.eyebrow}
+        title={content.sports.cta.title}
+        description={content.sports.cta.description}
+        primaryHref={content.sports.cta.primaryHref}
+        primaryLabel={content.sports.cta.primaryLabel}
+        secondaryHref={content.sports.cta.secondaryHref}
+        secondaryLabel={content.sports.cta.secondaryLabel}
       />
     </>
   );

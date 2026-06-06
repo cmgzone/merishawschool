@@ -23,6 +23,7 @@ export default async function AdmissionsPage() {
         title={content.pages.admissions.title}
         description={content.pages.admissions.description}
         image={content.pages.admissions.image}
+        imagePosition={content.pages.admissions.imagePosition}
       />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
@@ -73,24 +74,30 @@ export default async function AdmissionsPage() {
             </h2>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/downloads" variant="support">
-              Downloads
+            <ButtonLink
+              href={content.admissions.feesPrimaryAction.href}
+              variant="support"
+            >
+              {content.admissions.feesPrimaryAction.label}
             </ButtonLink>
-            <ButtonLink href="/contact" variant="secondary">
-              Ask a Question
+            <ButtonLink
+              href={content.admissions.feesSecondaryAction.href}
+              variant="secondary"
+            >
+              {content.admissions.feesSecondaryAction.label}
             </ButtonLink>
           </div>
         </MotionReveal>
       </section>
 
       <CTASection
-        eyebrow="Visit or enquire"
-        title="Admissions conversations are handled directly by the school."
-        description="Use the contact page to reach Merishaw School by phone, email, or enquiry form."
-        primaryHref="/contact"
-        primaryLabel="Contact Admissions"
-        secondaryHref="/academics"
-        secondaryLabel="View Academics"
+        eyebrow={content.admissions.cta.eyebrow}
+        title={content.admissions.cta.title}
+        description={content.admissions.cta.description}
+        primaryHref={content.admissions.cta.primaryHref}
+        primaryLabel={content.admissions.cta.primaryLabel}
+        secondaryHref={content.admissions.cta.secondaryHref}
+        secondaryLabel={content.admissions.cta.secondaryLabel}
       />
     </>
   );
