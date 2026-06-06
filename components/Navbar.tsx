@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { csrNavItem, navigationGroups, supportNavItem } from "@/data/navigation";
 import { siteConfig } from "@/data/site";
 import { cn } from "@/lib/utils";
@@ -40,14 +41,47 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
   const groupIsActive = (item: (typeof navigationGroups)[number]) =>
     isActive(item.href) || item.children?.some((child) => isActive(child.href));
 
+  const closeMobileMenu = () => {
+    setOpen(false);
+    setMobileGroup(null);
+  };
+
   useEffect(() => {
-    document.documentElement.classList.toggle("mobile-menu-open", open);
+    const root = document.documentElement;
+    const body = document.body;
+
+    root.classList.toggle("mobile-menu-open", open);
     window.dispatchEvent(new Event("merishaw:mobile-menu-toggle"));
 
-    return () => document.documentElement.classList.remove("mobile-menu-open");
+    if (!open) {
+      return () => root.classList.remove("mobile-menu-open");
+    }
+
+    const scrollY = window.scrollY;
+    const previousBodyStyles = {
+      overflow: body.style.overflow,
+      position: body.style.position,
+      top: body.style.top,
+      width: body.style.width,
+    };
+
+    body.style.overflow = "hidden";
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.width = "100%";
+
+    return () => {
+      root.classList.remove("mobile-menu-open");
+      body.style.overflow = previousBodyStyles.overflow;
+      body.style.position = previousBodyStyles.position;
+      body.style.top = previousBodyStyles.top;
+      body.style.width = previousBodyStyles.width;
+      window.scrollTo(0, scrollY);
+    };
   }, [open]);
 
   return (
+    <>
     <header className="sticky top-0 z-50 border-b border-brand-line/80 bg-white/95 pt-[env(safe-area-inset-top)] backdrop-blur-xl">
       <div className="hidden border-b border-brand-line bg-brand-ink text-white lg:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-4 py-1.5 text-[11px] font-semibold sm:px-6 lg:px-8">
@@ -87,7 +121,7 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
         <Link
           href="/"
           className="flex shrink-0 items-center rounded-md focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2"
-          onClick={() => setOpen(false)}
+          onClick={closeMobileMenu}
         >
           <Image
             src={site.logoLandscape}
@@ -217,7 +251,7 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
           <Link
             href="/contact"
             className="inline-flex h-11 min-w-11 items-center justify-center gap-2 rounded-md bg-brand-burgundy px-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-ink focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 min-[520px]:px-4"
-            onClick={() => setOpen(false)}
+            onClick={closeMobileMenu}
             aria-label="Contact Merishaw School"
           >
             <Mail aria-hidden="true" className="h-4 w-4" />
@@ -226,7 +260,7 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
           <Link
             href={supportNavItem.href}
             className="hidden h-11 items-center justify-center gap-2 rounded-md bg-brand-gold px-4 text-sm font-bold text-brand-ink shadow-sm transition hover:bg-brand-burgundy hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 md:inline-flex"
-            onClick={() => setOpen(false)}
+            onClick={closeMobileMenu}
           >
             <HeartHandshake aria-hidden="true" className="h-4 w-4" />
             Sponsor
@@ -234,7 +268,7 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
           <Link
             href={csrNavItem.href}
             className="hidden h-11 items-center justify-center gap-2 rounded-md border border-brand-gold bg-white px-4 text-sm font-bold text-brand-burgundy shadow-sm transition hover:bg-brand-cream focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 lg:inline-flex"
-            onClick={() => setOpen(false)}
+            onClick={closeMobileMenu}
             aria-label="CSR"
           >
             <HandHeart aria-hidden="true" className="h-4 w-4" />
@@ -245,178 +279,193 @@ export default function Navbar({ site = siteConfig }: NavbarProps) {
             className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-brand-line text-brand-ink transition hover:bg-brand-cream focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2"
             aria-label={open ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={open}
-            onClick={() => setOpen((value) => !value)}
+            onClick={() => {
+              if (open) {
+                closeMobileMenu();
+                return;
+              }
+
+              setOpen(true);
+            }}
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </nav>
 
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.18 }}
-            className="fixed inset-0 z-[60] min-h-dvh bg-brand-ink/50 backdrop-blur-sm xl:hidden"
-          >
-            <motion.aside
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-              className="ml-auto flex h-dvh min-h-dvh w-full max-w-[420px] flex-col bg-white pb-[env(safe-area-inset-bottom)] shadow-premium"
-              aria-label="Mobile navigation"
-            >
-              <div className="flex items-center justify-between border-b border-brand-line px-5 py-4">
-                <Link
-                  href="/"
-                  className="rounded-md focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2"
-                  onClick={() => setOpen(false)}
-                >
-                  <Image
-                    src={site.logoLandscape}
-                    alt="Merishaw School logo"
-                    width={190}
-                    height={98}
-                    className="h-14 w-auto"
-                  />
-                </Link>
-                <button
-                  type="button"
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-brand-line text-brand-ink transition hover:bg-brand-cream focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2"
-                  aria-label="Close navigation menu"
-                  onClick={() => setOpen(false)}
-                >
-                  <X className="h-5 w-5" />
-                </button>
-              </div>
-
-              <div className="grid grid-cols-3 gap-3 border-b border-brand-line bg-brand-cream px-5 py-4">
-                <Link
-                  href="/contact"
-                  onClick={() => setOpen(false)}
-                  className="contact-pulse inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-brand-burgundy px-3 py-3 text-sm font-bold text-white shadow-lg shadow-brand-burgundy/20"
-                >
-                  <Mail aria-hidden="true" className="h-4 w-4" />
-                  Contact
-                </Link>
-                <Link
-                  href={csrNavItem.href}
-                  onClick={() => setOpen(false)}
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-brand-gold bg-white px-3 py-3 text-sm font-bold text-brand-burgundy shadow-sm"
-                >
-                  <HandHeart aria-hidden="true" className="h-4 w-4" />
-                  CSR
-                </Link>
-                <Link
-                  href={supportNavItem.href}
-                  onClick={() => setOpen(false)}
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-brand-gold px-3 py-3 text-sm font-bold text-brand-ink shadow-sm"
-                >
-                  <HeartHandshake aria-hidden="true" className="h-4 w-4" />
-                  Sponsor
-                </Link>
-              </div>
-
-              <div className="flex-1 overflow-y-auto bg-white px-5 py-5">
-                <div className="grid gap-2">
-                  {navigationGroups.map((item) =>
-                    item.children ? (
-                      <div
-                        key={item.label}
-                        className="overflow-hidden rounded-md border border-brand-line bg-white"
-                      >
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setMobileGroup((current) =>
-                              current === item.label ? null : item.label,
-                            )
-                          }
-                          className={cn(
-                            "flex w-full items-center justify-between px-4 py-3 text-left text-base font-bold transition",
-                            groupIsActive(item)
-                              ? "bg-brand-cream text-brand-burgundy"
-                              : "text-brand-ink hover:bg-brand-cream",
-                          )}
-                          aria-expanded={mobileGroup === item.label}
-                        >
-                          {item.label}
-                          <ChevronDown
-                            aria-hidden="true"
-                            className={cn(
-                              "h-4 w-4 transition",
-                              mobileGroup === item.label && "rotate-180",
-                            )}
-                          />
-                        </button>
-                        <AnimatePresence initial={false}>
-                          {mobileGroup === item.label ? (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.2 }}
-                              className="overflow-hidden border-t border-brand-line"
-                            >
-                              <div className="grid py-2">
-                                {item.href ? (
-                                  <Link
-                                    href={item.href}
-                                    onClick={() => setOpen(false)}
-                                    className="px-5 py-2 text-sm font-bold text-brand-burgundy transition hover:bg-brand-cream"
-                                  >
-                                    {item.label} Overview
-                                  </Link>
-                                ) : null}
-                                {item.children.map((child) => (
-                                  <Link
-                                    key={`${item.label}-${child.label}`}
-                                    href={child.href}
-                                    onClick={() => setOpen(false)}
-                                    className="px-5 py-2 text-sm font-medium text-brand-muted transition hover:bg-brand-cream hover:text-brand-burgundy"
-                                  >
-                                    {child.label}
-                                  </Link>
-                                ))}
-                              </div>
-                            </motion.div>
-                          ) : null}
-                        </AnimatePresence>
-                      </div>
-                    ) : (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        onClick={() => setOpen(false)}
-                        className={cn(
-                          "rounded-md border border-transparent px-4 py-3 text-base font-bold transition",
-                          isActive(item.href)
-                            ? "border-brand-line bg-brand-cream text-brand-burgundy"
-                            : "text-brand-ink hover:bg-brand-cream",
-                        )}
-                      >
-                        {item.label}
-                      </Link>
-                    ),
-                  )}
-                </div>
-              </div>
-
-              <div className="border-t border-brand-line px-5 py-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-brand-muted">
-                  Merishaw School
-                </p>
-                <p className="mt-1 text-sm font-medium text-brand-ink">
-                  {site.tagline}
-                </p>
-              </div>
-            </motion.aside>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
     </header>
+    {typeof document !== "undefined"
+      ? createPortal(
+          <AnimatePresence>
+            {open ? (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.18 }}
+                className="fixed inset-0 z-[100] h-dvh overflow-hidden bg-brand-ink/50 backdrop-blur-sm overscroll-contain xl:hidden"
+                onClick={closeMobileMenu}
+              >
+                <motion.aside
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  exit={{ x: "100%" }}
+                  transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                  className="ml-auto flex h-dvh max-h-dvh w-full max-w-[420px] flex-col bg-white pb-[env(safe-area-inset-bottom)] shadow-premium"
+                  aria-label="Mobile navigation"
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  <div className="flex items-center justify-between border-b border-brand-line px-5 py-4">
+                    <Link
+                      href="/"
+                      className="rounded-md focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2"
+                      onClick={closeMobileMenu}
+                    >
+                      <Image
+                        src={site.logoLandscape}
+                        alt="Merishaw School logo"
+                        width={190}
+                        height={98}
+                        className="h-14 w-auto"
+                      />
+                    </Link>
+                    <button
+                      type="button"
+                      className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-brand-line text-brand-ink transition hover:bg-brand-cream focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2"
+                      aria-label="Close navigation menu"
+                      onClick={closeMobileMenu}
+                    >
+                      <X className="h-5 w-5" />
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-3 border-b border-brand-line bg-brand-cream px-5 py-4">
+                    <Link
+                      href="/contact"
+                      onClick={closeMobileMenu}
+                      className="contact-pulse inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-brand-burgundy px-3 py-3 text-sm font-bold text-white shadow-lg shadow-brand-burgundy/20"
+                    >
+                      <Mail aria-hidden="true" className="h-4 w-4" />
+                      Contact
+                    </Link>
+                    <Link
+                      href={csrNavItem.href}
+                      onClick={closeMobileMenu}
+                      className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-brand-gold bg-white px-3 py-3 text-sm font-bold text-brand-burgundy shadow-sm"
+                    >
+                      <HandHeart aria-hidden="true" className="h-4 w-4" />
+                      CSR
+                    </Link>
+                    <Link
+                      href={supportNavItem.href}
+                      onClick={closeMobileMenu}
+                      className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-brand-gold px-3 py-3 text-sm font-bold text-brand-ink shadow-sm"
+                    >
+                      <HeartHandshake aria-hidden="true" className="h-4 w-4" />
+                      Sponsor
+                    </Link>
+                  </div>
+
+                  <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain bg-white px-5 py-5">
+                    <div className="grid gap-2">
+                      {navigationGroups.map((item) =>
+                        item.children ? (
+                          <div
+                            key={item.label}
+                            className="overflow-hidden rounded-md border border-brand-line bg-white"
+                          >
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setMobileGroup((current) =>
+                                  current === item.label ? null : item.label,
+                                )
+                              }
+                              className={cn(
+                                "flex w-full items-center justify-between px-4 py-3 text-left text-base font-bold transition",
+                                groupIsActive(item)
+                                  ? "bg-brand-cream text-brand-burgundy"
+                                  : "text-brand-ink hover:bg-brand-cream",
+                              )}
+                              aria-expanded={mobileGroup === item.label}
+                            >
+                              {item.label}
+                              <ChevronDown
+                                aria-hidden="true"
+                                className={cn(
+                                  "h-4 w-4 transition",
+                                  mobileGroup === item.label && "rotate-180",
+                                )}
+                              />
+                            </button>
+                            <AnimatePresence initial={false}>
+                              {mobileGroup === item.label ? (
+                                <motion.div
+                                  initial={{ height: 0, opacity: 0 }}
+                                  animate={{ height: "auto", opacity: 1 }}
+                                  exit={{ height: 0, opacity: 0 }}
+                                  transition={{ duration: 0.2 }}
+                                  className="overflow-hidden border-t border-brand-line"
+                                >
+                                  <div className="grid py-2">
+                                    {item.href ? (
+                                      <Link
+                                        href={item.href}
+                                        onClick={closeMobileMenu}
+                                        className="px-5 py-2 text-sm font-bold text-brand-burgundy transition hover:bg-brand-cream"
+                                      >
+                                        {item.label} Overview
+                                      </Link>
+                                    ) : null}
+                                    {item.children.map((child) => (
+                                      <Link
+                                        key={`${item.label}-${child.label}`}
+                                        href={child.href}
+                                        onClick={closeMobileMenu}
+                                        className="px-5 py-2 text-sm font-medium text-brand-muted transition hover:bg-brand-cream hover:text-brand-burgundy"
+                                      >
+                                        {child.label}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                </motion.div>
+                              ) : null}
+                            </AnimatePresence>
+                          </div>
+                        ) : (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            onClick={closeMobileMenu}
+                            className={cn(
+                              "rounded-md border border-transparent px-4 py-3 text-base font-bold transition",
+                              isActive(item.href)
+                                ? "border-brand-line bg-brand-cream text-brand-burgundy"
+                                : "text-brand-ink hover:bg-brand-cream",
+                            )}
+                          >
+                            {item.label}
+                          </Link>
+                        ),
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="border-t border-brand-line px-5 py-4">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-brand-muted">
+                      Merishaw School
+                    </p>
+                    <p className="mt-1 text-sm font-medium text-brand-ink">
+                      {site.tagline}
+                    </p>
+                  </div>
+                </motion.aside>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>,
+          document.body,
+        )
+      : null}
+    </>
   );
 }
