@@ -19,6 +19,7 @@ export const navigationGroups = [
     children: [
       { label: "About Merishaw", href: "/about" },
       { label: "Leadership", href: "/leadership" },
+      { label: "Our Founder's Vision", href: "/founders-vision" },
       { label: "Mission, Vision and Values", href: "/about" },
     ],
   },
