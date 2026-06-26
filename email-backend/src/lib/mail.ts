@@ -217,14 +217,14 @@ export async function globalSearch(
         const uids = await client.search({ body: query }, { uid: true });
         if (!Array.isArray(uids) || !uids.length) continue;
         const toFetch = uids.slice(-limit);
-        for await (const msg of client.fetch({ uid: toFetch.join(',') } as unknown as string, {
+        for await (const msg of client.fetch(toFetch.join(','), {
           uid: true,
           flags: true,
           internalDate: true,
           envelope: true,
           size: true,
           source: true,
-        })) {
+        }, { uid: true })) {
           if (results.length >= limit) break;
           const env = msg.envelope;
           const parsed = await simpleParser(msg.source as Buffer);
@@ -264,7 +264,7 @@ export async function getMessage(
     await client.connect();
     const lock = await client.getMailboxLock(folder || 'INBOX');
     try {
-      const fetched = await client.fetchOne({ uid } as unknown as string, { uid: true, flags: true, internalDate: true, envelope: true, source: true, size: true });
+      const fetched = await client.fetchOne(String(uid), { uid: true, flags: true, internalDate: true, envelope: true, source: true, size: true }, { uid: true });
       if (!fetched) return null;
       const parsed = await simpleParser(fetched.source as Buffer);
       const headers: Record<string, string> = {};
@@ -317,8 +317,8 @@ export async function setFlags(
     await client.connect();
     const lock = await client.getMailboxLock(folder || 'INBOX');
     try {
-      if (flags.add?.length) await client.messageFlagsAdd({ uid }, flags.add);
-      if (flags.remove?.length) await client.messageFlagsRemove({ uid }, flags.remove);
+      if (flags.add?.length) await client.messageFlagsAdd(String(uid), flags.add, { uid: true });
+      if (flags.remove?.length) await client.messageFlagsRemove(String(uid), flags.remove, { uid: true });
     } finally {
       lock.release();
     }
@@ -333,7 +333,7 @@ export async function deleteMessage(user: User & { password: string }, folder: s
     await client.connect();
     const lock = await client.getMailboxLock(folder || 'INBOX');
     try {
-      await client.messageDelete({ uid });
+      await client.messageDelete(String(uid), { uid: true });
     } finally {
       lock.release();
     }
@@ -354,8 +354,9 @@ export async function getAttachment(
     const lock = await client.getMailboxLock(folder || 'INBOX');
     try {
       const fetched = await client.fetchOne(
-        { uid } as unknown as string,
-        { uid: true, source: true, bodyStructure: true }
+        String(uid),
+        { uid: true, source: true, bodyStructure: true },
+        { uid: true }
       );
       if (!fetched) return null;
       const parsed = await simpleParser(fetched.source as Buffer);
@@ -385,7 +386,7 @@ export async function moveMessage(
     await client.connect();
     const lock = await client.getMailboxLock(folder || 'INBOX');
     try {
-      await client.messageMove({ uid }, destFolder);
+      await client.messageMove(String(uid), destFolder, { uid: true });
     } finally {
       lock.release();
     }
@@ -405,7 +406,7 @@ export async function copyMessage(
     await client.connect();
     const lock = await client.getMailboxLock(folder || 'INBOX');
     try {
-      await client.messageCopy({ uid }, destFolder);
+      await client.messageCopy(String(uid), destFolder, { uid: true });
     } finally {
       lock.release();
     }
@@ -455,7 +456,7 @@ export async function bulkDelete(
     const lock = await client.getMailboxLock(folder || 'INBOX');
     try {
       for (const uid of uids) {
-        await client.messageDelete({ uid });
+        await client.messageDelete(String(uid), { uid: true });
       }
     } finally {
       lock.release();
@@ -477,7 +478,7 @@ export async function bulkMove(
     const lock = await client.getMailboxLock(folder || 'INBOX');
     try {
       for (const uid of uids) {
-        await client.messageMove({ uid }, destFolder);
+        await client.messageMove(String(uid), destFolder, { uid: true });
       }
     } finally {
       lock.release();
@@ -545,7 +546,9 @@ export async function sendMessage(user: User & { password: string }, input: Send
     host: user.smtpHost,
     port: user.smtpPort,
     secure: user.smtpPort === 465,
+    requireTLS: user.smtpPort === 587,
     auth: { user: user.email, pass: user.password },
+    tls: { servername: user.smtpHost },
   });
   const info = await transport.sendMail({
     from: input.from,
