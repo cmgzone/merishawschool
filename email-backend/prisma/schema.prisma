@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  // bcrypt hash of the app password the user logs in with.
+  // Note: the actual mailbox IMAP/SMTP password is never stored at rest;
+  // it is held only in-memory per active session after login.
+  passwordHash String
+  displayName  String?
+  imapHost     String
+  imapPort     Int      @default(993)
+  smtpHost     String
+  smtpPort     Int      @default(587)
+  // local part of the email (for mailcow admin actions scoped to the user's mailbox)
+  isAdmin      Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  sessions     Session[]
+  cachedFolders CachedFolder[]
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  userId       Int
+  // The plaintext mailbox password, encrypted with the session JWT secret-derived key.
+  // Kept only for the lifetime of the session so IMAP/SMTP can be opened on demand.
+  encPassword  String
+  createdAt    DateTime @default(now())
+  expiresAt    DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model CachedFolder {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  path      String
+  name      String
+  specialUse String?
+  unread    Int      @default(0)
+  total     Int      @default(0)
+  updatedAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, path])
+  @@index([userId])
+}

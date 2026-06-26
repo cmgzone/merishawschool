@@ -1,0 +1,567 @@
+import { ImapFlow, type MailboxObject } from 'imapflow';
+import { simpleParser } from 'mailparser';
+import nodemailer from 'nodemailer';
+import type { User } from '@prisma/client';
+
+export interface MailboxInfo {
+  path: string;
+  name: string;
+  specialUse: string | null;
+  status: { messages: number; unseen: number };
+}
+
+export interface MessageSummary {
+  uid: number;
+  seq: number;
+  flags: string[];
+  internalDate: string | null;
+  from: string | null;
+  to: string | null;
+  subject: string | null;
+  snippet: string | null;
+  hasAttachments: boolean;
+  size: number;
+  threadId: string | null;
+}
+
+export interface AttachmentInfo {
+  partId: string;
+  filename: string | null;
+  contentType: string;
+  size: number;
+  cid: string | null;
+  inline: boolean;
+}
+
+export interface MessageDetail extends MessageSummary {
+  html: string | null;
+  text: string | null;
+  headers: Record<string, string>;
+  attachments: AttachmentInfo[];
+  inReplyTo: string | null;
+  messageId: string | null;
+  references: string | null;
+}
+
+function isoDate(value: unknown): string | null {
+  if (value instanceof Date) return value.toISOString();
+  if (typeof value === 'string') {
+    const d = new Date(value);
+    return Number.isNaN(d.getTime()) ? null : d.toISOString();
+  }
+  return null;
+}
+
+interface ImapAddress {
+  address?: string;
+  name?: string;
+}
+
+function addressText(addr: unknown): string | null {
+  if (!addr) return null;
+  const arr = Array.isArray(addr) ? addr : [addr];
+  const parts = arr
+    .map((a) => {
+      const addr = (a as ImapAddress) ?? {};
+      if (addr.name && addr.address) return `${addr.name} <${addr.address}>`;
+      return addr.address ?? '';
+    })
+    .filter(Boolean);
+  return parts.length ? parts.join(', ') : null;
+}
+
+interface MailparserAddressObject {
+  text?: string;
+  value?: { address?: string; name?: string }[];
+}
+
+function mailparserAddressText(addr: MailparserAddressObject | MailparserAddressObject[] | undefined): string | null {
+  if (!addr) return null;
+  const arr = Array.isArray(addr) ? addr : [addr];
+  for (const a of arr) {
+    if (a?.text) return a.text;
+    if (a?.value?.length) {
+      const joined = a.value.map((v) => (v.name && v.address ? `${v.name} <${v.address}>` : v.address ?? '')).filter(Boolean).join(', ');
+      if (joined) return joined;
+    }
+  }
+  return null;
+}
+
+function headerValue(v: unknown): string {
+  if (v instanceof Date) return v.toISOString();
+  if (typeof v === 'string') return v;
+  if (Array.isArray(v)) return v.map((x) => headerValue(x)).join(', ');
+  if (v && typeof v === 'object' && 'text' in v && typeof (v as { text: unknown }).text === 'string') return (v as { text: string }).text;
+  return String(v ?? '');
+}
+
+function imapClient(user: { imapHost: string; imapPort: number; email: string; password: string }) {
+  return new ImapFlow({
+    host: user.imapHost,
+    port: user.imapPort,
+    secure: user.imapPort === 993,
+    auth: { user: user.email, pass: user.password },
+    logger: false,
+  });
+}
+
+export async function listMailboxes(user: User & { password: string }): Promise<MailboxInfo[]> {
+  const client = imapClient(user);
+  try {
+    await client.connect();
+    const lock = await client.getMailboxLock('INBOX');
+    try {
+      const list = await client.list();
+      const out: MailboxInfo[] = [];
+      for (const mb of list ?? []) {
+        const status = await client.status(mb.path, { messages: true, unseen: true });
+        out.push({
+          path: mb.path,
+          name: mb.name,
+          specialUse: mb.specialUse ?? null,
+          status: { messages: status?.messages ?? 0, unseen: status?.unseen ?? 0 },
+        });
+      }
+      return out;
+    } finally {
+      lock.release();
+    }
+  } finally {
+    await client.logout().catch(() => undefined);
+  }
+}
+
+export async function listMessages(
+  user: User & { password: string },
+  folder: string,
+  opts: { page: number; pageSize: number; search?: string }
+): Promise<{ messages: MessageSummary[]; total: number }> {
+  const client = imapClient(user);
+  try {
+    await client.connect();
+    const lock = await client.getMailboxLock(folder || 'INBOX');
+    const messages: MessageSummary[] = [];
+    try {
+      const rangeStart = Math.max(1, (opts.page - 1) * opts.pageSize + 1);
+      const mailboxInfo = client.mailbox as MailboxObject | false;
+      const total = typeof mailboxInfo === 'object' && mailboxInfo ? mailboxInfo.exists ?? 0 : 0;
+      if (total === 0) return { messages: [], total: 0 };
+
+      const start = Math.max(1, total - rangeStart - opts.pageSize + 2);
+      const end = Math.max(1, total - rangeStart + 1);
+      const range = `${start}:${end}`;
+
+      const searchCriteria = opts.search
+        ? { seq: range, search: opts.search }
+        : { seq: range };
+
+      for await (const msg of client.fetch(searchCriteria, {
+        uid: true,
+        flags: true,
+        internalDate: true,
+        envelope: true,
+        bodyStructure: true,
+        size: true,
+        headers: true,
+        source: true,
+      })) {
+        const env = msg.envelope;
+        const parsed = await simpleParser(msg.source as Buffer, { keepCidLinks: true });
+        const textBody = parsed.text ?? '';
+        messages.push({
+          uid: msg.uid,
+          seq: msg.seq,
+          flags: Array.isArray(msg.flags) ? (msg.flags as string[]).map((f) => String(f)) : [],
+          internalDate: isoDate(msg.internalDate),
+          from: addressText(env?.from as unknown) ?? mailparserAddressText(parsed.from) ?? null,
+          to: addressText(env?.to as unknown) ?? mailparserAddressText(parsed.to) ?? null,
+          subject: env?.subject ?? parsed.subject ?? null,
+          snippet: textBody.slice(0, 160).replace(/\s+/g, ' ').trim(),
+          hasAttachments: Boolean(parsed.attachments?.length),
+          size: msg.size ?? 0,
+          threadId: parsed.messageId ?? parsed.inReplyTo ?? null,
+        });
+      }
+      // newest first
+      messages.sort((a, b) => b.seq - a.seq);
+      return { messages, total };
+    } finally {
+      lock.release();
+    }
+  } finally {
+    await client.logout().catch(() => undefined);
+  }
+}
+
+export interface GlobalSearchResult {
+  messages: (MessageSummary & { folder: string })[];
+  total: number;
+}
+
+export async function globalSearch(
+  user: User & { password: string },
+  query: string,
+  opts: { limit?: number } = {}
+): Promise<GlobalSearchResult> {
+  const limit = opts.limit ?? 50;
+  const client = imapClient(user);
+  const results: (MessageSummary & { folder: string })[] = [];
+  try {
+    await client.connect();
+    const mailboxes = await client.list();
+    for (const mb of mailboxes ?? []) {
+      if (results.length >= limit) break;
+      const lock = await client.getMailboxLock(mb.path);
+      try {
+        const uids = await client.search({ body: query }, { uid: true });
+        if (!Array.isArray(uids) || !uids.length) continue;
+        const toFetch = uids.slice(-limit);
+        for await (const msg of client.fetch({ uid: toFetch.join(',') } as unknown as string, {
+          uid: true,
+          flags: true,
+          internalDate: true,
+          envelope: true,
+          size: true,
+          source: true,
+        })) {
+          if (results.length >= limit) break;
+          const env = msg.envelope;
+          const parsed = await simpleParser(msg.source as Buffer);
+          results.push({
+            uid: msg.uid,
+            seq: msg.seq,
+            flags: Array.isArray(msg.flags) ? (msg.flags as string[]).map((f) => String(f)) : [],
+            internalDate: isoDate(msg.internalDate),
+            from: addressText(env?.from as unknown) ?? mailparserAddressText(parsed.from) ?? null,
+            to: addressText(env?.to as unknown) ?? mailparserAddressText(parsed.to) ?? null,
+            subject: env?.subject ?? parsed.subject ?? null,
+            snippet: (parsed.text ?? '').slice(0, 160).replace(/\s+/g, ' ').trim(),
+            hasAttachments: Boolean(parsed.attachments?.length),
+            size: msg.size ?? 0,
+            threadId: parsed.messageId ?? parsed.inReplyTo ?? null,
+            folder: mb.path,
+          });
+        }
+      } finally {
+        lock.release();
+      }
+    }
+  } finally {
+    await client.logout().catch(() => undefined);
+  }
+  results.sort((a, b) => (b.internalDate ?? '').localeCompare(a.internalDate ?? ''));
+  return { messages: results, total: results.length };
+}
+
+export async function getMessage(
+  user: User & { password: string },
+  folder: string,
+  uid: number
+): Promise<MessageDetail | null> {
+  const client = imapClient(user);
+  try {
+    await client.connect();
+    const lock = await client.getMailboxLock(folder || 'INBOX');
+    try {
+      const fetched = await client.fetchOne({ uid } as unknown as string, { uid: true, flags: true, internalDate: true, envelope: true, source: true, size: true });
+      if (!fetched) return null;
+      const parsed = await simpleParser(fetched.source as Buffer);
+      const headers: Record<string, string> = {};
+      for (const [k, v] of parsed.headers.entries()) {
+        headers[k] = headerValue(v);
+      }
+      return {
+        uid: fetched.uid,
+        seq: fetched.seq,
+        flags: Array.isArray(fetched.flags) ? (fetched.flags as string[]).map((f) => String(f)) : [],
+        internalDate: isoDate(fetched.internalDate),
+        from: mailparserAddressText(parsed.from) ?? null,
+        to: mailparserAddressText(parsed.to) ?? null,
+        subject: parsed.subject ?? null,
+        snippet: (parsed.text ?? '').slice(0, 160).replace(/\s+/g, ' ').trim(),
+        hasAttachments: Boolean(parsed.attachments?.length),
+        size: typeof fetched.size === 'number' ? fetched.size : 0,
+        html: parsed.html === false ? null : (parsed.html ?? null),
+        text: parsed.text ?? null,
+        headers,
+        attachments: (parsed.attachments ?? []).map((a) => ({
+          partId: a.contentId ?? a.checksum ?? a.filename ?? 'part',
+          filename: a.filename ?? null,
+          contentType: a.contentType,
+          size: a.content?.length ?? 0,
+          cid: a.contentId ?? null,
+          inline: Boolean((a as { inline?: boolean }).inline),
+        })),
+        inReplyTo: parsed.inReplyTo ?? null,
+        messageId: parsed.messageId ?? null,
+        references: Array.isArray(parsed.references) ? parsed.references.join(' ') : (parsed.references ?? null),
+        threadId: parsed.messageId ?? parsed.inReplyTo ?? null,
+      };
+    } finally {
+      lock.release();
+    }
+  } finally {
+    await client.logout().catch(() => undefined);
+  }
+}
+
+export async function setFlags(
+  user: User & { password: string },
+  folder: string,
+  uid: number,
+  flags: { add?: string[]; remove?: string[] }
+): Promise<void> {
+  const client = imapClient(user);
+  try {
+    await client.connect();
+    const lock = await client.getMailboxLock(folder || 'INBOX');
+    try {
+      if (flags.add?.length) await client.messageFlagsAdd({ uid }, flags.add);
+      if (flags.remove?.length) await client.messageFlagsRemove({ uid }, flags.remove);
+    } finally {
+      lock.release();
+    }
+  } finally {
+    await client.logout().catch(() => undefined);
+  }
+}
+
+export async function deleteMessage(user: User & { password: string }, folder: string, uid: number): Promise<void> {
+  const client = imapClient(user);
+  try {
+    await client.connect();
+    const lock = await client.getMailboxLock(folder || 'INBOX');
+    try {
+      await client.messageDelete({ uid });
+    } finally {
+      lock.release();
+    }
+  } finally {
+    await client.logout().catch(() => undefined);
+  }
+}
+
+export async function getAttachment(
+  user: User & { password: string },
+  folder: string,
+  uid: number,
+  partId: string
+): Promise<{ content: Buffer; filename: string; contentType: string } | null> {
+  const client = imapClient(user);
+  try {
+    await client.connect();
+    const lock = await client.getMailboxLock(folder || 'INBOX');
+    try {
+      const fetched = await client.fetchOne(
+        { uid } as unknown as string,
+        { uid: true, source: true, bodyStructure: true }
+      );
+      if (!fetched) return null;
+      const parsed = await simpleParser(fetched.source as Buffer);
+      const att = (parsed.attachments ?? []).find((a) => a.contentId === partId || a.checksum === partId || a.filename === partId);
+      if (!att) return null;
+      return {
+        content: att.content,
+        filename: att.filename ?? 'attachment',
+        contentType: att.contentType,
+      };
+    } finally {
+      lock.release();
+    }
+  } finally {
+    await client.logout().catch(() => undefined);
+  }
+}
+
+export async function moveMessage(
+  user: User & { password: string },
+  folder: string,
+  uid: number,
+  destFolder: string
+): Promise<void> {
+  const client = imapClient(user);
+  try {
+    await client.connect();
+    const lock = await client.getMailboxLock(folder || 'INBOX');
+    try {
+      await client.messageMove({ uid }, destFolder);
+    } finally {
+      lock.release();
+    }
+  } finally {
+    await client.logout().catch(() => undefined);
+  }
+}
+
+export async function copyMessage(
+  user: User & { password: string },
+  folder: string,
+  uid: number,
+  destFolder: string
+): Promise<void> {
+  const client = imapClient(user);
+  try {
+    await client.connect();
+    const lock = await client.getMailboxLock(folder || 'INBOX');
+    try {
+      await client.messageCopy({ uid }, destFolder);
+    } finally {
+      lock.release();
+    }
+  } finally {
+    await client.logout().catch(() => undefined);
+  }
+}
+
+export async function appendToFolder(
+  user: User & { password: string },
+  folder: string,
+  rawMessage: string,
+  flags: string[] = ['\\Seen']
+): Promise<void> {
+  const client = imapClient(user);
+  try {
+    await client.connect();
+    await client.append(folder, rawMessage, flags);
+  } finally {
+    await client.logout().catch(() => undefined);
+  }
+}
+
+export async function markAllRead(user: User & { password: string }, folder: string): Promise<void> {
+  const client = imapClient(user);
+  try {
+    await client.connect();
+    const lock = await client.getMailboxLock(folder || 'INBOX');
+    try {
+      await client.messageFlagsAdd('1:*', ['\\Seen']);
+    } finally {
+      lock.release();
+    }
+  } finally {
+    await client.logout().catch(() => undefined);
+  }
+}
+
+export async function bulkDelete(
+  user: User & { password: string },
+  folder: string,
+  uids: number[]
+): Promise<void> {
+  const client = imapClient(user);
+  try {
+    await client.connect();
+    const lock = await client.getMailboxLock(folder || 'INBOX');
+    try {
+      for (const uid of uids) {
+        await client.messageDelete({ uid });
+      }
+    } finally {
+      lock.release();
+    }
+  } finally {
+    await client.logout().catch(() => undefined);
+  }
+}
+
+export async function bulkMove(
+  user: User & { password: string },
+  folder: string,
+  uids: number[],
+  destFolder: string
+): Promise<void> {
+  const client = imapClient(user);
+  try {
+    await client.connect();
+    const lock = await client.getMailboxLock(folder || 'INBOX');
+    try {
+      for (const uid of uids) {
+        await client.messageMove({ uid }, destFolder);
+      }
+    } finally {
+      lock.release();
+    }
+  } finally {
+    await client.logout().catch(() => undefined);
+  }
+}
+
+export async function createFolder(
+  user: User & { password: string },
+  path: string
+): Promise<void> {
+  const client = imapClient(user);
+  try {
+    await client.connect();
+    await client.mailboxCreate(path);
+  } finally {
+    await client.logout().catch(() => undefined);
+  }
+}
+
+export async function renameFolder(
+  user: User & { password: string },
+  path: string,
+  newPath: string
+): Promise<void> {
+  const client = imapClient(user);
+  try {
+    await client.connect();
+    await client.mailboxRename(path, newPath);
+  } finally {
+    await client.logout().catch(() => undefined);
+  }
+}
+
+export async function deleteFolder(
+  user: User & { password: string },
+  path: string
+): Promise<void> {
+  const client = imapClient(user);
+  try {
+    await client.connect();
+    await client.mailboxDelete(path);
+  } finally {
+    await client.logout().catch(() => undefined);
+  }
+}
+
+export interface SendMessageInput {
+  from: string;
+  to: string[];
+  cc?: string[];
+  bcc?: string[];
+  subject: string;
+  text: string;
+  html?: string;
+  replyTo?: string;
+  inReplyTo?: string;
+  attachments?: { filename: string; content: Buffer; contentType: string }[];
+}
+
+export async function sendMessage(user: User & { password: string }, input: SendMessageInput): Promise<{ messageId: string | null }> {
+  const transport = nodemailer.createTransport({
+    host: user.smtpHost,
+    port: user.smtpPort,
+    secure: user.smtpPort === 465,
+    auth: { user: user.email, pass: user.password },
+  });
+  const info = await transport.sendMail({
+    from: input.from,
+    to: input.to.join(', '),
+    cc: input.cc?.join(', '),
+    bcc: input.bcc?.join(', '),
+    subject: input.subject,
+    text: input.text,
+    html: input.html,
+    replyTo: input.replyTo,
+    inReplyTo: input.inReplyTo,
+    attachments: input.attachments?.map((a) => ({
+      filename: a.filename,
+      content: a.content,
+      contentType: a.contentType,
+    })),
+  });
+  return { messageId: info.messageId ?? null };
+}
