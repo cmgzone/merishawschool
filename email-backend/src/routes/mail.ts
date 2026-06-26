@@ -22,6 +22,7 @@ import {
   setFlags,
 } from '../lib/mail.js';
 import { config } from '../config.js';
+import { listMailboxes as listMailcowMailboxes } from '../lib/mailcow.js';
 
 async function loadUserWithPassword(req: FastifyRequest) {
   const userId = req.userId!;
@@ -43,6 +44,11 @@ const listMessagesQuery = z.object({
 const globalSearchQuery = z.object({
   q: z.string().min(1),
   limit: z.coerce.number().int().min(1).max(100).default(50),
+});
+
+const contactsQuery = z.object({
+  q: z.string().optional(),
+  limit: z.coerce.number().int().min(1).max(200).default(100),
 });
 
 const uidParams = z.object({ uid: z.coerce.number().int() });
@@ -89,6 +95,13 @@ const renameBody = z.object({ newPath: z.string() });
 
 export const mailRoutes: FastifyPluginAsync = async (app: FastifyInstance) => {
   app.addHook('preHandler', app.authenticate);
+
+  app.get('/contacts', async (req, reply) => {
+    const q = contactsQuery.safeParse(req.query);
+    if (!q.success) return badRequest(reply, 'Invalid query');
+    const contacts = await listContacts(q.data.q, q.data.limit);
+    return reply.send({ contacts });
+  });
 
   app.get('/folders', async (req, reply) => {
     const q = listFoldersQuery.safeParse(req.query);
@@ -290,3 +303,37 @@ async function findSpecialFolder(user: { imapHost: string; imapPort: number; ema
 }
 
 export { config };
+
+interface ContactInfo {
+  email: string;
+  displayName: string | null;
+}
+
+async function listContacts(query: string | undefined, limit: number): Promise<ContactInfo[]> {
+  const needle = query?.trim().toLowerCase() ?? '';
+  const fromMailcow = await listMailcowMailboxes()
+    .then((mailboxes) => mailboxes
+      .filter((mailbox) => String(mailbox.active) !== '0')
+      .map((mailbox) => ({
+        email: mailbox.username.toLowerCase(),
+        displayName: mailbox.name?.trim() || null,
+      })))
+    .catch(() => null);
+
+  const contacts: ContactInfo[] = fromMailcow ?? await prisma.user.findMany({
+    select: { email: true, displayName: true },
+    orderBy: { email: 'asc' },
+  }).then((users) => users.map((user) => ({
+    email: user.email.toLowerCase(),
+    displayName: user.displayName?.trim() || null,
+  })));
+
+  const unique = new Map<string, ContactInfo>();
+  for (const contact of contacts) {
+    if (!contact.email.endsWith(`@${config.allowedEmailDomain.toLowerCase()}`)) continue;
+    if (needle && !contact.email.includes(needle) && !(contact.displayName ?? '').toLowerCase().includes(needle)) continue;
+    unique.set(contact.email, contact);
+    if (unique.size >= limit) break;
+  }
+  return [...unique.values()].sort((a, b) => a.email.localeCompare(b.email));
+}
