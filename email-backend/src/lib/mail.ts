@@ -1,7 +1,9 @@
 import { ImapFlow, type MailboxObject } from 'imapflow';
 import { simpleParser } from 'mailparser';
 import nodemailer from 'nodemailer';
+import { randomBytes } from 'node:crypto';
 import type { User } from '@prisma/client';
+import { AppError } from './errors.js';
 
 export interface MailboxInfo {
   path: string;
@@ -418,7 +420,7 @@ export async function copyMessage(
 export async function appendToFolder(
   user: User & { password: string },
   folder: string,
-  rawMessage: string,
+  rawMessage: string | Buffer,
   flags: string[] = ['\\Seen']
 ): Promise<void> {
   const client = imapClient(user);
@@ -541,7 +543,67 @@ export interface SendMessageInput {
   attachments?: { filename: string; content: Buffer; contentType: string }[];
 }
 
-export async function sendMessage(user: User & { password: string }, input: SendMessageInput): Promise<{ messageId: string | null }> {
+export interface SendMessageResult {
+  messageId: string | null;
+  accepted: string[];
+  rejected: string[];
+  response: string | null;
+  sentFolderSaved: boolean;
+}
+
+async function findSpecialFolderPath(user: User & { password: string }, specialUse: string): Promise<string | null> {
+  const client = imapClient(user);
+  try {
+    await client.connect();
+    const list = await client.list();
+    const found = (list ?? []).find((mb) => mb.specialUse === specialUse);
+    return found?.path ?? null;
+  } catch {
+    return null;
+  } finally {
+    await client.logout().catch(() => undefined);
+  }
+}
+
+function stringList(value: unknown): string[] {
+  return Array.isArray(value) ? value.map((item) => String(item)).filter(Boolean) : [];
+}
+
+async function buildRawMessage(mailOptions: Record<string, unknown>): Promise<Buffer> {
+  const streamTransport = nodemailer.createTransport({
+    streamTransport: true,
+    buffer: true,
+    newline: 'windows',
+  });
+  const generated = await streamTransport.sendMail(mailOptions);
+  const message = (generated as { message?: unknown }).message;
+  if (Buffer.isBuffer(message)) return message;
+  if (typeof message === 'string') return Buffer.from(message);
+  throw new AppError('Could not create sent-mail copy', 500, 'Mail Build Failed');
+}
+
+export async function sendMessage(user: User & { password: string }, input: SendMessageInput): Promise<SendMessageResult> {
+  const recipients = [...input.to, ...(input.cc ?? []), ...(input.bcc ?? [])].filter(Boolean);
+  const domain = input.from.split('@')[1] || user.smtpHost;
+  const messageId = `<${randomBytes(16).toString('hex')}@${domain}>`;
+  const mailOptions = {
+    envelope: { from: input.from, to: recipients },
+    from: input.from,
+    to: input.to.join(', '),
+    cc: input.cc?.length ? input.cc.join(', ') : undefined,
+    bcc: input.bcc?.length ? input.bcc.join(', ') : undefined,
+    subject: input.subject,
+    text: input.text,
+    html: input.html,
+    replyTo: input.replyTo,
+    inReplyTo: input.inReplyTo,
+    messageId,
+    attachments: input.attachments?.map((a) => ({
+      filename: a.filename,
+      content: a.content,
+      contentType: a.contentType,
+    })),
+  };
   const transport = nodemailer.createTransport({
     host: user.smtpHost,
     port: user.smtpPort,
@@ -550,21 +612,29 @@ export async function sendMessage(user: User & { password: string }, input: Send
     auth: { user: user.email, pass: user.password },
     tls: { servername: user.smtpHost },
   });
-  const info = await transport.sendMail({
-    from: input.from,
-    to: input.to.join(', '),
-    cc: input.cc?.join(', '),
-    bcc: input.bcc?.join(', '),
-    subject: input.subject,
-    text: input.text,
-    html: input.html,
-    replyTo: input.replyTo,
-    inReplyTo: input.inReplyTo,
-    attachments: input.attachments?.map((a) => ({
-      filename: a.filename,
-      content: a.content,
-      contentType: a.contentType,
-    })),
-  });
-  return { messageId: info.messageId ?? null };
+  const info = await transport.sendMail(mailOptions);
+  const accepted = stringList(info.accepted);
+  const rejected = stringList(info.rejected);
+  if (accepted.length === 0) {
+    const suffix = rejected.length ? ` Rejected: ${rejected.join(', ')}` : '';
+    throw new AppError(`SMTP accepted 0 recipients.${suffix}`, 502, 'SMTP Delivery Failed');
+  }
+
+  let sentFolderSaved = false;
+  try {
+    const raw = await buildRawMessage(mailOptions);
+    const sentFolder = await findSpecialFolderPath(user, '\\Sent');
+    await appendToFolder(user, sentFolder ?? 'Sent', raw, ['\\Seen']);
+    sentFolderSaved = true;
+  } catch {
+    sentFolderSaved = false;
+  }
+
+  return {
+    messageId: info.messageId ?? messageId,
+    accepted,
+    rejected,
+    response: typeof info.response === 'string' ? info.response : null,
+    sentFolderSaved,
+  };
 }
