@@ -88,6 +88,8 @@ const folderBody = z.object({ path: z.string() });
 const renameBody = z.object({ newPath: z.string() });
 
 export const mailRoutes: FastifyPluginAsync = async (app: FastifyInstance) => {
+  app.addHook('preHandler', app.authenticate);
+
   app.get('/folders', async (req, reply) => {
     const q = listFoldersQuery.safeParse(req.query);
     if (!q.success) return badRequest(reply, 'Invalid query');
