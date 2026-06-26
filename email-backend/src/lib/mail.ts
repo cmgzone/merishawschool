@@ -569,6 +569,30 @@ function stringList(value: unknown): string[] {
   return Array.isArray(value) ? value.map((item) => String(item)).filter(Boolean) : [];
 }
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function textToHtml(text: string): string {
+  const body = escapeHtml(text || ' ')
+    .split(/\r?\n/)
+    .map((line) => line || '&nbsp;')
+    .join('<br>\n');
+  return `<div style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.5;">${body}</div>`;
+}
+
+function senderName(user: User): string {
+  const displayName = user.displayName?.trim();
+  if (displayName) return displayName;
+  const localPart = user.email.split('@')[0]?.trim();
+  return localPart || 'Merishaw School';
+}
+
 async function buildRawMessage(mailOptions: Record<string, unknown>): Promise<Buffer> {
   const streamTransport = nodemailer.createTransport({
     streamTransport: true,
@@ -584,20 +608,26 @@ async function buildRawMessage(mailOptions: Record<string, unknown>): Promise<Bu
 
 export async function sendMessage(user: User & { password: string }, input: SendMessageInput): Promise<SendMessageResult> {
   const recipients = [...input.to, ...(input.cc ?? []), ...(input.bcc ?? [])].filter(Boolean);
-  const domain = input.from.split('@')[1] || user.smtpHost;
-  const messageId = `<${randomBytes(16).toString('hex')}@${domain}>`;
+  const fromName = senderName(user);
+  const messageIdDomain = user.smtpHost || input.from.split('@')[1] || 'merishawschools.sc.ke';
+  const messageId = `<${randomBytes(16).toString('hex')}@${messageIdDomain}>`;
   const mailOptions = {
     envelope: { from: input.from, to: recipients },
-    from: input.from,
+    from: { name: fromName, address: input.from },
     to: input.to.join(', '),
     cc: input.cc?.length ? input.cc.join(', ') : undefined,
     bcc: input.bcc?.length ? input.bcc.join(', ') : undefined,
     subject: input.subject,
-    text: input.text,
-    html: input.html,
-    replyTo: input.replyTo,
+    text: input.text || ' ',
+    html: input.html ?? textToHtml(input.text),
+    replyTo: input.replyTo ?? { name: fromName, address: input.from },
     inReplyTo: input.inReplyTo,
     messageId,
+    date: new Date(),
+    headers: {
+      'X-Mailer': 'Merishaw School Mail App',
+      Organization: 'Merishaw School',
+    },
     attachments: input.attachments?.map((a) => ({
       filename: a.filename,
       content: a.content,
