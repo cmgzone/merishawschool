@@ -51,7 +51,8 @@ export const authRoutes: FastifyPluginAsync = async (app: FastifyInstance) => {
   app.post('/register', async (req, reply) => {
     const parsed = registerSchema.safeParse(req.body);
     if (!parsed.success) return badRequest(reply, parsed.error.issues[0]?.message ?? 'Invalid input');
-    const { email, password, displayName, imapHost, imapPort, smtpHost, smtpPort } = parsed.data;
+    const { password, displayName, imapHost, imapPort, smtpHost, smtpPort } = parsed.data;
+    const email = parsed.data.email.trim().toLowerCase();
     if (!isAllowedMailbox(email)) {
       return badRequest(reply, `Use your @${config.allowedEmailDomain} mailbox.`);
     }
@@ -88,25 +89,51 @@ export const authRoutes: FastifyPluginAsync = async (app: FastifyInstance) => {
   app.post('/login', async (req, reply) => {
     const parsed = loginSchema.safeParse(req.body);
     if (!parsed.success) return badRequest(reply, parsed.error.issues[0]?.message ?? 'Invalid input');
-    const { email, password, imapHost, imapPort } = parsed.data;
+    const { password, imapHost, imapPort } = parsed.data;
+    const email = parsed.data.email.trim().toLowerCase();
     if (!isAllowedMailbox(email)) {
       return badRequest(reply, `Use your @${config.allowedEmailDomain} mailbox.`);
     }
 
     const user = await prisma.user.findUnique({ where: { email } });
-    if (!user) return unauthorized(reply, 'Invalid credentials');
+    const iHost = imapHost ?? user?.imapHost ?? config.defaultImapHost;
+    const iPort = imapPort ?? user?.imapPort ?? config.defaultImapPort;
 
-    const passwordOk = await bcrypt.compare(password, user.passwordHash);
-    if (!passwordOk) return unauthorized(reply, 'Invalid credentials');
-
-    const iHost = imapHost ?? user.imapHost;
-    const iPort = imapPort ?? user.imapPort;
-    // Re-verify IMAP password still works (it may have been changed in mailcow).
+    // Mailcow/IMAP is the source of truth. If the mailbox is valid, allow login
+    // even when the local app user has not been created yet or the mailbox
+    // password changed after the app user was created.
     const ok = await verifyMailboxCredentials(email, password, iHost, iPort);
-    if (!ok) return unauthorized(reply, 'Mailbox password no longer valid. Update it in mailcow.');
+    if (!ok) return unauthorized(reply, 'Invalid credentials');
 
-    const { token, expiresAt } = await createSession(app, user.id, email, password);
-    return reply.send({ token, expiresAt, user: { id: user.id, email, displayName: user.displayName ?? null, isAdmin: user.isAdmin } });
+    let appUser = user;
+    if (!appUser) {
+      appUser = await prisma.user.create({
+        data: {
+          email,
+          passwordHash: await bcrypt.hash(password, 10),
+          imapHost: iHost,
+          imapPort: iPort,
+          smtpHost: config.defaultSmtpHost,
+          smtpPort: config.defaultSmtpPort,
+        },
+      });
+    } else {
+      const passwordOk = await bcrypt.compare(password, appUser.passwordHash);
+      const updates: {
+        passwordHash?: string;
+        imapHost?: string;
+        imapPort?: number;
+      } = {};
+      if (!passwordOk) updates.passwordHash = await bcrypt.hash(password, 10);
+      if (imapHost && imapHost !== appUser.imapHost) updates.imapHost = iHost;
+      if (imapPort && imapPort !== appUser.imapPort) updates.imapPort = iPort;
+      if (Object.keys(updates).length > 0) {
+        appUser = await prisma.user.update({ where: { id: appUser.id }, data: updates });
+      }
+    }
+
+    const { token, expiresAt } = await createSession(app, appUser.id, email, password);
+    return reply.send({ token, expiresAt, user: { id: appUser.id, email, displayName: appUser.displayName ?? null, isAdmin: appUser.isAdmin } });
   });
 
   app.get('/me', { preHandler: app.authenticate }, async (req, reply) => {
