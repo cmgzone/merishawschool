@@ -549,6 +549,7 @@ export interface SendMessageResult {
   rejected: string[];
   response: string | null;
   sentFolderSaved: boolean;
+  sentFolder: string | null;
 }
 
 async function findSpecialFolderPath(user: User & { password: string }, specialUse: string): Promise<string | null> {
@@ -593,6 +594,30 @@ function senderName(user: User): string {
   return localPart || 'Merishaw School';
 }
 
+function cleanAddress(value: string): string {
+  return value.trim().toLowerCase();
+}
+
+function uniqueAddresses(values: string[]): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const value of values) {
+    const address = cleanAddress(value);
+    if (!address || seen.has(address)) continue;
+    seen.add(address);
+    out.push(address);
+  }
+  return out;
+}
+
+function messageDomain(address: string): string {
+  return address.split('@')[1]?.trim().toLowerCase() || 'merishawschools.sc.ke';
+}
+
+function smtpClientName(user: User): string {
+  return process.env.SMTP_CLIENT_NAME?.trim() || (user.email.endsWith('@merishawschools.sc.ke') ? 'api.merishawschools.sc.ke' : user.smtpHost);
+}
+
 async function buildRawMessage(mailOptions: Record<string, unknown>): Promise<Buffer> {
   const streamTransport = nodemailer.createTransport({
     streamTransport: true,
@@ -607,27 +632,27 @@ async function buildRawMessage(mailOptions: Record<string, unknown>): Promise<Bu
 }
 
 export async function sendMessage(user: User & { password: string }, input: SendMessageInput): Promise<SendMessageResult> {
-  const recipients = [...input.to, ...(input.cc ?? []), ...(input.bcc ?? [])].filter(Boolean);
+  const fromAddress = cleanAddress(input.from || user.email);
+  const recipients = uniqueAddresses([...input.to, ...(input.cc ?? []), ...(input.bcc ?? [])]);
+  if (recipients.length === 0) {
+    throw new AppError('Add at least one recipient.', 400, 'Missing Recipient');
+  }
   const fromName = senderName(user);
-  const messageIdDomain = user.smtpHost || input.from.split('@')[1] || 'merishawschools.sc.ke';
-  const messageId = `<${randomBytes(16).toString('hex')}@${messageIdDomain}>`;
+  const messageId = `<${randomBytes(16).toString('hex')}@${messageDomain(fromAddress)}>`;
+  const replyTo = input.replyTo?.trim();
   const mailOptions = {
-    envelope: { from: input.from, to: recipients },
-    from: { name: fromName, address: input.from },
-    to: input.to.join(', '),
-    cc: input.cc?.length ? input.cc.join(', ') : undefined,
-    bcc: input.bcc?.length ? input.bcc.join(', ') : undefined,
+    envelope: { from: fromAddress, to: recipients },
+    from: { name: fromName, address: fromAddress },
+    to: uniqueAddresses(input.to),
+    cc: input.cc?.length ? uniqueAddresses(input.cc) : undefined,
+    bcc: input.bcc?.length ? uniqueAddresses(input.bcc) : undefined,
     subject: input.subject,
     text: input.text || ' ',
-    html: input.html ?? textToHtml(input.text),
-    replyTo: input.replyTo ?? { name: fromName, address: input.from },
+    html: input.html?.trim() ? input.html : undefined,
+    replyTo: replyTo && cleanAddress(replyTo) !== fromAddress ? replyTo : undefined,
     inReplyTo: input.inReplyTo,
     messageId,
     date: new Date(),
-    headers: {
-      'X-Mailer': 'Merishaw School Mail App',
-      Organization: 'Merishaw School',
-    },
     attachments: input.attachments?.map((a) => ({
       filename: a.filename,
       content: a.content,
@@ -635,6 +660,7 @@ export async function sendMessage(user: User & { password: string }, input: Send
     })),
   };
   const transport = nodemailer.createTransport({
+    name: smtpClientName(user),
     host: user.smtpHost,
     port: user.smtpPort,
     secure: user.smtpPort === 465,
@@ -651,9 +677,10 @@ export async function sendMessage(user: User & { password: string }, input: Send
   }
 
   let sentFolderSaved = false;
+  let sentFolder: string | null = null;
   try {
     const raw = await buildRawMessage(mailOptions);
-    const sentFolder = await findSpecialFolderPath(user, '\\Sent');
+    sentFolder = await findSpecialFolderPath(user, '\\Sent');
     await appendToFolder(user, sentFolder ?? 'Sent', raw, ['\\Seen']);
     sentFolderSaved = true;
   } catch {
@@ -666,5 +693,6 @@ export async function sendMessage(user: User & { password: string }, input: Send
     rejected,
     response: typeof info.response === 'string' ? info.response : null,
     sentFolderSaved,
+    sentFolder,
   };
 }
