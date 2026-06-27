@@ -594,6 +594,10 @@ function senderName(user: User): string {
   return localPart || 'Merishaw School';
 }
 
+function normalizeSubject(value: string): string {
+  return value.trim() || '(no subject)';
+}
+
 function cleanAddress(value: string): string {
   return value.trim().toLowerCase();
 }
@@ -646,7 +650,7 @@ export async function sendMessage(user: User & { password: string }, input: Send
     to: uniqueAddresses(input.to),
     cc: input.cc?.length ? uniqueAddresses(input.cc) : undefined,
     bcc: input.bcc?.length ? uniqueAddresses(input.bcc) : undefined,
-    subject: input.subject,
+    subject: normalizeSubject(input.subject),
     text: input.text || ' ',
     html: input.html?.trim() ? input.html : undefined,
     replyTo: replyTo && cleanAddress(replyTo) !== fromAddress ? replyTo : undefined,
