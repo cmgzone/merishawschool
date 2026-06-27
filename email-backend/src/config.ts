@@ -31,6 +31,9 @@ export const config = {
   defaultSmtpPort: int('DEFAULT_SMTP_PORT', 587),
   allowedEmailDomain: process.env.ALLOWED_EMAIL_DOMAIN ?? 'merishawschools.sc.ke',
   corsOrigin: process.env.CORS_ORIGIN ?? '*',
+  maxRequestBodyBytes: int('MAX_REQUEST_BODY_MB', 35) * 1024 * 1024,
+  maxAttachmentBytes: int('MAX_ATTACHMENT_MB', 18) * 1024 * 1024,
+  maxTotalAttachmentBytes: int('MAX_TOTAL_ATTACHMENT_MB', 18) * 1024 * 1024,
 } as const;
 
 export type AppConfig = typeof config;

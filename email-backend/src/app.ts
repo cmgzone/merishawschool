@@ -9,7 +9,10 @@ import { adminRoutes } from './routes/admin.js';
 
 export async function buildApp(): Promise<FastifyInstance> {
   const { default: Fastify } = await import('fastify');
-  const app: FastifyInstance = Fastify({ logger: config.nodeEnv === 'development' });
+  const app: FastifyInstance = Fastify({
+    logger: config.nodeEnv === 'development',
+    bodyLimit: config.maxRequestBodyBytes,
+  });
 
   await app.register(cors, {
     origin: config.corsOrigin === '*' ? true : config.corsOrigin.split(',').map((s) => s.trim()),
@@ -32,7 +35,10 @@ export async function buildApp(): Promise<FastifyInstance> {
         ? (err as { statusCode: number }).statusCode
         : 500;
     if (statusCode >= 500) app.log.error(err);
-    const message = err instanceof Error ? err.message : 'Internal Server Error';
+    const message =
+      statusCode === 413
+        ? `Attachment upload is too large. Keep total attachments under ${Math.floor(config.maxTotalAttachmentBytes / 1024 / 1024)} MB.`
+        : err instanceof Error ? err.message : 'Internal Server Error';
     const name = err instanceof Error ? err.name : 'Error';
     return sendError(reply, statusCode, message, name);
   });

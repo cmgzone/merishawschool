@@ -75,6 +75,34 @@ const sendBody = z.object({
   })).optional(),
 });
 
+type SendAttachmentBody = NonNullable<z.infer<typeof sendBody>['attachments']>[number];
+
+function formatMb(bytes: number): number {
+  return Math.floor(bytes / 1024 / 1024);
+}
+
+function decodedBase64Bytes(value: string): number {
+  const clean = value.replace(/\s/g, '');
+  if (!clean) return 0;
+  const padding = clean.endsWith('==') ? 2 : clean.endsWith('=') ? 1 : 0;
+  return Math.max(0, Math.floor((clean.length * 3) / 4) - padding);
+}
+
+function attachmentValidationError(attachments: SendAttachmentBody[] = []): string | null {
+  let total = 0;
+  for (const attachment of attachments) {
+    const size = decodedBase64Bytes(attachment.content);
+    if (size > config.maxAttachmentBytes) {
+      return `${attachment.filename} is too large. Maximum per file is ${formatMb(config.maxAttachmentBytes)} MB.`;
+    }
+    total += size;
+  }
+  if (total > config.maxTotalAttachmentBytes) {
+    return `Attachments are too large. Maximum total size is ${formatMb(config.maxTotalAttachmentBytes)} MB.`;
+  }
+  return null;
+}
+
 const moveBody = z.object({ destFolder: z.string() });
 const bulkBody = z.object({
   uids: z.array(z.number().int()),
@@ -261,6 +289,8 @@ export const mailRoutes: FastifyPluginAsync = async (app: FastifyInstance) => {
   app.post('/send', async (req, reply) => {
     const b = sendBody.safeParse(req.body);
     if (!b.success) return badRequest(reply, b.error.issues[0]?.message ?? 'Invalid input');
+    const attachmentError = attachmentValidationError(b.data.attachments);
+    if (attachmentError) return badRequest(reply, attachmentError);
     const user = await loadUserWithPassword(req);
     const result = await sendMessage(user, {
       from: user.email,
