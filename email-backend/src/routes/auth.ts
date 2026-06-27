@@ -8,7 +8,7 @@ import { createSession } from '../plugins/auth.js';
 import { ImapFlow } from 'imapflow';
 
 const loginSchema = z.object({
-  email: z.string().email(),
+  email: z.string().min(1),
   password: z.string().min(1),
   imapHost: z.string().optional(),
   imapPort: z.number().int().optional(),
@@ -45,6 +45,37 @@ async function verifyMailboxCredentials(email: string, password: string, host: s
 function isAllowedMailbox(email: string): boolean {
   if (!config.allowedEmailDomain) return true;
   return email.toLowerCase().endsWith(`@${config.allowedEmailDomain.toLowerCase()}`);
+}
+
+function normalizeLoginAddress(raw: string): string | null {
+  const value = raw.trim().toLowerCase();
+  if (!value) return null;
+  if (value.includes('@')) {
+    const parsed = z.string().email().safeParse(value);
+    return parsed.success ? value : null;
+  }
+  if (!config.allowedEmailDomain || !/^[a-z0-9._%+-]+$/.test(value)) return null;
+  return `${value}@${config.allowedEmailDomain.toLowerCase()}`;
+}
+
+function localAdminLoginCandidates(raw: string): string[] {
+  const value = raw.trim().toLowerCase();
+  if (!value) return [];
+  if (value.includes('@')) return [value];
+  return config.allowedEmailDomain
+    ? [value, `${value}@${config.allowedEmailDomain.toLowerCase()}`]
+    : [value];
+}
+
+async function findLocalAdminLogin(raw: string) {
+  const candidates = localAdminLoginCandidates(raw);
+  if (!candidates.length) return null;
+  return prisma.user.findFirst({
+    where: {
+      isAdmin: true,
+      email: { in: candidates },
+    },
+  });
 }
 
 export const authRoutes: FastifyPluginAsync = async (app: FastifyInstance) => {
@@ -90,7 +121,22 @@ export const authRoutes: FastifyPluginAsync = async (app: FastifyInstance) => {
     const parsed = loginSchema.safeParse(req.body);
     if (!parsed.success) return badRequest(reply, parsed.error.issues[0]?.message ?? 'Invalid input');
     const { password, imapHost, imapPort } = parsed.data;
-    const email = parsed.data.email.trim().toLowerCase();
+    const rawLogin = parsed.data.email.trim().toLowerCase();
+
+    const adminUser = await findLocalAdminLogin(rawLogin);
+    if (adminUser && (await bcrypt.compare(password, adminUser.passwordHash))) {
+      const { token, expiresAt } = await createSession(app, adminUser.id, adminUser.email, password);
+      return reply.send({
+        token,
+        expiresAt,
+        user: { id: adminUser.id, email: adminUser.email, displayName: adminUser.displayName ?? null, isAdmin: adminUser.isAdmin },
+      });
+    }
+
+    const email = normalizeLoginAddress(rawLogin);
+    if (!email) {
+      return badRequest(reply, 'Enter a valid email or username');
+    }
     if (!isAllowedMailbox(email)) {
       return badRequest(reply, `Use your @${config.allowedEmailDomain} mailbox.`);
     }
