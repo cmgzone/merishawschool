@@ -1,7 +1,7 @@
 import { ImapFlow, type MailboxObject } from 'imapflow';
 import { simpleParser } from 'mailparser';
 import nodemailer from 'nodemailer';
-import { randomBytes } from 'node:crypto';
+import { randomUUID } from 'node:crypto';
 import type { User } from '@prisma/client';
 import { AppError } from './errors.js';
 
@@ -616,10 +616,23 @@ function fallbackSenderName(email: string): string {
   return label ? `${label} Merishaw School` : 'Merishaw School';
 }
 
+function compactName(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+function shouldUseFallbackSenderName(displayName: string, email: string): boolean {
+  const localPart = email.split('@')[0]?.trim() || '';
+  if (!displayName) return true;
+  if (compactName(displayName) === compactName(localPart)) return true;
+  if (displayName.length <= 4 && !/\s/.test(displayName)) return true;
+  return false;
+}
+
 function senderName(user: User): string {
+  const fallback = fallbackSenderName(user.email);
   const displayName = user.displayName?.trim();
-  if (displayName) return displayName;
-  return fallbackSenderName(user.email);
+  if (!displayName || shouldUseFallbackSenderName(displayName, user.email)) return fallback;
+  return displayName;
 }
 
 function normalizeSubject(value: string): string {
@@ -670,7 +683,7 @@ export async function sendMessage(user: User & { password: string }, input: Send
     throw new AppError('Add at least one recipient.', 400, 'Missing Recipient');
   }
   const fromName = senderName(user);
-  const messageId = `<${randomBytes(16).toString('hex')}@${messageDomain(fromAddress)}>`;
+  const messageId = `<${randomUUID()}@${messageDomain(fromAddress)}>`;
   const text = input.text || ' ';
   const html = input.html?.trim() ? input.html : textToHtml(text);
   const replyTo = input.replyTo?.trim();
@@ -687,12 +700,7 @@ export async function sendMessage(user: User & { password: string }, input: Send
     inReplyTo: input.inReplyTo,
     messageId,
     date: new Date(),
-    headers: {
-      'User-Agent': 'Merishaw Mail App',
-      'X-Mailer': 'Merishaw Mail App',
-      Organization: 'Merishaw School',
-      'X-Entity-Ref-ID': randomBytes(12).toString('hex'),
-    },
+    textEncoding: 'quoted-printable' as const,
     attachments: input.attachments?.map((a) => ({
       filename: a.filename,
       content: a.content,
