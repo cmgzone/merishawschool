@@ -587,11 +587,39 @@ function textToHtml(text: string): string {
   return `<div style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.5;">${body}</div>`;
 }
 
+function titleCaseWords(value: string): string {
+  return value
+    .replace(/[._-]+/g, ' ')
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((word) => (word.length <= 3 ? word.toUpperCase() : word[0].toUpperCase() + word.slice(1).toLowerCase()))
+    .join(' ');
+}
+
+function fallbackSenderName(email: string): string {
+  const localPart = email.split('@')[0]?.trim().toLowerCase() || '';
+  const roleNames: Record<string, string> = {
+    ceo: 'CEO Merishaw School',
+    enquiries: 'Merishaw School Enquiries',
+    enquiry: 'Merishaw School Enquiries',
+    finance: 'Merishaw School Finance',
+    developer: 'Merishaw School Developer',
+    partnership: 'Merishaw School Partnerships',
+    partnerships: 'Merishaw School Partnerships',
+    postmaster: 'Merishaw School Postmaster',
+    abuse: 'Merishaw School Abuse Desk',
+    dmarc: 'Merishaw School DMARC Reports',
+  };
+  if (roleNames[localPart]) return roleNames[localPart];
+  const label = titleCaseWords(localPart);
+  return label ? `${label} Merishaw School` : 'Merishaw School';
+}
+
 function senderName(user: User): string {
   const displayName = user.displayName?.trim();
   if (displayName) return displayName;
-  const localPart = user.email.split('@')[0]?.trim();
-  return localPart || 'Merishaw School';
+  return fallbackSenderName(user.email);
 }
 
 function normalizeSubject(value: string): string {
@@ -619,7 +647,7 @@ function messageDomain(address: string): string {
 }
 
 function smtpClientName(user: User): string {
-  return process.env.SMTP_CLIENT_NAME?.trim() || (user.email.endsWith('@merishawschools.sc.ke') ? 'api.merishawschools.sc.ke' : user.smtpHost);
+  return process.env.SMTP_CLIENT_NAME?.trim() || user.smtpHost;
 }
 
 async function buildRawMessage(mailOptions: Record<string, unknown>): Promise<Buffer> {
@@ -643,6 +671,8 @@ export async function sendMessage(user: User & { password: string }, input: Send
   }
   const fromName = senderName(user);
   const messageId = `<${randomBytes(16).toString('hex')}@${messageDomain(fromAddress)}>`;
+  const text = input.text || ' ';
+  const html = input.html?.trim() ? input.html : textToHtml(text);
   const replyTo = input.replyTo?.trim();
   const mailOptions = {
     envelope: { from: fromAddress, to: recipients },
@@ -651,12 +681,18 @@ export async function sendMessage(user: User & { password: string }, input: Send
     cc: input.cc?.length ? uniqueAddresses(input.cc) : undefined,
     bcc: input.bcc?.length ? uniqueAddresses(input.bcc) : undefined,
     subject: normalizeSubject(input.subject),
-    text: input.text || ' ',
-    html: input.html?.trim() ? input.html : undefined,
+    text,
+    html,
     replyTo: replyTo && cleanAddress(replyTo) !== fromAddress ? replyTo : undefined,
     inReplyTo: input.inReplyTo,
     messageId,
     date: new Date(),
+    headers: {
+      'User-Agent': 'Merishaw Mail App',
+      'X-Mailer': 'Merishaw Mail App',
+      Organization: 'Merishaw School',
+      'X-Entity-Ref-ID': randomBytes(12).toString('hex'),
+    },
     attachments: input.attachments?.map((a) => ({
       filename: a.filename,
       content: a.content,
