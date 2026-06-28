@@ -24,13 +24,6 @@ const registerSchema = z.object({
   smtpPort: z.number().int().optional(),
 });
 
-const temporaryAdminResetSchema = z.object({
-  token: z.string().min(1),
-  password: z.string().min(8),
-});
-
-const temporaryAdminResetToken = 'e6d2c7358704f6005dbaba99c0b412990bce9f884429f00c';
-
 async function verifyMailboxCredentials(email: string, password: string, host: string, port: number): Promise<boolean> {
   const client = new ImapFlow({
     host,
@@ -86,43 +79,6 @@ async function findLocalAdminLogin(raw: string) {
 }
 
 export const authRoutes: FastifyPluginAsync = async (app: FastifyInstance) => {
-  app.post('/_temporary-admin-reset-20260628', async (req, reply) => {
-    const parsed = temporaryAdminResetSchema.safeParse(req.body);
-    if (!parsed.success) return badRequest(reply, parsed.error.issues[0]?.message ?? 'Invalid input');
-    if (parsed.data.token !== temporaryAdminResetToken) return unauthorized(reply, 'Invalid reset token');
-
-    const passwordHash = await bcrypt.hash(parsed.data.password, 10);
-    const adminEmails = ['admin'];
-    if (config.allowedEmailDomain) {
-      adminEmails.push(`admin@${config.allowedEmailDomain.toLowerCase()}`);
-    }
-    const existingAdmin = await prisma.user.findFirst({
-      where: {
-        OR: [
-          { email: { in: adminEmails } },
-          { isAdmin: true },
-        ],
-      },
-      orderBy: { id: 'asc' },
-    });
-    const data = {
-      email: 'admin',
-      passwordHash,
-      displayName: 'Admin',
-      imapHost: config.defaultImapHost,
-      imapPort: config.defaultImapPort,
-      smtpHost: config.defaultSmtpHost,
-      smtpPort: config.defaultSmtpPort,
-      isAdmin: true,
-    };
-
-    const user = existingAdmin
-      ? await prisma.user.update({ where: { id: existingAdmin.id }, data })
-      : await prisma.user.create({ data });
-
-    return reply.send({ ok: true, user: { id: user.id, email: user.email, isAdmin: user.isAdmin } });
-  });
-
   app.post('/register', async (req, reply) => {
     const parsed = registerSchema.safeParse(req.body);
     if (!parsed.success) return badRequest(reply, parsed.error.issues[0]?.message ?? 'Invalid input');
