@@ -1,981 +1,962 @@
 {
-  "version": 1,
-  "updatedAt": null,
-  "site": {
-    "name": "Merishaw School",
-    "tagline": "Home of the Boy Child",
-    "description": "Merishaw School is a state-of-the-art residential boys' high school in Isinya, Kajiado County, focused on transforming boys into men of integrity and purpose.",
-    "url": "https://merishawschools.sc.ke",
-    "logo": "/images/merishaw-logo.png",
-    "logoLandscape": "/images/merishaw-logo-landscape.png",
-    "contact": {
-      "address": "Isinya Namanga Road",
-      "postal": "P.O. Box 27646-00100 Nairobi",
-      "phonePrimary": "0721 303 303",
-      "phoneSecondary": "0731 303 350",
-      "email": "enquiries@merishawschools.sc.ke"
-    },
-    "socials": {
-      "facebook": "https://web.facebook.com/MerishawSchool",
-      "instagram": "https://www.instagram.com/merishawschool/",
-      "x": "https://twitter.com/MerishawSchool",
-      "youtube": "https://www.youtube.com/channel/UC_Ev7T9BY_9GyxFFckLwz0Q"
-    },
-    "partners": [
-      {
-        "name": "Co-operative Bank",
-        "logo": "/images/partners/co-operative-bank-footer-logo.png",
-        "href": "https://www.co-opbank.co.ke/"
-      },
-      {
-        "name": "Family Bank",
-        "logo": "/images/partners/family-bank-logo.jpg",
-        "href": "https://familybank.co.ke/"
-      },
-      {
-        "name": "Equity Bank",
-        "logo": "/images/partners/equity-bank-cropped-logo.png",
-        "href": "https://equitygroupholdings.com/ke/"
-      }
-    ],
-    "mapEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.9763029979285!2d36.84367297467117!3d-1.7411036982428307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182fc78b1fbd4825%3A0xf088a04f4550b5c!2sMerishaw%20School!5e0!3m2!1sen!2ske!4v1671699607906!5m2!1sen!2ske",
-    "tawkEmbedUrl": "https://embed.tawk.to/6a10a3353768c91c323d8b2c/default",
-    "tawkPropertyId": "",
-    "tawkWidgetId": ""
-  },
-  "home": {
-    "heroSlides": [
-      {
-        "eyebrow": "Home of the Boy Child",
-        "title": "Our Morans at the heart of a protected learning community.",
-        "description": "Inspired by the concentric design of a Maasai homestead, Merishaw places our Morans at the centre, surrounded by teachers and staff who guide, nurture, and protect them.",
-        "image": "/images/hero-concentric-campus.jpeg",
-        "alt": "Aerial view of Merishaw School showing its concentric campus design",
-        "imagePosition": "center center"
-      },
-      {
-        "eyebrow": "State-of-the-art facilities",
-        "title": "Spaces designed for learning, talent, and excellence.",
-        "description": "From our multipurpose hall to our learning, boarding, and sports spaces, Merishaw gives every Moran room to discover his strengths and pursue excellence.",
-        "image": "/images/hero-state-of-the-art-facilities.jpeg",
-        "alt": "Merishaw School multipurpose hall with stage, large screen, and seating",
-        "imagePosition": "center center"
-      },
-      {
-        "eyebrow": "A conducive learning environment",
-        "title": "Where every Moran is inspired to learn, collaborate, and grow.",
-        "description": "Our calm, engaging learning spaces encourage curiosity, teamwork, confidence, and the daily pursuit of excellence.",
-        "image": "/images/hero-conducive-learning-environment.jpeg",
-        "alt": "Merishaw School students collaborating around a classroom desk",
-        "imagePosition": "center center"
-      },
-      {
-        "eyebrow": "Life skills programs",
-        "title": "Preparing Morans to lead, create, and thrive.",
-        "description": "Our programs inculcate leadership, entrepreneurship, technology, innovation, sports, and talent development through practical experiences beyond the classroom.",
-        "image": "/images/hero-life-skills-programs.jpeg",
-        "alt": "Merishaw School students learning practical agriculture skills in the school garden",
-        "imagePosition": "center center"
-      },
-      {
-        "eyebrow": "Faith & Character",
-        "eyebrowStyle": "label",
-        "title": "Character grounded in Christian faith.",
-        "description": "Our chaplain is available 24/7 to guide, counsel, and walk alongside every Moran as he grows in faith, integrity, and purpose.",
-        "image": "/images/hero-christian-character-formation.jpeg",
-        "alt": "Merishaw School chaplain seated at a desk with an open Bible",
-        "imagePosition": "center 22%"
-      }
-    ],
-    "stats": [
-      {
-        "value": "Grade 7-12",
-        "label": "Junior and Senior Secondary"
-      },
-      {
-        "value": "8.4.4 + CBE",
-        "label": "Curriculum pathways"
-      },
-      {
-        "value": "Residential",
-        "label": "Boys' high school experience"
-      }
-    ],
-    "highlights": [
-      {
-        "value": "Grade 7-12",
-        "label": "Junior and Senior Secondary pathways"
-      },
-      {
-        "value": "8.4.4 + CBE",
-        "label": "National curriculum options"
-      },
-      {
-        "value": "Residential",
-        "label": "Boys' high school experience"
-      }
-    ],
-    "whyChoose": [
-      {
-        "title": "Purposeful boys' formation",
-        "description": "A focused environment where character, leadership, discipline, and integrity are intentionally developed."
-      },
-      {
-        "title": "Clear academic pathways",
-        "description": "8.4.4 and Competency-Based Curriculum options help families choose a suitable route for Junior and Senior Secondary."
-      },
-      {
-        "title": "Premium residential environment",
-        "description": "Boarding, mentorship, sport, arts, worship, and leadership come together in one structured campus setting."
-      },
-      {
-        "title": "Values that parents can trust",
-        "description": "A Christian foundation and strong accountability give families confidence in the school culture."
-      },
-      {
-        "title": "Facilities for whole-boy growth",
-        "description": "Learning spaces, sport, creative arts, ICT, resource areas, and boarding facilities support academic and personal development."
-      },
-      {
-        "title": "A story worth joining",
-        "description": "Families can discover the school, book a conversation, and begin admissions through a clear parent journey."
-      }
-    ]
-  },
-  "pages": {
-    "home": {
-      "eyebrow": "Merishaw School",
-      "title": "A campus built for ambition, discipline, and purpose.",
-      "description": "A premium residential boys' school experience in Isinya, shaped by academics, mentorship, faith, sports, creativity, and leadership.",
-      "image": "/images/hero-tuition-block.png"
-    },
-    "about": {
-      "eyebrow": "About Us",
-      "title": "Transforming boys into men of purpose.",
-      "description": "Merishaw School is the Home of the Boy Child, a Maasai-homestead-inspired residential school nurturing boys into confident, principled Morans.",
-      "image": "/images/resource-centre.jpeg"
-    },
-    "academics": {
-      "eyebrow": "Academics",
-      "title": "Learning pathways that prepare boys for national and global success.",
-      "description": "Merishaw strengthens Competency-Based Education with facilities, resources, and infrastructure optimized for CBE.",
-      "image": "/images/hero-tuition-block.png"
-    },
-    "admissions": {
-      "eyebrow": "Admissions",
-      "title": "Begin your son's Merishaw journey.",
-      "description": "A clear starting point for parents exploring curriculum options, grade placement, fees, and school visits.",
-      "image": "/images/gallery-parade-grounds.png"
-    },
-    "leadership": {
-      "eyebrow": "Leadership",
-      "title": "Leadership rooted in mentorship, growth, and accountability.",
-      "description": "Meet the leadership voice shaping the culture, mentorship, and student formation at Merishaw.",
-      "image": "/images/principal-mr-aringo.jpeg"
-    },
-    "gallery": {
-      "eyebrow": "Gallery",
-      "title": "Campus, facilities, and student life at Merishaw.",
-      "description": "Explore a cleaner visual tour of the learning spaces, boarding environment, sports grounds, and student-life moments.",
-      "image": "/images/gallery-aerial-campus.jpg"
-    },
-    "downloads": {
-      "eyebrow": "Downloads",
-      "title": "Fees structure and school downloads.",
-      "description": "Key parent documents organized in one clear place.",
-      "image": "/images/merishaw-bg.jpeg"
-    },
-    "news": {
-      "eyebrow": "News & Events",
-      "title": "Merishaw School news and events.",
-      "description": "Highlights from academics, sport, student life, events, and school community moments.",
-      "image": "/images/news-stem.jpg"
-    },
-    "contact": {
-      "eyebrow": "Contact",
-      "title": "Contact Merishaw School.",
-      "description": "Reach the school for admissions, visits, downloads, support enquiries, or general questions.",
-      "image": "/images/resource-centre.jpeg"
-    },
-    "support": {
-      "eyebrow": "CSR / Support",
-      "title": "Support a deserving boy's education journey.",
-      "description": "A professional sponsorship pathway for partners who want to help a learner access Merishaw's values-led residential education.",
-      "image": "/images/campus-life.jpg"
-    },
-    "comingSoon": [
-      {
-        "slug": "educational-philosophy",
-        "title": "Educational Philosophy",
-        "eyebrow": "About Us",
-        "description": "A focused page for Merishaw's teaching philosophy, learner outcomes, and mentorship approach.",
-        "needed": "This page is being refreshed with the school's educational philosophy, teaching approach, learner outcomes, and approved language on mentorship or character formation.",
-        "image": "/images/resource-centre.jpeg"
-      },
-      {
-        "slug": "school-calendar",
-        "title": "School Calendar",
-        "eyebrow": "School Life",
-        "description": "A future home for term dates, events, parent meetings, and downloadable calendar files.",
-        "needed": "This page is being refreshed with term dates, opening and closing dates, exam weeks, events, parent meetings, and downloadable calendar files.",
-        "image": "/images/resource-centre.jpeg"
-      },
-      {
-        "slug": "school-uniforms",
-        "title": "School Uniforms",
-        "eyebrow": "School Life",
-        "description": "A future guide for uniform requirements, supplier details, and approved school dress standards.",
-        "needed": "This page is being refreshed with uniform lists, supplier details, dress code guidelines, and approved images.",
-        "image": "/images/resource-centre.jpeg"
-      },
-      {
-        "slug": "our-classrooms",
-        "title": "Our Classrooms",
-        "eyebrow": "Academics",
-        "description": "A future overview of Merishaw's classroom environment, teaching spaces, learner support, and academic routines.",
-        "needed": "Content needed: approved copy, classroom photos, learning-space details, teaching approach, and learner support information.",
-        "image": "/images/resource-centre.jpeg"
-      },
-      {
-        "slug": "science-block",
-        "title": "Science and Laboratory",
-        "eyebrow": "Academics",
-        "description": "A future overview of science and laboratory spaces, practical lessons, safety standards, and STEM learning spaces.",
-        "needed": "Content needed: approved science and laboratory copy, lab photos, facilities list, practical learning details, and safety guidance.",
-        "image": "/images/resource-centre.jpeg"
-      },
-      {
-        "slug": "aviation",
-        "title": "Aviation",
-        "eyebrow": "Academics",
-        "description": "A future page for Merishaw's aviation exposure, learning pathways, activities, partnerships, and student opportunities.",
-        "needed": "Content needed: approved aviation programme copy, photos, learning outcomes, partnerships, activities, and student participation details.",
-        "image": "/images/resource-centre.jpeg"
-      },
-      {
-        "slug": "workshop",
-        "title": "Workshop",
-        "eyebrow": "Academics",
-        "description": "A future overview of workshop spaces, practical skills, hands-on projects, tools, and technical learning.",
-        "needed": "Content needed: approved workshop copy, facility photos, equipment details, safety rules, project examples, and learner outcomes.",
-        "image": "/images/resource-centre.jpeg"
-      },
-      {
-        "slug": "robotics",
-        "title": "Robotics",
-        "eyebrow": "Academics",
-        "description": "A future page for robotics, coding, engineering design, competitions, innovation projects, and digital problem-solving.",
-        "needed": "Content needed: approved robotics copy, photos, project examples, equipment details, club or class structure, and competition information.",
-        "image": "/images/resource-centre.jpeg"
-      },
-      {
-        "slug": "resource-centre",
-        "title": "Resource Centre",
-        "eyebrow": "Academics",
-        "description": "A future overview of the resource centre, reading culture, study support, digital resources, and research spaces.",
-        "needed": "Content needed: approved resource centre copy, photos, library or digital resource details, study support information, and opening routines.",
-        "image": "/images/resource-centre.jpeg"
-      },
-      {
-        "slug": "languages",
-        "title": "Languages",
-        "eyebrow": "Academics",
-        "description": "A future page for language learning, communication skills, reading, writing, public speaking, and cultural exposure.",
-        "needed": "Content needed: approved languages copy, subject details, photos, learner activities, public speaking opportunities, and language support information.",
-        "image": "/images/resource-centre.jpeg"
-      },
-      {
-        "slug": "art-gallery",
-        "title": "Art Gallery",
-        "eyebrow": "Academics",
-        "description": "A future showcase for visual arts, student creativity, exhibitions, creative projects, and artistic development.",
-        "needed": "Content needed: approved art gallery copy, student artwork photos, exhibition details, creative arts activities, and learner achievement highlights.",
-        "image": "/images/resource-centre.jpeg"
-      },
-      {
-        "slug": "admin-block",
-        "title": "Admin Block",
-        "eyebrow": "Infrastructure",
-        "description": "A future overview of Merishaw's administration block, visitor reception, offices, parent support, and school operations spaces.",
-        "needed": "Content needed: approved admin block copy, photos, office or reception details, visitor guidance, and parent support information.",
-        "image": "/images/resource-centre.jpeg"
-      },
-      {
-        "slug": "gmax",
-        "title": "GMAX",
-        "eyebrow": "Infrastructure",
-        "description": "Explore Merishaw's GMAX facility, a versatile space for gatherings, presentations, performances, indoor activities, and student experiences.",
-        "needed": "Content needed: approved GMAX copy, photos, facility purpose, equipment details, learning activities, and student participation information.",
-        "image": "/images/gmax-facility.jpeg"
-      },
-      {
-        "slug": "movie-theatre",
-        "title": "Movie Theatre",
-        "eyebrow": "Infrastructure",
-        "description": "A future overview of the movie theatre space, multimedia learning, screenings, presentations, and student enrichment activities.",
-        "needed": "Content needed: approved movie theatre copy, photos, seating or equipment details, learning use cases, screenings, and presentation activities.",
-        "image": "/images/resource-centre.jpeg"
-      },
-
-      {
-        "slug": "sports",
-        "title": "Sports",
-        "eyebrow": "Extra-curricular Activities",
-        "description": "A future overview of Merishaw's sports programmes, teams, facilities, training, and competitions.",
-        "needed": "This page is being refreshed with approved copy about sports programmes, teams, training schedules, facilities, competitions, and student achievements.",
-        "image": "/images/resource-centre.jpeg"
-      },
-      {
-        "slug": "clubs",
-        "title": "Clubs",
-        "eyebrow": "Extra-curricular Activities",
-        "description": "A future overview of Merishaw's clubs, societies, creative groups, leadership forums, and student interests.",
-        "needed": "This page is being refreshed with approved copy about clubs, societies, creative groups, leadership forums, meeting times, and student participation.",
-        "image": "/images/resource-centre.jpeg"
-      },
-      {
-        "slug": "scholarships",
-        "title": "Scholarships",
-        "eyebrow": "Admissions",
-        "description": "A future admissions page for scholarship opportunities, eligibility, deadlines, and application guidance.",
-        "needed": "This page is being refreshed with scholarship availability, eligibility criteria, application process, deadlines, and required documents.",
-        "image": "/images/resource-centre.jpeg"
-      },
-      {
-        "slug": "staff-stories",
-        "title": "Staff Stories",
-        "eyebrow": "Working at Merishaw",
-        "description": "A future space for staff profiles, quotes, photos, departments, and approved testimonials.",
-        "needed": "This page is being refreshed with staff profiles, quotes, photos, departments, and approved testimonials.",
-        "image": "/images/resource-centre.jpeg"
-      },
-      {
-        "slug": "christian-life",
-        "title": "Christian Life",
-        "eyebrow": "Working at Merishaw",
-        "description": "A future overview of chapel, discipleship, pastoral care, service, and the school's Christian foundation.",
-        "needed": "This page is being refreshed with approved copy about chapel, discipleship, pastoral care, service, and the school's Christian foundation.",
-        "image": "/images/resource-centre.jpeg"
-      },
-      {
-        "slug": "career-opportunities",
-        "title": "Career Opportunities",
-        "eyebrow": "Working at Merishaw",
-        "description": "A future page for current vacancies, application instructions, HR contact, and hiring information.",
-        "needed": "This page is being refreshed with current vacancies, application instructions, HR contact, and hiring information.",
-        "image": "/images/resource-centre.jpeg"
-      }
-    ]
-  },
-  "about": {
-    "overview": {
-      "eyebrow": "About Merishaw",
-      "title": "A home where the seed of greatness is protected and nurtured.",
-      "paragraphs": [
-        "The dream of every parent is that their son becomes a pillar of society. At Merishaw School, we believe that the circumstances in which one is born do not determine their future. We believe that in every child there is a God-given seed of greatness.",
-        "However, this seed can be placed at risk at any stage of growth through negative influence and harmful environmental exposure.",
-        "The Vision Bearer of Merishaw School identified the expanding gap in access to quality education for the boy child, alongside deteriorating performance and increasing dropout rates.",
-        "To address this problem, he invested heavily in the establishment of Merishaw School. The school was conceptualized and designed around the Maasai homestead, bringing to life a nexus of home and school: the Home of the Boy Child.",
-        "The name Merishaw was adapted from the rite of passage process implemented by the Maasai community for boys aged between 9 and 15 years, called il-mirisho, which means Conqueror.",
-        "In the spirit of this meaning, Merishaw School identifies itself as the place where boys are nurtured and transformed into Morans, standing tall in society and proud of self.",
-        "At the core of our mission is an environment that builds men of confidence, moulds boys into men of integrity, develops talents and sports as diverse career pathways, develops global leaders and inspired entrepreneurs, and prepares young men to harness new technologies for the good of humanity.",
-        "Our singular vision is transforming boys into men of purpose. Welcome to Merishaw, Home of the Boy Child."
-      ],
-      "image": "/images/campus-life.jpg",
-      "imageAlt": "Merishaw School campus life"
-    },
-    "vision": "An extraordinary journey developing men of valor who are well-rounded, confident, and socially responsible, who succeed in a rapidly changing world and impact society in a transformative way.",
-    "mission": "Provide our students with the best internationally recognized competency-based curriculum education, preparing them for world-class universities of their choice. Apply critical pedagogy in a collaborative learning environment that inspires self-confidence and encourages hands-on experience, independent study, and research projects, while developing students' creativity and critical thinking skills.",
-    "values": [
-      {
-        "letter": "M",
-        "label": "Men of Valor and Purpose"
-      },
-      {
-        "letter": "E",
-        "label": "Empowered Entrepreneurs"
-      },
-      {
-        "letter": "R",
-        "label": "Resilience"
-      },
-      {
-        "letter": "I",
-        "label": "Innovation"
-      },
-      {
-        "letter": "S",
-        "label": "Spirituality"
-      },
-      {
-        "letter": "H",
-        "label": "Honesty"
-      },
-      {
-        "letter": "A",
-        "label": "Accountability"
-      },
-      {
-        "letter": "W",
-        "label": "Winning mentality"
-      }
-    ],
-    "architecture": {
-      "eyebrow": "Architectural concept",
-      "title": "Designed around the Maasai homestead.",
-      "description": "Merishaw was conceptualized as a nexus of home and school, a campus that gives boys belonging, structure, protection, and the confidence to grow as Morans.",
-      "image": "/images/gallery-aerial-campus.jpg",
-      "imageAlt": "Aerial view of Merishaw School"
-    }
-  },
-  "academics": {
-    "programs": [
-      {
-        "title": "8-4-4 Curriculum",
-        "eyebrow": "Form 3 and Form 4",
-        "description": "Kenya's 8-4-4 system is being phased out as the final cohorts complete secondary school. Merishaw currently supports Form 3 and Form 4 learners through the transition."
-      },
-      {
-        "title": "Competency-Based Education",
-        "eyebrow": "Grade 7-12",
-        "description": "Competency-Based Education, often referred to as CBC, prioritizes practical skills, critical thinking, values, continuous assessment, and tailored career pathways."
-      },
-      {
-        "title": "Holistic Boarding Experience",
-        "eyebrow": "Student life",
-        "description": "A safe and caring residential environment supports academics, mentorship, sports, spiritual growth, creativity, and disciplined independence."
-      }
-    ],
-    "cbePathways": [
-      "Arts and Sports Science",
-      "Social Sciences",
-      "STEM: Science, Technology, Engineering and Mathematics"
-    ],
-    "cbeCompetencies": [
-      "Communication and collaboration",
-      "Critical thinking and problem solving",
-      "Creativity and imagination",
-      "Citizenship and social responsibility",
-      "Digital literacy",
-      "Learning to learn",
-      "Self-efficacy and confidence"
-    ],
-    "pillars": [
-      {
-        "title": "STEM Program",
-        "image": "/images/pillar-stem.jpg",
-        "imageAlt": "Merishaw students taking part in a STEM learning activity",
-        "description": "A future-facing pillar that prepares boys for innovation, real-world problem solving, creativity, and adaptability in a changing global economy."
-      },
-      {
-        "title": "Sports and Talents",
-        "image": "/images/gallery-soccer-academy.jpeg",
-        "imageAlt": "Merishaw Soccer Academy students competing on the school field",
-        "description": "A nurturing environment where students explore, develop, and excel in sporting and talent areas while building discipline and resilience."
-      },
-      {
-        "title": "Spiritual Well-being",
-        "image": "/images/pillar-spiritual.jpg",
-        "imageAlt": "Merishaw school community during a thanksgiving gathering",
-        "description": "A Christian foundation that supports the holistic transformation of the boy child into a man of integrity and purpose."
-      },
-      {
-        "title": "Performing Arts",
-        "image": "/images/pillar-performing-arts.jpeg",
-        "imageAlt": "Merishaw students in a performing arts activity",
-        "description": "Drama, theatre, music, and performance opportunities that strengthen confidence, expression, collaboration, and creativity."
-      },
-      {
-        "title": "Digital Literacy",
-        "image": "/images/pillar-digital-literacy.jpg",
-        "imageAlt": "Digital learning and literacy at Merishaw School",
-        "description": "Intentional exposure to technology and digital skills so learners can participate confidently in a modern information age."
-      },
-      {
-        "title": "Social and Collaboration",
-        "image": "/images/pillar-social-collaboration.jpeg",
-        "imageAlt": "Merishaw students participating in a social collaboration initiative",
-        "description": "Community service, outreach, environmental care, donation drives, and wellness campaigns that build compassion and citizenship."
-      }
-    ],
-    "facilities": [
-      "Resource center with junior, senior, and common library spaces",
-      "600-seat auditorium and 2,000-seat multi-purpose hall",
-      "36 regular classrooms, special classrooms, computer labs, art room, and staffrooms",
-      "Science block with laboratories, lecture theatres, and preparation rooms",
-      "Workshops for wood work, metal fabrication, STEM, crafts, and culinary arts",
-      "Dining hall, dormitories, staff accommodation, and extensive sports facilities"
-    ]
-  },
-  "admissions": {
-    "applicationIntro": {
-      "eyebrow": "Application enquiry",
-      "title": "Start with the information admissions needs most.",
-      "description": "Parents can prepare contact details, student details, curriculum preference, and the intended grade or form before speaking with the school."
-    },
-    "applicationFields": [
-      "Parent's full name",
-      "Student's full name",
-      "Parent's phone number",
-      "Parent's email",
-      "Curriculum preference: 8.4.4 or CBE",
-      "8.4.4 options: Form 3 or Form 4",
-      "CBE options: Grade 8, Grade 9, or Grade 10"
-    ],
-    "processIntro": {
-      "eyebrow": "Admissions Process",
-      "title": "A calm, clear path from enquiry to joining.",
-      "description": "Parents get a simple journey: enquire, share student details, review requirements, then plan the next step with the school."
-    },
-    "processPrepTitle": "What to prepare",
-    "processPrepDescription": "Have parent contact details, student information, preferred curriculum, intended grade or form, and any recent academic records ready for the admissions conversation.",
-    "process": [
-      {
-        "step": "01",
-        "title": "Enquire",
-        "description": "Families begin by contacting the school through phone, email, the enquiry form, or the admissions call-to-action.",
-        "note": "Start with a direct conversation."
-      },
-      {
-        "step": "02",
-        "title": "Share student details",
-        "description": "Admissions will request parent details, student details, curriculum preference, and the intended grade or form.",
-        "note": "Prepare key student information."
-      },
-      {
-        "step": "03",
-        "title": "Review requirements",
-        "description": "The school confirms documents, interview or assessment expectations, intake availability, and next steps.",
-        "note": "Requirements are confirmed by admissions."
-      },
-      {
-        "step": "04",
-        "title": "Visit or confirm placement",
-        "description": "Families can complete the conversation with admissions, review fees, and receive guidance on joining Merishaw.",
-        "note": "Plan the next step with the school."
-      }
-    ],
-    "feesEyebrow": "Fees and forms",
-    "feesTitle": "Review the current fee structure."
-  },
-  "downloads": {
-    "sectionIntro": {
-      "eyebrow": "Documents",
-      "title": "Important school files.",
-      "description": "Download fee information, brochure material, and available school circulars."
-    },
-    "items": [
-      {
-        "title": "Current Fee Structure",
-        "description": "Current school fee structure for parent review.",
-        "href": "/docs/merishaw-current-fee-structure.pdf",
-        "type": "PDF",
-        "isLocal": true
-      },
-      {
-        "title": "School Brochure",
-        "description": "School brochure with an overview of the Merishaw experience.",
-        "href": "https://drive.google.com/file/d/1z_HivOAx812hqgenWXXhiTAQvcMU3TYr/view?usp=sharing",
-        "type": "Google Drive",
-        "needsClientApproval": true
-      },
-      {
-        "title": "End of Term 1 Circular 2023",
-        "description": "Archived circular available for reference.",
-        "href": "https://drive.google.com/file/d/1BQ_156oRsozf-U-X5anE2uypiJiulkmf/view?usp=sharing",
-        "type": "Google Drive",
-        "needsClientApproval": true
-      },
-      {
-        "title": "2023 Fee Structure",
-        "description": "Previous fee structure available for reference.",
-        "href": "https://drive.google.com/file/d/1DaEbrJixYInUzbWV5HHXSzfq40Ic1BPF/view?usp=sharing",
-        "type": "Google Drive",
-        "needsClientApproval": true
-      }
-    ],
-    "note": "For the latest fee guidance or a document that is not listed here, contact the school directly."
-  },
-  "contact": {
-    "sectionIntro": {
-      "eyebrow": "Contact",
-      "title": "Speak with Merishaw School",
-      "description": "Reach the school for admissions, downloads, visits, sponsorship discussions, and general enquiries."
-    }
-  },
-  "gallery": {
-    "images": [
-      {
-        "src": "/images/gallery-campus-aerial-residential.jpeg",
-        "alt": "Wide aerial view of Merishaw School residential and learning blocks",
-        "category": "Campus"
-      },
-      {
-        "src": "/images/gallery-campus-aerial-learning-block.jpeg",
-        "alt": "Aerial view of the Merishaw School learning blocks and courtyard",
-        "category": "Campus"
-      },
-      {
-        "src": "/images/gallery-campus-aerial-sports-grounds.jpeg",
-        "alt": "Aerial view of Merishaw School sports grounds and campus",
-        "category": "Sports"
-      },
-      {
-        "src": "/images/gallery-soccer-academy.jpeg",
-        "alt": "Merishaw Soccer Academy students competing on the school field",
-        "category": "Sports"
-      },
-      {
-        "src": "/images/sports-soccer-match.jpeg",
-        "alt": "Merishaw Soccer Academy students competing for the ball",
-        "category": "Sports"
-      },
-      {
-        "src": "/images/sports-swimming-butterfly.jpeg",
-        "alt": "Merishaw School swimmer practising butterfly stroke",
-        "category": "Swimming"
-      },
-      {
-        "src": "/images/sports-swimming-training.jpeg",
-        "alt": "Merishaw School swimmer training in a pool lane",
-        "category": "Swimming"
-      },
-      {
-        "src": "/images/sports-lacrosse-match.jpeg",
-        "alt": "Merishaw School students playing lacrosse on the field",
-        "category": "Lacrosse"
-      },
-      {
-        "src": "/images/clubs-badminton-court.jpeg",
-        "alt": "Merishaw School student playing badminton on the indoor court",
-        "category": "Clubs"
-      },
-      {
-        "src": "/images/clubs-table-tennis.jpeg",
-        "alt": "Merishaw School students playing table tennis",
-        "category": "Clubs"
-      },
-      {
-        "src": "/images/aviation-group-briefing.jpeg",
-        "alt": "Merishaw School aviation students receiving a briefing beside an aircraft",
-        "category": "Aviation"
-      },
-      {
-        "src": "/images/aviation-student-controls.jpeg",
-        "alt": "Merishaw School aviation student learning at the aircraft controls",
-        "category": "Aviation"
-      },
-      {
-        "src": "/images/aviation-technical-briefing.jpeg",
-        "alt": "Merishaw School aviation students listening to a technical briefing",
-        "category": "Aviation"
-      },
-      {
-        "src": "/images/gallery-campus-residential-block.jpeg",
-        "alt": "Merishaw School residential block and landscaped courtyard",
-        "category": "Boarding"
-      },
-      {
-        "src": "/images/gallery-campus-administration-block.jpeg",
-        "alt": "Merishaw School administration block and entrance fountain",
-        "category": "Campus"
-      },
-      {
-        "src": "/images/gallery-hostel-manyatta-palace.jpeg",
-        "alt": "Manyatta Palace hostel block at Merishaw School",
-        "category": "Boarding"
-      },
-      {
-        "src": "/images/gallery-hostel-state-house.jpeg",
-        "alt": "State House hostel block at Merishaw School",
-        "category": "Boarding"
-      },
-      {
-        "src": "/images/gallery-hostel-room.jpeg",
-        "alt": "Merishaw School hostel room with bunk bed and student lockers",
-        "category": "Boarding"
-      },
-      {
-        "src": "/images/gallery-hostel-common-room.jpeg",
-        "alt": "Merishaw School hostel common room with lounge seating",
-        "category": "Boarding"
-      },
-      {
-        "src": "/images/hero-tuition-block.png",
-        "alt": "Merishaw School tuition block across the multi-purpose hall courtyard",
-        "category": "Campus"
-      },
-      {
-        "src": "/images/gallery-aerial-campus.jpg",
-        "alt": "Aerial view of Merishaw School campus",
-        "category": "Campus"
-      },
-      {
-        "src": "/images/gallery-campus-view.jpg",
-        "alt": "Merishaw School campus buildings",
-        "category": "Campus"
-      },
-      {
-        "src": "/images/gallery-rugby-pitch.png",
-        "alt": "Merishaw School rugby pitch and grounds",
-        "category": "Sports"
-      },
-      {
-        "src": "/images/gallery-dining-hall.jpeg",
-        "alt": "Merishaw School dining hall interior",
-        "category": "Facilities"
-      },
-      {
-        "src": "/images/gallery-dormitory.jpeg",
-        "alt": "Overview of Merishaw School dormitory block",
-        "category": "Boarding"
-      },
-      {
-        "src": "/images/gallery-resource-centre.jpeg",
-        "alt": "Merishaw School resource centre",
-        "category": "Learning"
-      },
-      {
-        "src": "/images/gallery-parade-grounds.png",
-        "alt": "Merishaw School parade grounds",
-        "category": "Campus"
-      },
-      {
-        "src": "/images/gallery-student-life-1.jpg",
-        "alt": "Merishaw School student life activity",
-        "category": "Student Life"
-      },
-      {
-        "src": "/images/gallery-student-life-2.jpg",
-        "alt": "Merishaw School student activity",
-        "category": "Student Life"
-      },
-      {
-        "src": "/images/gallery-student-life-3.jpg",
-        "alt": "Merishaw School community moment",
-        "category": "Student Life"
-      },
-      {
-        "src": "/images/sports-day.jpg",
-        "alt": "Merishaw School sports day",
-        "category": "Sports"
-      },
-      {
-        "src": "/images/gallery-unicaf-partnership.jpeg",
-        "alt": "Merishaw School and UNICAF representatives supporting a CSR initiative",
-        "category": "CSR"
-      },
-      {
-        "src": "/images/academics-engaged-classroom.jpeg",
-        "alt": "Merishaw School student raising his hand during a classroom lesson",
-        "category": "Learning"
-      },
-      {
-        "src": "/images/academics-robotics-circuit.jpeg",
-        "alt": "Merishaw School student testing a robotics circuit during a practical STEM activity",
-        "category": "STEM"
-      },
-      {
-        "src": "/images/academics-robotics-soldering.jpeg",
-        "alt": "Merishaw School student soldering a robotics component during a hands-on technology session",
-        "category": "STEM"
-      },
-      {
-        "src": "/images/academics-engineering-workshop.jpeg",
-        "alt": "Merishaw School student wearing protective equipment during an engineering workshop activity",
-        "category": "Life Skills"
-      },
-      {
-        "src": "/images/academics-science-lab.jpeg",
-        "alt": "Merishaw School students conducting a practical experiment in the science laboratory",
-        "category": "Learning"
-      },
-      {
-        "src": "/images/academics-exam-time.jpeg",
-        "alt": "Merishaw School students completing an assessment in a classroom",
-        "category": "Learning"
-      },
-      {
-        "src": "/images/academics-agriculture.jpeg",
-        "alt": "Merishaw School students learning practical agriculture skills in the school garden",
-        "category": "Life Skills"
-      },
-      {
-        "src": "/images/clubs-music-drums.jpeg",
-        "alt": "Drum kit ready for Merishaw School music and talent development activities",
-        "category": "Talents"
-      },
-      {
-        "src": "/images/leadership-security-team.jpeg",
-        "alt": "Merishaw School security team standing together at the campus entrance",
-        "category": "Campus Care"
-      }
-    ],
-    "showcaseSlides": [
-      {
-        "eyebrow": "Campus",
-        "title": "A complete campus built for purpose and ambition.",
-        "description": "Aerial views reveal a carefully planned residential school environment for learning, growth, and community.",
-        "image": "/images/gallery-campus-aerial-residential.jpeg",
-        "alt": "Wide aerial view of Merishaw School residential and learning blocks"
-      },
-      {
-        "eyebrow": "Learning",
-        "title": "Learning spaces designed around a clear academic rhythm.",
-        "description": "Classrooms, courtyards, and shared spaces come together in an ordered environment for focused study.",
-        "image": "/images/gallery-campus-aerial-learning-block.jpeg",
-        "alt": "Aerial view of the Merishaw School learning blocks and courtyard"
-      },
-      {
-        "eyebrow": "Sport",
-        "title": "Grounds that make room for energy, discipline, and excellence.",
-        "description": "The campus brings together fields, athletics facilities, and residential life in one destination.",
-        "image": "/images/gallery-soccer-academy.jpeg",
-        "alt": "Merishaw Soccer Academy students competing on the school field"
-      },
-      {
-        "eyebrow": "Boarding",
-        "title": "Residential spaces shaped for structure and belonging.",
-        "description": "Boarding blocks and landscaped courtyards support a calm home-away-from-home experience.",
-        "image": "/images/gallery-campus-residential-block.jpeg",
-        "alt": "Merishaw School residential block and landscaped courtyard"
-      },
-      {
-        "eyebrow": "Welcome",
-        "title": "An entrance that reflects the Merishaw standard.",
-        "description": "The administration block gives families a confident first impression of the school environment.",
-        "image": "/images/gallery-campus-administration-block.jpeg",
-        "alt": "Merishaw School administration block and entrance fountain"
-      },
-      {
-        "eyebrow": "CSR",
-        "title": "Working with partners to strengthen community impact.",
-        "description": "Merishaw's CSR approach brings partners and stakeholders together to support lasting change in the wider community.",
-        "image": "/images/gallery-unicaf-partnership.jpeg",
-        "alt": "Merishaw School and UNICAF representatives supporting a CSR initiative"
-      },
-      {
-        "eyebrow": "Aviation",
-        "title": "Learning experiences that invite boys to aim higher.",
-        "description": "Guided aviation exposure connects technical curiosity, career awareness, and the confidence to imagine ambitious futures.",
-        "image": "/images/aviation-group-briefing.jpeg",
-        "alt": "Merishaw School aviation students receiving a briefing beside an aircraft"
-      },
-      {
-        "eyebrow": "Swimming",
-        "title": "Sporting pathways that build discipline and resilience.",
-        "description": "From field sports to swimming, students have room to train, compete, and pursue steady personal improvement.",
-        "image": "/images/sports-swimming-butterfly.jpeg",
-        "alt": "Merishaw School swimmer practising butterfly stroke"
-      }
-    ]
-  },
-  "news": {
-    "items": [
-      {
-        "title": "Merishaw School Shines in STEM",
-        "date": "School news archive",
-        "image": "/images/news-stem.jpg",
-        "excerpt": "Merishaw continued to excel during the Kenya National Research Festivals organized by Young Scientists Kenya, with one project securing 2nd position in the Technology category.",
-        "category": "STEM"
-      },
-      {
-        "title": "Merishaw Established as a Lacrosse Centre",
-        "date": "School news archive",
-        "image": "/images/news-lacrosse.jpg",
-        "excerpt": "Merishaw hosted a delegation from Liberty University in the USA, giving students valuable exposure to Lacrosse coaching, play, and international sporting exchange.",
-        "category": "Sports"
-      }
-    ]
-  },
-  "leadership": {
-    "leaders": [
-      {
-        "name": "Mr Aringo",
-        "role": "Chief Principal",
-        "image": "/images/principal-mr-aringo.jpeg",
-        "description": "This is an exciting time to join Merishaw School as we continue to build on our successes and strengthen our position as the Home of the Boy Child and the best boys school in Sub-Saharan Africa. We have achieved the institutionalization of our core values: Men of Valor and Purpose, Empowered Entrepreneurs, Resilience, Innovation, Spirituality, Honesty, Accountability, and a Winning Mentality that transforms our boys to Morans.\n\nWe pride ourselves with being much more than the best in academic results, but on being part of a community of learners, both students and staff, pursuing excellence in everything we do.\n\nOur state-of-the-art facilities provide access to a wide range of activities designed to enable our students to fully invest themselves in many aspects of modern society. These include Olympic-standard competitive sports, data science and robotics, art, aviation, music, dance, performance arts, and other clubs, with many of our students achieving regional, national, and global success.\n\nOur students are able to gain a variety of experiences, working as apprentices in engineering workshops and agriculture, taking overseas trips to experience different cultures and values, and participating in world scholars programs aimed at raising their aspirations.\n\nThese invaluable experiences are specifically aimed at ensuring all students are equipped with the necessary skills, knowledge, and understanding, beyond those attained in the classroom, which best prepares them to win in their life, with increasing confidence and courage.\n\nWe support this further with our parent-led mentorship program, aimed at developing our young students' resilience, critical thinking, initiative, reflection, and desire to seek out challenge. These are attributes possessed by the most successful and happy in society.\n\nWe are an open, forward-thinking, and outward-facing school that values partnership. We are confident that, by cultivating strategic partnerships where we share best practices and benchmark, we are becoming a centre of excellence that secures the Founder's vision at the heart of this community."
-      },
-      {
-        "name": "Director's Message",
-        "role": "School Leadership",
-        "image": "/images/merishaw-bg.jpeg",
-        "description": "The director's note reflects the school's commitment to mentorship, values, academic growth, and a focused environment for the boy child."
-      }
-    ],
-    "studentCouncil": [
-      {
-        "name": "Victor Muuo",
-        "role": "School President",
-        "image": "/images/student-council-victor-muuo.jpeg",
-        "description": "Leads the student council and represents student voice across the school community."
-      },
-      {
-        "name": "Victor Kemboi",
-        "role": "Deputy President",
-        "image": "/images/student-council-victor-kemboi.jpeg",
-        "description": "Supports the School President and helps coordinate council responsibilities."
-      },
-      {
-        "name": "Brian Ruto",
-        "role": "Prime Minister",
-        "image": "/images/student-council-brian-ruto.jpeg",
-        "description": "Supports the student council executive and helps coordinate student leadership responsibilities."
-      },
-      {
-        "name": "Michael Bob",
-        "role": "DH Captain",
-        "image": "/images/student-council-michael-bob.jpeg",
-        "description": "Supports student responsibility, discipline, and positive daily school life."
-      },
-      {
-        "name": "Mohammed Abdikad",
-        "role": "Captain",
-        "image": "/images/student-council-mohammed-abdikad.jpeg",
-        "description": "Supports student leadership, responsibility, and positive school culture."
-      },
-      {
-        "name": "Ronald Kinoti",
-        "role": "Games Captain",
-        "image": "/images/student-council-ronald-kinoti.jpeg",
-        "description": "Encourages participation, teamwork, discipline, and sportsmanship."
-      },
-      {
-        "name": "Trevor Chomba",
-        "role": "Halls of Residence Captain",
-        "image": "/images/student-council-trevor-chomba.jpeg",
-        "description": "Supports responsibility, order, and a positive residential experience."
-      },
-      {
-        "name": "Caleb Kamau",
-        "role": "Academic Captain",
-        "image": "/images/student-council-caleb-kamau.jpeg",
-        "description": "Promotes academic focus, study discipline, and peer encouragement."
-      },
-      {
-        "name": "Chibu Obieche",
-        "role": "Chapel and Mentorship Captain",
-        "image": "/images/student-council-chibu-obieche.jpeg",
-        "description": "Supports chapel life, mentorship, values, and character formation."
-      },
-      {
-        "name": "Kawwagi",
-        "role": "Entertainment Captain",
-        "image": "/images/student-council-kawwagi.jpeg",
-        "description": "Encourages creativity, participation, and vibrant student activities."
-      }
-    ]
-  },
-  "support": {
-    "content": {
-      "title": "Support a Boy's Education",
-      "description": "Support a Boy's Education is prepared as a sponsorship pathway for families, alumni, partners, and friends of Merishaw who want to help a deserving learner access a safe, values-led, future-facing education.",
-      "note": "Sponsorship is handled through direct conversation with the school. Payment integration is not included on the website at this stage."
-    },
-    "initiatives": [
-      "Outreach programs: students and the Merishaw community volunteer at local centers, including Kajiado Children's Home.",
-      "Values and integrity: boys cultivate empathy, humility, and compassion through guided community service.",
-      "Life skills: Community Service Learning develops citizenship, entrepreneurship, and civic responsibility."
-    ]
-  }
+    "version":  1,
+    "updatedAt":  null,
+    "site":  {
+                 "name":  "Merishaw School",
+                 "tagline":  "Home of the Boy Child",
+                 "description":  "Merishaw School is a state-of-the-art residential boys\u0027 high school in Isinya, Kajiado County, focused on transforming boys into men of integrity and purpose.",
+                 "url":  "https://merishawschools.sc.ke",
+                 "logo":  "/images/merishaw-logo.png",
+                 "logoLandscape":  "/images/merishaw-logo-landscape.png",
+                 "contact":  {
+                                 "address":  "Isinya Namanga Road",
+                                 "postal":  "P.O. Box 27646-00100 Nairobi",
+                                 "phonePrimary":  "0721 303 303",
+                                 "phoneSecondary":  "0731 303 350",
+                                 "email":  "enquiries@merishawschools.sc.ke"
+                             },
+                 "socials":  {
+                                 "facebook":  "https://web.facebook.com/MerishawSchool",
+                                 "instagram":  "https://www.instagram.com/merishawschool/",
+                                 "x":  "https://twitter.com/MerishawSchool",
+                                 "youtube":  "https://www.youtube.com/channel/UC_Ev7T9BY_9GyxFFckLwz0Q"
+                             },
+                 "partners":  [
+                                  {
+                                      "name":  "Co-operative Bank",
+                                      "logo":  "/images/partners/co-operative-bank-footer-logo.png",
+                                      "href":  "https://www.co-opbank.co.ke/"
+                                  },
+                                  {
+                                      "name":  "Family Bank",
+                                      "logo":  "/images/partners/family-bank-logo.jpg",
+                                      "href":  "https://familybank.co.ke/"
+                                  },
+                                  {
+                                      "name":  "Equity Bank",
+                                      "logo":  "/images/partners/equity-bank-cropped-logo.png",
+                                      "href":  "https://equitygroupholdings.com/ke/"
+                                  }
+                              ],
+                 "mapEmbed":  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.9763029979285!2d36.84367297467117!3d-1.7411036982428307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182fc78b1fbd4825%3A0xf088a04f4550b5c!2sMerishaw%20School!5e0!3m2!1sen!2ske!4v1671699607906!5m2!1sen!2ske",
+                 "tawkEmbedUrl":  "https://embed.tawk.to/6a10a3353768c91c323d8b2c/default",
+                 "tawkPropertyId":  "",
+                 "tawkWidgetId":  ""
+             },
+    "home":  {
+                 "heroSlides":  [
+                                    {
+                                        "eyebrow":  "Home of the Boy Child",
+                                        "title":  "Our Morans at the heart of a protected learning community.",
+                                        "description":  "Inspired by the concentric design of a Maasai homestead, Merishaw places our Morans at the centre, surrounded by teachers and staff who guide, nurture, and protect them.",
+                                        "image":  "/images/hero-concentric-campus.jpeg",
+                                        "alt":  "Aerial view of Merishaw School showing its concentric campus design",
+                                        "imagePosition":  "center center"
+                                    },
+                                    {
+                                        "eyebrow":  "State-of-the-art facilities",
+                                        "title":  "Spaces designed for learning, talent, and excellence.",
+                                        "description":  "From our multipurpose hall to our learning, boarding, and sports spaces, Merishaw gives every Moran room to discover his strengths and pursue excellence.",
+                                        "image":  "/images/hero-state-of-the-art-facilities.jpeg",
+                                        "alt":  "Merishaw School multipurpose hall with stage, large screen, and seating",
+                                        "imagePosition":  "center center"
+                                    },
+                                    {
+                                        "eyebrow":  "A conducive learning environment",
+                                        "title":  "Where every Moran is inspired to learn, collaborate, and grow.",
+                                        "description":  "Our calm, engaging learning spaces encourage curiosity, teamwork, confidence, and the daily pursuit of excellence.",
+                                        "image":  "/images/hero-conducive-learning-environment.jpeg",
+                                        "alt":  "Merishaw School students collaborating around a classroom desk",
+                                        "imagePosition":  "center center"
+                                    },
+                                    {
+                                        "eyebrow":  "Life skills programs",
+                                        "title":  "Preparing Morans to lead, create, and thrive.",
+                                        "description":  "Our programs inculcate leadership, entrepreneurship, technology, innovation, sports, and talent development through practical experiences beyond the classroom.",
+                                        "image":  "/images/hero-life-skills-programs.jpeg",
+                                        "alt":  "Merishaw School students learning practical agriculture skills in the school garden",
+                                        "imagePosition":  "center center"
+                                    },
+                                    {
+                                        "eyebrow":  "Faith \u0026 Character",
+                                        "eyebrowStyle":  "label",
+                                        "title":  "Character grounded in Christian faith.",
+                                        "description":  "Our chaplain is available 24/7 to guide, counsel, and walk alongside every Moran as he grows in faith, integrity, and purpose.",
+                                        "image":  "/images/hero-christian-character-formation.jpeg",
+                                        "alt":  "Merishaw School chaplain seated at a desk with an open Bible",
+                                        "imagePosition":  "center 22%"
+                                    }
+                                ],
+                 "stats":  [
+                               {
+                                   "value":  "Grade 7-12",
+                                   "label":  "Junior and Senior Secondary"
+                               },
+                               {
+                                   "value":  "8.4.4 + CBE",
+                                   "label":  "Curriculum pathways"
+                               },
+                               {
+                                   "value":  "Residential",
+                                   "label":  "Boys\u0027 high school experience"
+                               }
+                           ],
+                 "highlights":  [
+                                    {
+                                        "value":  "Grade 7-12",
+                                        "label":  "Junior and Senior Secondary pathways"
+                                    },
+                                    {
+                                        "value":  "8.4.4 + CBE",
+                                        "label":  "National curriculum options"
+                                    },
+                                    {
+                                        "value":  "Residential",
+                                        "label":  "Boys\u0027 high school experience"
+                                    }
+                                ],
+                 "whyChoose":  [
+                                   {
+                                       "title":  "Purposeful boys\u0027 formation",
+                                       "description":  "A focused environment where character, leadership, discipline, and integrity are intentionally developed."
+                                   },
+                                   {
+                                       "title":  "Clear academic pathways",
+                                       "description":  "8.4.4 and Competency-Based Curriculum options help families choose a suitable route for Junior and Senior Secondary."
+                                   },
+                                   {
+                                       "title":  "Premium residential environment",
+                                       "description":  "Boarding, mentorship, sport, arts, worship, and leadership come together in one structured campus setting."
+                                   },
+                                   {
+                                       "title":  "Values that parents can trust",
+                                       "description":  "A Christian foundation and strong accountability give families confidence in the school culture."
+                                   },
+                                   {
+                                       "title":  "Facilities for whole-boy growth",
+                                       "description":  "Learning spaces, sport, creative arts, ICT, resource areas, and boarding facilities support academic and personal development."
+                                   },
+                                   {
+                                       "title":  "A story worth joining",
+                                       "description":  "Families can discover the school, book a conversation, and begin admissions through a clear parent journey."
+                                   }
+                               ]
+             },
+    "pages":  {
+                  "home":  {
+                               "eyebrow":  "Merishaw School",
+                               "title":  "A campus built for ambition, discipline, and purpose.",
+                               "description":  "A premium residential boys\u0027 school experience in Isinya, shaped by academics, mentorship, faith, sports, creativity, and leadership.",
+                               "image":  "/images/hero-tuition-block.png"
+                           },
+                  "about":  {
+                                "eyebrow":  "About Us",
+                                "title":  "Transforming boys into men of purpose.",
+                                "description":  "Merishaw School is the Home of the Boy Child, a Maasai-homestead-inspired residential school nurturing boys into confident, principled Morans.",
+                                "image":  "/images/resource-centre.jpeg"
+                            },
+                  "academics":  {
+                                    "eyebrow":  "Academics",
+                                    "title":  "Learning pathways that prepare boys for national and global success.",
+                                    "description":  "Merishaw strengthens Competency-Based Education with facilities, resources, and infrastructure optimized for CBE.",
+                                    "image":  "/images/hero-tuition-block.png"
+                                },
+                  "admissions":  {
+                                     "eyebrow":  "Admissions",
+                                     "title":  "Begin your son\u0027s Merishaw journey.",
+                                     "description":  "A clear starting point for parents exploring curriculum options, grade placement, fees, and school visits.",
+                                     "image":  "/images/gallery-parade-grounds.png"
+                                 },
+                  "leadership":  {
+                                     "eyebrow":  "Leadership",
+                                     "title":  "Leadership rooted in mentorship, growth, and accountability.",
+                                     "description":  "Meet the leadership voice shaping the culture, mentorship, and student formation at Merishaw.",
+                                     "image":  "/images/principal-mr-aringo.jpeg"
+                                 },
+                  "gallery":  {
+                                  "eyebrow":  "Gallery",
+                                  "title":  "Campus, facilities, and student life at Merishaw.",
+                                  "description":  "Explore a cleaner visual tour of the learning spaces, boarding environment, sports grounds, and student-life moments.",
+                                  "image":  "/images/gallery-aerial-campus.jpg"
+                              },
+                  "downloads":  {
+                                    "eyebrow":  "Downloads",
+                                    "title":  "Fees structure and school downloads.",
+                                    "description":  "Key parent documents organized in one clear place.",
+                                    "image":  "/images/merishaw-bg.jpeg"
+                                },
+                  "news":  {
+                               "eyebrow":  "News \u0026 Events",
+                               "title":  "Merishaw School news and events.",
+                               "description":  "Highlights from academics, sport, student life, events, and school community moments.",
+                               "image":  "/images/news-stem.jpg"
+                           },
+                  "contact":  {
+                                  "eyebrow":  "Contact",
+                                  "title":  "Contact Merishaw School.",
+                                  "description":  "Reach the school for admissions, visits, downloads, support enquiries, or general questions.",
+                                  "image":  "/images/resource-centre.jpeg"
+                              },
+                  "support":  {
+                                  "eyebrow":  "CSR / Support",
+                                  "title":  "Support a deserving boy\u0027s education journey.",
+                                  "description":  "A professional sponsorship pathway for partners who want to help a learner access Merishaw\u0027s values-led residential education.",
+                                  "image":  "/images/campus-life.jpg"
+                              },
+                  "comingSoon":  [
+                                     {
+                                         "slug":  "educational-philosophy",
+                                         "title":  "Educational Philosophy",
+                                         "eyebrow":  "About Us",
+                                         "description":  "A focused page for Merishaw\u0027s teaching philosophy, learner outcomes, and mentorship approach.",
+                                         "needed":  "This page is being refreshed with the school\u0027s educational philosophy, teaching approach, learner outcomes, and approved language on mentorship or character formation.",
+                                         "image":  "/images/resource-centre.jpeg"
+                                     },
+                                     {
+                                         "slug":  "school-calendar",
+                                         "title":  "School Calendar",
+                                         "eyebrow":  "School Life",
+                                         "description":  "A future home for term dates, events, parent meetings, and downloadable calendar files.",
+                                         "needed":  "This page is being refreshed with term dates, opening and closing dates, exam weeks, events, parent meetings, and downloadable calendar files.",
+                                         "image":  "/images/resource-centre.jpeg"
+                                     },
+                                     {
+                                         "slug":  "school-uniforms",
+                                         "title":  "School Uniforms",
+                                         "eyebrow":  "School Life",
+                                         "description":  "A future guide for uniform requirements, supplier details, and approved school dress standards.",
+                                         "needed":  "This page is being refreshed with uniform lists, supplier details, dress code guidelines, and approved images.",
+                                         "image":  "/images/resource-centre.jpeg"
+                                     },
+                                     {
+                                         "slug":  "our-classrooms",
+                                         "title":  "Our Classrooms",
+                                         "eyebrow":  "Academics",
+                                         "description":  "A future overview of Merishaw\u0027s classroom environment, teaching spaces, learner support, and academic routines.",
+                                         "needed":  "Content needed: approved copy, classroom photos, learning-space details, teaching approach, and learner support information.",
+                                         "image":  "/images/resource-centre.jpeg"
+                                     },
+                                     {
+                                         "slug":  "science-block",
+                                         "title":  "Science and Laboratory",
+                                         "eyebrow":  "Academics",
+                                         "description":  "A future overview of science and laboratory spaces, practical lessons, safety standards, and STEM learning spaces.",
+                                         "needed":  "Content needed: approved science and laboratory copy, lab photos, facilities list, practical learning details, and safety guidance.",
+                                         "image":  "/images/resource-centre.jpeg"
+                                     },
+                                     {
+                                         "slug":  "aviation",
+                                         "title":  "Aviation",
+                                         "eyebrow":  "Academics",
+                                         "description":  "A future page for Merishaw\u0027s aviation exposure, learning pathways, activities, partnerships, and student opportunities.",
+                                         "needed":  "Content needed: approved aviation programme copy, photos, learning outcomes, partnerships, activities, and student participation details.",
+                                         "image":  "/images/resource-centre.jpeg"
+                                     },
+                                     {
+                                         "slug":  "workshop",
+                                         "title":  "Workshop",
+                                         "eyebrow":  "Academics",
+                                         "description":  "A future overview of workshop spaces, practical skills, hands-on projects, tools, and technical learning.",
+                                         "needed":  "Content needed: approved workshop copy, facility photos, equipment details, safety rules, project examples, and learner outcomes.",
+                                         "image":  "/images/resource-centre.jpeg"
+                                     },
+                                     {
+                                         "slug":  "robotics",
+                                         "title":  "Robotics",
+                                         "eyebrow":  "Academics",
+                                         "description":  "A future page for robotics, coding, engineering design, competitions, innovation projects, and digital problem-solving.",
+                                         "needed":  "Content needed: approved robotics copy, photos, project examples, equipment details, club or class structure, and competition information.",
+                                         "image":  "/images/resource-centre.jpeg"
+                                     },
+                                     {
+                                         "slug":  "resource-centre",
+                                         "title":  "Resource Centre",
+                                         "eyebrow":  "Academics",
+                                         "description":  "A future overview of the resource centre, reading culture, study support, digital resources, and research spaces.",
+                                         "needed":  "Content needed: approved resource centre copy, photos, library or digital resource details, study support information, and opening routines.",
+                                         "image":  "/images/resource-centre.jpeg"
+                                     },
+                                     {
+                                         "slug":  "languages",
+                                         "title":  "Languages",
+                                         "eyebrow":  "Academics",
+                                         "description":  "A future page for language learning, communication skills, reading, writing, public speaking, and cultural exposure.",
+                                         "needed":  "Content needed: approved languages copy, subject details, photos, learner activities, public speaking opportunities, and language support information.",
+                                         "image":  "/images/resource-centre.jpeg"
+                                     },
+                                     {
+                                         "slug":  "art-gallery",
+                                         "title":  "Art Gallery",
+                                         "eyebrow":  "Academics",
+                                         "description":  "A future showcase for visual arts, student creativity, exhibitions, creative projects, and artistic development.",
+                                         "needed":  "Content needed: approved art gallery copy, student artwork photos, exhibition details, creative arts activities, and learner achievement highlights.",
+                                         "image":  "/images/resource-centre.jpeg"
+                                     },
+                                     {
+                                         "slug":  "admin-block",
+                                         "title":  "Admin Block",
+                                         "eyebrow":  "Infrastructure",
+                                         "description":  "A future overview of Merishaw\u0027s administration block, visitor reception, offices, parent support, and school operations spaces.",
+                                         "needed":  "Content needed: approved admin block copy, photos, office or reception details, visitor guidance, and parent support information.",
+                                         "image":  "/images/resource-centre.jpeg"
+                                     },
+                                     {
+                                         "slug":  "gmax",
+                                         "title":  "GMAX",
+                                         "eyebrow":  "Infrastructure",
+                                         "description":  "Explore Merishaw\u0027s GMAX facility, a versatile space for gatherings, presentations, performances, indoor activities, and student experiences.",
+                                         "needed":  "Content needed: approved GMAX copy, photos, facility purpose, equipment details, learning activities, and student participation information.",
+                                         "image":  "/images/gmax-facility.jpeg"
+                                     },
+                                     {
+                                         "slug":  "movie-theatre",
+                                         "title":  "Movie Theatre",
+                                         "eyebrow":  "Infrastructure",
+                                         "description":  "A future overview of the movie theatre space, multimedia learning, screenings, presentations, and student enrichment activities.",
+                                         "needed":  "Content needed: approved movie theatre copy, photos, seating or equipment details, learning use cases, screenings, and presentation activities.",
+                                         "image":  "/images/resource-centre.jpeg"
+                                     },
+                                     {
+                                         "slug":  "sports",
+                                         "title":  "Sports",
+                                         "eyebrow":  "Extra-curricular Activities",
+                                         "description":  "A future overview of Merishaw\u0027s sports programmes, teams, facilities, training, and competitions.",
+                                         "needed":  "This page is being refreshed with approved copy about sports programmes, teams, training schedules, facilities, competitions, and student achievements.",
+                                         "image":  "/images/resource-centre.jpeg"
+                                     },
+                                     {
+                                         "slug":  "clubs",
+                                         "title":  "Clubs",
+                                         "eyebrow":  "Extra-curricular Activities",
+                                         "description":  "A future overview of Merishaw\u0027s clubs, societies, creative groups, leadership forums, and student interests.",
+                                         "needed":  "This page is being refreshed with approved copy about clubs, societies, creative groups, leadership forums, meeting times, and student participation.",
+                                         "image":  "/images/resource-centre.jpeg"
+                                     },
+                                     {
+                                         "slug":  "scholarships",
+                                         "title":  "Scholarships",
+                                         "eyebrow":  "Admissions",
+                                         "description":  "A future admissions page for scholarship opportunities, eligibility, deadlines, and application guidance.",
+                                         "needed":  "This page is being refreshed with scholarship availability, eligibility criteria, application process, deadlines, and required documents.",
+                                         "image":  "/images/resource-centre.jpeg"
+                                     },
+                                     {
+                                         "slug":  "staff-stories",
+                                         "title":  "Staff Stories",
+                                         "eyebrow":  "Working at Merishaw",
+                                         "description":  "A future space for staff profiles, quotes, photos, departments, and approved testimonials.",
+                                         "needed":  "This page is being refreshed with staff profiles, quotes, photos, departments, and approved testimonials.",
+                                         "image":  "/images/resource-centre.jpeg"
+                                     },
+                                     {
+                                         "slug":  "christian-life",
+                                         "title":  "Christian Life",
+                                         "eyebrow":  "Working at Merishaw",
+                                         "description":  "A future overview of chapel, discipleship, pastoral care, service, and the school\u0027s Christian foundation.",
+                                         "needed":  "This page is being refreshed with approved copy about chapel, discipleship, pastoral care, service, and the school\u0027s Christian foundation.",
+                                         "image":  "/images/resource-centre.jpeg"
+                                     },
+                                     {
+                                         "slug":  "career-opportunities",
+                                         "title":  "Career Opportunities",
+                                         "eyebrow":  "Working at Merishaw",
+                                         "description":  "A future page for current vacancies, application instructions, HR contact, and hiring information.",
+                                         "needed":  "This page is being refreshed with current vacancies, application instructions, HR contact, and hiring information.",
+                                         "image":  "/images/resource-centre.jpeg"
+                                     }
+                                 ]
+              },
+    "about":  {
+                  "overview":  {
+                                   "eyebrow":  "About Merishaw",
+                                   "title":  "A home where the seed of greatness is protected and nurtured.",
+                                   "paragraphs":  [
+                                                      "The dream of every parent is that their son becomes a pillar of society. At Merishaw School, we believe that the circumstances in which one is born do not determine their future. We believe that in every child there is a God-given seed of greatness.",
+                                                      "However, this seed can be placed at risk at any stage of growth through negative influence and harmful environmental exposure.",
+                                                      "The Vision Bearer of Merishaw School identified the expanding gap in access to quality education for the boy child, alongside deteriorating performance and increasing dropout rates.",
+                                                      "To address this problem, he invested heavily in the establishment of Merishaw School. The school was conceptualized and designed around the Maasai homestead, bringing to life a nexus of home and school: the Home of the Boy Child.",
+                                                      "The name Merishaw was adapted from the rite of passage process implemented by the Maasai community for boys aged between 9 and 15 years, called il-mirisho, which means Conqueror.",
+                                                      "In the spirit of this meaning, Merishaw School identifies itself as the place where boys are nurtured and transformed into Morans, standing tall in society and proud of self.",
+                                                      "At the core of our mission is an environment that builds men of confidence, moulds boys into men of integrity, develops talents and sports as diverse career pathways, develops global leaders and inspired entrepreneurs, and prepares young men to harness new technologies for the good of humanity.",
+                                                      "Our singular vision is transforming boys into men of purpose. Welcome to Merishaw, Home of the Boy Child."
+                                                  ],
+                                   "image":  "/images/campus-life.jpg",
+                                   "imageAlt":  "Merishaw School campus life"
+                               },
+                  "vision":  "An extraordinary journey developing men of valor who are well-rounded, confident, and socially responsible, who succeed in a rapidly changing world and impact society in a transformative way.",
+                  "mission":  "Provide our students with the best internationally recognized competency-based curriculum education, preparing them for world-class universities of their choice. Apply critical pedagogy in a collaborative learning environment that inspires self-confidence and encourages hands-on experience, independent study, and research projects, while developing students\u0027 creativity and critical thinking skills.",
+                  "values":  [
+                                 {
+                                     "letter":  "M",
+                                     "label":  "Men of Valor and Purpose"
+                                 },
+                                 {
+                                     "letter":  "E",
+                                     "label":  "Empowered Entrepreneurs"
+                                 },
+                                 {
+                                     "letter":  "R",
+                                     "label":  "Resilience"
+                                 },
+                                 {
+                                     "letter":  "I",
+                                     "label":  "Innovation"
+                                 },
+                                 {
+                                     "letter":  "S",
+                                     "label":  "Spirituality"
+                                 },
+                                 {
+                                     "letter":  "H",
+                                     "label":  "Honesty"
+                                 },
+                                 {
+                                     "letter":  "A",
+                                     "label":  "Accountability"
+                                 },
+                                 {
+                                     "letter":  "W",
+                                     "label":  "Winning mentality"
+                                 }
+                             ],
+                  "architecture":  {
+                                       "eyebrow":  "Architectural concept",
+                                       "title":  "Designed around the Maasai homestead.",
+                                       "description":  "Merishaw was conceptualized as a nexus of home and school, a campus that gives boys belonging, structure, protection, and the confidence to grow as Morans.",
+                                       "image":  "/images/gallery-aerial-campus.jpg",
+                                       "imageAlt":  "Aerial view of Merishaw School"
+                                   }
+              },
+    "academics":  {
+                      "programs":  [
+                                       {
+                                           "title":  "8-4-4 Curriculum",
+                                           "eyebrow":  "Form 3 and Form 4",
+                                           "description":  "Kenya\u0027s 8-4-4 system is being phased out as the final cohorts complete secondary school. Merishaw currently supports Form 3 and Form 4 learners through the transition."
+                                       },
+                                       {
+                                           "title":  "Competency-Based Education",
+                                           "eyebrow":  "Grade 7-12",
+                                           "description":  "Competency-Based Education, often referred to as CBC, prioritizes practical skills, critical thinking, values, continuous assessment, and tailored career pathways."
+                                       },
+                                       {
+                                           "title":  "Holistic Boarding Experience",
+                                           "eyebrow":  "Student life",
+                                           "description":  "A safe and caring residential environment supports academics, mentorship, sports, spiritual growth, creativity, and disciplined independence."
+                                       }
+                                   ],
+                      "cbePathways":  [
+                                          "Arts and Sports Science",
+                                          "Social Sciences",
+                                          "STEM: Science, Technology, Engineering and Mathematics"
+                                      ],
+                      "cbeCompetencies":  [
+                                              "Communication and collaboration",
+                                              "Critical thinking and problem solving",
+                                              "Creativity and imagination",
+                                              "Citizenship and social responsibility",
+                                              "Digital literacy",
+                                              "Learning to learn",
+                                              "Self-efficacy and confidence"
+                                          ],
+                      "pillars":  [
+                                      {
+                                          "title":  "STEM Program",
+                                          "image":  "/images/pillar-stem.jpg",
+                                          "imageAlt":  "Merishaw students taking part in a STEM learning activity",
+                                          "description":  "A future-facing pillar that prepares boys for innovation, real-world problem solving, creativity, and adaptability in a changing global economy."
+                                      },
+                                      {
+                                          "title":  "Sports and Talents",
+                                          "image":  "/images/gallery-soccer-academy.jpeg",
+                                          "imageAlt":  "Merishaw Soccer Academy students competing on the school field",
+                                          "description":  "A nurturing environment where students explore, develop, and excel in sporting and talent areas while building discipline and resilience."
+                                      },
+                                      {
+                                          "title":  "Spiritual Well-being",
+                                          "image":  "/images/pillar-spiritual.jpg",
+                                          "imageAlt":  "Merishaw school community during a thanksgiving gathering",
+                                          "description":  "A Christian foundation that supports the holistic transformation of the boy child into a man of integrity and purpose."
+                                      },
+                                      {
+                                          "title":  "Performing Arts",
+                                          "image":  "/images/pillar-performing-arts.jpeg",
+                                          "imageAlt":  "Merishaw students in a performing arts activity",
+                                          "description":  "Drama, theatre, music, and performance opportunities that strengthen confidence, expression, collaboration, and creativity."
+                                      },
+                                      {
+                                          "title":  "Digital Literacy",
+                                          "image":  "/images/pillar-digital-literacy.jpg",
+                                          "imageAlt":  "Digital learning and literacy at Merishaw School",
+                                          "description":  "Intentional exposure to technology and digital skills so learners can participate confidently in a modern information age."
+                                      },
+                                      {
+                                          "title":  "Social and Collaboration",
+                                          "image":  "/images/pillar-social-collaboration.jpeg",
+                                          "imageAlt":  "Merishaw students participating in a social collaboration initiative",
+                                          "description":  "Community service, outreach, environmental care, donation drives, and wellness campaigns that build compassion and citizenship."
+                                      }
+                                  ],
+                      "facilities":  [
+                                         "Resource center with junior, senior, and common library spaces",
+                                         "600-seat auditorium and 2,000-seat multi-purpose hall",
+                                         "36 regular classrooms, special classrooms, computer labs, art room, and staffrooms",
+                                         "Science block with laboratories, lecture theatres, and preparation rooms",
+                                         "Workshops for wood work, metal fabrication, STEM, crafts, and culinary arts",
+                                         "Dining hall, dormitories, staff accommodation, and extensive sports facilities"
+                                     ]
+                  },
+    "admissions":  {
+                       "applicationIntro":  {
+                                                "eyebrow":  "Application enquiry",
+                                                "title":  "Start with the information admissions needs most.",
+                                                "description":  "Parents can prepare contact details, student details, curriculum preference, and the intended grade or form before speaking with the school."
+                                            },
+                       "applicationFields":  [
+                                                 "Parent\u0027s full name",
+                                                 "Student\u0027s full name",
+                                                 "Parent\u0027s phone number",
+                                                 "Parent\u0027s email",
+                                                 "Curriculum preference: 8.4.4 or CBE",
+                                                 "8.4.4 options: Form 3 or Form 4",
+                                                 "CBE options: Grade 8, Grade 9, or Grade 10"
+                                             ],
+                       "processIntro":  {
+                                            "eyebrow":  "Admissions Process",
+                                            "title":  "A calm, clear path from enquiry to joining.",
+                                            "description":  "Parents get a simple journey: enquire, share student details, review requirements, then plan the next step with the school."
+                                        },
+                       "processPrepTitle":  "What to prepare",
+                       "processPrepDescription":  "Have parent contact details, student information, preferred curriculum, intended grade or form, and any recent academic records ready for the admissions conversation.",
+                       "process":  [
+                                       {
+                                           "step":  "01",
+                                           "title":  "Enquire",
+                                           "description":  "Families begin by contacting the school through phone, email, the enquiry form, or the admissions call-to-action.",
+                                           "note":  "Start with a direct conversation."
+                                       },
+                                       {
+                                           "step":  "02",
+                                           "title":  "Share student details",
+                                           "description":  "Admissions will request parent details, student details, curriculum preference, and the intended grade or form.",
+                                           "note":  "Prepare key student information."
+                                       },
+                                       {
+                                           "step":  "03",
+                                           "title":  "Review requirements",
+                                           "description":  "The school confirms documents, interview or assessment expectations, intake availability, and next steps.",
+                                           "note":  "Requirements are confirmed by admissions."
+                                       },
+                                       {
+                                           "step":  "04",
+                                           "title":  "Visit or confirm placement",
+                                           "description":  "Families can complete the conversation with admissions, review fees, and receive guidance on joining Merishaw.",
+                                           "note":  "Plan the next step with the school."
+                                       }
+                                   ],
+                       "feesEyebrow":  "Fees and forms",
+                       "feesTitle":  "Review the current fee structure."
+                   },
+    "downloads":  {
+                      "sectionIntro":  {
+                                           "eyebrow":  "Documents",
+                                           "title":  "Important school files.",
+                                           "description":  "Download fee information, brochure material, and available school circulars."
+                                       },
+                      "items":  [
+                                    {
+                                        "title":  "Current Fee Structure",
+                                        "description":  "Current school fee structure for parent review.",
+                                        "href":  "/docs/merishaw-current-fee-structure.pdf",
+                                        "type":  "PDF",
+                                        "isLocal":  true
+                                    },
+                                    {
+                                        "title":  "School Brochure",
+                                        "description":  "School brochure with an overview of the Merishaw experience.",
+                                        "href":  "https://drive.google.com/file/d/1z_HivOAx812hqgenWXXhiTAQvcMU3TYr/view?usp=sharing",
+                                        "type":  "Google Drive",
+                                        "needsClientApproval":  true
+                                    },
+                                    {
+                                        "title":  "End of Term 1 Circular 2023",
+                                        "description":  "Archived circular available for reference.",
+                                        "href":  "https://drive.google.com/file/d/1BQ_156oRsozf-U-X5anE2uypiJiulkmf/view?usp=sharing",
+                                        "type":  "Google Drive",
+                                        "needsClientApproval":  true
+                                    },
+                                    {
+                                        "title":  "2023 Fee Structure",
+                                        "description":  "Previous fee structure available for reference.",
+                                        "href":  "https://drive.google.com/file/d/1DaEbrJixYInUzbWV5HHXSzfq40Ic1BPF/view?usp=sharing",
+                                        "type":  "Google Drive",
+                                        "needsClientApproval":  true
+                                    }
+                                ],
+                      "note":  "For the latest fee guidance or a document that is not listed here, contact the school directly."
+                  },
+    "contact":  {
+                    "sectionIntro":  {
+                                         "eyebrow":  "Contact",
+                                         "title":  "Speak with Merishaw School",
+                                         "description":  "Reach the school for admissions, downloads, visits, sponsorship discussions, and general enquiries."
+                                     }
+                },
+    "gallery":  {
+                    "images":  [
+                                   {
+                                       "src":  "/images/gallery-campus-aerial-residential.jpeg",
+                                       "alt":  "Wide aerial view of Merishaw School residential and learning blocks",
+                                       "category":  "Campus"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-campus-aerial-learning-block.jpeg",
+                                       "alt":  "Aerial view of the Merishaw School learning blocks and courtyard",
+                                       "category":  "Campus"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-campus-aerial-sports-grounds.jpeg",
+                                       "alt":  "Aerial view of Merishaw School sports grounds and campus",
+                                       "category":  "Sports"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-soccer-academy.jpeg",
+                                       "alt":  "Merishaw Soccer Academy students competing on the school field",
+                                       "category":  "Sports"
+                                   },
+                                   {
+                                       "src":  "/images/sports-soccer-match.jpeg",
+                                       "alt":  "Merishaw Soccer Academy students competing for the ball",
+                                       "category":  "Sports"
+                                   },
+                                   {
+                                       "src":  "/images/sports-swimming-butterfly.jpeg",
+                                       "alt":  "Merishaw School swimmer practising butterfly stroke",
+                                       "category":  "Swimming"
+                                   },
+                                   {
+                                       "src":  "/images/sports-swimming-training.jpeg",
+                                       "alt":  "Merishaw School swimmer training in a pool lane",
+                                       "category":  "Swimming"
+                                   },
+                                   {
+                                       "src":  "/images/sports-lacrosse-match.jpeg",
+                                       "alt":  "Merishaw School students playing lacrosse on the field",
+                                       "category":  "Lacrosse"
+                                   },
+                                   {
+                                       "src":  "/images/clubs-badminton-court.jpeg",
+                                       "alt":  "Merishaw School student playing badminton on the indoor court",
+                                       "category":  "Clubs"
+                                   },
+                                   {
+                                       "src":  "/images/clubs-table-tennis.jpeg",
+                                       "alt":  "Merishaw School students playing table tennis",
+                                       "category":  "Clubs"
+                                   },
+                                   {
+                                       "src":  "/images/aviation-group-briefing.jpeg",
+                                       "alt":  "Merishaw School aviation students receiving a briefing beside an aircraft",
+                                       "category":  "Aviation"
+                                   },
+                                   {
+                                       "src":  "/images/aviation-student-controls.jpeg",
+                                       "alt":  "Merishaw School aviation student learning at the aircraft controls",
+                                       "category":  "Aviation"
+                                   },
+                                   {
+                                       "src":  "/images/aviation-technical-briefing.jpeg",
+                                       "alt":  "Merishaw School aviation students listening to a technical briefing",
+                                       "category":  "Aviation"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-campus-residential-block.jpeg",
+                                       "alt":  "Merishaw School residential block and landscaped courtyard",
+                                       "category":  "Boarding"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-campus-administration-block.jpeg",
+                                       "alt":  "Merishaw School administration block and entrance fountain",
+                                       "category":  "Campus"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-hostel-manyatta-palace.jpeg",
+                                       "alt":  "Manyatta Palace hostel block at Merishaw School",
+                                       "category":  "Boarding"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-hostel-state-house.jpeg",
+                                       "alt":  "State House hostel block at Merishaw School",
+                                       "category":  "Boarding"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-hostel-room.jpeg",
+                                       "alt":  "Merishaw School hostel room with bunk bed and student lockers",
+                                       "category":  "Boarding"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-hostel-common-room.jpeg",
+                                       "alt":  "Merishaw School hostel common room with lounge seating",
+                                       "category":  "Boarding"
+                                   },
+                                   {
+                                       "src":  "/images/hero-tuition-block.png",
+                                       "alt":  "Merishaw School tuition block across the multi-purpose hall courtyard",
+                                       "category":  "Campus"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-aerial-campus.jpg",
+                                       "alt":  "Aerial view of Merishaw School campus",
+                                       "category":  "Campus"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-campus-view.jpg",
+                                       "alt":  "Merishaw School campus buildings",
+                                       "category":  "Campus"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-rugby-pitch.png",
+                                       "alt":  "Merishaw School rugby pitch and grounds",
+                                       "category":  "Sports"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-dining-hall.jpeg",
+                                       "alt":  "Merishaw School dining hall interior",
+                                       "category":  "Facilities"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-dormitory.jpeg",
+                                       "alt":  "Overview of Merishaw School dormitory block",
+                                       "category":  "Boarding"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-resource-centre.jpeg",
+                                       "alt":  "Merishaw School resource centre",
+                                       "category":  "Learning"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-parade-grounds.png",
+                                       "alt":  "Merishaw School parade grounds",
+                                       "category":  "Campus"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-student-life-1.jpg",
+                                       "alt":  "Merishaw School student life activity",
+                                       "category":  "Student Life"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-student-life-2.jpg",
+                                       "alt":  "Merishaw School student activity",
+                                       "category":  "Student Life"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-student-life-3.jpg",
+                                       "alt":  "Merishaw School community moment",
+                                       "category":  "Student Life"
+                                   },
+                                   {
+                                       "src":  "/images/sports-day.jpg",
+                                       "alt":  "Merishaw School sports day",
+                                       "category":  "Sports"
+                                   },
+                                   {
+                                       "src":  "/images/gallery-unicaf-partnership.jpeg",
+                                       "alt":  "Merishaw School and UNICAF representatives supporting a CSR initiative",
+                                       "category":  "CSR"
+                                   },
+                                   {
+                                       "src":  "/images/academics-engaged-classroom.jpeg",
+                                       "alt":  "Merishaw School student raising his hand during a classroom lesson",
+                                       "category":  "Learning"
+                                   },
+                                   {
+                                       "src":  "/images/academics-robotics-circuit.jpeg",
+                                       "alt":  "Merishaw School student testing a robotics circuit during a practical STEM activity",
+                                       "category":  "STEM"
+                                   },
+                                   {
+                                       "src":  "/images/academics-robotics-soldering.jpeg",
+                                       "alt":  "Merishaw School student soldering a robotics component during a hands-on technology session",
+                                       "category":  "STEM"
+                                   },
+                                   {
+                                       "src":  "/images/academics-engineering-workshop.jpeg",
+                                       "alt":  "Merishaw School student wearing protective equipment during an engineering workshop activity",
+                                       "category":  "Life Skills"
+                                   },
+                                   {
+                                       "src":  "/images/academics-science-lab.jpeg",
+                                       "alt":  "Merishaw School students conducting a practical experiment in the science laboratory",
+                                       "category":  "Learning"
+                                   },
+                                   {
+                                       "src":  "/images/academics-exam-time.jpeg",
+                                       "alt":  "Merishaw School students completing an assessment in a classroom",
+                                       "category":  "Learning"
+                                   },
+                                   {
+                                       "src":  "/images/academics-agriculture.jpeg",
+                                       "alt":  "Merishaw School students learning practical agriculture skills in the school garden",
+                                       "category":  "Life Skills"
+                                   },
+                                   {
+                                       "src":  "/images/clubs-music-drums.jpeg",
+                                       "alt":  "Drum kit ready for Merishaw School music and talent development activities",
+                                       "category":  "Talents"
+                                   },
+                                   {
+                                       "src":  "/images/leadership-security-team.jpeg",
+                                       "alt":  "Merishaw School security team standing together at the campus entrance",
+                                       "category":  "Campus Care"
+                                   }
+                               ],
+                    "showcaseSlides":  [
+                                           {
+                                               "eyebrow":  "Campus",
+                                               "title":  "A complete campus built for purpose and ambition.",
+                                               "description":  "Aerial views reveal a carefully planned residential school environment for learning, growth, and community.",
+                                               "image":  "/images/gallery-campus-aerial-residential.jpeg",
+                                               "alt":  "Wide aerial view of Merishaw School residential and learning blocks"
+                                           },
+                                           {
+                                               "eyebrow":  "Learning",
+                                               "title":  "Learning spaces designed around a clear academic rhythm.",
+                                               "description":  "Classrooms, courtyards, and shared spaces come together in an ordered environment for focused study.",
+                                               "image":  "/images/gallery-campus-aerial-learning-block.jpeg",
+                                               "alt":  "Aerial view of the Merishaw School learning blocks and courtyard"
+                                           },
+                                           {
+                                               "eyebrow":  "Sport",
+                                               "title":  "Grounds that make room for energy, discipline, and excellence.",
+                                               "description":  "The campus brings together fields, athletics facilities, and residential life in one destination.",
+                                               "image":  "/images/gallery-soccer-academy.jpeg",
+                                               "alt":  "Merishaw Soccer Academy students competing on the school field"
+                                           },
+                                           {
+                                               "eyebrow":  "Boarding",
+                                               "title":  "Residential spaces shaped for structure and belonging.",
+                                               "description":  "Boarding blocks and landscaped courtyards support a calm home-away-from-home experience.",
+                                               "image":  "/images/gallery-campus-residential-block.jpeg",
+                                               "alt":  "Merishaw School residential block and landscaped courtyard"
+                                           },
+                                           {
+                                               "eyebrow":  "Welcome",
+                                               "title":  "An entrance that reflects the Merishaw standard.",
+                                               "description":  "The administration block gives families a confident first impression of the school environment.",
+                                               "image":  "/images/gallery-campus-administration-block.jpeg",
+                                               "alt":  "Merishaw School administration block and entrance fountain"
+                                           },
+                                           {
+                                               "eyebrow":  "CSR",
+                                               "title":  "Working with partners to strengthen community impact.",
+                                               "description":  "Merishaw\u0027s CSR approach brings partners and stakeholders together to support lasting change in the wider community.",
+                                               "image":  "/images/gallery-unicaf-partnership.jpeg",
+                                               "alt":  "Merishaw School and UNICAF representatives supporting a CSR initiative"
+                                           },
+                                           {
+                                               "eyebrow":  "Aviation",
+                                               "title":  "Learning experiences that invite boys to aim higher.",
+                                               "description":  "Guided aviation exposure connects technical curiosity, career awareness, and the confidence to imagine ambitious futures.",
+                                               "image":  "/images/aviation-group-briefing.jpeg",
+                                               "alt":  "Merishaw School aviation students receiving a briefing beside an aircraft"
+                                           },
+                                           {
+                                               "eyebrow":  "Swimming",
+                                               "title":  "Sporting pathways that build discipline and resilience.",
+                                               "description":  "From field sports to swimming, students have room to train, compete, and pursue steady personal improvement.",
+                                               "image":  "/images/sports-swimming-butterfly.jpeg",
+                                               "alt":  "Merishaw School swimmer practising butterfly stroke"
+                                           }
+                                       ]
+                },
+    "leadership":  {
+                       "leaders":  [
+                                       {
+                                           "name":  "Mr Aringo",
+                                           "role":  "Chief Principal",
+                                           "image":  "/images/principal-mr-aringo.jpeg",
+                                           "description":  "This is an exciting time to join Merishaw School as we continue to build on our successes and strengthen our position as the Home of the Boy Child and the best boys school in Sub-Saharan Africa. We have achieved the institutionalization of our core values: Men of Valor and Purpose, Empowered Entrepreneurs, Resilience, Innovation, Spirituality, Honesty, Accountability, and a Winning Mentality that transforms our boys to Morans.\n\nWe pride ourselves with being much more than the best in academic results, but on being part of a community of learners, both students and staff, pursuing excellence in everything we do.\n\nOur state-of-the-art facilities provide access to a wide range of activities designed to enable our students to fully invest themselves in many aspects of modern society. These include Olympic-standard competitive sports, data science and robotics, art, aviation, music, dance, performance arts, and other clubs, with many of our students achieving regional, national, and global success.\n\nOur students are able to gain a variety of experiences, working as apprentices in engineering workshops and agriculture, taking overseas trips to experience different cultures and values, and participating in world scholars programs aimed at raising their aspirations.\n\nThese invaluable experiences are specifically aimed at ensuring all students are equipped with the necessary skills, knowledge, and understanding, beyond those attained in the classroom, which best prepares them to win in their life, with increasing confidence and courage.\n\nWe support this further with our parent-led mentorship program, aimed at developing our young students\u0027 resilience, critical thinking, initiative, reflection, and desire to seek out challenge. These are attributes possessed by the most successful and happy in society.\n\nWe are an open, forward-thinking, and outward-facing school that values partnership. We are confident that, by cultivating strategic partnerships where we share best practices and benchmark, we are becoming a centre of excellence that secures the Founder\u0027s vision at the heart of this community."
+                                       },
+                                       {
+                                           "name":  "Director\u0027s Message",
+                                           "role":  "School Leadership",
+                                           "image":  "/images/merishaw-bg.jpeg",
+                                           "description":  "The director\u0027s note reflects the school\u0027s commitment to mentorship, values, academic growth, and a focused environment for the boy child."
+                                       }
+                                   ],
+                       "studentCouncil":  [
+                                              {
+                                                  "name":  "Victor Muuo",
+                                                  "role":  "School President",
+                                                  "image":  "/images/student-council-victor-muuo.jpeg",
+                                                  "description":  "Leads the student council and represents student voice across the school community."
+                                              },
+                                              {
+                                                  "name":  "Victor Kemboi",
+                                                  "role":  "Deputy President",
+                                                  "image":  "/images/student-council-victor-kemboi.jpeg",
+                                                  "description":  "Supports the School President and helps coordinate council responsibilities."
+                                              },
+                                              {
+                                                  "name":  "Brian Ruto",
+                                                  "role":  "Prime Minister",
+                                                  "image":  "/images/student-council-brian-ruto.jpeg",
+                                                  "description":  "Supports the student council executive and helps coordinate student leadership responsibilities."
+                                              },
+                                              {
+                                                  "name":  "Michael Bob",
+                                                  "role":  "DH Captain",
+                                                  "image":  "/images/student-council-michael-bob.jpeg",
+                                                  "description":  "Supports student responsibility, discipline, and positive daily school life."
+                                              },
+                                              {
+                                                  "name":  "Mohammed Abdikad",
+                                                  "role":  "Captain",
+                                                  "image":  "/images/student-council-mohammed-abdikad.jpeg",
+                                                  "description":  "Supports student leadership, responsibility, and positive school culture."
+                                              },
+                                              {
+                                                  "name":  "Ronald Kinoti",
+                                                  "role":  "Games Captain",
+                                                  "image":  "/images/student-council-ronald-kinoti.jpeg",
+                                                  "description":  "Encourages participation, teamwork, discipline, and sportsmanship."
+                                              },
+                                              {
+                                                  "name":  "Trevor Chomba",
+                                                  "role":  "Halls of Residence Captain",
+                                                  "image":  "/images/student-council-trevor-chomba.jpeg",
+                                                  "description":  "Supports responsibility, order, and a positive residential experience."
+                                              },
+                                              {
+                                                  "name":  "Caleb Kamau",
+                                                  "role":  "Academic Captain",
+                                                  "image":  "/images/student-council-caleb-kamau.jpeg",
+                                                  "description":  "Promotes academic focus, study discipline, and peer encouragement."
+                                              },
+                                              {
+                                                  "name":  "Chibu Obieche",
+                                                  "role":  "Chapel and Mentorship Captain",
+                                                  "image":  "/images/student-council-chibu-obieche.jpeg",
+                                                  "description":  "Supports chapel life, mentorship, values, and character formation."
+                                              },
+                                              {
+                                                  "name":  "Kawwagi",
+                                                  "role":  "Entertainment Captain",
+                                                  "image":  "/images/student-council-kawwagi.jpeg",
+                                                  "description":  "Encourages creativity, participation, and vibrant student activities."
+                                              }
+                                          ]
+                   },
+    "support":  {
+                    "content":  {
+                                    "title":  "Support a Boy\u0027s Education",
+                                    "description":  "Support a Boy\u0027s Education is prepared as a sponsorship pathway for families, alumni, partners, and friends of Merishaw who want to help a deserving learner access a safe, values-led, future-facing education.",
+                                    "note":  "Sponsorship is handled through direct conversation with the school. Payment integration is not included on the website at this stage."
+                                },
+                    "initiatives":  [
+                                        "Outreach programs: students and the Merishaw community volunteer at local centers, including Kajiado Children\u0027s Home.",
+                                        "Values and integrity: boys cultivate empathy, humility, and compassion through guided community service.",
+                                        "Life skills: Community Service Learning develops citizenship, entrepreneurship, and civic responsibility."
+                                    ]
+                }
 }

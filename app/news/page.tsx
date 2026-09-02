@@ -35,7 +35,7 @@ export default async function NewsPage() {
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             {content.news.items.map((item, index) => (
               <MotionReveal key={item.title} delay={index * 0.05}>
-                <article className="h-full overflow-hidden rounded-md border border-brand-line bg-white shadow-card">
+                <article className="flex h-full flex-col overflow-hidden rounded-md border border-brand-line bg-white shadow-card">
                   <div className="relative aspect-[16/10] bg-brand-cream">
                     <Image
                       src={item.image}
@@ -45,7 +45,7 @@ export default async function NewsPage() {
                       sizes="(min-width: 768px) 50vw, 100vw"
                     />
                   </div>
-                  <div className="p-6">
+                  <div className="flex flex-1 flex-col p-6">
                     <div className="flex flex-wrap gap-2">
                       <span className="rounded-md bg-brand-burgundy px-3 py-1 text-xs font-bold uppercase text-white">
                         {item.category}
@@ -60,6 +60,17 @@ export default async function NewsPage() {
                     <p className="mt-3 text-sm leading-7 text-brand-muted">
                       {item.excerpt}
                     </p>
+                    {item.slug ? (
+                      <div className="mt-auto pt-5">
+                        <ButtonLink
+                          href={`/news/${item.slug}`}
+                          variant="ghost"
+                          size="sm"
+                        >
+                          Read full story
+                        </ButtonLink>
+                      </div>
+                    ) : null}
                   </div>
                 </article>
               </MotionReveal>

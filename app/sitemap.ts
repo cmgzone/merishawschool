@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { academicExperiencePages } from "@/data/academics";
 import { contentNeededPages } from "@/data/content-needed";
+import { newsItems } from "@/data/news";
 import { siteConfig } from "@/data/site";
 
 const staticRoutes = [
@@ -29,9 +30,12 @@ function absoluteUrl(path: string) {
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const dynamicRoutes = [
-    ...Object.keys(academicExperiencePages),
-    ...Object.keys(contentNeededPages),
-  ].map((slug) => `/${slug}`);
+    ...Object.keys(academicExperiencePages).map((slug) => `/${slug}`),
+    ...Object.keys(contentNeededPages).map((slug) => `/${slug}`),
+    ...newsItems
+      .filter((item) => item.slug)
+      .map((item) => `/news/${item.slug}`),
+  ];
 
   const routes = [...new Set([...staticRoutes, ...dynamicRoutes])];
   const lastModified = new Date();

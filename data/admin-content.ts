@@ -39,7 +39,7 @@ import {
   studentCouncil,
   studentLeaders,
 } from "@/data/leadership";
-import { newsItems } from "@/data/news";
+import { newsItems, type NewsArticle } from "@/data/news";
 import { siteConfig, stats } from "@/data/site";
 import { csrInitiatives, supportContent } from "@/data/support";
 
@@ -145,11 +145,13 @@ export type EditableValue = {
 };
 
 export type EditableNewsItem = {
+  slug?: string;
   title: string;
   date: string;
   image: string;
   excerpt: string;
   category: string;
+  article?: NewsArticle;
 };
 
 export type EditableLeadershipPerson = {
