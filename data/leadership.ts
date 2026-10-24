@@ -86,11 +86,10 @@ export const seniorManagement: LeadershipPerson[] = [
 
 export const studentCouncil: LeadershipPerson[] = [
   {
-    name: "Victor Muuo",
-    role: "School President",
-    image: "/images/student-council-victor-muuo.jpeg",
-    description:
-      "Leads the student council and represents student voice across the school community.",
+    name: "Andy Onsarigo",
+    role: "Merishaw School President",
+    image: "/images/student-council-andy-onsarigo.jpg",
+    description: "Academic year: 2026/2027",
   },
   {
     name: "Victor Kemboi",

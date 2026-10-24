@@ -103,7 +103,8 @@ function StudentCouncilSection({
                   <Image
                     src={person.image}
                     alt={
-                      person.role === "School President"
+                      (person.role === "School President" ||
+                        person.role === "Merishaw School President")
                         ? `${person.name} - ${person.role}`
                         : `${person.role} student council portrait`
                     }
@@ -116,7 +117,8 @@ function StudentCouncilSection({
                   <p className="text-xs font-bold uppercase tracking-wide text-brand-burgundy">
                     {person.role}
                   </p>
-                  {person.role === "School President" ? (
+                  {(person.role === "School President" ||
+                        person.role === "Merishaw School President") ? (
                     <h3 className="mt-2 font-serif text-2xl font-semibold text-brand-ink">
                       {person.name}
                     </h3>
