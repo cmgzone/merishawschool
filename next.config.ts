@@ -79,6 +79,11 @@ const legacyRedirects = [
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  experimental: {
+    cpus: 1,
+    workerThreads: true,
+    webpackBuildWorker: false,
+  },
   async redirects() {
     return legacyRedirects;
   },

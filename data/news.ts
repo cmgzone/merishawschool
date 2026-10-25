@@ -34,6 +34,65 @@ export const newsItems: NewsItem[] = [
     category: "STEM",
   },
   {
+    title: "Merishaw School Recognised Twice at the Great Places to School Awards 2026",
+    date: "26 September 2026",
+    image: "/images/news-great-places-awards.jpg",
+    excerpt:
+      "Merishaw School received two recognitions at the 6th Edition of the Great Places to School Awards 2026: Emerging Position 1 in Technology & Digital Skills (STEM) and Emerging Position 2 in Global Competence.",
+    category: "Awards & Achievements",
+    slug: "merishaw-great-places-to-school-awards-2026",
+    article: {
+      hero: {
+        eyebrow: "Awards & Achievements | 26 September 2026",
+        title: "Two recognitions, one vision.",
+      },
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Merishaw School has been honoured in two categories at the 6th Edition of the Great Places to School Awards 2026.",
+        },
+        {
+          type: "list",
+          items: [
+            "Emerging Position 1: Technology & Digital Skills (STEM)",
+            "Emerging Position 2: Global Competence",
+          ],
+        },
+        {
+          type: "image",
+          src: "/images/news-great-places-awards.jpg",
+          alt: "Merishaw School trophy from the 6th Great Places to School Awards 2026",
+        },
+        {
+          type: "paragraph",
+          text: "Behind both recognitions lies the same stated purpose: to prepare boys for a future increasingly shaped by technology, and for a world that demands confidence across cultures.",
+        },
+        {
+          type: "paragraph",
+          text: "Digital skills and global competence are treated not as separate subjects, but as two sides of a single ambition — equipping students to operate comfortably in a rapidly changing world.",
+        },
+        { type: "heading", text: "A milestone, and a midpoint" },
+        {
+          type: "paragraph",
+          text: "Receiving recognition is a milestone, but the school frames it as a midpoint rather than a finish line: keep pushing for excellence, keep shaping the leaders of tomorrow, and keep widening the horizon for the boys in its care.",
+        },
+        {
+          type: "paragraph",
+          text: "Global competence is demonstrated through exposure to the wider world — international exchanges, language learning, robotics and design, sport, and the aviation programmes that have become a distinctive part of the Merishaw offering.",
+        },
+        {
+          type: "paragraph",
+          text: "Admissions at Merishaw School are open and ongoing.",
+        },
+        {
+          type: "cta",
+          title: "Admissions are open & ongoing",
+          text: "📞 0721 303 303\n📱 Call or WhatsApp us for admissions, directions and enquiries.",
+        },
+      ],
+    },
+  },
+  {
     title: "Merishaw Established as a Lacrosse Centre",
     date: "School news archive",
     image: "/images/news-lacrosse.jpg",
