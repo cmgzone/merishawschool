@@ -26,6 +26,40 @@ export type NewsItem = {
 
 export const newsItems: NewsItem[] = [
   {
+    title: "Andy Onsarigo Takes Office as School President",
+    date: "28 September 2026",
+    image: "/images/student-council-andy-onsarigo.jpg",
+    excerpt:
+      "Merishaw School welcomed Andy Onsarigo as School President in a swearing-in ceremony captured in the school's official video.",
+    category: "Student Leadership",
+    slug: "andy-onsarigo-school-president-sworn-in",
+    article: {
+      hero: {
+        eyebrow: "Student Leadership | 28 September 2026",
+        title: "Andy Onsarigo takes office as School President.",
+      },
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Merishaw School welcomed Andy Onsarigo as School President in a swearing-in ceremony captured in the school's official video.",
+        },
+        {
+          type: "image",
+          src: "/images/student-council-andy-onsarigo.jpg",
+          alt: "Andy Onsarigo, Merishaw School President",
+        },
+        {
+          type: "paragraph",
+          text: "The occasion marks a student leadership transition at Merishaw and places service, responsibility, and example at the centre of the role.",
+        },
+        {
+          type: "paragraph",
+          text: "We congratulate Andy Onsarigo as he takes up the office of School President and wish him wisdom and strength in the responsibility ahead.",
+        },
+      ],
+    },
+  },
+  {
     title: "Merishaw School Shines in STEM",
     date: "School news archive",
     image: "/images/news-stem.jpg",
