@@ -77,7 +77,7 @@ export default async function RootLayout({
         </a>
         <Navbar site={content.site} />
         <FloatingSocialRail socials={content.site.socials} />
-        <main id="main-content" className="min-w-0 overflow-x-clip">
+        <main id="main-content" className="min-w-0 overflow-x-clip pb-24 lg:pb-0">
           {children}
         </main>
         <Footer site={content.site} />

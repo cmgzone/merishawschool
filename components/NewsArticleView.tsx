@@ -104,7 +104,7 @@ export default function NewsArticleView({
   showHero?: boolean;
 }) {
   return (
-    <MotionReveal className="mx-auto max-w-4xl rounded-md border border-brand-line bg-white p-6 shadow-card sm:p-10 lg:p-14">
+    <MotionReveal className="mx-auto max-w-4xl px-0 sm:px-4 lg:px-8">
       {showHero ? (
         <>
           <p className="text-sm font-bold uppercase text-brand-burgundy">

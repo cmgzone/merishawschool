@@ -16,13 +16,17 @@ export default function LatestNewsSection({ items }: LatestNewsSectionProps) {
   }
 
   return (
-    <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <section
+      aria-labelledby="latest-news-title"
+      className="bg-white px-4 py-16 sm:px-6 lg:px-8"
+    >
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionTitle
             eyebrow="Latest news"
             title="Stories from the Merishaw community."
             description="Discover the moments, milestones, and experiences shaping life at Merishaw School."
+            titleId="latest-news-title"
           />
           <Link
             href="/news"

@@ -7,6 +7,7 @@ type SectionTitleProps = {
   description?: string;
   align?: "left" | "center";
   tone?: "light" | "dark";
+  titleId?: string;
 };
 
 export default function SectionTitle({
@@ -15,6 +16,7 @@ export default function SectionTitle({
   description,
   align = "left",
   tone = "light",
+  titleId,
 }: SectionTitleProps) {
   return (
     <MotionReveal
@@ -31,6 +33,7 @@ export default function SectionTitle({
         </p>
       ) : null}
       <h2
+        id={titleId}
         className={cn(
           "premium-heading font-serif text-4xl font-semibold leading-tight sm:text-5xl",
           tone === "dark" ? "text-white" : "text-brand-ink",
