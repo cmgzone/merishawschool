@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
+import Script from "next/script";
 import FloatingSocialRail from "@/components/FloatingSocialRail";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
@@ -72,6 +73,16 @@ export default async function RootLayout({
       className={`${inter.variable} ${cormorant.variable}`}
     >
       <body className="font-sans antialiased">
+        <Script
+          id="google-tag-manager"
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-T3ZK7ZJF"
+          strategy="beforeInteractive"
+        />
+        <Script id="google-tag-manager-init" strategy="beforeInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());`}
+        </Script>
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>
