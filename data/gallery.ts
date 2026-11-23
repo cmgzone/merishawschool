@@ -324,6 +324,10 @@ export const showcaseSlides = [
 
 export const videoLinks = [
   {
+    title: "Merishaw School Open Week (23rd – 29th November)",
+    href: "/videos/open-week-2026.mp4",
+  },
+  {
     title: "Merishaw School Welcome Video",
     href: "https://www.youtube.com/embed/RIQKNGVncwg",
   },

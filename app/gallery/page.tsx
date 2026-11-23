@@ -6,6 +6,7 @@ import MotionReveal from "@/components/MotionReveal";
 import PageHeader from "@/components/PageHeader";
 import PremiumSlideshow from "@/components/PremiumSlideshow";
 import SectionTitle from "@/components/SectionTitle";
+import OpenWeekVideoSection from "@/components/OpenWeekVideoSection";
 import WelcomeVideoSection from "@/components/WelcomeVideoSection";
 import { getEditableContent } from "@/data/admin-content";
 
@@ -35,6 +36,8 @@ export default async function GalleryPage() {
           className="mx-auto max-w-7xl"
         />
       </section>
+
+      <OpenWeekVideoSection tone="cream" />
 
       <WelcomeVideoSection
         tone="light"

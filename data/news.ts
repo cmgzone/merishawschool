@@ -4,6 +4,14 @@ export type NewsArticleBlock =
   | { type: "paragraph"; text: string }
   | { type: "list"; items: string[]; columns?: 2 | 3 }
   | { type: "image"; src: string; alt: string }
+  | {
+      type: "video";
+      src: string;
+      title: string;
+      poster?: string;
+      caption?: string;
+      aspect?: "portrait" | "landscape";
+    }
   | { type: "cta"; title: string; text: string };
 
 export type NewsArticle = {
@@ -25,6 +33,67 @@ export type NewsItem = {
 };
 
 export const newsItems: NewsItem[] = [
+  {
+    title: "Merishaw School Open Week: 23rd – 29th November",
+    date: "23 November 2026",
+    image: "/images/gallery-campus-administration-block.jpeg",
+    excerpt:
+      "Merishaw School welcomes parents, guardians, and prospective students to our Open Week from 23rd to 29th November (9:00 AM – 5:00 PM daily). Come experience academic excellence, discipline, and international exposure at the Home of the Boy Child.",
+    category: "Open Week",
+    slug: "merishaw-school-open-week-2026",
+    article: {
+      hero: {
+        eyebrow: "Open Week | 23rd – 29th November 2026",
+        title: "Merishaw School welcomes you to our Open Week.",
+      },
+      blocks: [
+        {
+          type: "paragraph",
+          text: "Merishaw School — Home of the Boy Child — warmly welcomes families, parents, and prospective Morans to our official School Open Week running from 23rd November to 29th November, between 9:00 AM and 5:00 PM daily.",
+        },
+        {
+          type: "video",
+          src: "/videos/open-week-2026.mp4",
+          poster: "/images/gallery-campus-administration-block.jpeg",
+          title: "Merishaw School Open Week Official Announcement Video",
+          caption:
+            "Watch the official Merishaw School Open Week video announcement (23rd – 29th November, 9:00 AM – 5:00 PM).",
+          aspect: "portrait",
+        },
+        {
+          type: "paragraph",
+          text: "Come experience academic excellence, discipline, and international exposure firsthand as our doors open for guided campus tours, curriculum discussions, and direct conversations with our educators and leadership team.",
+        },
+        {
+          type: "heading",
+          text: "Highlights of the Open Week experience",
+        },
+        {
+          type: "list",
+          columns: 3,
+          items: [
+            "What to Expect: A firsthand look at our curriculum, campus life, and student transformation.",
+            "Campus Tour: Explore our world-class facilities, modern boarding, and serene learning environment.",
+            "Meet Our Staff: Engage with our visionary educators, guidance teams, and leadership.",
+          ],
+        },
+        {
+          type: "image",
+          src: "/images/gallery-campus-administration-block.jpeg",
+          alt: "Merishaw School administration block ready to welcome families for Open Week",
+        },
+        {
+          type: "paragraph",
+          text: "Whether you are exploring Competency-Based Education (CBE) or our residential boys' high school environment in Isinya, Open Week is the ideal opportunity to walk the campus, see the G-Max Arena, classrooms, laboratories, boarding hostels, and sports grounds, and discover how Merishaw nurtures boys into men of valour and purpose.",
+        },
+        {
+          type: "cta",
+          title: "Our Admissions Are Ongoing — Visit Us This Open Week",
+          text: "📅 23rd November to 29th November (9:00 AM – 5:00 PM)\n📞 0721 303 303 / 0731 303 350\n📱 Call or WhatsApp us for Open Week bookings, admissions, directions, and enquiries.",
+        },
+      ],
+    },
+  },
   {
     title: "Andy Onsarigo Takes Office as School President",
     date: "28 September 2026",

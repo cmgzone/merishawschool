@@ -74,6 +74,34 @@ function ArticleBlock({ block }: { block: NewsArticleBlock }) {
           </div>
         </figure>
       );
+    case "video":
+      return (
+        <figure className="mt-8">
+          <div
+            className={cn(
+              "overflow-hidden rounded-md border-2 border-brand-gold bg-brand-ink shadow-premium",
+              block.aspect === "portrait"
+                ? "mx-auto max-w-sm aspect-[9/16]"
+                : "aspect-video w-full",
+            )}
+          >
+            <video
+              src={block.src}
+              poster={block.poster}
+              title={block.title}
+              controls
+              playsInline
+              preload="metadata"
+              className="h-full w-full object-contain"
+            />
+          </div>
+          {block.caption ? (
+            <figcaption className="mt-3 text-center text-xs font-semibold text-brand-muted">
+              {block.caption}
+            </figcaption>
+          ) : null}
+        </figure>
+      );
     case "cta":
       return (
         <div className="mt-14 rounded-md bg-brand-burgundy p-6 text-white shadow-card sm:p-8">

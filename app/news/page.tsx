@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import ButtonLink from "@/components/ButtonLink";
 import MotionReveal from "@/components/MotionReveal";
+import OpenWeekVideoSection from "@/components/OpenWeekVideoSection";
 import PageHeader from "@/components/PageHeader";
 import SectionTitle from "@/components/SectionTitle";
 import { getEditableContent } from "@/data/admin-content";
@@ -24,6 +25,8 @@ export default async function NewsPage() {
         image={content.pages.news.image}
         imagePosition={content.pages.news.imagePosition}
       />
+
+      <OpenWeekVideoSection tone="cream" />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">

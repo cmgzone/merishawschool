@@ -3,6 +3,7 @@ import AdmissionsProcessSection from "@/components/AdmissionsProcessSection";
 import ButtonLink from "@/components/ButtonLink";
 import CTASection from "@/components/CTASection";
 import MotionReveal from "@/components/MotionReveal";
+import OpenWeekVideoSection from "@/components/OpenWeekVideoSection";
 import PageHeader from "@/components/PageHeader";
 import SectionTitle from "@/components/SectionTitle";
 import { getEditableContent } from "@/data/admin-content";
@@ -25,6 +26,8 @@ export default async function AdmissionsPage() {
         image={content.pages.admissions.image}
         imagePosition={content.pages.admissions.imagePosition}
       />
+
+      <OpenWeekVideoSection tone="cream" />
 
       <section className="bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr]">

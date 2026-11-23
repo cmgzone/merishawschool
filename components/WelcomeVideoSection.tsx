@@ -39,13 +39,24 @@ export default function WelcomeVideoSection({
         <MotionReveal>
           <div className="overflow-hidden rounded-md border border-brand-gold/40 bg-brand-burgundy shadow-premium">
             <div className="aspect-video">
-              <iframe
-                src={embedUrl}
-                title={videoTitle}
-                className="h-full w-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
+              {embedUrl.endsWith(".mp4") || embedUrl.endsWith(".webm") ? (
+                <video
+                  src={embedUrl}
+                  title={videoTitle}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  className="h-full w-full bg-brand-ink object-contain"
+                />
+              ) : (
+                <iframe
+                  src={embedUrl}
+                  title={videoTitle}
+                  className="h-full w-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              )}
             </div>
           </div>
         </MotionReveal>

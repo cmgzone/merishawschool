@@ -1,5 +1,6 @@
 import HeroSection from "@/components/HeroSection";
 import LatestNewsSection from "@/components/LatestNewsSection";
+import OpenWeekVideoSection from "@/components/OpenWeekVideoSection";
 import WelcomeVideoSection from "@/components/WelcomeVideoSection";
 import { getEditableContent } from "@/data/admin-content";
 
@@ -9,6 +10,7 @@ export default async function Home() {
   return (
     <>
       <HeroSection slides={content.home.heroSlides} />
+      <OpenWeekVideoSection tone="cream" />
       <WelcomeVideoSection
         eyebrow={content.homeVideo.eyebrow}
         title={content.homeVideo.title}
@@ -19,7 +21,7 @@ export default async function Home() {
         primaryLabel={content.homeVideo.primaryAction.label}
         secondaryHref={content.homeVideo.secondaryAction.href}
         secondaryLabel={content.homeVideo.secondaryAction.label}
-        tone="cream"
+        tone="light"
       />
       <LatestNewsSection items={content.news.items} />
     </>
