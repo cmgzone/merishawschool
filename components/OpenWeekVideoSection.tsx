@@ -48,37 +48,77 @@ export default function OpenWeekVideoSection({
   posterSrc = "/images/gallery-campus-administration-block.jpeg",
 }: OpenWeekVideoSectionProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [isMuted, setIsMuted] = useState(true);
+  const userToggledRef = useRef(false);
+  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    const startAutoplay = async () => {
+    let removeInteractionListeners: (() => void) | null = null;
+
+    const enableSoundOnFirstInteraction = () => {
+      const unlockSound = () => {
+        if (!userToggledRef.current && videoRef.current) {
+          videoRef.current.muted = false;
+          videoRef.current.volume = 1;
+          setIsMuted(false);
+          void videoRef.current.play().catch(() => {});
+        }
+        removeInteractionListeners?.();
+      };
+
+      const events = ["pointerdown", "touchstart", "keydown", "click"] as const;
+      events.forEach((event) =>
+        window.addEventListener(event, unlockSound, { once: true, passive: true }),
+      );
+
+      removeInteractionListeners = () => {
+        events.forEach((event) =>
+          window.removeEventListener(event, unlockSound),
+        );
+      };
+    };
+
+    const startAutoplayWithSound = async () => {
       try {
         video.muted = false;
+        video.volume = 1;
         await video.play();
         setIsMuted(false);
       } catch {
+        // Browser policy blocked unmuted autoplay prior to user gesture:
+        // start playing immediately and unmute automatically on first interaction
+        enableSoundOnFirstInteraction();
         try {
           video.muted = true;
           setIsMuted(true);
           await video.play();
         } catch {
-          // Browser blocked all autoplay until user interaction
+          // Keep default sound-on state ready for user click
+          video.muted = false;
+          setIsMuted(false);
         }
       }
     };
 
-    void startAutoplay();
+    void startAutoplayWithSound();
+
+    return () => {
+      removeInteractionListeners?.();
+    };
   }, []);
 
   const toggleMute = () => {
     const video = videoRef.current;
     if (!video) return;
 
+    userToggledRef.current = true;
     const nextMuted = !video.muted;
     video.muted = nextMuted;
+    if (!nextMuted) {
+      video.volume = 1;
+    }
     setIsMuted(nextMuted);
 
     if (video.paused) {

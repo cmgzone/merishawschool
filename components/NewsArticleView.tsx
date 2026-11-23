@@ -90,7 +90,6 @@ function ArticleBlock({ block }: { block: NewsArticleBlock }) {
               poster={block.poster}
               title={block.title}
               autoPlay
-              muted
               loop
               controls
               playsInline
