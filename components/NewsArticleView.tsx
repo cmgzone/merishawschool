@@ -89,9 +89,12 @@ function ArticleBlock({ block }: { block: NewsArticleBlock }) {
               src={block.src}
               poster={block.poster}
               title={block.title}
+              autoPlay
+              muted
+              loop
               controls
               playsInline
-              preload="metadata"
+              preload="auto"
               className="h-full w-full object-contain"
             />
           </div>

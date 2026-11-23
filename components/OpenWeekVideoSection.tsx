@@ -1,4 +1,17 @@
-import { CalendarDays, Clock3, Compass, Phone, PlayCircle, Sparkles, UsersRound } from "lucide-react";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import {
+  CalendarDays,
+  Clock3,
+  Compass,
+  Phone,
+  PlayCircle,
+  Sparkles,
+  UsersRound,
+  Volume2,
+  VolumeX,
+} from "lucide-react";
 import ButtonLink from "@/components/ButtonLink";
 import MotionReveal from "@/components/MotionReveal";
 
@@ -34,6 +47,45 @@ export default function OpenWeekVideoSection({
   videoSrc = "/videos/open-week-2026.mp4",
   posterSrc = "/images/gallery-campus-administration-block.jpeg",
 }: OpenWeekVideoSectionProps) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [isMuted, setIsMuted] = useState(true);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const startAutoplay = async () => {
+      try {
+        video.muted = false;
+        await video.play();
+        setIsMuted(false);
+      } catch {
+        try {
+          video.muted = true;
+          setIsMuted(true);
+          await video.play();
+        } catch {
+          // Browser blocked all autoplay until user interaction
+        }
+      }
+    };
+
+    void startAutoplay();
+  }, []);
+
+  const toggleMute = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const nextMuted = !video.muted;
+    video.muted = nextMuted;
+    setIsMuted(nextMuted);
+
+    if (video.paused) {
+      void video.play();
+    }
+  };
+
   return (
     <section
       aria-labelledby="open-week-video-heading"
@@ -56,18 +108,43 @@ export default function OpenWeekVideoSection({
                   Open Week
                 </span>
               </div>
-              <div className="aspect-[9/16] w-full bg-brand-ink">
+              <div className="relative aspect-[9/16] w-full bg-brand-ink">
                 <video
+                  ref={videoRef}
                   src={videoSrc}
                   poster={posterSrc}
+                  autoPlay
+                  muted={isMuted}
+                  loop
                   controls
                   playsInline
-                  preload="metadata"
+                  preload="auto"
+                  onVolumeChange={(event) =>
+                    setIsMuted(event.currentTarget.muted)
+                  }
                   className="h-full w-full object-contain"
                   aria-label="Merishaw School Open Week official announcement video"
                 >
                   Your browser does not support the video tag.
                 </video>
+                <button
+                  type="button"
+                  onClick={toggleMute}
+                  className="absolute right-3 top-3 z-10 inline-flex items-center gap-1.5 rounded-md border border-brand-gold/80 bg-brand-burgundy/95 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-card backdrop-blur-sm transition hover:bg-brand-ink"
+                  aria-label={isMuted ? "Unmute video audio" : "Mute video audio"}
+                >
+                  {isMuted ? (
+                    <>
+                      <VolumeX className="h-3.5 w-3.5 text-brand-gold" />
+                      Tap for Sound
+                    </>
+                  ) : (
+                    <>
+                      <Volume2 className="h-3.5 w-3.5 text-brand-gold" />
+                      Sound On
+                    </>
+                  )}
+                </button>
               </div>
             </div>
           </MotionReveal>
